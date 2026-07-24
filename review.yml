@@ -1,0 +1,173 @@
+aid: nacha
+name: Nacha
+review:
+  question: Does Nacha operate a public self-serve payments API, and what real developer surface does it publish?
+  answer: partial
+  date: '2026-07-24'
+  reviewer: API Evangelist
+  homeMarket: United States
+findings:
+  summary: |
+    Nacha is the nonprofit, member-governed steward of the ACH Network — the
+    batch account-to-account rail moving 30B+ payments and $80T+ annually in
+    the United States. It writes and enforces the Nacha Operating Rules but is
+    NOT an ACH Operator (the Federal Reserve / FedACH and The Clearing House
+    clear and settle the files) and does NOT run its own public production
+    payments API. Nacha is a rulebook- and documentation-first scheme steward.
+    Its genuine developer surface is delivered through Afinis Interoperability
+    Standards, the Nacha-stewarded standards group that publishes royalty-free,
+    standardized financial-services API specifications as Swagger/OpenAPI 2.0
+    documents hosted on SwaggerHub under the ASIG organization, catalogued at
+    nacha.org/content/apis-development (the Afinis API Catalog). These are
+    reference/interoperability specifications intended for financial
+    institutions and their vendors to implement — not a Nacha-hosted live
+    endpoint. A separate ACH Guide for Developers (achdevguide.nacha.org) is an
+    educational reference for the ACH file format and record layouts, not an
+    API. Phixius (nacha.org/content/phixius) is Nacha's payment-information
+    exchange platform; its developer portal (developer.phixius.com) exists but
+    returned HTTP 403 to anonymous probing.
+  developerPortal:
+    url: https://www.nacha.org/content/apis-development
+    label: Afinis API Catalog (Afinis Interoperability Standards)
+    httpStatus: 200
+    confirmed: true
+    note: |
+      Public catalog page listing each Afinis standardized API with a
+      "Swagger Specifications" link (SwaggerHub) and, for some, technical
+      documentation. Rendered only with a browser User-Agent; the site
+      returns 403 to some default bot User-Agents.
+  supportingPages:
+    - url: https://www.nacha.org/content/afinis-interoperability-standards
+      type: Documentation
+      httpStatus: 200
+    - url: https://www.nacha.org/content/afinis-api-catalog
+      type: APIReference
+      httpStatus: 200
+    - url: https://achdevguide.nacha.org/
+      type: GettingStarted
+      httpStatus: 200
+      note: ACH Guide for Developers — ACH file-format education, not an API.
+    - url: https://www.nacha.org/content/phixius
+      type: Documentation
+      httpStatus: 200
+      note: Phixius payment-information exchange platform overview.
+    - url: https://developer.phixius.com/
+      type: DeveloperPortal
+      httpStatus: 403
+      note: Phixius developer portal exists but is gated / not anonymously readable.
+    - url: https://www.nacha.org/rules
+      type: Rules
+      httpStatus: 200
+      note: Nacha Operating Rules — the rulebook that governs the ACH Network.
+  downloadableSpecs:
+    harvested: true
+    count: 24
+    format: Swagger 2.0 (OpenAPI)
+    hostOrg: SwaggerHub / ASIG (Afinis Standards Interest Group)
+    provenance: |
+      Each spec downloaded verbatim from the SwaggerHub registry API
+      (https://api.swaggerhub.com/apis/ASIG/<API>/<version>) on 2026-07-24,
+      HTTP 200 for all 24, each validated as containing swagger + paths.
+      Files stored under openapi/. Two spec-declared hosts are referenced:
+      api.afinis.org and api.asig.org.
+    files:
+      - openapi/nacha-initiate-payment.json           # Initiate_Payment 1.0.7
+      - openapi/nacha-iar.json                          # IAR 1.0.1
+      - openapi/nacha-iar-plus.json                     # IAR_Plus 1.0.1
+      - openapi/nacha-transaction-status.json           # transaction_status 1.0.14
+      - openapi/nacha-initiate-wire-payment.json        # Initiate_Wire_Payment_API 1.0.3
+      - openapi/nacha-get-wire-status.json              # Get_Wire_Status_API 1.0.0
+      - openapi/nacha-initiate-instant-payment.json     # Initiate_Instant_Payment_API 1.0.6
+      - openapi/nacha-instant-payment-transfer.json     # Instant_Payment_Transfer 1.0.1
+      - openapi/nacha-initiate-payment-api.json         # Initiate_Payment_API 1.0.2
+      - openapi/nacha-ret.json                          # RET_API 1.0.3
+      - openapi/nacha-authorize-to-pay.json             # Authorize_To_Pay 1.0.6
+      - openapi/nacha-pay-me.json                       # Pay_Me_API 1.0.11
+      - openapi/nacha-account-validation.json           # account_validation 1.0.2
+      - openapi/nacha-account-validation-plus-name.json # Account_Validation_Plus_Ownership_API 1.1.0
+      - openapi/nacha-account-validation-plus-name-ret.json # Account_Validation_Plus_Name_and_RET 1.0.4
+      - openapi/nacha-realtime-billing-account-validation.json # RealTimeBillingAccountValidation 1.0.7
+      - openapi/nacha-corporate-account-balances.json   # Get_Corporate_Account_Balances_API 1.0.3
+      - openapi/nacha-corporate-transaction-history.json # Get_Corporate_Transaction_History_API 1.0.5
+      - openapi/nacha-corporate-transaction-detail.json # Get_Transaction_Detail_API 1.0.4
+      - openapi/nacha-payee-profile.json                # Payee_Profile_API 2.1.3
+      - openapi/nacha-wsud.json                          # Written_Statement_of_Unauthorized_Debit 1.0.8
+      - openapi/nacha-proof-of-authorization.json       # Proof_of_Authorization 1.0.6
+      - openapi/nacha-bank-contacts.json                # bank_contacts 1.0.5
+      - openapi/nacha-bank-contact-v2.json              # Bank_Contact_V2 1.0.9
+  authModel:
+    scheme: apiKey
+    location: query
+    parameterName: apikey
+    note: |
+      Every one of the 24 Afinis Swagger specs declares a single security
+      definition, an API key passed as the "apikey" query parameter. Afinis
+      requires developers to register an application (historically at
+      afinis.org/user/register) to obtain a key and access the sandbox. No
+      OAuth2, no mTLS, and no OpenID Connect discovery document is published
+      for these standardized specs. afinis.org was not resolving at review time.
+  webhooksEvents:
+    documented: false
+    note: |
+      No AsyncAPI, webhook catalog, or event-callback surface is published for
+      the Afinis standardized APIs. These are request/response REST message
+      standards. (Nacha does maintain the ACH return/notification-of-change
+      mechanics via the Operating Rules and the RET reporting API, but not as
+      push webhooks.)
+  postman:
+    documented: false
+    note: No official Nacha/Afinis public Postman collection or workspace found; specs are distributed via SwaggerHub (ASIG).
+  graphql:
+    documented: false
+  iso20022Posture:
+    note: |
+      As a US domestic rail steward, Nacha's core artifacts are the Nacha
+      Operating Rules and the fixed-width ACH record/file format (NACHA file),
+      documented in the ACH Guide for Developers rather than as ISO 20022
+      messages. The Afinis API layer provides modern JSON/REST standardized
+      interfaces that sit alongside — and can front — ACH, wire, and instant
+      (RTP/FedNow) rails, including message elements aligned to ISO 20022
+      concepts for instant and wire payments.
+  transports:
+    - protocol: REST
+      scheme: https
+      hosts:
+        - api.afinis.org
+        - api.asig.org
+      documented: true
+      note: Spec-declared production hosts for the Afinis standardized APIs.
+    - protocol: WebSocket
+      documented: false
+    - protocol: gRPC
+      documented: false
+sources:
+  - url: https://www.nacha.org/content/apis-development
+    type: DeveloperPortal
+    httpStatus: 200
+    note: Afinis API Catalog — lists every standardized API and its SwaggerHub spec link.
+  - url: https://www.nacha.org/content/afinis-interoperability-standards
+    type: Documentation
+    httpStatus: 200
+  - url: https://achdevguide.nacha.org/
+    type: GettingStarted
+    httpStatus: 200
+  - url: https://www.nacha.org/rules
+    type: Rules
+    httpStatus: 200
+  - url: https://www.nacha.org/content/about-us
+    type: About
+    httpStatus: 200
+  - url: https://api.swaggerhub.com/apis/ASIG/
+    type: OpenAPI
+    note: SwaggerHub registry (ASIG org) — verbatim source of all 24 harvested specs.
+actions:
+  openapiHarvested: true
+  specsSaved: 24
+  apisYmlCreated: true
+  reason: |
+    Nacha is a documentation/rulebook-first ACH scheme steward with no
+    self-serve production API of its own, but it stewards a substantial, real,
+    downloadable API standards catalog through Afinis. All 24 published Afinis
+    Swagger specs were harvested verbatim and listed as separate apis[]
+    entries; the developer catalog, ACH developer guide, Operating Rules, and
+    Phixius platform are recorded as an honest identity + docs-pointer record.

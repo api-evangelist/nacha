@@ -1,0 +1,449 @@
+aid: nacha
+url: https://raw.githubusercontent.com/api-evangelist/nacha/refs/heads/main/apis.yml
+name: Nacha
+kind: company
+description: 'Nacha (formerly the National Automated Clearing House Association) is the nonprofit, member-governed
+  steward of the ACH Network, the batch-based account-to-account payment rail that moves consumer and
+  business direct deposits, direct payments, bill pay, and B2B transfers across the United States — more
+  than 30 billion payments and over $80 trillion in value annually. Nacha writes and enforces the Nacha
+  Operating Rules that bind the network''s participating depository financial institutions, but it is
+  not itself an ACH Operator (the Federal Reserve and The Clearing House clear and settle the files).
+  Nacha is documentation- and rulebook-first rather than a self-serve PSP: it does not operate a public
+  production payments API of its own. Its API posture is delivered through Afinis Interoperability Standards,
+  the Nacha-stewarded group that publishes royalty-free, standardized financial-services API specifications
+  (payment initiation, account validation, transaction status, returns reporting, and directory services)
+  as Swagger/OpenAPI documents on SwaggerHub, and through Phixius, its payment-information exchange platform.
+  Its home market is the United States.'
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Payments
+- United States
+- ACH
+- Account-to-Account
+- Real-Time Payments
+- Account Validation
+- Payment Rails
+- ISO 20022
+- Standards
+- Afinis
+created: '2026-07-24'
+modified: '2026-07-24'
+specificationVersion: '0.19'
+apis:
+- aid: nacha:nacha-initiate-payment
+  name: Afinis Initiate ACH Payment API
+  description: Afinis Interoperability Standards API for initiating an ACH credit or debit payment instruction
+    from an originator through their financial institution. Part of the Afinis standardized payments API
+    set stewarded by Nacha.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  baseURL: https://api.asig.org/v1
+  tags:
+  - ACH
+  - Payment Initiation
+  - ISO 20022
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-initiate-payment.json
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+- aid: nacha:nacha-iar
+  name: Afinis International ACH Remittance (IAR) API
+  description: Afinis International ACH Remittance (IAR) API for sending remittance information tied to
+    incoming IAT (International ACH Transaction) credits.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/IAR/1.0.1
+  baseURL: https://api.asig.org/payments/v1
+  tags:
+  - ACH
+  - Cross-Border
+  - IAT
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-iar.json
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR/1.0.1
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+- aid: nacha:nacha-iar-plus
+  name: Afinis IAR Plus API
+  description: Afinis IAR Plus API, an extended International ACH Remittance message for incoming IAT
+    credits carrying additional remittance detail.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/IAR_Plus/1.0.1
+  baseURL: https://api.asig.org/payments/v1
+  tags:
+  - ACH
+  - Cross-Border
+  - IAT
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-iar-plus.json
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR_Plus/1.0.1
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+- aid: nacha:nacha-transaction-status
+  name: Afinis Transaction Status API
+  description: Afinis Transaction Status API for querying the status of an ACH credit or debit payment
+    by instruction ID or transaction ID.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/transaction_status/1.0.14
+  baseURL: https://api.afinis.org/v1
+  tags:
+  - ACH
+  - Transaction Status
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-transaction-status.json
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/transaction_status/1.0.14
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+- aid: nacha:nacha-initiate-wire-payment
+  name: Afinis Initiate Wire Payment API
+  description: Afinis Initiate Wire Payment API enabling a business to originate a wire transfer through
+    its financial institution via a standardized API call.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Initiate_Wire_Payment_API/1.0.3
+  baseURL: https://api.asig.org/payments/v1
+  tags:
+  - Wire Transfer
+  - Payment Initiation
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-initiate-wire-payment.json
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Wire_Payment_API/1.0.3
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+- aid: nacha:nacha-get-wire-status
+  name: Afinis Get Wire Status API
+  description: Afinis Get Wire Status API enabling the originator of a wire to retrieve the status of
+    the wire payment.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Get_Wire_Status_API/1.0.0
+  baseURL: https://api.asig.org/payments/v1
+  tags:
+  - Wire Transfer
+  - Transaction Status
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-get-wire-status.json
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Wire_Status_API/1.0.0
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+- aid: nacha:nacha-initiate-instant-payment
+  name: Afinis Initiate Instant Payment API (IIP)
+  description: Afinis Initiate Instant Payment (IIP) API enabling a business to make an instant payment
+    through its financial institution, mapping to US real-time rails (RTP and FedNow).
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Initiate_Instant_Payment_API/1.0.6
+  baseURL: https://api.asig.org/payments/v1
+  tags:
+  - Real-Time Payments
+  - Instant Payments
+  - Payment Initiation
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-initiate-instant-payment.json
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Instant_Payment_API/1.0.6
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+- aid: nacha:nacha-instant-payment-transfer
+  name: Afinis Instant Payment Transfer API (IPT)
+  description: Afinis Instant Payment Transfer (IPT) API enabling a financial institution to send another
+    financial institution an instant payment via an API.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Instant_Payment_Transfer/1.0.1
+  baseURL: https://api.asig.org/payments/v1
+  tags:
+  - Real-Time Payments
+  - Instant Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-instant-payment-transfer.json
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Instant_Payment_Transfer/1.0.1
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+- aid: nacha:nacha-initiate-payment-api
+  name: Afinis Initiate Payment API
+  description: Afinis Initiate Payment API used to request movement of funds from a debtor account to
+    a creditor account across supported payment rails.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment_API/1.0.2
+  baseURL: https://api.asig.org/payments/v1
+  tags:
+  - Payment Initiation
+  - ACH
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-initiate-payment-api.json
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment_API/1.0.2
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+- aid: nacha:nacha-ret
+  name: Afinis Reporting ACH Return (RET) API
+  description: Afinis Reporting ACH Return (RET) API allowing originators and payment providers to share
+    ACH return payment data in support of fraud and risk mitigation.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/RET_API/1.0.3
+  baseURL: https://api.afinis.org/payments/ach/v1
+  tags:
+  - ACH
+  - Returns
+  - Fraud
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-ret.json
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RET_API/1.0.3
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+- aid: nacha:nacha-authorize-to-pay
+  name: Afinis Authorize to Pay (Debit Authorizations) API
+  description: Afinis Authorize to Pay API letting a buyer business provide bank account or virtual card
+    details, purpose of payment, and authorization for a seller to debit the account.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Authorize_To_Pay/1.0.6
+  baseURL: https://api.afinis.org/v1
+  tags:
+  - ACH
+  - Authorization
+  - Debit
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-authorize-to-pay.json
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Authorize_To_Pay/1.0.6
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+- aid: nacha:nacha-pay-me
+  name: Afinis Pay Me API
+  description: Afinis Pay Me API for requesting a payment (request-for-payment) from a payer through standardized
+    messaging.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Pay_Me_API/1.0.11
+  baseURL: https://api.afinis.org/ASIG/Pay_Me_API/1.0.10
+  tags:
+  - Request to Pay
+  - Payment Initiation
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-pay-me.json
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Pay_Me_API/1.0.11
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+- aid: nacha:nacha-account-validation
+  name: Afinis Account Validation API
+  description: Afinis Account Validation API for validating that a bank account is open and able to accept
+    ACH credits or debits, reducing returns and fraud.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/account_validation/1.0.2
+  baseURL: https://api.afinis.org/v1
+  tags:
+  - Account Validation
+  - Fraud
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-account-validation.json
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/account_validation/1.0.2
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+- aid: nacha:nacha-account-validation-plus-name
+  name: Afinis Account Validation Plus Ownership (Name) API
+  description: Afinis Account Validation Plus Ownership API validating account status together with account-owner
+    name/ownership for confirmation-of-payee style checks.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Ownership_API/1.1.0
+  baseURL: https://api.asig.org/afinis/accounts/aavplus/v1
+  tags:
+  - Account Validation
+  - Name Verification
+  - Fraud
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-account-validation-plus-name.json
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Ownership_API/1.1.0
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+- aid: nacha:nacha-account-validation-plus-name-ret
+  name: Afinis Account Validation Plus Name Plus Return API
+  description: Afinis Account Validation combined with name verification and ACH return-history signals
+    in a single standardized message.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Name_and_RET/1.0.4
+  tags:
+  - Account Validation
+  - Fraud
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-account-validation-plus-name-ret.json
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Name_and_RET/1.0.4
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+- aid: nacha:nacha-realtime-billing-account-validation
+  name: Afinis Real-Time Billing Account Validation API
+  description: Afinis Real-Time Billing Account Validation API for validating a consumer bank account
+    at the point of billing enrollment.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/RealTimeBillingAccountValidation/1.0.7
+  baseURL: https://api.afinis.org/v1
+  tags:
+  - Account Validation
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-realtime-billing-account-validation.json
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RealTimeBillingAccountValidation/1.0.7
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+- aid: nacha:nacha-corporate-account-balances
+  name: Afinis Get Corporate Account Balances API
+  description: Afinis Get Corporate Account Balances API letting a corporate/business customer retrieve
+    balance information for their accounts for a date or date range.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Account_Balances_API/1.0.3
+  baseURL: https://api.afinis.org/accounts/v1
+  tags:
+  - Cash Management
+  - Corporate
+  - Balances
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-corporate-account-balances.json
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Account_Balances_API/1.0.3
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+- aid: nacha:nacha-corporate-transaction-history
+  name: Afinis Get Corporate Transaction History API
+  description: Afinis Get Corporate Transaction History API letting a corporate bank customer retrieve
+    financial transaction history for review or integration.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Transaction_History_API/1.0.5
+  baseURL: https://api.afinis.org/accounts/v1
+  tags:
+  - Cash Management
+  - Corporate
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-corporate-transaction-history.json
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Transaction_History_API/1.0.5
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+- aid: nacha:nacha-corporate-transaction-detail
+  name: Afinis Get Transaction Detail API
+  description: Afinis Get Transaction Detail API letting a corporate financial professional request detailed
+    information for a specific transaction in their account.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Get_Transaction_Detail_API/1.0.4
+  baseURL: https://api.afinis.org/accounts/v1
+  tags:
+  - Cash Management
+  - Corporate
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-corporate-transaction-detail.json
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Transaction_Detail_API/1.0.4
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+- aid: nacha:nacha-payee-profile
+  name: Afinis Payee Profile API
+  description: Afinis Payee Profile API for exchanging standardized payee onboarding and directory profile
+    information between participants.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Payee_Profile_API/2.1.3
+  baseURL: https://api.afinis.org/participants/v2
+  tags:
+  - Directory
+  - Onboarding
+  - Payee
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-payee-profile.json
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Payee_Profile_API/2.1.3
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+- aid: nacha:nacha-wsud
+  name: Afinis Written Statement of Unauthorized Debit (WSUD) API
+  description: Afinis WSUD API letting an ODFI send an automated electronic request to an RDFI for a copy
+    of a consumer's Written Statement of Unauthorized Debit.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Written_Statement_of_Unauthorized_Debit/1.0.8
+  tags:
+  - ACH
+  - Disputes
+  - Unauthorized
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-wsud.json
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Written_Statement_of_Unauthorized_Debit/1.0.8
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+- aid: nacha:nacha-proof-of-authorization
+  name: Afinis Proof of Authorization API
+  description: Afinis Proof of Authorization API providing a real-time alternative message for a request
+    for an ACH proof of authorization to increase automation and reduce manual handling.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Proof_of_Authorization/1.0.6
+  baseURL: https://api.afinis.org/banks/v1
+  tags:
+  - ACH
+  - Authorization
+  - Compliance
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-proof-of-authorization.json
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Proof_of_Authorization/1.0.6
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+- aid: nacha:nacha-bank-contacts
+  name: Afinis Bank Contacts API
+  description: Afinis Bank Contacts API for retrieving standardized operational contact information for
+    financial institutions.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/bank_contacts/1.0.5
+  baseURL: https://api.afinis.org/v1
+  tags:
+  - Directory
+  - Bank Contacts
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-bank-contacts.json
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/bank_contacts/1.0.5
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+- aid: nacha:nacha-bank-contact-v2
+  name: Afinis Bank Contact V2 API
+  description: Afinis Bank Contact V2 API, a two-step input/retrieve interface for exchanging standardized
+    financial-institution contact information.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Bank_Contact_V2/1.0.9
+  baseURL: https://api.afinis.org/ASIG/Bank_Contact_v2/1.0.5
+  tags:
+  - Directory
+  - Bank Contacts
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-bank-contact-v2.json
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Bank_Contact_V2/1.0.9
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+common:
+- type: Website
+  url: https://www.nacha.org/
+- type: About
+  url: https://www.nacha.org/content/about-us
+- type: DeveloperPortal
+  url: https://www.nacha.org/content/apis-development
+- type: APIReference
+  url: https://www.nacha.org/content/afinis-api-catalog
+- type: Documentation
+  url: https://www.nacha.org/content/afinis-interoperability-standards
+- type: GettingStarted
+  url: https://achdevguide.nacha.org/
+- type: Rules
+  url: https://www.nacha.org/rules
+- type: Blog
+  url: https://www.nacha.org/news
+- type: LinkedIn
+  url: https://www.linkedin.com/company/nacha
+- type: TermsOfService
+  url: https://www.nacha.org/content/legal-information
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
