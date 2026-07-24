@@ -1,0 +1,106 @@
+generated: '2026-07-24'
+method: derived
+status: candidate
+source: Derived one tool per OpenAPI operation across the 24 Afinis specs. No official hosted MCP server
+  is published by Nacha/Afinis.
+server:
+  name: nacha-afinis
+  transport: http
+  url: null
+tools:
+- name: validateaccountwithnameandret
+  description: validateAccountWithNameAndRET
+  source_operation: openapi/nacha-account-validation-plus-name-ret.json#validateAccountWithNameAndRET
+- name: validateaccount
+  description: Account eligibility for debit ACH transactions
+  source_operation: openapi/nacha-account-validation-plus-name.json#validateAccount
+- name: validatedebtoraccount
+  description: Account eligibility for debit ACH transactions
+  source_operation: openapi/nacha-account-validation.json#validateDebtorAccount
+- name: validatecreditoraccount
+  description: Account eligibility for credit ACH transactions
+  source_operation: openapi/nacha-account-validation.json#validateCreditorAccount
+- name: authorize_to_pay_request
+  description: Allow paying an outstanding invoice by electronically providing account information and
+    authorization securely to the payee to execute the payment and receive a
+  source_operation: openapi/nacha-authorize-to-pay.json#Authorize to Pay - Request
+- name: expand_bank_contact_v2_input
+  description: Allow a FI to input data into the FI contact data base
+  source_operation: openapi/nacha-bank-contact-v2.json#Expand Bank Contact V2 - Input
+- name: expand_bank_contact_v2_get
+  description: Allow a FI to retrieve data from the FI contact data base
+  source_operation: openapi/nacha-bank-contact-v2.json#Expand Bank Contact V2 - Get
+- name: findbybankidandreason
+  description: Financial institution contact information for fraud or operational issues
+  source_operation: openapi/nacha-bank-contacts.json#findByBankIdAndReason
+- name: get_corporate_account_balances
+  description: Retrieve balance information for my account(s) for a date or date range
+  source_operation: openapi/nacha-corporate-account-balances.json#Get Corporate Account Balances
+- name: get_transaction_detail
+  description: Retrieve information for a transaction in an account
+  source_operation: openapi/nacha-corporate-transaction-detail.json#Get Transaction Detail
+- name: get_corporate_transaction_history
+  description: Retrieve financial transaction history for my account(s) for a date or date range
+  source_operation: openapi/nacha-corporate-transaction-history.json#Get Corporate Transaction History
+- name: wire_status
+  description: Wire Status
+  source_operation: openapi/nacha-get-wire-status.json#Wire Status
+- name: international_ach_remittance
+  description: Send all information known about the transaction’s parties prior to the sending of the
+    IAT
+  source_operation: openapi/nacha-iar-plus.json#International ACH Remittance
+- name: international_ach_remittance_2
+  description: Send all information known about the transaction’s parties prior to the sending of the
+    IAT
+  source_operation: openapi/nacha-iar.json#International ACH Remittance
+- name: initiate_instant_payment
+  description: Initiate Instant Payment
+  source_operation: openapi/nacha-initiate-instant-payment.json#Initiate Instant Payment
+- name: initiate_payment
+  description: Initiate Payment
+  source_operation: openapi/nacha-initiate-payment-api.json#Initiate Payment
+- name: ach_payments_debit
+  description: Process ACH Debit Transactions
+  source_operation: openapi/nacha-initiate-payment.json#ACH Payments Debit
+- name: ach_payments_credit
+  description: Process ACH Credit Transactions
+  source_operation: openapi/nacha-initiate-payment.json#ACH Payments Credit
+- name: initiate_wire_transfer
+  description: Process Wire Transactions
+  source_operation: openapi/nacha-initiate-wire-payment.json#Initiate Wire Transfer
+- name: instant_payment_transfer
+  description: Initiate Instant Payment
+  source_operation: openapi/nacha-instant-payment-transfer.json#Instant Payment Transfer
+- name: route_billing_information
+  description: Enable a biller to route billing information electronically to any customer through any
+    network.
+  source_operation: openapi/nacha-pay-me.json#Route Billing Information
+- name: get_participants_profile
+  description: Get Participants Profile with unique identification
+  source_operation: openapi/nacha-payee-profile.json#Get Participants Profile
+- name: proof_of_authorization_request
+  description: 'The Receiving Depository Financial Institution (RDFI) wants to send an automated electronic
+    request to the Originating Depository Financial Institution (ODFI). '
+  source_operation: openapi/nacha-proof-of-authorization.json#Proof of Authorization - Request
+- name: real_time_billing_account_validation
+  description: Real Time Billing Account Validation
+  source_operation: openapi/nacha-realtime-billing-account-validation.json#Real Time Billing Account Validation
+- name: reporting_ach_return_payments
+  description: Alert the network of ACH users about problematic ACH payments to help mitigate the risk
+    of suspected bad actors perpetuating fraud against other ACH users
+  source_operation: openapi/nacha-ret.json#Reporting ACH Return Payments
+- name: gettransactionstatusbytransactionid
+  description: Get ACH Transaction status with unique transaction identification
+  source_operation: openapi/nacha-transaction-status.json#GetTransactionStatusByTransactionId
+- name: gettransactionstatusbyinstructionid
+  description: Get ACH Transaction status with unique instruction identification
+  source_operation: openapi/nacha-transaction-status.json#GetTransactionStatusByInstructionId
+- name: postpayments_ach_credit_status
+  description: ACH Credit Transaction status
+  source_operation: openapi/nacha-transaction-status.json#/payments/ach/credit/status
+- name: postpayments_ach_debit_status
+  description: ACH Debit Transaction status
+  source_operation: openapi/nacha-transaction-status.json#/payments/ach/debit/status
+- name: written_statement_of_unauthorized_debit_request
+  description: Request a copy of the WSUD
+  source_operation: openapi/nacha-wsud.json#Written Statement of Unauthorized Debit - Request

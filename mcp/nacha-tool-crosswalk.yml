@@ -1,0 +1,227 @@
+generated: '2026-07-24'
+method: derived
+source: Bind each candidate MCP tool to its backing OpenAPI operation (1:1). MCP tools are derived from
+  REST, so there is full coverage and no divergence.
+surfaces:
+  openapi: openapi/*.json (24 specs, Swagger 2.0)
+  graphql: null
+  mcp: mcp/nacha-mcp.yml (candidate — no hosted server)
+crosswalk:
+- tool: validateaccountwithnameandret
+  category: Accounts
+  rest:
+  - validateAccountWithNameAndRET
+  spec: openapi/nacha-account-validation-plus-name-ret.json
+  binding: rest
+  confidence: high
+- tool: validateaccount
+  category: Accounts
+  rest:
+  - validateAccount
+  spec: openapi/nacha-account-validation-plus-name.json
+  binding: rest
+  confidence: high
+- tool: validatedebtoraccount
+  category: Accounts
+  rest:
+  - validateDebtorAccount
+  spec: openapi/nacha-account-validation.json
+  binding: rest
+  confidence: high
+- tool: validatecreditoraccount
+  category: Accounts
+  rest:
+  - validateCreditorAccount
+  spec: openapi/nacha-account-validation.json
+  binding: rest
+  confidence: high
+- tool: authorize_to_pay_request
+  category: Authorize to Pay
+  rest:
+  - Authorize to Pay - Request
+  spec: openapi/nacha-authorize-to-pay.json
+  binding: rest
+  confidence: high
+- tool: expand_bank_contact_v2_input
+  category: Expand Bank Contact V2
+  rest:
+  - Expand Bank Contact V2 - Input
+  spec: openapi/nacha-bank-contact-v2.json
+  binding: rest
+  confidence: high
+- tool: expand_bank_contact_v2_get
+  category: Expand Bank Contact V2
+  rest:
+  - Expand Bank Contact V2 - Get
+  spec: openapi/nacha-bank-contact-v2.json
+  binding: rest
+  confidence: high
+- tool: findbybankidandreason
+  category: Banks
+  rest:
+  - findByBankIdAndReason
+  spec: openapi/nacha-bank-contacts.json
+  binding: rest
+  confidence: high
+- tool: get_corporate_account_balances
+  category: Get Corporate Account Balances
+  rest:
+  - Get Corporate Account Balances
+  spec: openapi/nacha-corporate-account-balances.json
+  binding: rest
+  confidence: high
+- tool: get_transaction_detail
+  category: Get Corporate Transaction History
+  rest:
+  - Get Transaction Detail
+  spec: openapi/nacha-corporate-transaction-detail.json
+  binding: rest
+  confidence: high
+- tool: get_corporate_transaction_history
+  category: Get Corporate Transaction History
+  rest:
+  - Get Corporate Transaction History
+  spec: openapi/nacha-corporate-transaction-history.json
+  binding: rest
+  confidence: high
+- tool: wire_status
+  category: Wire Transfer
+  rest:
+  - Wire Status
+  spec: openapi/nacha-get-wire-status.json
+  binding: rest
+  confidence: high
+- tool: international_ach_remittance
+  category: International ACH Remittance (IAR)
+  rest:
+  - International ACH Remittance
+  spec: openapi/nacha-iar-plus.json
+  binding: rest
+  confidence: high
+- tool: international_ach_remittance_2
+  category: International ACH Remittance (IAR)
+  rest:
+  - International ACH Remittance
+  spec: openapi/nacha-iar.json
+  binding: rest
+  confidence: high
+- tool: initiate_instant_payment
+  category: Instant Payment
+  rest:
+  - Initiate Instant Payment
+  spec: openapi/nacha-initiate-instant-payment.json
+  binding: rest
+  confidence: high
+- tool: initiate_payment
+  category: Initiate Payment
+  rest:
+  - Initiate Payment
+  spec: openapi/nacha-initiate-payment-api.json
+  binding: rest
+  confidence: high
+- tool: ach_payments_debit
+  category: ACH Payments
+  rest:
+  - ACH Payments Debit
+  spec: openapi/nacha-initiate-payment.json
+  binding: rest
+  confidence: high
+- tool: ach_payments_credit
+  category: ACH Payments
+  rest:
+  - ACH Payments Credit
+  spec: openapi/nacha-initiate-payment.json
+  binding: rest
+  confidence: high
+- tool: initiate_wire_transfer
+  category: Wire Transfer
+  rest:
+  - Initiate Wire Transfer
+  spec: openapi/nacha-initiate-wire-payment.json
+  binding: rest
+  confidence: high
+- tool: instant_payment_transfer
+  category: Instant Payment Transfer
+  rest:
+  - Instant Payment Transfer
+  spec: openapi/nacha-instant-payment-transfer.json
+  binding: rest
+  confidence: high
+- tool: route_billing_information
+  category: Route Billing Information
+  rest:
+  - Route Billing Information
+  spec: openapi/nacha-pay-me.json
+  binding: rest
+  confidence: high
+- tool: get_participants_profile
+  category: Get Participants Profile
+  rest:
+  - Get Participants Profile
+  spec: openapi/nacha-payee-profile.json
+  binding: rest
+  confidence: high
+- tool: proof_of_authorization_request
+  category: Proof of Authorization
+  rest:
+  - Proof of Authorization - Request
+  spec: openapi/nacha-proof-of-authorization.json
+  binding: rest
+  confidence: high
+- tool: real_time_billing_account_validation
+  category: Account Validation
+  rest:
+  - Real Time Billing Account Validation
+  spec: openapi/nacha-realtime-billing-account-validation.json
+  binding: rest
+  confidence: high
+- tool: reporting_ach_return_payments
+  category: Reporting ACH Return Payments
+  rest:
+  - Reporting ACH Return Payments
+  spec: openapi/nacha-ret.json
+  binding: rest
+  confidence: high
+- tool: gettransactionstatusbytransactionid
+  category: ACH Transaction Status
+  rest:
+  - GetTransactionStatusByTransactionId
+  spec: openapi/nacha-transaction-status.json
+  binding: rest
+  confidence: high
+- tool: gettransactionstatusbyinstructionid
+  category: ACH Transaction Status
+  rest:
+  - GetTransactionStatusByInstructionId
+  spec: openapi/nacha-transaction-status.json
+  binding: rest
+  confidence: high
+- tool: postpayments_ach_credit_status
+  category: ACH Transaction Status
+  rest:
+  - /payments/ach/credit/status
+  spec: openapi/nacha-transaction-status.json
+  binding: rest
+  confidence: high
+- tool: postpayments_ach_debit_status
+  category: ACH Transaction Status
+  rest:
+  - /payments/ach/debit/status
+  spec: openapi/nacha-transaction-status.json
+  binding: rest
+  confidence: high
+- tool: written_statement_of_unauthorized_debit_request
+  category: Written Statement of Unauthorized Debit (WSUD)
+  rest:
+  - Written Statement of Unauthorized Debit - Request
+  spec: openapi/nacha-wsud.json
+  binding: rest
+  confidence: high
+mcp_only: []
+rest_only: []
+coverage:
+  tools_named: 30
+  tools_bound: 30
+  mcp_only: 0
+  rest_ops_total: 30
+  rest_ops_with_tool: 30

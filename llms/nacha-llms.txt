@@ -1,0 +1,46 @@
+# Nacha — Afinis Interoperability Standards APIs
+
+> Nacha (formerly the National Automated Clearing House Association) is the nonprofit, member-governed steward of the ACH Network. It does not run a public production payments API of its own; its API posture is delivered through Afinis Interoperability Standards — royalty-free, ISO 20022-based financial-services API specifications published as Swagger/OpenAPI documents on SwaggerHub. All Afinis APIs authenticate with an application API key on the `apikey` query parameter and accept an optional `Request_Id` (uuid) header for request tracing. Errors use a custom `{detail:[{errorcode,message}]}` envelope (not RFC 9457).
+
+## APIs
+- [Afinis Initiate ACH Payment API](https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7): Initiate an ACH credit or debit instruction.
+- [Afinis Initiate Payment API](https://app.swaggerhub.com/apis/ASIG/Initiate_Payment_API/1.0.2): Debtor-to-creditor fund movement across supported rails.
+- [Afinis Initiate Instant Payment API (IIP)](https://app.swaggerhub.com/apis/ASIG/Initiate_Instant_Payment_API/1.0.6): Instant payment mapping to RTP/FedNow.
+- [Afinis Instant Payment Transfer API (IPT)](https://app.swaggerhub.com/apis/ASIG/Instant_Payment_Transfer/1.0.1): FI-to-FI instant payment.
+- [Afinis Initiate Wire Payment API](https://app.swaggerhub.com/apis/ASIG/Initiate_Wire_Payment_API/1.0.3): Originate a wire transfer.
+- [Afinis Get Wire Status API](https://app.swaggerhub.com/apis/ASIG/Get_Wire_Status_API/1.0.0): Retrieve wire status.
+- [Afinis Transaction Status API](https://app.swaggerhub.com/apis/ASIG/transaction_status/1.0.14): Query ACH payment status by instruction or transaction ID.
+- [Afinis International ACH Remittance (IAR) API](https://app.swaggerhub.com/apis/ASIG/IAR/1.0.1): Remittance detail for incoming IAT credits.
+- [Afinis IAR Plus API](https://app.swaggerhub.com/apis/ASIG/IAR_Plus/1.0.1): Extended IAR remittance message.
+- [Afinis Reporting ACH Return (RET) API](https://app.swaggerhub.com/apis/ASIG/RET_API/1.0.3): Share ACH return data for fraud/risk mitigation.
+- [Afinis Authorize to Pay API](https://app.swaggerhub.com/apis/ASIG/Authorize_To_Pay/1.0.6): Buyer authorizes a seller to debit an account.
+- [Afinis Pay Me API](https://app.swaggerhub.com/apis/ASIG/Pay_Me_API/1.0.11): Request-for-payment messaging.
+- [Afinis Account Validation API](https://app.swaggerhub.com/apis/ASIG/account_validation/1.0.2): Validate a bank account for ACH credit/debit acceptance.
+- [Afinis Account Validation Plus Ownership (Name) API](https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Ownership_API/1.1.0): Account status plus owner-name/ownership.
+- [Afinis Account Validation Plus Name Plus Return API](https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Name_and_RET/1.0.4): Validation with name and ACH return-history signals.
+- [Afinis Real-Time Billing Account Validation API](https://app.swaggerhub.com/apis/ASIG/RealTimeBillingAccountValidation/1.0.7): Validate a consumer account at billing enrollment.
+- [Afinis Get Corporate Account Balances API](https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Account_Balances_API/1.0.3): Corporate account balances.
+- [Afinis Get Corporate Transaction History API](https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Transaction_History_API/1.0.5): Corporate transaction history.
+- [Afinis Get Transaction Detail API](https://app.swaggerhub.com/apis/ASIG/Get_Transaction_Detail_API/1.0.4): Detail for a specific transaction.
+- [Afinis Payee Profile API](https://app.swaggerhub.com/apis/ASIG/Payee_Profile_API/2.1.3): Standardized payee onboarding/directory profile.
+- [Afinis Written Statement of Unauthorized Debit (WSUD) API](https://app.swaggerhub.com/apis/ASIG/Written_Statement_of_Unauthorized_Debit/1.0.8): ODFI requests a consumer WSUD from an RDFI.
+- [Afinis Proof of Authorization API](https://app.swaggerhub.com/apis/ASIG/Proof_of_Authorization/1.0.6): Real-time request for ACH proof of authorization.
+- [Afinis Bank Contacts API](https://app.swaggerhub.com/apis/ASIG/bank_contacts/1.0.5): Standardized FI operational contacts.
+- [Afinis Bank Contact V2 API](https://app.swaggerhub.com/apis/ASIG/Bank_Contact_V2/1.0.9): Two-step input/retrieve FI contact exchange.
+
+## Docs
+- [APIs & Development](https://www.nacha.org/content/apis-development)
+- [Afinis Interoperability Standards](https://www.nacha.org/content/afinis-interoperability-standards)
+- [Afinis API Catalog](https://www.nacha.org/content/afinis-api-catalog)
+- [ACH Developer Guide](https://achdevguide.nacha.org/)
+- [Nacha Operating Rules](https://www.nacha.org/rules)
+
+## Artifacts
+- Authentication: authentication/nacha-authentication.yml
+- Conventions: conventions/nacha-conventions.yml
+- Error catalog: errors/nacha-problem-types.yml
+- Conformance: conformance/nacha-conformance.yml
+- Lifecycle: lifecycle/nacha-lifecycle.yml
+- MCP (candidate): mcp/nacha-mcp.yml
+- Tool crosswalk: mcp/nacha-tool-crosswalk.yml
+- Agent skills: skills/_index.yml

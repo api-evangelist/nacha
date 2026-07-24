@@ -1,0 +1,75 @@
+generated: '2026-07-24'
+method: derived
+source: openapi/*.json (Afinis/Nacha Swagger 2.0 error definitions)
+format: custom-json-envelope
+note: 'Errors are NOT RFC 9457. The envelope is {detail|details: [ {errorcode|errorCode, message} ] };
+  errorcode is a provider programmatic code, distinct from the HTTP status.'
+envelope:
+  field: detail (or 'details' in newer specs)
+  items:
+  - errorcode|errorCode (programmatic)
+  - message (human readable)
+programmatic_codes:
+- code: '1000'
+  status: 401
+  meaning: API key is missing, invalid or expired
+  action: Register/renew the application API key at afinis.org and resend on the apikey query parameter
+- code: '1001'
+  status: 401
+  meaning: API token is invalid, expired, or access is denied
+  action: Re-authenticate and obtain a fresh token
+- code: '2000'
+  status: 400
+  meaning: Invalid JSON structure
+  action: Correct the request body to valid JSON matching the schema
+- code: '2001'
+  status: 400
+  meaning: '''[Field name]'' is missing or invalid'
+  action: Populate the named required field with a valid value
+- code: '2002'
+  status: 400
+  meaning: Invalid date
+  action: Provide a valid ISO date value
+- code: '2003'
+  status: 400
+  meaning: Invalid combination of fields supplied
+  action: Adjust the field combination to a supported request shape
+- code: '3001'
+  status: 500
+  meaning: Internal server error
+  action: Retry later; contact the provider if it persists
+- code: '4001'
+  status: 422
+  meaning: Unprocessable request due to a business-rule failure
+  action: Review the returned message detail and correct the business data
+http_problems:
+- status: 400
+  title: Bad request — the request could not be understood or required parameters were missing
+  http: '400'
+- status: 401
+  title: Unauthorized — authentication failed or the API key/token is missing, invalid or expired
+  http: '401'
+- status: 403
+  title: Forbidden — the client is authenticated but lacks access rights to the resource
+  http: '403'
+- status: 404
+  title: Not found — the requested resource does not exist
+  http: '404'
+- status: 405
+  title: Method not allowed — the request method is disabled for this resource
+  http: '405'
+- status: 406
+  title: Not acceptable — no representation matching the Accept criteria is available
+  http: '406'
+- status: 415
+  title: Unsupported media type — the request payload format is not supported
+  http: '415'
+- status: 422
+  title: Unprocessable request — the request was well-formed but failed business validation
+  http: '422'
+- status: 500
+  title: Internal server error
+  http: '500'
+- status: 503
+  title: Service temporarily unavailable
+  http: '503'

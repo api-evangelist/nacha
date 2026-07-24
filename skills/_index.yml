@@ -1,0 +1,22 @@
+generated: '2026-07-24'
+method: generated
+skills:
+- file: nacha-validate-account.md
+  name: Validate a bank account before an ACH transfer
+  api: openapi/nacha-account-validation.json
+  operations:
+  - validateDebtorAccount
+  - validateCreditorAccount
+- file: nacha-initiate-ach-payment.md
+  name: Initiate an ACH payment and track its status
+  api: openapi/nacha-initiate-payment.json
+  operations:
+  - ACH Payments Credit
+  - ACH Payments Debit
+  - GetTransactionStatusByInstructionId
+  - GetTransactionStatusByTransactionId
+- file: nacha-report-ach-return.md
+  name: Report an ACH return
+  api: openapi/nacha-ret.json
+  operations:
+  - Reporting ACH Return Payments

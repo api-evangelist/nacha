@@ -1,0 +1,19 @@
+generated: '2026-07-24'
+method: searched
+source: SwaggerHub (ASIG) document versions + nacha.org/afinis.org
+versioning:
+  scheme: semver-per-api
+  carrier: SwaggerHub document version
+  current: per-API (1.0.x–2.1.x)
+  docs: https://app.swaggerhub.com/organizations/ASIG
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No published deprecation/Sunset policy for the Afinis API standards; superseded versions remain
+    listed on SwaggerHub.
+sla:
+  url: null
+  note: Afinis publishes API standards, not a hosted production SLA; runtime is provided by implementing
+    financial institutions/vendors.
+status_page: null
+deprecated_operations: []

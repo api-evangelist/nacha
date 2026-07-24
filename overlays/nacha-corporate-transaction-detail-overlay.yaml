@@ -1,0 +1,12 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Get Transaction Detail API
+  version: 1.0.0
+extends: openapi/nacha-corporate-transaction-detail.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-steward: Nacha / Afinis Interoperability Standards
+    x-apievangelist-standard: ISO 20022
+    x-apievangelist-auth: 'apiKey (query: apikey)'
+    x-apievangelist-request-tracing: Request_Id header (uuid)

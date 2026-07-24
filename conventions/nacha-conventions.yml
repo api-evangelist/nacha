@@ -1,0 +1,39 @@
+generated: '2026-07-24'
+method: derived
+source: openapi/*.json + apis.yml
+authentication:
+  style: apiKey
+  location: query
+  parameter: apikey
+  note: All Afinis APIs authenticate with an application API key passed on the 'apikey' query parameter;
+    obtained by registering an application at afinis.org. See authentication/nacha-authentication.yml.
+request_tracing:
+  supported: true
+  header: Request_Id
+  format: uuid
+  required: false
+  note: Optional Request_Id header lets a developer trace a request through provider system logs.
+idempotency:
+  supported: false
+  note: No idempotency-key header or parameter is documented in the Afinis specs; payment initiation is
+    not idempotent at the API layer. Duplicate control is handled by ACH network rules, not an API key.
+pagination:
+  supported: false
+  note: All operations are single request/response ISO 20022 messages; no list pagination surface.
+versioning:
+  scheme: semver-per-api
+  carrier: SwaggerHub document version (e.g. 1.0.7)
+  note: Each Afinis API is versioned independently as a SwaggerHub document; no in-URL global version
+    beyond basePath /v1|/v2.
+media_types:
+  request: application/json
+  response: application/json
+error_envelope:
+  ref: errors/nacha-problem-types.yml
+  shape: '{detail|details:[{errorcode,message}]}'
+rate_limit_signaling:
+  documented: false
+data_standard:
+  model: ISO 20022
+  note: Message bodies follow ISO 20022 financial-services data shapes (payment initiation, account validation,
+    remittance, returns).

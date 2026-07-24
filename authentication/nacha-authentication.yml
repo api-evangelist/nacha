@@ -1,0 +1,42 @@
+generated: '2026-07-24'
+method: derived
+source: openapi/nacha-account-validation-plus-name-ret.json, openapi/nacha-account-validation-plus-name.json,
+  openapi/nacha-account-validation.json, openapi/nacha-authorize-to-pay.json, openapi/nacha-bank-contact-v2.json,
+  openapi/nacha-bank-contacts.json, openapi/nacha-corporate-account-balances.json, openapi/nacha-corporate-transaction-detail.json,
+  openapi/nacha-corporate-transaction-history.json, openapi/nacha-get-wire-status.json, openapi/nacha-iar-plus.json,
+  openapi/nacha-iar.json ...
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - query
+schemes:
+- name: APIKeyQueryParam
+  type: apiKey
+  in: query
+  parameter: apikey
+  sources:
+  - openapi/nacha-account-validation-plus-name-ret.json
+  - openapi/nacha-account-validation-plus-name.json
+  - openapi/nacha-account-validation.json
+  - openapi/nacha-authorize-to-pay.json
+  - openapi/nacha-bank-contact-v2.json
+  - openapi/nacha-bank-contacts.json
+  - openapi/nacha-corporate-account-balances.json
+  - openapi/nacha-corporate-transaction-detail.json
+  - openapi/nacha-corporate-transaction-history.json
+  - openapi/nacha-get-wire-status.json
+  - openapi/nacha-iar-plus.json
+  - openapi/nacha-iar.json
+  - openapi/nacha-initiate-instant-payment.json
+  - openapi/nacha-initiate-payment-api.json
+  - openapi/nacha-initiate-payment.json
+  - openapi/nacha-initiate-wire-payment.json
+  - openapi/nacha-instant-payment-transfer.json
+  - openapi/nacha-pay-me.json
+  - openapi/nacha-payee-profile.json
+  - openapi/nacha-proof-of-authorization.json
+  - openapi/nacha-realtime-billing-account-validation.json
+  - openapi/nacha-ret.json
+  - openapi/nacha-transaction-status.json
+  - openapi/nacha-wsud.json
