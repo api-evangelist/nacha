@@ -472,6 +472,8 @@ apis:
   - type: Overlay
     url: overlays/nacha-bank-contact-v2-overlay.yaml
 common:
+- type: Login
+  url: https://www.nacha.org/user/login
 - type: DomainSecurity
   url: security/nacha-domain-security.yml
 - type: AgenticAccess
