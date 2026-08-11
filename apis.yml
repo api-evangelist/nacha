@@ -516,7 +516,7 @@ common:
   url: llms/nacha-llms.txt
 - type: DataModel
   url: data-model/nacha-data-model.yml
-- type: AgentSkill
+- type: AgentSkills
   url: skills/_index.yml
 - type: PrivacyPolicy
   url: https://www.nacha.org/content/privacy-policy
