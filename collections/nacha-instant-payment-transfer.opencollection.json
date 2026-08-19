@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Instant Payment Transfer (IPT)",
+    "version": "1.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Instant Payment Transfer",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initiate Instant Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/fi/instant"
+          },
+          "docs": "The Instant Payment Transfer API will enable a financial institution to send another financial institution an instant payment via an API"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,624 @@
+{
+  "item": [
+    {
+      "id": "ef876bda-ee69-49e9-82b3-0d4f6903fb27",
+      "name": "ACH Payments",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2e22a5e3-1a12-4ba3-9509-2b3356d06b9f",
+          "name": "Process ACH Debit Transactions",
+          "request": {
+            "name": "Process ACH Debit Transactions",
+            "description": {
+              "content": "Process ACH Debit Transactions",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                "ach",
+                "debit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                "key": "Request_Id",
+                "value": "<uuid>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apikey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"paymentInformation\": {\n    \"creditor\": {\n      \"identification\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"directDebitTransactionInformation\": [\n      {\n        \"paymentIdentification\": {\n          \"instructionIdentification\": \"<string>\",\n          \"endToEndIdentification\": \"<string>\"\n        },\n        \"paymentTypeInformation\": {\n          \"localInstrument\": \"<string>\",\n          \"sequenceType\": \"OOFF\",\n          \"categoryPurpose\": {\n            \"proprietary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"discretionaryData\": \"<string>\",\n        \"requestedCollectionDate\": \"<string>\",\n        \"settlementTimeIndication\": \"<string>\",\n        \"instructedAmount\": {\n          \"amount\": \"<number>\",\n          \"currency\": \"USD\"\n        },\n        \"debtorAgent\": {\n          \"clearingSystemIdentification\": \"<string>\",\n          \"memberIdentification\": \"<string>\"\n        },\n        \"debtor\": {\n          \"name\": \"<string>\"\n        },\n        \"debtorAccount\": {\n          \"identification\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        \"remittanceInformation\": [\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      {\n        \"paymentIdentification\": {\n          \"instructionIdentification\": \"<string>\",\n          \"endToEndIdentification\": \"<string>\"\n        },\n        \"paymentTypeInformation\": {\n          \"localInstrument\": \"<string>\",\n          \"sequenceType\": \"OOFF\",\n          \"categoryPurpose\": {\n            \"proprietary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"discretionaryData\": \"<string>\",\n        \"requestedCollectionDate\": \"<string>\",\n        \"settlementTimeIndication\": \"<string>\",\n        \"instructedAmount\": {\n          \"amount\": \"<number>\",\n          \"currency\": \"USD\"\n        },\n        \"debtorAgent\": {\n          \"clearingSystemIdentification\": \"<string>\",\n          \"memberIdentification\": \"<string>\"\n        },\n        \"debtor\": {\n          \"name\": \"<string>\"\n        },\n        \"debtorAccount\": {\n          \"identification\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        \"remittanceInformation\": [\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    ],\n    \"paymentInformationIdentification\": \"<string>\",\n    \"creditorAccount\": {\n      \"identification\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ec4c23b2-6cbd-43bc-8f84-fb7a6e83e809",
+              "name": "Payment transactions RCVD",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "debit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentInformation\": {\n    \"creditor\": {\n      \"identification\": \"1234567891\",\n      \"name\": \"XYZ Supply Co.\"\n    },\n    \"directDebitTransactionInformation\": [\n      {\n        \"paymentIdentification\": {\n          \"instructionIdentification\": \"ABC0928\",\n          \"endToEndIdentification\": \"ABC13609-15-18\"\n        },\n        \"paymentTypeInformation\": {\n          \"localInstrument\": \"WEB\",\n          \"sequenceType\": \"OOFF\",\n          \"categoryPurpose\": {\n            \"proprietary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"discretionaryData\": \"957abc\",\n        \"requestedCollectionDate\": \"2018-12-12\",\n        \"settlementTimeIndication\": \"2018-12-12T13:00:00\",\n        \"instructedAmount\": {\n          \"amount\": 100.01,\n          \"currency\": \"USD\"\n        },\n        \"debtorAgent\": {\n          \"clearingSystemIdentification\": \"<string>\",\n          \"memberIdentification\": \"061103852\"\n        },\n        \"debtor\": {\n          \"name\": \"John Q. Public\"\n        },\n        \"debtorAccount\": {\n          \"identification\": \"1111111122\",\n          \"type\": \"<string>\"\n        },\n        \"remittanceInformation\": [\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      {\n        \"paymentIdentification\": {\n          \"instructionIdentification\": \"ABC0928\",\n          \"endToEndIdentification\": \"ABC13609-15-18\"\n        },\n        \"paymentTypeInformation\": {\n          \"localInstrument\": \"WEB\",\n          \"sequenceType\": \"OOFF\",\n          \"categoryPurpose\": {\n            \"proprietary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"discretionaryData\": \"957abc\",\n        \"requestedCollectionDate\": \"2018-12-12\",\n        \"settlementTimeIndication\": \"2018-12-12T13:00:00\",\n        \"instructedAmount\": {\n          \"amount\": 100.01,\n          \"currency\": \"USD\"\n        },\n        \"debtorAgent\": {\n          \"clearingSystemIdentification\": \"<string>\",\n          \"memberIdentification\": \"061103852\"\n        },\n        \"debtor\": {\n          \"name\": \"John Q. Public\"\n        },\n        \"debtorAccount\": {\n          \"identification\": \"1111111122\",\n          \"type\": \"<string>\"\n        },\n        \"remittanceInformation\": [\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    ],\n    \"paymentInformationIdentification\": \"1001ABCUSDO1_20181212\",\n    \"creditorAccount\": {\n      \"identification\": \"2345678911\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactionStatus\": \"RCVD\",\n  \"callback\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "acae165f-34c1-47c3-9faa-5a44eb918b57",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "debit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentInformation\": {\n    \"creditor\": {\n      \"identification\": \"1234567891\",\n      \"name\": \"XYZ Supply Co.\"\n    },\n    \"directDebitTransactionInformation\": [\n      {\n        \"paymentIdentification\": {\n          \"instructionIdentification\": \"ABC0928\",\n          \"endToEndIdentification\": \"ABC13609-15-18\"\n        },\n        \"paymentTypeInformation\": {\n          \"localInstrument\": \"WEB\",\n          \"sequenceType\": \"OOFF\",\n          \"categoryPurpose\": {\n            \"proprietary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"discretionaryData\": \"957abc\",\n        \"requestedCollectionDate\": \"2018-12-12\",\n        \"settlementTimeIndication\": \"2018-12-12T13:00:00\",\n        \"instructedAmount\": {\n          \"amount\": 100.01,\n          \"currency\": \"USD\"\n        },\n        \"debtorAgent\": {\n          \"clearingSystemIdentification\": \"<string>\",\n          \"memberIdentification\": \"061103852\"\n        },\n        \"debtor\": {\n          \"name\": \"John Q. Public\"\n        },\n        \"debtorAccount\": {\n          \"identification\": \"1111111122\",\n          \"type\": \"<string>\"\n        },\n        \"remittanceInformation\": [\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      {\n        \"paymentIdentification\": {\n          \"instructionIdentification\": \"ABC0928\",\n          \"endToEndIdentification\": \"ABC13609-15-18\"\n        },\n        \"paymentTypeInformation\": {\n          \"localInstrument\": \"WEB\",\n          \"sequenceType\": \"OOFF\",\n          \"categoryPurpose\": {\n            \"proprietary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"discretionaryData\": \"957abc\",\n        \"requestedCollectionDate\": \"2018-12-12\",\n        \"settlementTimeIndication\": \"2018-12-12T13:00:00\",\n        \"instructedAmount\": {\n          \"amount\": 100.01,\n          \"currency\": \"USD\"\n        },\n        \"debtorAgent\": {\n          \"clearingSystemIdentification\": \"<string>\",\n          \"memberIdentification\": \"061103852\"\n        },\n        \"debtor\": {\n          \"name\": \"John Q. Public\"\n        },\n        \"debtorAccount\": {\n          \"identification\": \"1111111122\",\n          \"type\": \"<string>\"\n        },\n        \"remittanceInformation\": [\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    ],\n    \"paymentInformationIdentification\": \"1001ABCUSDO1_20181212\",\n    \"creditorAccount\": {\n      \"identification\": \"2345678911\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": \"string\",\n      \"message\": \"Invalid JSON structure.\"\n    },\n    {\n      \"errorcode\": \"string\",\n      \"message\": \"Invalid JSON structure.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fdb8f95d-f465-46e7-85ea-55a5da810cf7",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "debit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentInformation\": {\n    \"creditor\": {\n      \"identification\": \"1234567891\",\n      \"name\": \"XYZ Supply Co.\"\n    },\n    \"directDebitTransactionInformation\": [\n      {\n        \"paymentIdentification\": {\n          \"instructionIdentification\": \"ABC0928\",\n          \"endToEndIdentification\": \"ABC13609-15-18\"\n        },\n        \"paymentTypeInformation\": {\n          \"localInstrument\": \"WEB\",\n          \"sequenceType\": \"OOFF\",\n          \"categoryPurpose\": {\n            \"proprietary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"discretionaryData\": \"957abc\",\n        \"requestedCollectionDate\": \"2018-12-12\",\n        \"settlementTimeIndication\": \"2018-12-12T13:00:00\",\n        \"instructedAmount\": {\n          \"amount\": 100.01,\n          \"currency\": \"USD\"\n        },\n        \"debtorAgent\": {\n          \"clearingSystemIdentification\": \"<string>\",\n          \"memberIdentification\": \"061103852\"\n        },\n        \"debtor\": {\n          \"name\": \"John Q. Public\"\n        },\n        \"debtorAccount\": {\n          \"identification\": \"1111111122\",\n          \"type\": \"<string>\"\n        },\n        \"remittanceInformation\": [\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      {\n        \"paymentIdentification\": {\n          \"instructionIdentification\": \"ABC0928\",\n          \"endToEndIdentification\": \"ABC13609-15-18\"\n        },\n        \"paymentTypeInformation\": {\n          \"localInstrument\": \"WEB\",\n          \"sequenceType\": \"OOFF\",\n          \"categoryPurpose\": {\n            \"proprietary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"discretionaryData\": \"957abc\",\n        \"requestedCollectionDate\": \"2018-12-12\",\n        \"settlementTimeIndication\": \"2018-12-12T13:00:00\",\n        \"instructedAmount\": {\n          \"amount\": 100.01,\n          \"currency\": \"USD\"\n        },\n        \"debtorAgent\": {\n          \"clearingSystemIdentification\": \"<string>\",\n          \"memberIdentification\": \"061103852\"\n        },\n        \"debtor\": {\n          \"name\": \"John Q. Public\"\n        },\n        \"debtorAccount\": {\n          \"identification\": \"1111111122\",\n          \"type\": \"<string>\"\n        },\n        \"remittanceInformation\": [\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    ],\n    \"paymentInformationIdentification\": \"1001ABCUSDO1_20181212\",\n    \"creditorAccount\": {\n      \"identification\": \"2345678911\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": 1000,\n      \"message\": \"API key is missing, invalid or expired.\"\n    },\n    {\n      \"errorcode\": 1000,\n      \"message\": \"API key is missing, invalid or expired.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "083b15c3-c93a-4c74-91f3-39d971b5c6f7",
+              "name": "Internal Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "debit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentInformation\": {\n    \"creditor\": {\n      \"identification\": \"1234567891\",\n      \"name\": \"XYZ Supply Co.\"\n    },\n    \"directDebitTransactionInformation\": [\n      {\n        \"paymentIdentification\": {\n          \"instructionIdentification\": \"ABC0928\",\n          \"endToEndIdentification\": \"ABC13609-15-18\"\n        },\n        \"paymentTypeInformation\": {\n          \"localInstrument\": \"WEB\",\n          \"sequenceType\": \"OOFF\",\n          \"categoryPurpose\": {\n            \"proprietary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"discretionaryData\": \"957abc\",\n        \"requestedCollectionDate\": \"2018-12-12\",\n        \"settlementTimeIndication\": \"2018-12-12T13:00:00\",\n        \"instructedAmount\": {\n          \"amount\": 100.01,\n          \"currency\": \"USD\"\n        },\n        \"debtorAgent\": {\n          \"clearingSystemIdentification\": \"<string>\",\n          \"memberIdentification\": \"061103852\"\n        },\n        \"debtor\": {\n          \"name\": \"John Q. Public\"\n        },\n        \"debtorAccount\": {\n          \"identification\": \"1111111122\",\n          \"type\": \"<string>\"\n        },\n        \"remittanceInformation\": [\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      {\n        \"paymentIdentification\": {\n          \"instructionIdentification\": \"ABC0928\",\n          \"endToEndIdentification\": \"ABC13609-15-18\"\n        },\n        \"paymentTypeInformation\": {\n          \"localInstrument\": \"WEB\",\n          \"sequenceType\": \"OOFF\",\n          \"categoryPurpose\": {\n            \"proprietary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"discretionaryData\": \"957abc\",\n        \"requestedCollectionDate\": \"2018-12-12\",\n        \"settlementTimeIndication\": \"2018-12-12T13:00:00\",\n        \"instructedAmount\": {\n          \"amount\": 100.01,\n          \"currency\": \"USD\"\n        },\n        \"debtorAgent\": {\n          \"clearingSystemIdentification\": \"<string>\",\n          \"memberIdentification\": \"061103852\"\n        },\n        \"debtor\": {\n          \"name\": \"John Q. Public\"\n        },\n        \"debtorAccount\": {\n          \"identification\": \"1111111122\",\n          \"type\": \"<string>\"\n        },\n        \"remittanceInformation\": [\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    ],\n    \"paymentInformationIdentification\": \"1001ABCUSDO1_20181212\",\n    \"creditorAccount\": {\n      \"identification\": \"2345678911\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": 3001,\n      \"message\": \"Internal Server error\"\n    },\n    {\n      \"errorcode\": 3001,\n      \"message\": \"Internal Server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "123681d8-4227-4a9a-8e6f-ab8cf535b31a",
+          "name": "Process ACH Credit Transactions",
+          "request": {
+            "name": "Process ACH Credit Transactions",
+            "description": {
+              "content": "Process ACH Credit Transactions",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                "ach",
+                "credit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                "key": "Request_Id",
+                "value": "<uuid>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apikey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"paymentInformation\": {\n    \"debtor\": {\n      \"identification\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"creditTransferTransactionInformation\": [\n      {\n        \"paymentIdentification\": {\n          \"instructionIdentification\": \"<string>\",\n          \"endToEndIdentification\": \"<string>\"\n        },\n        \"paymentTypeInformation\": {\n          \"localInstrument\": \"<string>\",\n          \"sequenceType\": \"OOFF\",\n          \"categoryPurpose\": {\n            \"proprietary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"discretionaryData\": \"<string>\",\n        \"requestedExecutionDate\": \"<string>\",\n        \"settlementTimeIndication\": \"<string>\",\n        \"instructedAmount\": {\n          \"amount\": \"<number>\",\n          \"currency\": \"USD\"\n        },\n        \"creditorAgent\": {\n          \"memberIdentification\": \"<string>\",\n          \"clearingSystemIdentification\": \"<string>\"\n        },\n        \"creditor\": {\n          \"name\": \"<string>\"\n        },\n        \"creditorAccount\": {\n          \"identification\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        \"remittanceInformation\": [\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      {\n        \"paymentIdentification\": {\n          \"instructionIdentification\": \"<string>\",\n          \"endToEndIdentification\": \"<string>\"\n        },\n        \"paymentTypeInformation\": {\n          \"localInstrument\": \"<string>\",\n          \"sequenceType\": \"OOFF\",\n          \"categoryPurpose\": {\n            \"proprietary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"discretionaryData\": \"<string>\",\n        \"requestedExecutionDate\": \"<string>\",\n        \"settlementTimeIndication\": \"<string>\",\n        \"instructedAmount\": {\n          \"amount\": \"<number>\",\n          \"currency\": \"USD\"\n        },\n        \"creditorAgent\": {\n          \"memberIdentification\": \"<string>\",\n          \"clearingSystemIdentification\": \"<string>\"\n        },\n        \"creditor\": {\n          \"name\": \"<string>\"\n        },\n        \"creditorAccount\": {\n          \"identification\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        \"remittanceInformation\": [\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    ],\n    \"paymentInformationIdentification\": \"<string>\",\n    \"debtorAccount\": {\n      \"identification\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9d03cc43-1fbd-4dee-a73a-98a032dd6230",
+              "name": "Payment transactions  RCVD",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "credit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentInformation\": {\n    \"debtor\": {\n      \"identification\": \"1234567891\",\n      \"name\": \"Company ABC\"\n    },\n    \"creditTransferTransactionInformation\": [\n      {\n        \"paymentIdentification\": {\n          \"instructionIdentification\": \"ABC0928\",\n          \"endToEndIdentification\": \"ABC13609-15-18\"\n        },\n        \"paymentTypeInformation\": {\n          \"localInstrument\": \"WEB\",\n          \"sequenceType\": \"OOFF\",\n          \"categoryPurpose\": {\n            \"proprietary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"discretionaryData\": \"957abc\",\n        \"requestedExecutionDate\": \"2018-12-12\",\n        \"settlementTimeIndication\": \"2018-12-12T13:00:00\",\n        \"instructedAmount\": {\n          \"amount\": 100.01,\n          \"currency\": \"USD\"\n        },\n        \"creditorAgent\": {\n          \"memberIdentification\": \"061103852\",\n          \"clearingSystemIdentification\": \"<string>\"\n        },\n        \"creditor\": {\n          \"name\": \"John Smith\"\n        },\n        \"creditorAccount\": {\n          \"identification\": \"2345678911\",\n          \"type\": \"<string>\"\n        },\n        \"remittanceInformation\": [\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      {\n        \"paymentIdentification\": {\n          \"instructionIdentification\": \"ABC0928\",\n          \"endToEndIdentification\": \"ABC13609-15-18\"\n        },\n        \"paymentTypeInformation\": {\n          \"localInstrument\": \"WEB\",\n          \"sequenceType\": \"OOFF\",\n          \"categoryPurpose\": {\n            \"proprietary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"discretionaryData\": \"957abc\",\n        \"requestedExecutionDate\": \"2018-12-12\",\n        \"settlementTimeIndication\": \"2018-12-12T13:00:00\",\n        \"instructedAmount\": {\n          \"amount\": 100.01,\n          \"currency\": \"USD\"\n        },\n        \"creditorAgent\": {\n          \"memberIdentification\": \"061103852\",\n          \"clearingSystemIdentification\": \"<string>\"\n        },\n        \"creditor\": {\n          \"name\": \"John Smith\"\n        },\n        \"creditorAccount\": {\n          \"identification\": \"2345678911\",\n          \"type\": \"<string>\"\n        },\n        \"remittanceInformation\": [\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    ],\n    \"paymentInformationIdentification\": \"1001ABCUSDO1_20181212\",\n    \"debtorAccount\": {\n      \"identification\": \"111010151\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactionStatus\": \"RCVD\",\n  \"callback\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e4b06f76-c272-4d01-afd1-0111d6fc5d6d",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "credit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentInformation\": {\n    \"debtor\": {\n      \"identification\": \"1234567891\",\n      \"name\": \"Company ABC\"\n    },\n    \"creditTransferTransactionInformation\": [\n      {\n        \"paymentIdentification\": {\n          \"instructionIdentification\": \"ABC0928\",\n          \"endToEndIdentification\": \"ABC13609-15-18\"\n        },\n        \"paymentTypeInformation\": {\n          \"localInstrument\": \"WEB\",\n          \"sequenceType\": \"OOFF\",\n          \"categoryPurpose\": {\n            \"proprietary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"discretionaryData\": \"957abc\",\n        \"requestedExecutionDate\": \"2018-12-12\",\n        \"settlementTimeIndication\": \"2018-12-12T13:00:00\",\n        \"instructedAmount\": {\n          \"amount\": 100.01,\n          \"currency\": \"USD\"\n        },\n        \"creditorAgent\": {\n          \"memberIdentification\": \"061103852\",\n          \"clearingSystemIdentification\": \"<string>\"\n        },\n        \"creditor\": {\n          \"name\": \"John Smith\"\n        },\n        \"creditorAccount\": {\n          \"identification\": \"2345678911\",\n          \"type\": \"<string>\"\n        },\n        \"remittanceInformation\": [\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      {\n        \"paymentIdentification\": {\n          \"instructionIdentification\": \"ABC0928\",\n          \"endToEndIdentification\": \"ABC13609-15-18\"\n        },\n        \"paymentTypeInformation\": {\n          \"localInstrument\": \"WEB\",\n          \"sequenceType\": \"OOFF\",\n          \"categoryPurpose\": {\n            \"proprietary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"discretionaryData\": \"957abc\",\n        \"requestedExecutionDate\": \"2018-12-12\",\n        \"settlementTimeIndication\": \"2018-12-12T13:00:00\",\n        \"instructedAmount\": {\n          \"amount\": 100.01,\n          \"currency\": \"USD\"\n        },\n        \"creditorAgent\": {\n          \"memberIdentification\": \"061103852\",\n          \"clearingSystemIdentification\": \"<string>\"\n        },\n        \"creditor\": {\n          \"name\": \"John Smith\"\n        },\n        \"creditorAccount\": {\n          \"identification\": \"2345678911\",\n          \"type\": \"<string>\"\n        },\n        \"remittanceInformation\": [\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    ],\n    \"paymentInformationIdentification\": \"1001ABCUSDO1_20181212\",\n    \"debtorAccount\": {\n      \"identification\": \"111010151\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": \"string\",\n      \"message\": \"Invalid JSON structure.\"\n    },\n    {\n      \"errorcode\": \"string\",\n      \"message\": \"Invalid JSON structure.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "40693623-ee6e-4123-8e0e-be927e5b660d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "credit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentInformation\": {\n    \"debtor\": {\n      \"identification\": \"1234567891\",\n      \"name\": \"Company ABC\"\n    },\n    \"creditTransferTransactionInformation\": [\n      {\n        \"paymentIdentification\": {\n          \"instructionIdentification\": \"ABC0928\",\n          \"endToEndIdentification\": \"ABC13609-15-18\"\n        },\n        \"paymentTypeInformation\": {\n          \"localInstrument\": \"WEB\",\n          \"sequenceType\": \"OOFF\",\n          \"categoryPurpose\": {\n            \"proprietary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"discretionaryData\": \"957abc\",\n        \"requestedExecutionDate\": \"2018-12-12\",\n        \"settlementTimeIndication\": \"2018-12-12T13:00:00\",\n        \"instructedAmount\": {\n          \"amount\": 100.01,\n          \"currency\": \"USD\"\n        },\n        \"creditorAgent\": {\n          \"memberIdentification\": \"061103852\",\n          \"clearingSystemIdentification\": \"<string>\"\n        },\n        \"creditor\": {\n          \"name\": \"John Smith\"\n        },\n        \"creditorAccount\": {\n          \"identification\": \"2345678911\",\n          \"type\": \"<string>\"\n        },\n        \"remittanceInformation\": [\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      {\n        \"paymentIdentification\": {\n          \"instructionIdentification\": \"ABC0928\",\n          \"endToEndIdentification\": \"ABC13609-15-18\"\n        },\n        \"paymentTypeInformation\": {\n          \"localInstrument\": \"WEB\",\n          \"sequenceType\": \"OOFF\",\n          \"categoryPurpose\": {\n            \"proprietary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"discretionaryData\": \"957abc\",\n        \"requestedExecutionDate\": \"2018-12-12\",\n        \"settlementTimeIndication\": \"2018-12-12T13:00:00\",\n        \"instructedAmount\": {\n          \"amount\": 100.01,\n          \"currency\": \"USD\"\n        },\n        \"creditorAgent\": {\n          \"memberIdentification\": \"061103852\",\n          \"clearingSystemIdentification\": \"<string>\"\n        },\n        \"creditor\": {\n          \"name\": \"John Smith\"\n        },\n        \"creditorAccount\": {\n          \"identification\": \"2345678911\",\n          \"type\": \"<string>\"\n        },\n        \"remittanceInformation\": [\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    ],\n    \"paymentInformationIdentification\": \"1001ABCUSDO1_20181212\",\n    \"debtorAccount\": {\n      \"identification\": \"111010151\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": 1000,\n      \"message\": \"API key is missing, invalid or expired.\"\n    },\n    {\n      \"errorcode\": 1000,\n      \"message\": \"API key is missing, invalid or expired.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad8fa5f5-9c90-43e4-b61f-b38a3edacdaf",
+              "name": "Internal Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "credit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentInformation\": {\n    \"debtor\": {\n      \"identification\": \"1234567891\",\n      \"name\": \"Company ABC\"\n    },\n    \"creditTransferTransactionInformation\": [\n      {\n        \"paymentIdentification\": {\n          \"instructionIdentification\": \"ABC0928\",\n          \"endToEndIdentification\": \"ABC13609-15-18\"\n        },\n        \"paymentTypeInformation\": {\n          \"localInstrument\": \"WEB\",\n          \"sequenceType\": \"OOFF\",\n          \"categoryPurpose\": {\n            \"proprietary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"discretionaryData\": \"957abc\",\n        \"requestedExecutionDate\": \"2018-12-12\",\n        \"settlementTimeIndication\": \"2018-12-12T13:00:00\",\n        \"instructedAmount\": {\n          \"amount\": 100.01,\n          \"currency\": \"USD\"\n        },\n        \"creditorAgent\": {\n          \"memberIdentification\": \"061103852\",\n          \"clearingSystemIdentification\": \"<string>\"\n        },\n        \"creditor\": {\n          \"name\": \"John Smith\"\n        },\n        \"creditorAccount\": {\n          \"identification\": \"2345678911\",\n          \"type\": \"<string>\"\n        },\n        \"remittanceInformation\": [\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      {\n        \"paymentIdentification\": {\n          \"instructionIdentification\": \"ABC0928\",\n          \"endToEndIdentification\": \"ABC13609-15-18\"\n        },\n        \"paymentTypeInformation\": {\n          \"localInstrument\": \"WEB\",\n          \"sequenceType\": \"OOFF\",\n          \"categoryPurpose\": {\n            \"proprietary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"discretionaryData\": \"957abc\",\n        \"requestedExecutionDate\": \"2018-12-12\",\n        \"settlementTimeIndication\": \"2018-12-12T13:00:00\",\n        \"instructedAmount\": {\n          \"amount\": 100.01,\n          \"currency\": \"USD\"\n        },\n        \"creditorAgent\": {\n          \"memberIdentification\": \"061103852\",\n          \"clearingSystemIdentification\": \"<string>\"\n        },\n        \"creditor\": {\n          \"name\": \"John Smith\"\n        },\n        \"creditorAccount\": {\n          \"identification\": \"2345678911\",\n          \"type\": \"<string>\"\n        },\n        \"remittanceInformation\": [\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"unstructured\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    ],\n    \"paymentInformationIdentification\": \"1001ABCUSDO1_20181212\",\n    \"debtorAccount\": {\n      \"identification\": \"111010151\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": 3001,\n      \"message\": \"Internal Server error\"\n    },\n    {\n      \"errorcode\": 3001,\n      \"message\": \"Internal Server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.asig.org/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b4bb21cc-610a-410b-b869-b22c09d47628",
+    "name": "Initiate Payment API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Afinis is a diverse group of organizations working to support advancement and use of API standardization in the financial services industry. Utilization of this API requires a developer to [register](https://www.afinis.org/user/register) their application.\n\nContact Support:\n Email: info@afinis.org",
+      "type": "text/plain"
+    }
+  }
+}

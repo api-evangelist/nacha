@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Initiate Wire Payment API",
+    "version": "1.0.3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Wire Transfer",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Process Wire Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/wire",
+            "headers": [
+              {
+                "name": "Request_Id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Process Wire Transactions"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

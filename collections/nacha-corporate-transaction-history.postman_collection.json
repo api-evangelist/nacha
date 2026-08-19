@@ -1,0 +1,434 @@
+{
+  "item": [
+    {
+      "id": "99ba3b33-5ec7-47d8-905f-c6c9f0f3fdc6",
+      "name": "Get Corporate Transaction History",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d53e2257-ca95-4f5a-9c26-f6bc5eca4dde",
+          "name": "Get Corporate Transaction History",
+          "request": {
+            "name": "Get Corporate Transaction History",
+            "description": {
+              "content": "Retrieve financial transaction history for my account(s) for a date or date range",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                "history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apikey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"searchCriteria\": [\n    {\n      \"accountIdentification\": {\n        \"identification\": \"<string>\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"<string>\",\n      \"toDate\": \"<string>\"\n    },\n    {\n      \"accountIdentification\": {\n        \"identification\": \"<string>\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"<string>\",\n      \"toDate\": \"<string>\"\n    }\n  ],\n  \"agent\": {\n    \"clearingSystemIdentification\": \"<string>\",\n    \"memberIdentification\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d10acfcc-b053-4e15-ba3a-5442d8491b5f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"searchCriteria\": [\n    {\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"2020-04-29\",\n      \"toDate\": \"2020-05-19\"\n    },\n    {\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"2020-04-29\",\n      \"toDate\": \"2020-05-19\"\n    }\n  ],\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"accountReport\": [\n    {\n      \"account\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"transactionsSummary\": {\n        \"numberOfEntries\": 2,\n        \"totalAvailableEntries\": 3,\n        \"totalCreditEntries\": 300,\n        \"totalDebitEntries\": 100\n      },\n      \"transactionReport\": [\n        {\n          \"transactionIdentification\": \"sampleTransaction001\",\n          \"creditDebitIndicator\": \"string\",\n          \"instructedAmount\": 1.01,\n          \"currency\": \"USD\",\n          \"type\": \"Miscellaneous ACH\",\n          \"description\": \"string\",\n          \"endToEndIdentification\": \"ABC-200\",\n          \"requestedExecutionDate\": \"2020-04-29\"\n        },\n        {\n          \"transactionIdentification\": \"sampleTransaction001\",\n          \"creditDebitIndicator\": \"string\",\n          \"instructedAmount\": 1.01,\n          \"currency\": \"USD\",\n          \"type\": \"Miscellaneous ACH\",\n          \"description\": \"str\",\n          \"endToEndIdentification\": \"ABC-200\",\n          \"requestedExecutionDate\": \"2020-04-29\"\n        }\n      ]\n    },\n    {\n      \"account\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"transactionsSummary\": {\n        \"numberOfEntries\": 2,\n        \"totalAvailableEntries\": 3,\n        \"totalCreditEntries\": 300,\n        \"totalDebitEntries\": 100\n      },\n      \"transactionReport\": [\n        {\n          \"transactionIdentification\": \"sampleTransaction001\",\n          \"creditDebitIndicator\": \"string\",\n          \"instructedAmount\": 1.01,\n          \"currency\": \"USD\",\n          \"type\": \"Miscellaneous ACH\",\n          \"description\": \"string\",\n          \"endToEndIdentification\": \"ABC-200\",\n          \"requestedExecutionDate\": \"2020-04-29\"\n        },\n        {\n          \"transactionIdentification\": \"sampleTransaction001\",\n          \"creditDebitIndicator\": \"string\",\n          \"instructedAmount\": 1.01,\n          \"currency\": \"USD\",\n          \"type\": \"Miscellaneous ACH\",\n          \"description\": \"string\",\n          \"endToEndIdentification\": \"ABC-200\",\n          \"requestedExecutionDate\": \"2020-04-29\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5f8c39f-c462-445b-ad9a-fd751bed0a49",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"searchCriteria\": [\n    {\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"2020-04-29\",\n      \"toDate\": \"2020-05-19\"\n    },\n    {\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"2020-04-29\",\n      \"toDate\": \"2020-05-19\"\n    }\n  ],\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorCode\": 2000,\n      \"message\": \"Invalid JSON structure.\"\n    },\n    {\n      \"errorCode\": 2000,\n      \"message\": \"Invalid JSON structure.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "809b9dc0-7cdf-42d8-89a8-a271d70625e2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"searchCriteria\": [\n    {\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"2020-04-29\",\n      \"toDate\": \"2020-05-19\"\n    },\n    {\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"2020-04-29\",\n      \"toDate\": \"2020-05-19\"\n    }\n  ],\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"message\": \"API key is missing, invalid or expired.\",\n      \"errorCode\": 1000\n    },\n    {\n      \"message\": \"API key is missing, invalid or expired.\",\n      \"errorCode\": 1000\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2bd9d833-9b63-4323-9e4f-856e75be3747",
+              "name": "Access denied, the operation is not allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"searchCriteria\": [\n    {\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"2020-04-29\",\n      \"toDate\": \"2020-05-19\"\n    },\n    {\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"2020-04-29\",\n      \"toDate\": \"2020-05-19\"\n    }\n  ],\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b531dfe7-3fc8-4511-9196-c8272e0762dc",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"searchCriteria\": [\n    {\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"2020-04-29\",\n      \"toDate\": \"2020-05-19\"\n    },\n    {\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"2020-04-29\",\n      \"toDate\": \"2020-05-19\"\n    }\n  ],\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 404,\n  \"message\": \"Resource was not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7f349ac-5d35-4524-8d80-37cdfadd5efb",
+              "name": "Internal Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"searchCriteria\": [\n    {\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"2020-04-29\",\n      \"toDate\": \"2020-05-19\"\n    },\n    {\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"2020-04-29\",\n      \"toDate\": \"2020-05-19\"\n    }\n  ],\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": 3001,\n      \"message\": \"Internal Server error\"\n    },\n    {\n      \"errorcode\": 3001,\n      \"message\": \"Internal Server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9da22bbd-d4a4-4d9c-9390-036b3163eefd",
+              "name": "Service unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"searchCriteria\": [\n    {\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"2020-04-29\",\n      \"toDate\": \"2020-05-19\"\n    },\n    {\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"2020-04-29\",\n      \"toDate\": \"2020-05-19\"\n    }\n  ],\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 503,\n  \"message\": \"Service is temporarily unavailable.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.afinis.org/ASIG/Get_Corporate_Transaction_History_API/1.0.0/accounts/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "734ce31a-4ade-4509-b551-29e2427ee275",
+    "name": "Get Corporate Transaction History API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "As a corporate or business bank customer, I need to be able to retrieve financial transaction history so that I can review the data or integrate into other business applications.\n\nContact Support:\n Email: info@afinis.org",
+      "type": "text/plain"
+    }
+  }
+}

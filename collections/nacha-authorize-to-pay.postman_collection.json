@@ -1,0 +1,642 @@
+{
+  "item": [
+    {
+      "id": "b4ce5ce1-ab65-4ed9-9775-08189a184d43",
+      "name": "Authorize to Pay",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3895e46d-a524-4e79-b66a-de82f418b8df",
+          "name": "Authorize to Pay - Request",
+          "request": {
+            "name": "Authorize to Pay - Request",
+            "description": {
+              "content": "Allow paying an outstanding invoice by electronically providing account information and authorization securely to the payee to execute the payment and receive an acknowledgement that payer account will be debited on desired date.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "debitauthorizations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "apiVersion",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apikey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"debtor\": {\n    \"name\": \"<string>\",\n    \"postalAddress\": {\n      \"streetName\": \"<string>\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"<string>\",\n      \"countrySubDivision\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"identification\": [\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"<string>\"\n      },\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"<string>\"\n      }\n    ],\n    \"phoneNumber\": \"<string>\",\n    \"emailAddress\": \"<string>\"\n  },\n  \"instructedAmount\": {\n    \"currency\": \"<string>\",\n    \"amount\": {}\n  },\n  \"verification\": {\n    \"authorizeToPay\": \"<boolean>\",\n    \"type\": \"<string>\",\n    \"textValue\": \"<string>\"\n  },\n  \"endToEndIdentification\": \"<string>\",\n  \"requestedExecutionDate\": \"<string>\",\n  \"remittanceInformation\": {\n    \"number\": \"<string>\",\n    \"relatedDate\": \"<string>\",\n    \"duePayableAmount\": {\n      \"currency\": \"<string>\",\n      \"amount\": {}\n    },\n    \"discountAppliedAmount\": {\n      \"currency\": \"<string>\",\n      \"amount\": {}\n    },\n    \"adjustmentAmountAndReason\": {\n      \"amount\": {\n        \"currency\": \"<string>\",\n        \"amount\": {}\n      },\n      \"reason\": \"<string>\",\n      \"additionalInformation\": \"<string>\"\n    },\n    \"creditorReferenceInformation\": {\n      \"type\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  },\n  \"debtorAgent\": {\n    \"clearingSystemIdentification\": \"<string>\",\n    \"memberIdentification\": \"<string>\"\n  },\n  \"debtorAccount\": {\n    \"identification\": \"<string>\",\n    \"schemeName\": \"<string>\"\n  },\n  \"expiryDate\": \"<string>\",\n  \"cardholder\": {\n    \"name\": \"<string>\",\n    \"postalAddress\": {\n      \"streetName\": \"<string>\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"<string>\",\n      \"countrySubDivision\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"identification\": [\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"<string>\"\n      },\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"<string>\"\n      }\n    ],\n    \"phoneNumber\": \"<string>\",\n    \"emailAddress\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8c044cdc-15dd-4eb7-83cd-89e933e09480",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "debitauthorizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "apiVersion",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debtor\": {\n    \"name\": \"John Edison\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"identification\": [\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      },\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      }\n    ],\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  },\n  \"instructedAmount\": {\n    \"currency\": \"USD\",\n    \"amount\": {}\n  },\n  \"verification\": {\n    \"authorizeToPay\": true,\n    \"type\": \"CSCV\",\n    \"textValue\": \"643\"\n  },\n  \"endToEndIdentification\": \"CBA321\",\n  \"requestedExecutionDate\": \"2019-03-01\",\n  \"remittanceInformation\": {\n    \"number\": \"<string>\",\n    \"relatedDate\": \"2019-03-01\",\n    \"duePayableAmount\": {\n      \"currency\": \"USD\",\n      \"amount\": {}\n    },\n    \"discountAppliedAmount\": {\n      \"currency\": \"USD\",\n      \"amount\": {}\n    },\n    \"adjustmentAmountAndReason\": {\n      \"amount\": {\n        \"currency\": \"USD\",\n        \"amount\": {}\n      },\n      \"reason\": \"CM\",\n      \"additionalInformation\": \"<string>\"\n    },\n    \"creditorReferenceInformation\": {\n      \"type\": \"PUOR\",\n      \"reference\": \"<string>\"\n    }\n  },\n  \"debtorAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"debtorAccount\": {\n    \"identification\": \"12345678\",\n    \"schemeName\": \"DDA\"\n  },\n  \"expiryDate\": \"2021-12\",\n  \"cardholder\": {\n    \"name\": \"John Edison\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"identification\": [\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      },\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      }\n    ],\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"Agree to debit\",\n  \"requestedExecutionDate\": \"2020-04-29\",\n  \"creditor\": {\n    \"name\": \"John Edison\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"identification\": [\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      },\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      }\n    ],\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  },\n  \"originalEndToEndIdentification\": \"CBA321\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "513046a0-8921-4c13-9f06-adddda773fa0",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "debitauthorizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "apiVersion",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debtor\": {\n    \"name\": \"John Edison\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"identification\": [\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      },\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      }\n    ],\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  },\n  \"instructedAmount\": {\n    \"currency\": \"USD\",\n    \"amount\": {}\n  },\n  \"verification\": {\n    \"authorizeToPay\": true,\n    \"type\": \"CSCV\",\n    \"textValue\": \"643\"\n  },\n  \"endToEndIdentification\": \"CBA321\",\n  \"requestedExecutionDate\": \"2019-03-01\",\n  \"remittanceInformation\": {\n    \"number\": \"<string>\",\n    \"relatedDate\": \"2019-03-01\",\n    \"duePayableAmount\": {\n      \"currency\": \"USD\",\n      \"amount\": {}\n    },\n    \"discountAppliedAmount\": {\n      \"currency\": \"USD\",\n      \"amount\": {}\n    },\n    \"adjustmentAmountAndReason\": {\n      \"amount\": {\n        \"currency\": \"USD\",\n        \"amount\": {}\n      },\n      \"reason\": \"CM\",\n      \"additionalInformation\": \"<string>\"\n    },\n    \"creditorReferenceInformation\": {\n      \"type\": \"PUOR\",\n      \"reference\": \"<string>\"\n    }\n  },\n  \"debtorAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"debtorAccount\": {\n    \"identification\": \"12345678\",\n    \"schemeName\": \"DDA\"\n  },\n  \"expiryDate\": \"2021-12\",\n  \"cardholder\": {\n    \"name\": \"John Edison\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"identification\": [\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      },\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      }\n    ],\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorCode\": 2000,\n      \"message\": \"Invalid JSON structure.\"\n    },\n    {\n      \"errorCode\": 2000,\n      \"message\": \"Invalid JSON structure.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb912c42-dc1a-417a-85ed-9fcdc63e8cf1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "debitauthorizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "apiVersion",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debtor\": {\n    \"name\": \"John Edison\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"identification\": [\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      },\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      }\n    ],\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  },\n  \"instructedAmount\": {\n    \"currency\": \"USD\",\n    \"amount\": {}\n  },\n  \"verification\": {\n    \"authorizeToPay\": true,\n    \"type\": \"CSCV\",\n    \"textValue\": \"643\"\n  },\n  \"endToEndIdentification\": \"CBA321\",\n  \"requestedExecutionDate\": \"2019-03-01\",\n  \"remittanceInformation\": {\n    \"number\": \"<string>\",\n    \"relatedDate\": \"2019-03-01\",\n    \"duePayableAmount\": {\n      \"currency\": \"USD\",\n      \"amount\": {}\n    },\n    \"discountAppliedAmount\": {\n      \"currency\": \"USD\",\n      \"amount\": {}\n    },\n    \"adjustmentAmountAndReason\": {\n      \"amount\": {\n        \"currency\": \"USD\",\n        \"amount\": {}\n      },\n      \"reason\": \"CM\",\n      \"additionalInformation\": \"<string>\"\n    },\n    \"creditorReferenceInformation\": {\n      \"type\": \"PUOR\",\n      \"reference\": \"<string>\"\n    }\n  },\n  \"debtorAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"debtorAccount\": {\n    \"identification\": \"12345678\",\n    \"schemeName\": \"DDA\"\n  },\n  \"expiryDate\": \"2021-12\",\n  \"cardholder\": {\n    \"name\": \"John Edison\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"identification\": [\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      },\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      }\n    ],\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"message\": \"API key is missing, invalid or expired.\",\n      \"errorCode\": 1000\n    },\n    {\n      \"message\": \"API key is missing, invalid or expired.\",\n      \"errorCode\": 1000\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bbfa15e5-a325-457b-8c08-6b8ee0da1a50",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "debitauthorizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "apiVersion",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debtor\": {\n    \"name\": \"John Edison\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"identification\": [\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      },\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      }\n    ],\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  },\n  \"instructedAmount\": {\n    \"currency\": \"USD\",\n    \"amount\": {}\n  },\n  \"verification\": {\n    \"authorizeToPay\": true,\n    \"type\": \"CSCV\",\n    \"textValue\": \"643\"\n  },\n  \"endToEndIdentification\": \"CBA321\",\n  \"requestedExecutionDate\": \"2019-03-01\",\n  \"remittanceInformation\": {\n    \"number\": \"<string>\",\n    \"relatedDate\": \"2019-03-01\",\n    \"duePayableAmount\": {\n      \"currency\": \"USD\",\n      \"amount\": {}\n    },\n    \"discountAppliedAmount\": {\n      \"currency\": \"USD\",\n      \"amount\": {}\n    },\n    \"adjustmentAmountAndReason\": {\n      \"amount\": {\n        \"currency\": \"USD\",\n        \"amount\": {}\n      },\n      \"reason\": \"CM\",\n      \"additionalInformation\": \"<string>\"\n    },\n    \"creditorReferenceInformation\": {\n      \"type\": \"PUOR\",\n      \"reference\": \"<string>\"\n    }\n  },\n  \"debtorAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"debtorAccount\": {\n    \"identification\": \"12345678\",\n    \"schemeName\": \"DDA\"\n  },\n  \"expiryDate\": \"2021-12\",\n  \"cardholder\": {\n    \"name\": \"John Edison\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"identification\": [\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      },\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      }\n    ],\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 403,\n  \"message\": \"Forbidden\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be2e0483-657e-494e-8f82-cd35a3c0273d",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "debitauthorizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "apiVersion",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debtor\": {\n    \"name\": \"John Edison\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"identification\": [\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      },\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      }\n    ],\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  },\n  \"instructedAmount\": {\n    \"currency\": \"USD\",\n    \"amount\": {}\n  },\n  \"verification\": {\n    \"authorizeToPay\": true,\n    \"type\": \"CSCV\",\n    \"textValue\": \"643\"\n  },\n  \"endToEndIdentification\": \"CBA321\",\n  \"requestedExecutionDate\": \"2019-03-01\",\n  \"remittanceInformation\": {\n    \"number\": \"<string>\",\n    \"relatedDate\": \"2019-03-01\",\n    \"duePayableAmount\": {\n      \"currency\": \"USD\",\n      \"amount\": {}\n    },\n    \"discountAppliedAmount\": {\n      \"currency\": \"USD\",\n      \"amount\": {}\n    },\n    \"adjustmentAmountAndReason\": {\n      \"amount\": {\n        \"currency\": \"USD\",\n        \"amount\": {}\n      },\n      \"reason\": \"CM\",\n      \"additionalInformation\": \"<string>\"\n    },\n    \"creditorReferenceInformation\": {\n      \"type\": \"PUOR\",\n      \"reference\": \"<string>\"\n    }\n  },\n  \"debtorAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"debtorAccount\": {\n    \"identification\": \"12345678\",\n    \"schemeName\": \"DDA\"\n  },\n  \"expiryDate\": \"2021-12\",\n  \"cardholder\": {\n    \"name\": \"John Edison\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"identification\": [\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      },\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      }\n    ],\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 404,\n  \"message\": \"Resource was not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "51d15b74-b153-4f08-acb6-5ca91222d1f3",
+              "name": "Method Not Allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "debitauthorizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "apiVersion",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debtor\": {\n    \"name\": \"John Edison\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"identification\": [\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      },\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      }\n    ],\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  },\n  \"instructedAmount\": {\n    \"currency\": \"USD\",\n    \"amount\": {}\n  },\n  \"verification\": {\n    \"authorizeToPay\": true,\n    \"type\": \"CSCV\",\n    \"textValue\": \"643\"\n  },\n  \"endToEndIdentification\": \"CBA321\",\n  \"requestedExecutionDate\": \"2019-03-01\",\n  \"remittanceInformation\": {\n    \"number\": \"<string>\",\n    \"relatedDate\": \"2019-03-01\",\n    \"duePayableAmount\": {\n      \"currency\": \"USD\",\n      \"amount\": {}\n    },\n    \"discountAppliedAmount\": {\n      \"currency\": \"USD\",\n      \"amount\": {}\n    },\n    \"adjustmentAmountAndReason\": {\n      \"amount\": {\n        \"currency\": \"USD\",\n        \"amount\": {}\n      },\n      \"reason\": \"CM\",\n      \"additionalInformation\": \"<string>\"\n    },\n    \"creditorReferenceInformation\": {\n      \"type\": \"PUOR\",\n      \"reference\": \"<string>\"\n    }\n  },\n  \"debtorAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"debtorAccount\": {\n    \"identification\": \"12345678\",\n    \"schemeName\": \"DDA\"\n  },\n  \"expiryDate\": \"2021-12\",\n  \"cardholder\": {\n    \"name\": \"John Edison\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"identification\": [\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      },\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      }\n    ],\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 405,\n  \"message\": \"Method Not Allowed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69b8d755-71c7-4f5a-b3d9-78ed8832d4df",
+              "name": "Not Acceptable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "debitauthorizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "apiVersion",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debtor\": {\n    \"name\": \"John Edison\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"identification\": [\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      },\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      }\n    ],\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  },\n  \"instructedAmount\": {\n    \"currency\": \"USD\",\n    \"amount\": {}\n  },\n  \"verification\": {\n    \"authorizeToPay\": true,\n    \"type\": \"CSCV\",\n    \"textValue\": \"643\"\n  },\n  \"endToEndIdentification\": \"CBA321\",\n  \"requestedExecutionDate\": \"2019-03-01\",\n  \"remittanceInformation\": {\n    \"number\": \"<string>\",\n    \"relatedDate\": \"2019-03-01\",\n    \"duePayableAmount\": {\n      \"currency\": \"USD\",\n      \"amount\": {}\n    },\n    \"discountAppliedAmount\": {\n      \"currency\": \"USD\",\n      \"amount\": {}\n    },\n    \"adjustmentAmountAndReason\": {\n      \"amount\": {\n        \"currency\": \"USD\",\n        \"amount\": {}\n      },\n      \"reason\": \"CM\",\n      \"additionalInformation\": \"<string>\"\n    },\n    \"creditorReferenceInformation\": {\n      \"type\": \"PUOR\",\n      \"reference\": \"<string>\"\n    }\n  },\n  \"debtorAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"debtorAccount\": {\n    \"identification\": \"12345678\",\n    \"schemeName\": \"DDA\"\n  },\n  \"expiryDate\": \"2021-12\",\n  \"cardholder\": {\n    \"name\": \"John Edison\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"identification\": [\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      },\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      }\n    ],\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Acceptable",
+              "code": 406,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 406,\n  \"message\": \"Not Acceptable\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c97fd64e-6461-4b78-b3cf-d55f8852c1b8",
+              "name": "Unsupported Media Type",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "debitauthorizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "apiVersion",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debtor\": {\n    \"name\": \"John Edison\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"identification\": [\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      },\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      }\n    ],\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  },\n  \"instructedAmount\": {\n    \"currency\": \"USD\",\n    \"amount\": {}\n  },\n  \"verification\": {\n    \"authorizeToPay\": true,\n    \"type\": \"CSCV\",\n    \"textValue\": \"643\"\n  },\n  \"endToEndIdentification\": \"CBA321\",\n  \"requestedExecutionDate\": \"2019-03-01\",\n  \"remittanceInformation\": {\n    \"number\": \"<string>\",\n    \"relatedDate\": \"2019-03-01\",\n    \"duePayableAmount\": {\n      \"currency\": \"USD\",\n      \"amount\": {}\n    },\n    \"discountAppliedAmount\": {\n      \"currency\": \"USD\",\n      \"amount\": {}\n    },\n    \"adjustmentAmountAndReason\": {\n      \"amount\": {\n        \"currency\": \"USD\",\n        \"amount\": {}\n      },\n      \"reason\": \"CM\",\n      \"additionalInformation\": \"<string>\"\n    },\n    \"creditorReferenceInformation\": {\n      \"type\": \"PUOR\",\n      \"reference\": \"<string>\"\n    }\n  },\n  \"debtorAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"debtorAccount\": {\n    \"identification\": \"12345678\",\n    \"schemeName\": \"DDA\"\n  },\n  \"expiryDate\": \"2021-12\",\n  \"cardholder\": {\n    \"name\": \"John Edison\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"identification\": [\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      },\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      }\n    ],\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 415,\n  \"message\": \"Unsupported Media Type\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "83cdbf0f-c4df-47ae-8798-cda2a1722b49",
+              "name": "Internal Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "debitauthorizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "apiVersion",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debtor\": {\n    \"name\": \"John Edison\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"identification\": [\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      },\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      }\n    ],\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  },\n  \"instructedAmount\": {\n    \"currency\": \"USD\",\n    \"amount\": {}\n  },\n  \"verification\": {\n    \"authorizeToPay\": true,\n    \"type\": \"CSCV\",\n    \"textValue\": \"643\"\n  },\n  \"endToEndIdentification\": \"CBA321\",\n  \"requestedExecutionDate\": \"2019-03-01\",\n  \"remittanceInformation\": {\n    \"number\": \"<string>\",\n    \"relatedDate\": \"2019-03-01\",\n    \"duePayableAmount\": {\n      \"currency\": \"USD\",\n      \"amount\": {}\n    },\n    \"discountAppliedAmount\": {\n      \"currency\": \"USD\",\n      \"amount\": {}\n    },\n    \"adjustmentAmountAndReason\": {\n      \"amount\": {\n        \"currency\": \"USD\",\n        \"amount\": {}\n      },\n      \"reason\": \"CM\",\n      \"additionalInformation\": \"<string>\"\n    },\n    \"creditorReferenceInformation\": {\n      \"type\": \"PUOR\",\n      \"reference\": \"<string>\"\n    }\n  },\n  \"debtorAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"debtorAccount\": {\n    \"identification\": \"12345678\",\n    \"schemeName\": \"DDA\"\n  },\n  \"expiryDate\": \"2021-12\",\n  \"cardholder\": {\n    \"name\": \"John Edison\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"identification\": [\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      },\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      }\n    ],\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorCode\": 3001,\n      \"message\": \"Internal Server error\"\n    },\n    {\n      \"errorCode\": 3001,\n      \"message\": \"Internal Server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67e64d4f-5e95-4afb-ab3d-f90f63e81a04",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "debitauthorizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "apiVersion",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debtor\": {\n    \"name\": \"John Edison\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"identification\": [\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      },\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      }\n    ],\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  },\n  \"instructedAmount\": {\n    \"currency\": \"USD\",\n    \"amount\": {}\n  },\n  \"verification\": {\n    \"authorizeToPay\": true,\n    \"type\": \"CSCV\",\n    \"textValue\": \"643\"\n  },\n  \"endToEndIdentification\": \"CBA321\",\n  \"requestedExecutionDate\": \"2019-03-01\",\n  \"remittanceInformation\": {\n    \"number\": \"<string>\",\n    \"relatedDate\": \"2019-03-01\",\n    \"duePayableAmount\": {\n      \"currency\": \"USD\",\n      \"amount\": {}\n    },\n    \"discountAppliedAmount\": {\n      \"currency\": \"USD\",\n      \"amount\": {}\n    },\n    \"adjustmentAmountAndReason\": {\n      \"amount\": {\n        \"currency\": \"USD\",\n        \"amount\": {}\n      },\n      \"reason\": \"CM\",\n      \"additionalInformation\": \"<string>\"\n    },\n    \"creditorReferenceInformation\": {\n      \"type\": \"PUOR\",\n      \"reference\": \"<string>\"\n    }\n  },\n  \"debtorAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"debtorAccount\": {\n    \"identification\": \"12345678\",\n    \"schemeName\": \"DDA\"\n  },\n  \"expiryDate\": \"2021-12\",\n  \"cardholder\": {\n    \"name\": \"John Edison\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"identification\": [\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      },\n      {\n        \"identification\": \"<string>\",\n        \"schemeName\": \"CUST\"\n      }\n    ],\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 503,\n  \"message\": \"Service is temporarily unavailable.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.afinis.org/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5afc8db6-2968-4725-b776-35876ba2847d",
+    "name": "Debit Authorizations",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "A buyer business wants to provide its bank account number or virtual card number, details on purpose of payment, and authorization for the supplier to debit the provided account number.  The buyer wishes to receive a real time acknowledgement when the instructions have been received. \n\nContact Support:\n Email: info@afinis.org",
+      "type": "text/plain"
+    }
+  }
+}

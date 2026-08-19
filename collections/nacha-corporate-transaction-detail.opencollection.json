@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Get Transaction Detail API",
+    "version": "1.0.4"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Get Corporate Transaction History",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Transaction Detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/transactions/detail"
+          },
+          "docs": "Retrieve information for a transaction in an account"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

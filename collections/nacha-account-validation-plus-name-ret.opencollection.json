@@ -1,0 +1,38 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AV + Name + Return",
+    "version": "1.0.4"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "validateAccountWithNameAndRET",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/validatewithnameandret",
+            "headers": [
+              {
+                "name": "apiVersion",
+                "value": ""
+              },
+              {
+                "name": "Request_Id",
+                "value": ""
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -104,3 +104,9 @@ tools:
 - name: written_statement_of_unauthorized_debit_request
   description: Request a copy of the WSUD
   source_operation: openapi/nacha-wsud.json#Written Statement of Unauthorized Debit - Request
+deployment:
+  mode: none
+  verified: derived
+  tools: 30
+  checked: '2026-08-12'
+  source: catalog MCP census

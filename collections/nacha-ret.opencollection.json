@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RET (Reporting ACH Return Payments) API",
+    "version": "1.0.3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reporting ACH Return Payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Reporting ACH Return Payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ret"
+          },
+          "docs": "Alert the network of ACH users about problematic ACH payments to help mitigate the risk of suspected bad actors perpetuating fraud against other ACH users"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

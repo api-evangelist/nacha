@@ -1,0 +1,705 @@
+{
+  "item": [
+    {
+      "id": "e0314e3d-253e-4a91-a001-abb808ef848d",
+      "name": "Accounts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1131af09-9ee8-4a67-8e8d-7e5bd1970c28",
+          "name": "Account eligibility for debit ACH transactions",
+          "request": {
+            "name": "Account eligibility for debit ACH transactions",
+            "description": {},
+            "url": {
+              "path": [
+                "validate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "apiVersion",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "disabled": false,
+                "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                "key": "Request_Id",
+                "value": "<uuid>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apikey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"debtorAccount\": {\n    \"identification\": {}\n  },\n  \"debtorAgent\": {\n    \"clearingSystemIdentification\": \"<string>\",\n    \"memberIdentification\": \"<string>\"\n  },\n  \"associatedName\": {\n    \"surname\": \"<string>\",\n    \"givenName\": \"<string>\"\n  },\n  \"cashAccountType\": \"Current\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ca51ffc7-63f5-4a6f-899b-8ddd01c51a2f",
+              "name": "Valid account request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debtorAccount\": {\n    \"identification\": {}\n  },\n  \"debtorAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"121000358\"\n  },\n  \"associatedName\": {\n    \"surname\": \"CANADY\",\n    \"givenName\": \"JAYSON\"\n  },\n  \"cashAccountType\": \"Current\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accountStatus\": \"Enabled\",\n  \"associatedNameMatch\": {\n    \"surnameMatch\": \"NO_MATCH_REQUESTED\",\n    \"givenNameMatch\": \"true\"\n  },\n  \"statusReasonInformation\": {\n    \"reason\": \"10000\",\n    \"additionalInformation\": \"No history found\"\n  },\n  \"associatedName\": {\n    \"surname\": \"CANADY\",\n    \"givenName\": \"JAYSON\"\n  },\n  \"debtorAccount\": {\n    \"identification\": {}\n  },\n  \"debtorAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"121000358\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "120b8c1c-e312-4c73-9762-4a5730fc395a",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debtorAccount\": {\n    \"identification\": {}\n  },\n  \"debtorAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"121000358\"\n  },\n  \"associatedName\": {\n    \"surname\": \"CANADY\",\n    \"givenName\": \"JAYSON\"\n  },\n  \"cashAccountType\": \"Current\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"errorCode\": 2000,\n      \"message\": \"Invalid JSON structure.\"\n    },\n    {\n      \"errorCode\": 2000,\n      \"message\": \"Invalid JSON structure.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "223d5894-8e78-4ff8-8b72-0477330ef12c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debtorAccount\": {\n    \"identification\": {}\n  },\n  \"debtorAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"121000358\"\n  },\n  \"associatedName\": {\n    \"surname\": \"CANADY\",\n    \"givenName\": \"JAYSON\"\n  },\n  \"cashAccountType\": \"Current\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"API key is missing, invalid or expired.\",\n      \"errorCode\": 1000\n    },\n    {\n      \"message\": \"API key is missing, invalid or expired.\",\n      \"errorCode\": 1000\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "93c1bc7f-9ca7-498e-bca6-fa508ff433c6",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debtorAccount\": {\n    \"identification\": {}\n  },\n  \"debtorAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"121000358\"\n  },\n  \"associatedName\": {\n    \"surname\": \"CANADY\",\n    \"givenName\": \"JAYSON\"\n  },\n  \"cashAccountType\": \"Current\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 403,\n  \"message\": \"Forbidden\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6165c672-8843-4f22-b9f7-8d191fdfa56f",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debtorAccount\": {\n    \"identification\": {}\n  },\n  \"debtorAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"121000358\"\n  },\n  \"associatedName\": {\n    \"surname\": \"CANADY\",\n    \"givenName\": \"JAYSON\"\n  },\n  \"cashAccountType\": \"Current\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 404,\n  \"message\": \"Resource was not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "925a9d61-2e3e-4da2-95e5-76f9fa47492c",
+              "name": "Method Not Allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debtorAccount\": {\n    \"identification\": {}\n  },\n  \"debtorAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"121000358\"\n  },\n  \"associatedName\": {\n    \"surname\": \"CANADY\",\n    \"givenName\": \"JAYSON\"\n  },\n  \"cashAccountType\": \"Current\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 405,\n  \"message\": \"Method Not Allowed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9e0a58a-9e23-4f42-9f39-18ef08b367a0",
+              "name": "Not Acceptable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debtorAccount\": {\n    \"identification\": {}\n  },\n  \"debtorAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"121000358\"\n  },\n  \"associatedName\": {\n    \"surname\": \"CANADY\",\n    \"givenName\": \"JAYSON\"\n  },\n  \"cashAccountType\": \"Current\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Acceptable",
+              "code": 406,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 406,\n  \"message\": \"Not Acceptable\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e8649a4-ddb8-4f43-a8cf-297664f97149",
+              "name": "Unsupported Media Type",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debtorAccount\": {\n    \"identification\": {}\n  },\n  \"debtorAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"121000358\"\n  },\n  \"associatedName\": {\n    \"surname\": \"CANADY\",\n    \"givenName\": \"JAYSON\"\n  },\n  \"cashAccountType\": \"Current\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 415,\n  \"message\": \"Unsupported Media Type\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c20498e-fbe2-47a7-bc0a-1d8b3d197324",
+              "name": "Internal Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debtorAccount\": {\n    \"identification\": {}\n  },\n  \"debtorAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"121000358\"\n  },\n  \"associatedName\": {\n    \"surname\": \"CANADY\",\n    \"givenName\": \"JAYSON\"\n  },\n  \"cashAccountType\": \"Current\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"errorCode\": 3001,\n      \"message\": \"Internal Server error\"\n    },\n    {\n      \"errorCode\": 3001,\n      \"message\": \"Internal Server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c0ced2a-4860-4a3a-8699-e22c8a41e236",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debtorAccount\": {\n    \"identification\": {}\n  },\n  \"debtorAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"121000358\"\n  },\n  \"associatedName\": {\n    \"surname\": \"CANADY\",\n    \"givenName\": \"JAYSON\"\n  },\n  \"cashAccountType\": \"Current\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 503,\n  \"message\": \"Service is temporarily unavailable.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.asig.org/afinis/accounts/aavplus/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "dc38849d-f6bd-4710-bbc7-1265724b8cdd",
+    "name": "Account Validation Plus Ownership API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Afinis is a diverse group of organizations working to support advancement and use of API standardization in the financial services industry. Utilization of this API requires a developer to [register](https://www.afinis.org/user/register) their application.",
+      "type": "text/plain"
+    }
+  }
+}

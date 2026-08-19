@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Proof of Authorization API",
+    "version": "1.0.6"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Proof of Authorization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Proof of Authorization - Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/documents/proofofauth",
+            "headers": [
+              {
+                "name": "apiVersion",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "The Receiving Depository Financial Institution (RDFI) wants to send an automated electronic request to the Originating Depository Financial Institution (ODFI).  As the RDFI, I want to receive a real time acknowledgement when my request is received.  I want to provide details on how I can receive the copy of the authorization back from the ODFI."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

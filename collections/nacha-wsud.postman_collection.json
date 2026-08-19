@@ -1,0 +1,653 @@
+{
+  "item": [
+    {
+      "id": "6dd89343-7fe3-460a-939f-8ccc8df8ff96",
+      "name": "Written Statement of Unauthorized Debit (WSUD)",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "30114a2d-6310-4fc3-82ae-62c229a8cb97",
+          "name": "Request a copy of the WSUD",
+          "request": {
+            "name": "Request a copy of the WSUD",
+            "description": {
+              "content": "Optional API Version number which will be used to serve the API request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                "WSUD"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "apiVersion",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apikey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"initiatingParty\": {\n    \"name\": \"<string>\",\n    \"identification\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"emailAddress\": \"<string>\"\n  },\n  \"instructingAgent\": {\n    \"clearingSystemIdentification\": \"<string>\",\n    \"memberIdentification\": \"<string>\"\n  },\n  \"instructedAgent\": {\n    \"clearingSystemIdentification\": \"<string>\",\n    \"memberIdentification\": \"<string>\"\n  },\n  \"originalTransactionReference\": {\n    \"endToEndIdentification\": \"<string>\",\n    \"localInstrument\": \"<string>\",\n    \"amount\": {\n      \"amount\": \"<float>\",\n      \"currency\": \"<string>\"\n    },\n    \"creditor\": {\n      \"name\": \"<string>\",\n      \"identification\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"emailAddress\": \"<string>\"\n    },\n    \"debtor\": {\n      \"name\": \"<string>\",\n      \"identification\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"emailAddress\": \"<string>\"\n    },\n    \"debtorAccount\": \"<string>\"\n  },\n  \"WSUDMethod\": {\n    \"preferredMethod\": \"<string>\",\n    \"postalAddress\": {\n      \"streetName\": \"<string>\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"<string>\",\n      \"countrySubDivision\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"faxNumber\": \"<string>\",\n    \"emailAddress\": \"<string>\"\n  },\n  \"messageIdentification\": \"<string>\",\n  \"returnTransactionReference\": {\n    \"endToEndIdentification\": \"<string>\",\n    \"entryDate\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "25fe986c-bf35-486b-a0ec-b2d646f77fde",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "WSUD"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"initiatingParty\": {\n    \"name\": \"John Edison\",\n    \"identification\": \"PartyId_123456789\",\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  },\n  \"instructingAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"instructedAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"originalTransactionReference\": {\n    \"endToEndIdentification\": \"CBA321\",\n    \"localInstrument\": \"WEB\",\n    \"amount\": {\n      \"amount\": 1.01,\n      \"currency\": \"USD\"\n    },\n    \"creditor\": {\n      \"name\": \"John Edison\",\n      \"identification\": \"PartyId_123456789\",\n      \"phoneNumber\": \"+1-302-515-5000\",\n      \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n    },\n    \"debtor\": {\n      \"name\": \"John Edison\",\n      \"identification\": \"PartyId_123456789\",\n      \"phoneNumber\": \"+1-302-515-5000\",\n      \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n    },\n    \"debtorAccount\": \"12345678\"\n  },\n  \"WSUDMethod\": {\n    \"preferredMethod\": \"<string>\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"faxNumber\": \"+1-302-515-7000\",\n    \"emailAddress\": \"zachary.westwood@ABCcorp.com\"\n  },\n  \"messageIdentification\": \"Id_ABC123\",\n  \"returnTransactionReference\": {\n    \"endToEndIdentification\": \"CBA321\",\n    \"entryDate\": \"2019-03-01\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"received\": {\n    \"amount\": {\n      \"amount\": 1.01,\n      \"currency\": \"USD\"\n    },\n    \"returnTransactionReference\": {\n      \"endToEndIdentification\": \"CBA321\",\n      \"entryDate\": \"2019-03-01\"\n    },\n    \"message\": \"Received\",\n    \"originalMessageIdentification\": \"Id_ABC123\",\n    \"initiatingParty\": {\n      \"name\": \"John Edison\",\n      \"identification\": \"PartyId_123456789\",\n      \"phoneNumber\": \"+1-302-515-5000\",\n      \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n    },\n    \"notificationDate\": \"2020-04-29\",\n    \"notificationTime\": \"20:30\"\n  },\n  \"sent\": {\n    \"amount\": {\n      \"amount\": 1.01,\n      \"currency\": \"USD\"\n    },\n    \"returnTransactionReference\": {\n      \"endToEndIdentification\": \"CBA321\",\n      \"entryDate\": \"2019-03-01\"\n    },\n    \"message\": \"Sent\",\n    \"originalMessageIdentification\": \"Id_ABC123\",\n    \"initiatingParty\": {\n      \"name\": \"John Edison\",\n      \"identification\": \"PartyId_123456789\",\n      \"phoneNumber\": \"+1-302-515-5000\",\n      \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n    },\n    \"notificationDate\": \"2020-04-29\",\n    \"notificationTime\": \"20:30\",\n    \"WSUDMethod\": {\n      \"preferredMethod\": \"<string>\",\n      \"postalAddress\": {\n        \"streetName\": \"Lexington Street\",\n        \"postCode\": \"<string>\",\n        \"townName\": \"Wilmington\",\n        \"countrySubDivision\": \"DE\",\n        \"country\": \"US\"\n      },\n      \"faxNumber\": \"+1-302-515-7000\",\n      \"emailAddress\": \"zachary.westwood@ABCcorp.com\"\n    }\n  },\n  \"unableToComply\": {\n    \"amount\": {\n      \"amount\": 1.01,\n      \"currency\": \"USD\"\n    },\n    \"returnTransactionReference\": {\n      \"endToEndIdentification\": \"CBA321\",\n      \"entryDate\": \"2019-03-01\"\n    },\n    \"message\": \"Unable to Comply\",\n    \"originalMessageIdentification\": \"Id_ABC123\",\n    \"initiatingParty\": {\n      \"name\": \"John Edison\",\n      \"identification\": \"PartyId_123456789\",\n      \"phoneNumber\": \"+1-302-515-5000\",\n      \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n    },\n    \"notificationDate\": \"2020-04-29\",\n    \"notificationTime\": \"20:30\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "082d4447-2b15-4ac2-8d13-104c3292daba",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "WSUD"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"initiatingParty\": {\n    \"name\": \"John Edison\",\n    \"identification\": \"PartyId_123456789\",\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  },\n  \"instructingAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"instructedAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"originalTransactionReference\": {\n    \"endToEndIdentification\": \"CBA321\",\n    \"localInstrument\": \"WEB\",\n    \"amount\": {\n      \"amount\": 1.01,\n      \"currency\": \"USD\"\n    },\n    \"creditor\": {\n      \"name\": \"John Edison\",\n      \"identification\": \"PartyId_123456789\",\n      \"phoneNumber\": \"+1-302-515-5000\",\n      \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n    },\n    \"debtor\": {\n      \"name\": \"John Edison\",\n      \"identification\": \"PartyId_123456789\",\n      \"phoneNumber\": \"+1-302-515-5000\",\n      \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n    },\n    \"debtorAccount\": \"12345678\"\n  },\n  \"WSUDMethod\": {\n    \"preferredMethod\": \"<string>\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"faxNumber\": \"+1-302-515-7000\",\n    \"emailAddress\": \"zachary.westwood@ABCcorp.com\"\n  },\n  \"messageIdentification\": \"Id_ABC123\",\n  \"returnTransactionReference\": {\n    \"endToEndIdentification\": \"CBA321\",\n    \"entryDate\": \"2019-03-01\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"errorCode\": 2000,\n      \"message\": \"Invalid JSON structure.\"\n    },\n    {\n      \"errorCode\": 2000,\n      \"message\": \"Invalid JSON structure.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a179c766-8fd9-46c1-bedb-b75c41e9a204",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "WSUD"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"initiatingParty\": {\n    \"name\": \"John Edison\",\n    \"identification\": \"PartyId_123456789\",\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  },\n  \"instructingAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"instructedAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"originalTransactionReference\": {\n    \"endToEndIdentification\": \"CBA321\",\n    \"localInstrument\": \"WEB\",\n    \"amount\": {\n      \"amount\": 1.01,\n      \"currency\": \"USD\"\n    },\n    \"creditor\": {\n      \"name\": \"John Edison\",\n      \"identification\": \"PartyId_123456789\",\n      \"phoneNumber\": \"+1-302-515-5000\",\n      \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n    },\n    \"debtor\": {\n      \"name\": \"John Edison\",\n      \"identification\": \"PartyId_123456789\",\n      \"phoneNumber\": \"+1-302-515-5000\",\n      \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n    },\n    \"debtorAccount\": \"12345678\"\n  },\n  \"WSUDMethod\": {\n    \"preferredMethod\": \"<string>\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"faxNumber\": \"+1-302-515-7000\",\n    \"emailAddress\": \"zachary.westwood@ABCcorp.com\"\n  },\n  \"messageIdentification\": \"Id_ABC123\",\n  \"returnTransactionReference\": {\n    \"endToEndIdentification\": \"CBA321\",\n    \"entryDate\": \"2019-03-01\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"API key is missing, invalid or expired.\",\n      \"errorCode\": 1000\n    },\n    {\n      \"message\": \"API key is missing, invalid or expired.\",\n      \"errorCode\": 1000\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84c8b6ed-fd54-4df0-b4cb-c94124dab0f4",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "WSUD"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"initiatingParty\": {\n    \"name\": \"John Edison\",\n    \"identification\": \"PartyId_123456789\",\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  },\n  \"instructingAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"instructedAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"originalTransactionReference\": {\n    \"endToEndIdentification\": \"CBA321\",\n    \"localInstrument\": \"WEB\",\n    \"amount\": {\n      \"amount\": 1.01,\n      \"currency\": \"USD\"\n    },\n    \"creditor\": {\n      \"name\": \"John Edison\",\n      \"identification\": \"PartyId_123456789\",\n      \"phoneNumber\": \"+1-302-515-5000\",\n      \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n    },\n    \"debtor\": {\n      \"name\": \"John Edison\",\n      \"identification\": \"PartyId_123456789\",\n      \"phoneNumber\": \"+1-302-515-5000\",\n      \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n    },\n    \"debtorAccount\": \"12345678\"\n  },\n  \"WSUDMethod\": {\n    \"preferredMethod\": \"<string>\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"faxNumber\": \"+1-302-515-7000\",\n    \"emailAddress\": \"zachary.westwood@ABCcorp.com\"\n  },\n  \"messageIdentification\": \"Id_ABC123\",\n  \"returnTransactionReference\": {\n    \"endToEndIdentification\": \"CBA321\",\n    \"entryDate\": \"2019-03-01\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 403,\n  \"message\": \"Forbidden\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "119a7931-fbbb-4955-bddd-6aef3ac202a5",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "WSUD"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"initiatingParty\": {\n    \"name\": \"John Edison\",\n    \"identification\": \"PartyId_123456789\",\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  },\n  \"instructingAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"instructedAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"originalTransactionReference\": {\n    \"endToEndIdentification\": \"CBA321\",\n    \"localInstrument\": \"WEB\",\n    \"amount\": {\n      \"amount\": 1.01,\n      \"currency\": \"USD\"\n    },\n    \"creditor\": {\n      \"name\": \"John Edison\",\n      \"identification\": \"PartyId_123456789\",\n      \"phoneNumber\": \"+1-302-515-5000\",\n      \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n    },\n    \"debtor\": {\n      \"name\": \"John Edison\",\n      \"identification\": \"PartyId_123456789\",\n      \"phoneNumber\": \"+1-302-515-5000\",\n      \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n    },\n    \"debtorAccount\": \"12345678\"\n  },\n  \"WSUDMethod\": {\n    \"preferredMethod\": \"<string>\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"faxNumber\": \"+1-302-515-7000\",\n    \"emailAddress\": \"zachary.westwood@ABCcorp.com\"\n  },\n  \"messageIdentification\": \"Id_ABC123\",\n  \"returnTransactionReference\": {\n    \"endToEndIdentification\": \"CBA321\",\n    \"entryDate\": \"2019-03-01\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 404,\n  \"message\": \"Resource was not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b358f245-cb87-4f50-873e-436e777cbe2a",
+              "name": "Method Not Allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "WSUD"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"initiatingParty\": {\n    \"name\": \"John Edison\",\n    \"identification\": \"PartyId_123456789\",\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  },\n  \"instructingAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"instructedAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"originalTransactionReference\": {\n    \"endToEndIdentification\": \"CBA321\",\n    \"localInstrument\": \"WEB\",\n    \"amount\": {\n      \"amount\": 1.01,\n      \"currency\": \"USD\"\n    },\n    \"creditor\": {\n      \"name\": \"John Edison\",\n      \"identification\": \"PartyId_123456789\",\n      \"phoneNumber\": \"+1-302-515-5000\",\n      \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n    },\n    \"debtor\": {\n      \"name\": \"John Edison\",\n      \"identification\": \"PartyId_123456789\",\n      \"phoneNumber\": \"+1-302-515-5000\",\n      \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n    },\n    \"debtorAccount\": \"12345678\"\n  },\n  \"WSUDMethod\": {\n    \"preferredMethod\": \"<string>\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"faxNumber\": \"+1-302-515-7000\",\n    \"emailAddress\": \"zachary.westwood@ABCcorp.com\"\n  },\n  \"messageIdentification\": \"Id_ABC123\",\n  \"returnTransactionReference\": {\n    \"endToEndIdentification\": \"CBA321\",\n    \"entryDate\": \"2019-03-01\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 405,\n  \"message\": \"Method Not Allowed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "589e0502-60f9-4cbf-af68-691877578ff8",
+              "name": "Not Acceptable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "WSUD"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"initiatingParty\": {\n    \"name\": \"John Edison\",\n    \"identification\": \"PartyId_123456789\",\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  },\n  \"instructingAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"instructedAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"originalTransactionReference\": {\n    \"endToEndIdentification\": \"CBA321\",\n    \"localInstrument\": \"WEB\",\n    \"amount\": {\n      \"amount\": 1.01,\n      \"currency\": \"USD\"\n    },\n    \"creditor\": {\n      \"name\": \"John Edison\",\n      \"identification\": \"PartyId_123456789\",\n      \"phoneNumber\": \"+1-302-515-5000\",\n      \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n    },\n    \"debtor\": {\n      \"name\": \"John Edison\",\n      \"identification\": \"PartyId_123456789\",\n      \"phoneNumber\": \"+1-302-515-5000\",\n      \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n    },\n    \"debtorAccount\": \"12345678\"\n  },\n  \"WSUDMethod\": {\n    \"preferredMethod\": \"<string>\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"faxNumber\": \"+1-302-515-7000\",\n    \"emailAddress\": \"zachary.westwood@ABCcorp.com\"\n  },\n  \"messageIdentification\": \"Id_ABC123\",\n  \"returnTransactionReference\": {\n    \"endToEndIdentification\": \"CBA321\",\n    \"entryDate\": \"2019-03-01\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Acceptable",
+              "code": 406,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 406,\n  \"message\": \"Not Acceptable\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "922b0060-b8f6-4ed0-a9fd-e3a40469b5b1",
+              "name": "Unsupported Media Type",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "WSUD"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"initiatingParty\": {\n    \"name\": \"John Edison\",\n    \"identification\": \"PartyId_123456789\",\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  },\n  \"instructingAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"instructedAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"originalTransactionReference\": {\n    \"endToEndIdentification\": \"CBA321\",\n    \"localInstrument\": \"WEB\",\n    \"amount\": {\n      \"amount\": 1.01,\n      \"currency\": \"USD\"\n    },\n    \"creditor\": {\n      \"name\": \"John Edison\",\n      \"identification\": \"PartyId_123456789\",\n      \"phoneNumber\": \"+1-302-515-5000\",\n      \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n    },\n    \"debtor\": {\n      \"name\": \"John Edison\",\n      \"identification\": \"PartyId_123456789\",\n      \"phoneNumber\": \"+1-302-515-5000\",\n      \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n    },\n    \"debtorAccount\": \"12345678\"\n  },\n  \"WSUDMethod\": {\n    \"preferredMethod\": \"<string>\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"faxNumber\": \"+1-302-515-7000\",\n    \"emailAddress\": \"zachary.westwood@ABCcorp.com\"\n  },\n  \"messageIdentification\": \"Id_ABC123\",\n  \"returnTransactionReference\": {\n    \"endToEndIdentification\": \"CBA321\",\n    \"entryDate\": \"2019-03-01\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 415,\n  \"message\": \"Unsupported Media Type\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42b750ce-2c1e-4cb6-9afb-2f4886489e09",
+              "name": "Internal Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "WSUD"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"initiatingParty\": {\n    \"name\": \"John Edison\",\n    \"identification\": \"PartyId_123456789\",\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  },\n  \"instructingAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"instructedAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"originalTransactionReference\": {\n    \"endToEndIdentification\": \"CBA321\",\n    \"localInstrument\": \"WEB\",\n    \"amount\": {\n      \"amount\": 1.01,\n      \"currency\": \"USD\"\n    },\n    \"creditor\": {\n      \"name\": \"John Edison\",\n      \"identification\": \"PartyId_123456789\",\n      \"phoneNumber\": \"+1-302-515-5000\",\n      \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n    },\n    \"debtor\": {\n      \"name\": \"John Edison\",\n      \"identification\": \"PartyId_123456789\",\n      \"phoneNumber\": \"+1-302-515-5000\",\n      \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n    },\n    \"debtorAccount\": \"12345678\"\n  },\n  \"WSUDMethod\": {\n    \"preferredMethod\": \"<string>\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"faxNumber\": \"+1-302-515-7000\",\n    \"emailAddress\": \"zachary.westwood@ABCcorp.com\"\n  },\n  \"messageIdentification\": \"Id_ABC123\",\n  \"returnTransactionReference\": {\n    \"endToEndIdentification\": \"CBA321\",\n    \"entryDate\": \"2019-03-01\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"errorCode\": 3001,\n      \"message\": \"Internal Server error\"\n    },\n    {\n      \"errorCode\": 3001,\n      \"message\": \"Internal Server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d56ccf91-96b4-420a-ba05-f484adaa4f1b",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "WSUD"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"initiatingParty\": {\n    \"name\": \"John Edison\",\n    \"identification\": \"PartyId_123456789\",\n    \"phoneNumber\": \"+1-302-515-5000\",\n    \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n  },\n  \"instructingAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"instructedAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"originalTransactionReference\": {\n    \"endToEndIdentification\": \"CBA321\",\n    \"localInstrument\": \"WEB\",\n    \"amount\": {\n      \"amount\": 1.01,\n      \"currency\": \"USD\"\n    },\n    \"creditor\": {\n      \"name\": \"John Edison\",\n      \"identification\": \"PartyId_123456789\",\n      \"phoneNumber\": \"+1-302-515-5000\",\n      \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n    },\n    \"debtor\": {\n      \"name\": \"John Edison\",\n      \"identification\": \"PartyId_123456789\",\n      \"phoneNumber\": \"+1-302-515-5000\",\n      \"emailAddress\": \"zachary.eastwood@ABCcorp.com\"\n    },\n    \"debtorAccount\": \"12345678\"\n  },\n  \"WSUDMethod\": {\n    \"preferredMethod\": \"<string>\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"faxNumber\": \"+1-302-515-7000\",\n    \"emailAddress\": \"zachary.westwood@ABCcorp.com\"\n  },\n  \"messageIdentification\": \"Id_ABC123\",\n  \"returnTransactionReference\": {\n    \"endToEndIdentification\": \"CBA321\",\n    \"entryDate\": \"2019-03-01\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 503,\n  \"message\": \"Service is temporarily unavailable.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.afinis.org/ASIG/Written_Statement_of_Unauthorized_Debit/1.0.0/accounts/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "52d34107-b557-401a-b267-f528870951a1",
+    "name": "Request Copy of Written Statement of Unauthorized Debit (WSUD) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "A Originating Depository Financial Institution (ODFI) wants to send an automated electronic request to the Receiving Depository Financial Institution (RDFI) for a copy of the WSUD which includes details on how to send the copy of the WSUD, and receive back a real time acknowledgement when the request is received. \n\nContact Support:\n Email: info@afinis.org",
+      "type": "text/plain"
+    }
+  }
+}

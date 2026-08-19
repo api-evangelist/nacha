@@ -1,0 +1,348 @@
+{
+  "item": [
+    {
+      "id": "41d88bcf-461e-4791-aff4-eeb62cbb0a1a",
+      "name": "Route Billing Information",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6b2b4a9f-4969-42de-a4fe-d22dbf882362",
+          "name": "Enable a biller to route billing information electronically to any customer through any network.",
+          "request": {
+            "name": "Enable a biller to route billing information electronically to any customer through any network.",
+            "description": {
+              "content": "Route Billing Information",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                "payers",
+                "bill"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apikey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"primaryIdentifier\": {\n    \"debtorAgent\": {\n      \"clearingSystemIdentification\": \"<string>\",\n      \"memberIdentification\": \"<string>\"\n    },\n    \"debtorAccount\": {\n      \"identification\": \"<string>\",\n      \"proxy\": {\n        \"type\": \"<string>\",\n        \"identification\": \"<string>\"\n      }\n    },\n    \"debtor\": {\n      \"name\": \"<string>\",\n      \"identification\": \"<string>\",\n      \"schemeName\": \"<string>\",\n      \"postalAddress\": {\n        \"streetName\": \"<string>\",\n        \"postCode\": \"<string>\",\n        \"townName\": \"<string>\",\n        \"countrySubDivision\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"birthDate\": \"<date>\"\n    }\n  },\n  \"secondaryIdentifier\": {\n    \"debtor\": {\n      \"name\": \"<string>\",\n      \"identification\": \"<string>\",\n      \"schemeName\": \"<string>\",\n      \"postalAddress\": {\n        \"streetName\": \"<string>\",\n        \"postCode\": \"<string>\",\n        \"townName\": \"<string>\",\n        \"countrySubDivision\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"birthDate\": \"<date>\"\n    }\n  },\n  \"creditor\": {\n    \"name\": \"<string>\",\n    \"postalAddress\": {\n      \"streetName\": \"<string>\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"<string>\",\n      \"countrySubDivision\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"contactDetails\": {\n      \"phoneNumber\": \"<string>\",\n      \"other\": {\n        \"channelType\": \"<string>\",\n        \"identification\": \"<string>\"\n      }\n    }\n  },\n  \"minimumAmount\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"instructedAmount\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"requestedExecutionDate\": \"<date>\",\n  \"debtor\": {\n    \"name\": \"<string>\",\n    \"identification\": \"<string>\",\n    \"schemeName\": \"<string>\",\n    \"postalAddress\": {\n      \"streetName\": \"<string>\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"<string>\",\n      \"countrySubDivision\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"birthDate\": \"<date>\"\n  },\n  \"paymentIdentification\": {\n    \"endToEndIdentification\": \"<string>\"\n  },\n  \"locationAndContact\": {\n    \"URLAddress\": \"<string>\"\n  },\n  \"remittanceInformation\": {\n    \"unstructured\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6249bc7e-311f-4764-9302-f7fb01553807",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "payers",
+                    "bill"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"primaryIdentifier\": {\n    \"debtorAgent\": {\n      \"clearingSystemIdentification\": \"USABA\",\n      \"memberIdentification\": \"061103852\"\n    },\n    \"debtorAccount\": {\n      \"identification\": \"1234567891\",\n      \"proxy\": {\n        \"type\": \"EMAL\",\n        \"identification\": \"bob.jones@gmail.com\"\n      }\n    },\n    \"debtor\": {\n      \"name\": \"Bob Jones\",\n      \"identification\": \"<string>\",\n      \"schemeName\": \"CUST\",\n      \"postalAddress\": {\n        \"streetName\": \"Lexington Street\",\n        \"postCode\": \"<string>\",\n        \"townName\": \"Wilmington\",\n        \"countrySubDivision\": \"DE\",\n        \"country\": \"US\"\n      },\n      \"birthDate\": \"2020-06-24\"\n    }\n  },\n  \"secondaryIdentifier\": {\n    \"debtor\": {\n      \"name\": \"Bob Jones\",\n      \"identification\": \"<string>\",\n      \"schemeName\": \"CUST\",\n      \"postalAddress\": {\n        \"streetName\": \"Lexington Street\",\n        \"postCode\": \"<string>\",\n        \"townName\": \"Wilmington\",\n        \"countrySubDivision\": \"DE\",\n        \"country\": \"US\"\n      },\n      \"birthDate\": \"2020-06-24\"\n    }\n  },\n  \"creditor\": {\n    \"name\": \"Tele Co. ABC\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"contactDetails\": {\n      \"phoneNumber\": \"+1-302-515-5000\",\n      \"other\": {\n        \"channelType\": \"EXT\",\n        \"identification\": \"<string>\"\n      }\n    }\n  },\n  \"minimumAmount\": {\n    \"amount\": 1.01,\n    \"currency\": \"USD\"\n  },\n  \"instructedAmount\": {\n    \"amount\": 1.01,\n    \"currency\": \"USD\"\n  },\n  \"requestedExecutionDate\": \"2020-12-24\",\n  \"debtor\": {\n    \"name\": \"Bob Jones\",\n    \"identification\": \"<string>\",\n    \"schemeName\": \"CUST\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"birthDate\": \"2020-06-24\"\n  },\n  \"paymentIdentification\": {\n    \"endToEndIdentification\": \"ABC123\"\n  },\n  \"locationAndContact\": {\n    \"URLAddress\": \"https://www.energy.com/welcome\"\n  },\n  \"remittanceInformation\": {\n    \"unstructured\": \"Invoice# 1234\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"code\": \"CRTD\",\n      \"message\": \"The request has been fulfilled\"\n    },\n    {\n      \"code\": \"CRTD\",\n      \"message\": \"The request has been fulfilled\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d34ce14-2511-4d46-997c-3c13c2df08c7",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "payers",
+                    "bill"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"primaryIdentifier\": {\n    \"debtorAgent\": {\n      \"clearingSystemIdentification\": \"USABA\",\n      \"memberIdentification\": \"061103852\"\n    },\n    \"debtorAccount\": {\n      \"identification\": \"1234567891\",\n      \"proxy\": {\n        \"type\": \"EMAL\",\n        \"identification\": \"bob.jones@gmail.com\"\n      }\n    },\n    \"debtor\": {\n      \"name\": \"Bob Jones\",\n      \"identification\": \"<string>\",\n      \"schemeName\": \"CUST\",\n      \"postalAddress\": {\n        \"streetName\": \"Lexington Street\",\n        \"postCode\": \"<string>\",\n        \"townName\": \"Wilmington\",\n        \"countrySubDivision\": \"DE\",\n        \"country\": \"US\"\n      },\n      \"birthDate\": \"2020-06-24\"\n    }\n  },\n  \"secondaryIdentifier\": {\n    \"debtor\": {\n      \"name\": \"Bob Jones\",\n      \"identification\": \"<string>\",\n      \"schemeName\": \"CUST\",\n      \"postalAddress\": {\n        \"streetName\": \"Lexington Street\",\n        \"postCode\": \"<string>\",\n        \"townName\": \"Wilmington\",\n        \"countrySubDivision\": \"DE\",\n        \"country\": \"US\"\n      },\n      \"birthDate\": \"2020-06-24\"\n    }\n  },\n  \"creditor\": {\n    \"name\": \"Tele Co. ABC\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"contactDetails\": {\n      \"phoneNumber\": \"+1-302-515-5000\",\n      \"other\": {\n        \"channelType\": \"EXT\",\n        \"identification\": \"<string>\"\n      }\n    }\n  },\n  \"minimumAmount\": {\n    \"amount\": 1.01,\n    \"currency\": \"USD\"\n  },\n  \"instructedAmount\": {\n    \"amount\": 1.01,\n    \"currency\": \"USD\"\n  },\n  \"requestedExecutionDate\": \"2020-12-24\",\n  \"debtor\": {\n    \"name\": \"Bob Jones\",\n    \"identification\": \"<string>\",\n    \"schemeName\": \"CUST\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"birthDate\": \"2020-06-24\"\n  },\n  \"paymentIdentification\": {\n    \"endToEndIdentification\": \"ABC123\"\n  },\n  \"locationAndContact\": {\n    \"URLAddress\": \"https://www.energy.com/welcome\"\n  },\n  \"remittanceInformation\": {\n    \"unstructured\": \"Invoice# 1234\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorCode\": 2000,\n      \"message\": \"Invalid JSON structure.\"\n    },\n    {\n      \"errorCode\": 2000,\n      \"message\": \"Invalid JSON structure.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10e7dbd6-afb5-4981-aa48-73c89cacd7bb",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "payers",
+                    "bill"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"primaryIdentifier\": {\n    \"debtorAgent\": {\n      \"clearingSystemIdentification\": \"USABA\",\n      \"memberIdentification\": \"061103852\"\n    },\n    \"debtorAccount\": {\n      \"identification\": \"1234567891\",\n      \"proxy\": {\n        \"type\": \"EMAL\",\n        \"identification\": \"bob.jones@gmail.com\"\n      }\n    },\n    \"debtor\": {\n      \"name\": \"Bob Jones\",\n      \"identification\": \"<string>\",\n      \"schemeName\": \"CUST\",\n      \"postalAddress\": {\n        \"streetName\": \"Lexington Street\",\n        \"postCode\": \"<string>\",\n        \"townName\": \"Wilmington\",\n        \"countrySubDivision\": \"DE\",\n        \"country\": \"US\"\n      },\n      \"birthDate\": \"2020-06-24\"\n    }\n  },\n  \"secondaryIdentifier\": {\n    \"debtor\": {\n      \"name\": \"Bob Jones\",\n      \"identification\": \"<string>\",\n      \"schemeName\": \"CUST\",\n      \"postalAddress\": {\n        \"streetName\": \"Lexington Street\",\n        \"postCode\": \"<string>\",\n        \"townName\": \"Wilmington\",\n        \"countrySubDivision\": \"DE\",\n        \"country\": \"US\"\n      },\n      \"birthDate\": \"2020-06-24\"\n    }\n  },\n  \"creditor\": {\n    \"name\": \"Tele Co. ABC\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"contactDetails\": {\n      \"phoneNumber\": \"+1-302-515-5000\",\n      \"other\": {\n        \"channelType\": \"EXT\",\n        \"identification\": \"<string>\"\n      }\n    }\n  },\n  \"minimumAmount\": {\n    \"amount\": 1.01,\n    \"currency\": \"USD\"\n  },\n  \"instructedAmount\": {\n    \"amount\": 1.01,\n    \"currency\": \"USD\"\n  },\n  \"requestedExecutionDate\": \"2020-12-24\",\n  \"debtor\": {\n    \"name\": \"Bob Jones\",\n    \"identification\": \"<string>\",\n    \"schemeName\": \"CUST\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"birthDate\": \"2020-06-24\"\n  },\n  \"paymentIdentification\": {\n    \"endToEndIdentification\": \"ABC123\"\n  },\n  \"locationAndContact\": {\n    \"URLAddress\": \"https://www.energy.com/welcome\"\n  },\n  \"remittanceInformation\": {\n    \"unstructured\": \"Invoice# 1234\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorCode\": 1000,\n      \"message\": \"API key is missing, invalid or expired.\"\n    },\n    {\n      \"errorCode\": 1000,\n      \"message\": \"API key is missing, invalid or expired.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cdc73a6c-fd00-4394-b140-e2327db63c4a",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "payers",
+                    "bill"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"primaryIdentifier\": {\n    \"debtorAgent\": {\n      \"clearingSystemIdentification\": \"USABA\",\n      \"memberIdentification\": \"061103852\"\n    },\n    \"debtorAccount\": {\n      \"identification\": \"1234567891\",\n      \"proxy\": {\n        \"type\": \"EMAL\",\n        \"identification\": \"bob.jones@gmail.com\"\n      }\n    },\n    \"debtor\": {\n      \"name\": \"Bob Jones\",\n      \"identification\": \"<string>\",\n      \"schemeName\": \"CUST\",\n      \"postalAddress\": {\n        \"streetName\": \"Lexington Street\",\n        \"postCode\": \"<string>\",\n        \"townName\": \"Wilmington\",\n        \"countrySubDivision\": \"DE\",\n        \"country\": \"US\"\n      },\n      \"birthDate\": \"2020-06-24\"\n    }\n  },\n  \"secondaryIdentifier\": {\n    \"debtor\": {\n      \"name\": \"Bob Jones\",\n      \"identification\": \"<string>\",\n      \"schemeName\": \"CUST\",\n      \"postalAddress\": {\n        \"streetName\": \"Lexington Street\",\n        \"postCode\": \"<string>\",\n        \"townName\": \"Wilmington\",\n        \"countrySubDivision\": \"DE\",\n        \"country\": \"US\"\n      },\n      \"birthDate\": \"2020-06-24\"\n    }\n  },\n  \"creditor\": {\n    \"name\": \"Tele Co. ABC\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"contactDetails\": {\n      \"phoneNumber\": \"+1-302-515-5000\",\n      \"other\": {\n        \"channelType\": \"EXT\",\n        \"identification\": \"<string>\"\n      }\n    }\n  },\n  \"minimumAmount\": {\n    \"amount\": 1.01,\n    \"currency\": \"USD\"\n  },\n  \"instructedAmount\": {\n    \"amount\": 1.01,\n    \"currency\": \"USD\"\n  },\n  \"requestedExecutionDate\": \"2020-12-24\",\n  \"debtor\": {\n    \"name\": \"Bob Jones\",\n    \"identification\": \"<string>\",\n    \"schemeName\": \"CUST\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"birthDate\": \"2020-06-24\"\n  },\n  \"paymentIdentification\": {\n    \"endToEndIdentification\": \"ABC123\"\n  },\n  \"locationAndContact\": {\n    \"URLAddress\": \"https://www.energy.com/welcome\"\n  },\n  \"remittanceInformation\": {\n    \"unstructured\": \"Invoice# 1234\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 404,\n  \"message\": \"Resource was not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf6ed71d-77e8-476e-a009-3b679cf18f07",
+              "name": "Internal Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "payers",
+                    "bill"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"primaryIdentifier\": {\n    \"debtorAgent\": {\n      \"clearingSystemIdentification\": \"USABA\",\n      \"memberIdentification\": \"061103852\"\n    },\n    \"debtorAccount\": {\n      \"identification\": \"1234567891\",\n      \"proxy\": {\n        \"type\": \"EMAL\",\n        \"identification\": \"bob.jones@gmail.com\"\n      }\n    },\n    \"debtor\": {\n      \"name\": \"Bob Jones\",\n      \"identification\": \"<string>\",\n      \"schemeName\": \"CUST\",\n      \"postalAddress\": {\n        \"streetName\": \"Lexington Street\",\n        \"postCode\": \"<string>\",\n        \"townName\": \"Wilmington\",\n        \"countrySubDivision\": \"DE\",\n        \"country\": \"US\"\n      },\n      \"birthDate\": \"2020-06-24\"\n    }\n  },\n  \"secondaryIdentifier\": {\n    \"debtor\": {\n      \"name\": \"Bob Jones\",\n      \"identification\": \"<string>\",\n      \"schemeName\": \"CUST\",\n      \"postalAddress\": {\n        \"streetName\": \"Lexington Street\",\n        \"postCode\": \"<string>\",\n        \"townName\": \"Wilmington\",\n        \"countrySubDivision\": \"DE\",\n        \"country\": \"US\"\n      },\n      \"birthDate\": \"2020-06-24\"\n    }\n  },\n  \"creditor\": {\n    \"name\": \"Tele Co. ABC\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"contactDetails\": {\n      \"phoneNumber\": \"+1-302-515-5000\",\n      \"other\": {\n        \"channelType\": \"EXT\",\n        \"identification\": \"<string>\"\n      }\n    }\n  },\n  \"minimumAmount\": {\n    \"amount\": 1.01,\n    \"currency\": \"USD\"\n  },\n  \"instructedAmount\": {\n    \"amount\": 1.01,\n    \"currency\": \"USD\"\n  },\n  \"requestedExecutionDate\": \"2020-12-24\",\n  \"debtor\": {\n    \"name\": \"Bob Jones\",\n    \"identification\": \"<string>\",\n    \"schemeName\": \"CUST\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    },\n    \"birthDate\": \"2020-06-24\"\n  },\n  \"paymentIdentification\": {\n    \"endToEndIdentification\": \"ABC123\"\n  },\n  \"locationAndContact\": {\n    \"URLAddress\": \"https://www.energy.com/welcome\"\n  },\n  \"remittanceInformation\": {\n    \"unstructured\": \"Invoice# 1234\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorCode\": 3001,\n      \"message\": \"Internal Server error\"\n    },\n    {\n      \"errorCode\": 3001,\n      \"message\": \"Internal Server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.afinis.org/ASIG/Pay_Me_API/1.0.10",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "49a69f7a-8926-4b53-ab6d-5d46a65ab55c",
+    "name": "Pay Me API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Afinis is a diverse group of organizations working to support advancement and use of API standardization in the financial services industry. Utilization of this API requires a developer to [register](https://www.afinis.org/user/register) their application.\n\nContact Support:\n Email: info@afinis.org",
+      "type": "text/plain"
+    }
+  }
+}

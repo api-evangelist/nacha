@@ -1,0 +1,812 @@
+{
+  "item": [
+    {
+      "id": "43875204-2967-4648-b117-631ecadd7494",
+      "name": "Expand Bank Contact V2",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "16c395c8-490f-42ab-8048-2638a6dad6a0",
+          "name": "Allow a FI to input data into the FI contact data base",
+          "request": {
+            "name": "Allow a FI to input data into the FI contact data base",
+            "description": {
+              "content": "Expand Get Bank Contact",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "banks",
+                "contact"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apikey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"agent\": {\n    \"clearingSystemIdentification\": \"<string>\",\n    \"memberIdentification\": \"<string>\"\n  },\n  \"bankContact\": [\n    {\n      \"contactType\": \"<string>\",\n      \"contactCategory\": \"<string>\",\n      \"partyType\": \"<string>\",\n      \"identification\": \"<string>\",\n      \"loginAccess\": \"<string>\",\n      \"contactDetails\": [\n        {\n          \"emailAddress\": \"<string>\",\n          \"phoneNumber\": \"<string>\",\n          \"faxNumber\": \"<string>\",\n          \"jobTitle\": \"<string>\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"emailAddress\": \"<string>\",\n          \"phoneNumber\": \"<string>\",\n          \"faxNumber\": \"<string>\",\n          \"jobTitle\": \"<string>\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"contactType\": \"<string>\",\n      \"contactCategory\": \"<string>\",\n      \"partyType\": \"<string>\",\n      \"identification\": \"<string>\",\n      \"loginAccess\": \"<string>\",\n      \"contactDetails\": [\n        {\n          \"emailAddress\": \"<string>\",\n          \"phoneNumber\": \"<string>\",\n          \"faxNumber\": \"<string>\",\n          \"jobTitle\": \"<string>\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"emailAddress\": \"<string>\",\n          \"phoneNumber\": \"<string>\",\n          \"faxNumber\": \"<string>\",\n          \"jobTitle\": \"<string>\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"additionalInformation\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3a3afc59-3f08-482a-b3e4-c5350dc3a7a6",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "banks",
+                    "contact"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"bankContact\": [\n    {\n      \"contactType\": \"Primary\",\n      \"contactCategory\": \"ACH Operations\",\n      \"partyType\": \"Individual\",\n      \"identification\": \"<string>\",\n      \"loginAccess\": \"<string>\",\n      \"contactDetails\": [\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"contactType\": \"Primary\",\n      \"contactCategory\": \"ACH Operations\",\n      \"partyType\": \"Individual\",\n      \"identification\": \"<string>\",\n      \"loginAccess\": \"<string>\",\n      \"contactDetails\": [\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"additionalInformation\": \"The Department contact number is 703 561 0000 option 1, option 3, option 3\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bankContact\": [\n    {\n      \"contactType\": \"Primary\",\n      \"contactCategory\": \"ACH Operations\",\n      \"partyType\": \"Individual\",\n      \"identification\": \"<string>\",\n      \"loginAccess\": \"<string>\",\n      \"contactDetails\": [\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"contactType\": \"Primary\",\n      \"contactCategory\": \"ACH Operations\",\n      \"partyType\": \"Individual\",\n      \"identification\": \"<string>\",\n      \"loginAccess\": \"<string>\",\n      \"contactDetails\": [\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"additionalInformation\": \"The Department contact number is 703 561 0000 option 1, option 3, option 3\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d57031c-832f-4c3e-997a-3534c74be057",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "banks",
+                    "contact"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"bankContact\": [\n    {\n      \"contactType\": \"Primary\",\n      \"contactCategory\": \"ACH Operations\",\n      \"partyType\": \"Individual\",\n      \"identification\": \"<string>\",\n      \"loginAccess\": \"<string>\",\n      \"contactDetails\": [\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"contactType\": \"Primary\",\n      \"contactCategory\": \"ACH Operations\",\n      \"partyType\": \"Individual\",\n      \"identification\": \"<string>\",\n      \"loginAccess\": \"<string>\",\n      \"contactDetails\": [\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"additionalInformation\": \"The Department contact number is 703 561 0000 option 1, option 3, option 3\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"errorCode\": 2000,\n      \"message\": \"Invalid JSON structure.\"\n    },\n    {\n      \"errorCode\": 2000,\n      \"message\": \"Invalid JSON structure.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c388913c-87cc-4e77-a50d-056c18d2469f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "banks",
+                    "contact"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"bankContact\": [\n    {\n      \"contactType\": \"Primary\",\n      \"contactCategory\": \"ACH Operations\",\n      \"partyType\": \"Individual\",\n      \"identification\": \"<string>\",\n      \"loginAccess\": \"<string>\",\n      \"contactDetails\": [\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"contactType\": \"Primary\",\n      \"contactCategory\": \"ACH Operations\",\n      \"partyType\": \"Individual\",\n      \"identification\": \"<string>\",\n      \"loginAccess\": \"<string>\",\n      \"contactDetails\": [\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"additionalInformation\": \"The Department contact number is 703 561 0000 option 1, option 3, option 3\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"errorCode\": 1000,\n      \"message\": \"API key is missing, invalid or expired.\"\n    },\n    {\n      \"errorCode\": 1000,\n      \"message\": \"API key is missing, invalid or expired.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b9a8994-1dd8-47b9-a737-6b1eb9b43a68",
+              "name": "Access denied, the operation is not allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "banks",
+                    "contact"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"bankContact\": [\n    {\n      \"contactType\": \"Primary\",\n      \"contactCategory\": \"ACH Operations\",\n      \"partyType\": \"Individual\",\n      \"identification\": \"<string>\",\n      \"loginAccess\": \"<string>\",\n      \"contactDetails\": [\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"contactType\": \"Primary\",\n      \"contactCategory\": \"ACH Operations\",\n      \"partyType\": \"Individual\",\n      \"identification\": \"<string>\",\n      \"loginAccess\": \"<string>\",\n      \"contactDetails\": [\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"additionalInformation\": \"The Department contact number is 703 561 0000 option 1, option 3, option 3\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "18aa064a-490e-488d-b409-3a3e14d21813",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "banks",
+                    "contact"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"bankContact\": [\n    {\n      \"contactType\": \"Primary\",\n      \"contactCategory\": \"ACH Operations\",\n      \"partyType\": \"Individual\",\n      \"identification\": \"<string>\",\n      \"loginAccess\": \"<string>\",\n      \"contactDetails\": [\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"contactType\": \"Primary\",\n      \"contactCategory\": \"ACH Operations\",\n      \"partyType\": \"Individual\",\n      \"identification\": \"<string>\",\n      \"loginAccess\": \"<string>\",\n      \"contactDetails\": [\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"additionalInformation\": \"The Department contact number is 703 561 0000 option 1, option 3, option 3\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8197378e-64c2-4a53-8974-3b600173c1cf",
+              "name": "Internal Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "banks",
+                    "contact"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"bankContact\": [\n    {\n      \"contactType\": \"Primary\",\n      \"contactCategory\": \"ACH Operations\",\n      \"partyType\": \"Individual\",\n      \"identification\": \"<string>\",\n      \"loginAccess\": \"<string>\",\n      \"contactDetails\": [\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"contactType\": \"Primary\",\n      \"contactCategory\": \"ACH Operations\",\n      \"partyType\": \"Individual\",\n      \"identification\": \"<string>\",\n      \"loginAccess\": \"<string>\",\n      \"contactDetails\": [\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"additionalInformation\": \"The Department contact number is 703 561 0000 option 1, option 3, option 3\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorCode\": 3001,\n      \"message\": \"Internal Server error\"\n    },\n    {\n      \"errorCode\": 3001,\n      \"message\": \"Internal Server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a8e76662-3365-411f-af6f-99f088db1dd5",
+              "name": "Service unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "banks",
+                    "contact"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"bankContact\": [\n    {\n      \"contactType\": \"Primary\",\n      \"contactCategory\": \"ACH Operations\",\n      \"partyType\": \"Individual\",\n      \"identification\": \"<string>\",\n      \"loginAccess\": \"<string>\",\n      \"contactDetails\": [\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"contactType\": \"Primary\",\n      \"contactCategory\": \"ACH Operations\",\n      \"partyType\": \"Individual\",\n      \"identification\": \"<string>\",\n      \"loginAccess\": \"<string>\",\n      \"contactDetails\": [\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"additionalInformation\": \"The Department contact number is 703 561 0000 option 1, option 3, option 3\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b7b2e75d-fcf3-4f76-920e-05abc8f493b7",
+          "name": "Allow a FI to retrieve data from the FI contact data base",
+          "request": {
+            "name": "Allow a FI to retrieve data from the FI contact data base",
+            "description": {
+              "content": "Expand Get Bank Contact",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "banks",
+                "contact"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "memberIdentification",
+                  "value": "<string>",
+                  "description": "(Required) Identification of a member of a clearing system  e.g., a U.S. transit routing number or Canadian Payments Association Routing Number"
+                },
+                {
+                  "disabled": false,
+                  "key": "contactCategory",
+                  "value": "<string>",
+                  "description": "(Required) Contact Category"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apikey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cc7f526e-0d3e-4caa-bd84-3e15e2937aae",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "banks",
+                    "contact"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "memberIdentification",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "contactCategory",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bankContact\": [\n    {\n      \"contactType\": \"Primary\",\n      \"contactCategory\": \"ACH Operations\",\n      \"partyType\": \"Individual\",\n      \"identification\": \"<string>\",\n      \"loginAccess\": \"<string>\",\n      \"contactDetails\": [\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"contactType\": \"Primary\",\n      \"contactCategory\": \"ACH Operations\",\n      \"partyType\": \"Individual\",\n      \"identification\": \"<string>\",\n      \"loginAccess\": \"<string>\",\n      \"contactDetails\": [\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"emailAddress\": \"zachary.eastwood@ABCcorp.com\",\n          \"phoneNumber\": \"+1-302-515-5000\",\n          \"faxNumber\": \"+1-302-515-6000\",\n          \"jobTitle\": \"Accounts Receive Specialist\",\n          \"other\": [\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"channelType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identification\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"additionalInformation\": \"The Department contact number is 703 561 0000 option 1, option 3, option 3\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd497a44-34f1-462f-a22e-c9f4fcaea9ae",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "banks",
+                    "contact"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "memberIdentification",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "contactCategory",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"errorCode\": 2000,\n      \"message\": \"Invalid JSON structure.\"\n    },\n    {\n      \"errorCode\": 2000,\n      \"message\": \"Invalid JSON structure.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b278674a-2fc4-44a0-99a6-b62cb674c976",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "banks",
+                    "contact"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "memberIdentification",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "contactCategory",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"errorCode\": 1000,\n      \"message\": \"API key is missing, invalid or expired.\"\n    },\n    {\n      \"errorCode\": 1000,\n      \"message\": \"API key is missing, invalid or expired.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d010a47-895b-42e8-a9f7-c564760f7103",
+              "name": "Access denied, the operation is not allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "banks",
+                    "contact"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "memberIdentification",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "contactCategory",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "54a1fe1a-f420-46e7-adef-0b6cac4dcff1",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "banks",
+                    "contact"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "memberIdentification",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "contactCategory",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6f37151f-ed57-4792-a6aa-5c0942a2a501",
+              "name": "Internal Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "banks",
+                    "contact"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "memberIdentification",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "contactCategory",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorCode\": 3001,\n      \"message\": \"Internal Server error\"\n    },\n    {\n      \"errorCode\": 3001,\n      \"message\": \"Internal Server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f773db98-3454-4354-96a8-fc7f8a01ac24",
+              "name": "Service unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "banks",
+                    "contact"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "memberIdentification",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "contactCategory",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.afinis.org/ASIG/Bank_Contact_v2/1.0.5",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "04d67d48-39fd-40fb-a44b-fb8a261f7656",
+    "name": "Bank Contact V2",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Afinis is a diverse group of organizations working to support advancement and use of API standardization in the financial services industry. Utilization of this API requires a developer to [register](https://www.afinis.org/user/register) their application.\n\nContact Support:\n Email: info@afinis.org",
+      "type": "text/plain"
+    }
+  }
+}

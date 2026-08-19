@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pay Me API",
+    "version": "1.0.11"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Route Billing Information",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Enable a biller to route billing information electronically to any customer through any network.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/accounts/payers/bill"
+          },
+          "docs": "Route Billing Information"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

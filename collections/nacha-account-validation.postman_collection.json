@@ -1,0 +1,826 @@
+{
+  "item": [
+    {
+      "id": "69906f14-e851-4ccf-a648-6f2fa09be22b",
+      "name": "Accounts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "af3b9134-1981-4784-976b-5b00d115077d",
+          "name": "Account eligibility for debit ACH transactions",
+          "request": {
+            "name": "Account eligibility for debit ACH transactions",
+            "description": {},
+            "url": {
+              "path": [
+                "accounts",
+                "validate",
+                "achPaymentDebitAcceptance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                "key": "Request_Id",
+                "value": "<uuid>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apikey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"debtorAccount\": {\n    \"identification\": \"<string>\"\n  },\n  \"debtorAgent\": {\n    \"memberIdentification\": \"<string>\",\n    \"clearingSystemIdentification\": \"<string>\"\n  },\n  \"cashAccountType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c9fcc352-fb58-4067-b816-422644e49d68",
+              "name": "Valid account request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "validate",
+                    "achPaymentDebitAcceptance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debtorAccount\": {\n    \"identification\": \"<string>\"\n  },\n  \"debtorAgent\": {\n    \"memberIdentification\": \"061103852\",\n    \"clearingSystemIdentification\": \"United States Routing Number\"\n  },\n  \"cashAccountType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accountStatus\": \"Disabled\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39d33d45-b0ea-4a75-8dbe-265b668f25a7",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "validate",
+                    "achPaymentDebitAcceptance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debtorAccount\": {\n    \"identification\": \"<string>\"\n  },\n  \"debtorAgent\": {\n    \"memberIdentification\": \"061103852\",\n    \"clearingSystemIdentification\": \"United States Routing Number\"\n  },\n  \"cashAccountType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": \"string\",\n      \"message\": \"Invalid request.\"\n    },\n    {\n      \"errorcode\": \"string\",\n      \"message\": \"Invalid request.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f910bc37-ea49-4888-801d-5cb89422654f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "validate",
+                    "achPaymentDebitAcceptance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debtorAccount\": {\n    \"identification\": \"<string>\"\n  },\n  \"debtorAgent\": {\n    \"memberIdentification\": \"061103852\",\n    \"clearingSystemIdentification\": \"United States Routing Number\"\n  },\n  \"cashAccountType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": null,\n      \"message\": \"API key is missing, invalid or expired.\"\n    },\n    {\n      \"errorcode\": 1000,\n      \"message\": \"API key is missing, invalid or expired.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ee3265f-356d-4377-ac91-170bde197031",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "validate",
+                    "achPaymentDebitAcceptance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debtorAccount\": {\n    \"identification\": \"<string>\"\n  },\n  \"debtorAgent\": {\n    \"memberIdentification\": \"061103852\",\n    \"clearingSystemIdentification\": \"United States Routing Number\"\n  },\n  \"cashAccountType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c6afe8b5-fb89-4045-b89c-aa3606ee776a",
+              "name": "Internal Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "validate",
+                    "achPaymentDebitAcceptance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debtorAccount\": {\n    \"identification\": \"<string>\"\n  },\n  \"debtorAgent\": {\n    \"memberIdentification\": \"061103852\",\n    \"clearingSystemIdentification\": \"United States Routing Number\"\n  },\n  \"cashAccountType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": 3001,\n      \"message\": \"Internal Server error\"\n    },\n    {\n      \"errorcode\": 3001,\n      \"message\": \"Internal Server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea11f8c7-5a63-4849-b40c-27f9dc4fa1cc",
+              "name": "Service unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "validate",
+                    "achPaymentDebitAcceptance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debtorAccount\": {\n    \"identification\": \"<string>\"\n  },\n  \"debtorAgent\": {\n    \"memberIdentification\": \"061103852\",\n    \"clearingSystemIdentification\": \"United States Routing Number\"\n  },\n  \"cashAccountType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "635ee303-eb3c-43cd-8636-96afa34d9d2d",
+          "name": "Account eligibility for credit ACH transactions",
+          "request": {
+            "name": "Account eligibility for credit ACH transactions",
+            "description": {},
+            "url": {
+              "path": [
+                "accounts",
+                "validate",
+                "achPaymentCreditAcceptance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                "key": "Request_Id",
+                "value": "<uuid>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apikey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"creditorAccount\": {\n    \"identification\": \"<string>\"\n  },\n  \"creditorAgent\": {\n    \"memberIdentification\": \"<string>\",\n    \"clearingSystemIdentification\": \"<string>\"\n  },\n  \"cashAccountType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4def7815-f880-4f2f-beb6-aaf29dce473a",
+              "name": "Valid account request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "validate",
+                    "achPaymentCreditAcceptance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"creditorAccount\": {\n    \"identification\": \"<string>\"\n  },\n  \"creditorAgent\": {\n    \"memberIdentification\": \"061103852\",\n    \"clearingSystemIdentification\": \"United States Routing Number\"\n  },\n  \"cashAccountType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accountStatus\": \"Disabled\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07a978ac-502d-416b-b04d-5727dea492be",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "validate",
+                    "achPaymentCreditAcceptance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"creditorAccount\": {\n    \"identification\": \"<string>\"\n  },\n  \"creditorAgent\": {\n    \"memberIdentification\": \"061103852\",\n    \"clearingSystemIdentification\": \"United States Routing Number\"\n  },\n  \"cashAccountType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": \"string\",\n      \"message\": \"Invalid request.\"\n    },\n    {\n      \"errorcode\": \"string\",\n      \"message\": \"Invalid request.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4624cf79-69da-441b-a82b-e8db14de7f26",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "validate",
+                    "achPaymentCreditAcceptance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"creditorAccount\": {\n    \"identification\": \"<string>\"\n  },\n  \"creditorAgent\": {\n    \"memberIdentification\": \"061103852\",\n    \"clearingSystemIdentification\": \"United States Routing Number\"\n  },\n  \"cashAccountType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": null,\n      \"message\": \"API key is missing, invalid or expired.\"\n    },\n    {\n      \"errorcode\": 1000,\n      \"message\": \"API key is missing, invalid or expired.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32c98af0-ee21-4b2a-ac76-6790cf36d35f",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "validate",
+                    "achPaymentCreditAcceptance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"creditorAccount\": {\n    \"identification\": \"<string>\"\n  },\n  \"creditorAgent\": {\n    \"memberIdentification\": \"061103852\",\n    \"clearingSystemIdentification\": \"United States Routing Number\"\n  },\n  \"cashAccountType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4545faca-15f0-4e1d-b1ac-d3fac25f5840",
+              "name": "Internal Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "validate",
+                    "achPaymentCreditAcceptance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"creditorAccount\": {\n    \"identification\": \"<string>\"\n  },\n  \"creditorAgent\": {\n    \"memberIdentification\": \"061103852\",\n    \"clearingSystemIdentification\": \"United States Routing Number\"\n  },\n  \"cashAccountType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": 3001,\n      \"message\": \"Internal Server error\"\n    },\n    {\n      \"errorcode\": 3001,\n      \"message\": \"Internal Server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd76792e-916e-47fc-9b5e-d234dcbd5b65",
+              "name": "Service unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "validate",
+                    "achPaymentCreditAcceptance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"creditorAccount\": {\n    \"identification\": \"<string>\"\n  },\n  \"creditorAgent\": {\n    \"memberIdentification\": \"061103852\",\n    \"clearingSystemIdentification\": \"United States Routing Number\"\n  },\n  \"cashAccountType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.afinis.org/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "bd0d0bc9-447d-40ca-a78f-25c925bff1e7",
+    "name": "Account Validation APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Afinis is a diverse group of organizations working to support advancement and use of API standardization in the financial services industry. Utilization of this API requires a developer to [register](https://www.afinis.org/user/register) their application.",
+      "type": "text/plain"
+    }
+  }
+}

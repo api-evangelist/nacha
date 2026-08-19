@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Real Time Billing Account Validation User Story 1",
+    "version": "1.0.7"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account Validation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Real Time Billing Account Validation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/accounts/payers",
+            "headers": [
+              {
+                "name": "Request_Id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Real Time Billing Account Validation"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

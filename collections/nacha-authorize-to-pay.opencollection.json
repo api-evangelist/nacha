@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Debit Authorizations",
+    "version": "1.0.6"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authorize to Pay",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authorize to Pay - Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/debitauthorizations",
+            "headers": [
+              {
+                "name": "apiVersion",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Allow paying an outstanding invoice by electronically providing account information and authorization securely to the payee to execute the payment and receive an acknowledgement that payer account will be debited on desired date."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,705 @@
+{
+  "item": [
+    {
+      "id": "c79f48d5-8bbf-41c9-ac9e-ba72dc3a806b",
+      "name": "Accounts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "28d38bb9-da6a-4646-956a-d739c78775d8",
+          "name": "validate Account With Name And RET",
+          "request": {
+            "name": "validate Account With Name And RET",
+            "description": {},
+            "url": {
+              "path": [
+                "validatewithnameandret"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "apiVersion",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "disabled": false,
+                "key": "Request_Id",
+                "value": "<uuid>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apikey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account\": {\n    \"identification\": {}\n  },\n  \"agent\": {\n    \"clearingSystemIdentification\": \"<string>\",\n    \"memberIdentification\": \"<string>\"\n  },\n  \"owner\": {\n    \"surname\": \"<string>\",\n    \"givenName\": \"<string>\",\n    \"middleName\": \"<string>\",\n    \"nameSuffix\": \"<string>\",\n    \"organisationName\": \"<string>\"\n  },\n  \"cashAccountType\": \"Current\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4d43fec2-4584-4fa1-b5aa-5dad964679db",
+              "name": "Valid account request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validatewithnameandret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Request_Id",
+                    "value": "<uuid>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account\": {\n    \"identification\": {}\n  },\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"owner\": {\n    \"surname\": \"Doe\",\n    \"givenName\": \"John\",\n    \"middleName\": \"Samuel\",\n    \"nameSuffix\": \"PhD\",\n    \"organisationName\": \"Weyland-Yutani Corporation\"\n  },\n  \"cashAccountType\": \"Current\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accountStatus\": \"Enabled\",\n  \"ownerNameMatch\": {\n    \"surnameMatch\": \"Match\",\n    \"givenNameMatch\": \"Partial Match\",\n    \"middleNameMatch\": \"No Match\",\n    \"nameSuffixMatch\": \"No Data Found\",\n    \"organisationNameMatch\": \"No Data Found\"\n  },\n  \"cashAccountType\": \"Current\",\n  \"returns\": [\n    {\n      \"sequenceNumber\": 9690.382543720916,\n      \"settlementDate\": {},\n      \"purpose\": \"Pay rent\",\n      \"accountType\": 27,\n      \"localInstrument\": \"WEB\",\n      \"amount\": {\n        \"amount\": 1.01,\n        \"currency\": \"USD\"\n      },\n      \"returnReason\": \"R01\"\n    },\n    {\n      \"sequenceNumber\": 46.71217937997074,\n      \"settlementDate\": {},\n      \"purpose\": \"Pay rent\",\n      \"accountType\": 42,\n      \"localInstrument\": \"WEB\",\n      \"amount\": {\n        \"amount\": 1.01,\n        \"currency\": \"USD\"\n      },\n      \"returnReason\": \"R01\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "068831a2-be1d-4aec-aa6e-6c005d312236",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validatewithnameandret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Request_Id",
+                    "value": "<uuid>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account\": {\n    \"identification\": {}\n  },\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"owner\": {\n    \"surname\": \"Doe\",\n    \"givenName\": \"John\",\n    \"middleName\": \"Samuel\",\n    \"nameSuffix\": \"PhD\",\n    \"organisationName\": \"Weyland-Yutani Corporation\"\n  },\n  \"cashAccountType\": \"Current\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"errorCode\": 2000,\n      \"message\": \"Invalid JSON structure.\"\n    },\n    {\n      \"errorCode\": 2000,\n      \"message\": \"Invalid JSON structure.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c75cb74f-e36e-4416-b105-f2a78197f0e2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validatewithnameandret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Request_Id",
+                    "value": "<uuid>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account\": {\n    \"identification\": {}\n  },\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"owner\": {\n    \"surname\": \"Doe\",\n    \"givenName\": \"John\",\n    \"middleName\": \"Samuel\",\n    \"nameSuffix\": \"PhD\",\n    \"organisationName\": \"Weyland-Yutani Corporation\"\n  },\n  \"cashAccountType\": \"Current\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"API key is missing, invalid or expired.\",\n      \"errorCode\": 1000\n    },\n    {\n      \"message\": \"API key is missing, invalid or expired.\",\n      \"errorCode\": 1000\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1af0ce1c-73c1-4ddf-9e44-9e35456ebcbf",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validatewithnameandret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Request_Id",
+                    "value": "<uuid>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account\": {\n    \"identification\": {}\n  },\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"owner\": {\n    \"surname\": \"Doe\",\n    \"givenName\": \"John\",\n    \"middleName\": \"Samuel\",\n    \"nameSuffix\": \"PhD\",\n    \"organisationName\": \"Weyland-Yutani Corporation\"\n  },\n  \"cashAccountType\": \"Current\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 403,\n  \"message\": \"Forbidden\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4fe38cd6-2e3a-4d77-81b9-a9bab456f8ed",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validatewithnameandret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Request_Id",
+                    "value": "<uuid>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account\": {\n    \"identification\": {}\n  },\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"owner\": {\n    \"surname\": \"Doe\",\n    \"givenName\": \"John\",\n    \"middleName\": \"Samuel\",\n    \"nameSuffix\": \"PhD\",\n    \"organisationName\": \"Weyland-Yutani Corporation\"\n  },\n  \"cashAccountType\": \"Current\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 404,\n  \"message\": \"Resource was not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0916652-12ed-470a-9679-a17323648b0f",
+              "name": "Method Not Allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validatewithnameandret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Request_Id",
+                    "value": "<uuid>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account\": {\n    \"identification\": {}\n  },\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"owner\": {\n    \"surname\": \"Doe\",\n    \"givenName\": \"John\",\n    \"middleName\": \"Samuel\",\n    \"nameSuffix\": \"PhD\",\n    \"organisationName\": \"Weyland-Yutani Corporation\"\n  },\n  \"cashAccountType\": \"Current\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 405,\n  \"message\": \"Method Not Allowed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6dd0f665-133b-4941-a799-ec7c88588f87",
+              "name": "Not Acceptable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validatewithnameandret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Request_Id",
+                    "value": "<uuid>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account\": {\n    \"identification\": {}\n  },\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"owner\": {\n    \"surname\": \"Doe\",\n    \"givenName\": \"John\",\n    \"middleName\": \"Samuel\",\n    \"nameSuffix\": \"PhD\",\n    \"organisationName\": \"Weyland-Yutani Corporation\"\n  },\n  \"cashAccountType\": \"Current\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Acceptable",
+              "code": 406,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 406,\n  \"message\": \"Not Acceptable\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd4294ec-fb6b-4844-9cee-020b15f333cc",
+              "name": "Unsupported Media Type",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validatewithnameandret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Request_Id",
+                    "value": "<uuid>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account\": {\n    \"identification\": {}\n  },\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"owner\": {\n    \"surname\": \"Doe\",\n    \"givenName\": \"John\",\n    \"middleName\": \"Samuel\",\n    \"nameSuffix\": \"PhD\",\n    \"organisationName\": \"Weyland-Yutani Corporation\"\n  },\n  \"cashAccountType\": \"Current\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 415,\n  \"message\": \"Unsupported Media Type\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65cf1509-a3a8-4942-95ef-d6ceeb0097c4",
+              "name": "Internal Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validatewithnameandret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Request_Id",
+                    "value": "<uuid>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account\": {\n    \"identification\": {}\n  },\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"owner\": {\n    \"surname\": \"Doe\",\n    \"givenName\": \"John\",\n    \"middleName\": \"Samuel\",\n    \"nameSuffix\": \"PhD\",\n    \"organisationName\": \"Weyland-Yutani Corporation\"\n  },\n  \"cashAccountType\": \"Current\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"errorCode\": 3001,\n      \"message\": \"Internal Server error\"\n    },\n    {\n      \"errorCode\": 3001,\n      \"message\": \"Internal Server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "849cf68f-517f-4191-a0fa-cc5f41012a75",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validatewithnameandret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "apiVersion",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Request_Id",
+                    "value": "<uuid>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account\": {\n    \"identification\": {}\n  },\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"owner\": {\n    \"surname\": \"Doe\",\n    \"givenName\": \"John\",\n    \"middleName\": \"Samuel\",\n    \"nameSuffix\": \"PhD\",\n    \"organisationName\": \"Weyland-Yutani Corporation\"\n  },\n  \"cashAccountType\": \"Current\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 503,\n  \"message\": \"Service is temporarily unavailable.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/accounts/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ca2242b2-2b31-4958-9bca-4b96deda47e2",
+    "name": "AV + Name + Return",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

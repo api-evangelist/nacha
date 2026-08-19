@@ -1,0 +1,526 @@
+{
+  "item": [
+    {
+      "id": "4f6d0be5-dbfe-49bf-88da-5ec3353f7965",
+      "name": "Get Participants Profile",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4a408b37-e250-4308-83a5-cd2deb01d54e",
+          "name": "Get Participants Profile with unique identification",
+          "request": {
+            "name": "Get Participants Profile with unique identification",
+            "description": {
+              "content": "Get Participants Profile",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "requestordid",
+                  "value": "<string>",
+                  "description": "(Required) Unique identification, as assigned by directory service, to unambiguously identify the requestor participant"
+                },
+                {
+                  "disabled": false,
+                  "key": "counterpartydid",
+                  "value": "<string>",
+                  "description": "(Required) Unique identification, as assigned by directory service, to unambiguously identify the Payee participant"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                "key": "requestId",
+                "value": "<uuid>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apikey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "98db52c6-faac-40e8-a715-0376f5e59e94",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestordid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "counterpartydid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "requestId",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payeeProfile\": {\n    \"paymentProfiles\": [\n      {\n        \"paymentInformation\": {\n          \"paymentMethod\": \"TRF\",\n          \"paymentTypeInformation\": {\n            \"serviceLevel\": \"NURG\",\n            \"localInstrument\": \"ZELLE\"\n          }\n        },\n        \"creditorAgent\": {\n          \"memberIdentification\": \"061103852\",\n          \"clearingSystemIdentification\": \"USABA\",\n          \"postalAddress\": {\n            \"department\": \"Finance Department\",\n            \"streetName\": \"5700 Lexington Street\",\n            \"postCode\": 19801,\n            \"townName\": \"Wilmington\",\n            \"countrySubDivision\": \"DE\",\n            \"country\": \"US\"\n          }\n        },\n        \"creditorAccount\": {\n          \"identification\": \"1234567891\",\n          \"alternateAccount\": \"42325454545\",\n          \"proxy\": {\n            \"type\": \"EMAL\",\n            \"identification\": \"bob.jones@gmail.com\"\n          }\n        },\n        \"locationAndContact\": {\n          \"URLAddress\": \"https://www.energy.com/welcome\",\n          \"customerService\": \"+1-800-555-2000\"\n        },\n        \"deliveryMethod\": \"MLCD\",\n        \"deliverTo\": {\n          \"name\": \"ABC Corporation\",\n          \"address\": {\n            \"department\": \"Finance Department\",\n            \"streetName\": \"5700 Lexington Street\",\n            \"postCode\": 19801,\n            \"townName\": \"Wilmington\",\n            \"countrySubDivision\": \"DE\",\n            \"country\": \"US\"\n          }\n        },\n        \"paymentMethodRanking\": 1,\n        \"relatedRemittanceInformation\": {\n          \"method\": \"POST\",\n          \"electronicAddress\": \"\",\n          \"postalAddress\": {\n            \"name\": \"ABC Corporation\",\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"minimumAmount\": {\n          \"amount\": 1.01,\n          \"currency\": \"USD\"\n        },\n        \"maximumAmount\": {\n          \"amount\": 1000000.29,\n          \"currency\": \"USD\"\n        }\n      },\n      {\n        \"paymentInformation\": {\n          \"paymentMethod\": \"TRF\",\n          \"paymentTypeInformation\": {\n            \"serviceLevel\": \"NURG\",\n            \"localInstrument\": \"ZELLE\"\n          }\n        },\n        \"creditorAgent\": {\n          \"memberIdentification\": \"061103852\",\n          \"clearingSystemIdentification\": \"USABA\",\n          \"postalAddress\": {\n            \"department\": \"Finance Department\",\n            \"streetName\": \"5700 Lexington Street\",\n            \"postCode\": 19801,\n            \"townName\": \"Wilmington\",\n            \"countrySubDivision\": \"DE\",\n            \"country\": \"US\"\n          }\n        },\n        \"creditorAccount\": {\n          \"identification\": \"1234567891\",\n          \"alternateAccount\": \"42325454545\",\n          \"proxy\": {\n            \"type\": \"EMAL\",\n            \"identification\": \"bob.jones@gmail.com\"\n          }\n        },\n        \"locationAndContact\": {\n          \"URLAddress\": \"https://www.energy.com/welcome\",\n          \"customerService\": \"+1-800-555-2000\"\n        },\n        \"deliveryMethod\": \"MLCD\",\n        \"deliverTo\": {\n          \"name\": \"ABC Corporation\",\n          \"address\": {\n            \"department\": \"Finance Department\",\n            \"streetName\": \"5700 Lexington Street\",\n            \"postCode\": 19801,\n            \"townName\": \"Wilmington\",\n            \"countrySubDivision\": \"DE\",\n            \"country\": \"US\"\n          }\n        },\n        \"paymentMethodRanking\": 1,\n        \"relatedRemittanceInformation\": {\n          \"method\": \"POST\",\n          \"electronicAddress\": \"\",\n          \"postalAddress\": {\n            \"name\": \"ABC Corporation\",\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"minimumAmount\": {\n          \"amount\": 1.01,\n          \"currency\": \"USD\"\n        },\n        \"maximumAmount\": {\n          \"amount\": 1000000.29,\n          \"currency\": \"USD\"\n        }\n      }\n    ],\n    \"remittanceInformation\": {\n      \"invoicee\": {\n        \"identification\": \"\",\n        \"name\": \"\"\n      },\n      \"duePayableAmount\": {\n        \"amount\": 100.2,\n        \"currency\": \"USD\"\n      },\n      \"remittedAmount\": {\n        \"amount\": 100.2,\n        \"currency\": \"USD\"\n      },\n      \"reference\": \"\",\n      \"number\": \"\",\n      \"relatedDate\": \"\",\n      \"discountAppliedAmount\": {\n        \"amount\": 2.2,\n        \"currency\": \"USD\"\n      },\n      \"adjustmentAmountAndReason\": {\n        \"amount\": 2.2,\n        \"currency\": \"USD\",\n        \"reason\": \"\",\n        \"additionalInformation\": \"\"\n      },\n      \"mandatory\": [\n        \"duePayableAmount.currency\",\n        \"adjustmentAmountAndReason.string\"\n      ],\n      \"optional\": [\n        \"adjustmentAmountAndReason.reason\",\n        \"relatedDate\"\n      ]\n    },\n    \"creditor\": {\n      \"contactDetails\": {\n        \"name\": \"Zachary Martin\",\n        \"jobTitle\": \"Accounts Receive Specialist\",\n        \"emailAddress\": \"zachary.martin@ABCcorp.com\",\n        \"phoneNumber\": \"+1-302-515-5565\",\n        \"postalAddress\": {\n          \"department\": \"Finance Department\",\n          \"streetName\": \"5700 Lexington Street\",\n          \"postCode\": 19801,\n          \"townName\": \"Wilmington\",\n          \"countrySubDivision\": \"DE\",\n          \"country\": \"US\"\n        }\n      },\n      \"maskAccount\": [\n        {\n          \"position\": 1,\n          \"value\": {\n            \"allowedCharacters\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"length\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"minLength\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxLength\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"delimiter\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lowerCase\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"upperCase\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"numbers\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"specialCharacters\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"position\": 1,\n          \"value\": {\n            \"allowedCharacters\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"length\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"minLength\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxLength\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"delimiter\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lowerCase\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"upperCase\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"numbers\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"specialCharacters\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    }\n  },\n  \"requestStatus\": \"DENY\",\n  \"counterpartydid\": \"string\",\n  \"creationDateTime\": \"2020-04-29T16:50:29.854Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94558882-d30e-4179-9f02-149f95a4bab6",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestordid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "counterpartydid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "requestId",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorCode\": 2000,\n      \"message\": \"Invalid JSON structure.\"\n    },\n    {\n      \"errorCode\": 2000,\n      \"message\": \"Invalid JSON structure.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44d30d70-a2a6-45d1-af28-bcb89a873e32",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestordid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "counterpartydid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "requestId",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorCode\": 1000,\n      \"message\": \"API key is missing, invalid or expired.\"\n    },\n    {\n      \"errorCode\": 1000,\n      \"message\": \"API key is missing, invalid or expired.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58eddc83-2300-47a7-8343-87c1052f84c1",
+              "name": "Access denied, the operation is not allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestordid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "counterpartydid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "requestId",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorCode\": 1000,\n      \"message\": \"API key is missing, invalid or expired.\"\n    },\n    {\n      \"errorCode\": 1000,\n      \"message\": \"API key is missing, invalid or expired.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ce30aa7-7742-42af-8dda-9b4d98c3e54c",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestordid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "counterpartydid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "requestId",
+                    "value": "<uuid>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "76a52835-5432-47f5-97db-bcdad3ecd88c",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestordid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "counterpartydid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "requestId",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorCode\": 4001,\n      \"message\": \"Unprocessable request due to duplicate records\"\n    },\n    {\n      \"errorCode\": 4001,\n      \"message\": \"Unprocessable request due to duplicate records\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc51d86a-9f65-4113-90f1-977a2d1ea0f6",
+              "name": "Internal Server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestordid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "counterpartydid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "requestId",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorCode\": 3001,\n      \"message\": \"Internal Server error\"\n    },\n    {\n      \"errorCode\": 3001,\n      \"message\": \"Internal Server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5ad4886-ed51-4677-a20a-ba15611c9e12",
+              "name": "Service unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestordid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "counterpartydid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "requestId",
+                    "value": "<uuid>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.afinis.org/participants/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "595e66e7-5fc5-4ef9-8323-7fec71aab4b1",
+    "name": "Payee Profile API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Afinis is a diverse group of organizations working to support advancement and use of API standardization in the financial services industry. Utilization of this API requires a developer to [register](https://www.afinis.org/user/register) their application.\n\nContact Support:\n Email: info@afinis.org",
+      "type": "text/plain"
+    }
+  }
+}

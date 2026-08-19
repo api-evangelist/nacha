@@ -1,0 +1,696 @@
+{
+  "item": [
+    {
+      "id": "a68e7850-cd01-4626-b7ca-fd0b35ba74db",
+      "name": "Wire Transfer",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "baf759da-e5e7-4e72-974a-99f360b42022",
+          "name": "Wire Status",
+          "request": {
+            "name": "Wire Status",
+            "description": {
+              "content": "Wire Status",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wirestatus"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                "key": "Request_Id",
+                "value": "<uuid>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apikey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"paymentIdentification\": {\n    \"endToEndIdentification\": \"<string>\",\n    \"uniqueEndToEndTransactionReference\": \"<string>\",\n    \"accountServicerReference\": \"<string>\",\n    \"clearingSystemReference\": \"<string>\"\n  },\n  \"debtor\": {\n    \"identification\": \"<string>\",\n    \"identificationCode\": \"<string>\",\n    \"identificationCodeIssuer\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "68a0e94a-41bf-43c9-8ff1-790da045c492",
+              "name": "Wire Status RCVD",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wirestatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentIdentification\": {\n    \"endToEndIdentification\": \"ABC13609-15-18\",\n    \"uniqueEndToEndTransactionReference\": \"E2ERef1\",\n    \"accountServicerReference\": \"ABC\",\n    \"clearingSystemReference\": \"Fedwire ID\"\n  },\n  \"debtor\": {\n    \"identification\": \"1234567891\",\n    \"identificationCode\": \"CBID\",\n    \"identificationCodeIssuer\": \"Test Bank of Virginia\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactionStatus\": \"RCVD\",\n  \"paymentIdentification\": {\n    \"endToEndIdentification\": \"ABC13609-15-18\",\n    \"uniqueEndToEndTransactionReference\": \"E2ERef1\",\n    \"accountServicerReference\": \"ABC\",\n    \"clearingSystemReference\": \"Fedwire ID\"\n  },\n  \"statusReasonInformation\": {\n    \"reason\": \"NARR\",\n    \"additionalInformation\": \"Please call Wire Department\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4bab1956-21f2-457a-b841-99f4b18efdb8",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wirestatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentIdentification\": {\n    \"endToEndIdentification\": \"ABC13609-15-18\",\n    \"uniqueEndToEndTransactionReference\": \"E2ERef1\",\n    \"accountServicerReference\": \"ABC\",\n    \"clearingSystemReference\": \"Fedwire ID\"\n  },\n  \"debtor\": {\n    \"identification\": \"1234567891\",\n    \"identificationCode\": \"CBID\",\n    \"identificationCodeIssuer\": \"Test Bank of Virginia\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"errorCode\": 2000,\n      \"message\": \"Invalid JSON structure.\"\n    },\n    {\n      \"errorCode\": 2000,\n      \"message\": \"Invalid JSON structure.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5176a630-2f44-4c00-96a6-bc201e82a821",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wirestatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentIdentification\": {\n    \"endToEndIdentification\": \"ABC13609-15-18\",\n    \"uniqueEndToEndTransactionReference\": \"E2ERef1\",\n    \"accountServicerReference\": \"ABC\",\n    \"clearingSystemReference\": \"Fedwire ID\"\n  },\n  \"debtor\": {\n    \"identification\": \"1234567891\",\n    \"identificationCode\": \"CBID\",\n    \"identificationCodeIssuer\": \"Test Bank of Virginia\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"API key is missing, invalid or expired.\",\n      \"errorCode\": 1000\n    },\n    {\n      \"message\": \"API key is missing, invalid or expired.\",\n      \"errorCode\": 1000\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee81e12a-05a8-431a-a37b-b0c58e3835c0",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wirestatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentIdentification\": {\n    \"endToEndIdentification\": \"ABC13609-15-18\",\n    \"uniqueEndToEndTransactionReference\": \"E2ERef1\",\n    \"accountServicerReference\": \"ABC\",\n    \"clearingSystemReference\": \"Fedwire ID\"\n  },\n  \"debtor\": {\n    \"identification\": \"1234567891\",\n    \"identificationCode\": \"CBID\",\n    \"identificationCodeIssuer\": \"Test Bank of Virginia\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 403,\n  \"message\": \"Forbidden\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27920f40-467b-4788-bc4c-40629d3be60f",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wirestatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentIdentification\": {\n    \"endToEndIdentification\": \"ABC13609-15-18\",\n    \"uniqueEndToEndTransactionReference\": \"E2ERef1\",\n    \"accountServicerReference\": \"ABC\",\n    \"clearingSystemReference\": \"Fedwire ID\"\n  },\n  \"debtor\": {\n    \"identification\": \"1234567891\",\n    \"identificationCode\": \"CBID\",\n    \"identificationCodeIssuer\": \"Test Bank of Virginia\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 404,\n  \"message\": \"Resource was not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f8362e5-7b5b-4cef-9017-1d84a0e35260",
+              "name": "Method Not Allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wirestatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentIdentification\": {\n    \"endToEndIdentification\": \"ABC13609-15-18\",\n    \"uniqueEndToEndTransactionReference\": \"E2ERef1\",\n    \"accountServicerReference\": \"ABC\",\n    \"clearingSystemReference\": \"Fedwire ID\"\n  },\n  \"debtor\": {\n    \"identification\": \"1234567891\",\n    \"identificationCode\": \"CBID\",\n    \"identificationCodeIssuer\": \"Test Bank of Virginia\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 405,\n  \"message\": \"Method Not Allowed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a87ebd8-5c88-40ed-b478-b264a4899c9f",
+              "name": "Not Acceptable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wirestatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentIdentification\": {\n    \"endToEndIdentification\": \"ABC13609-15-18\",\n    \"uniqueEndToEndTransactionReference\": \"E2ERef1\",\n    \"accountServicerReference\": \"ABC\",\n    \"clearingSystemReference\": \"Fedwire ID\"\n  },\n  \"debtor\": {\n    \"identification\": \"1234567891\",\n    \"identificationCode\": \"CBID\",\n    \"identificationCodeIssuer\": \"Test Bank of Virginia\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Acceptable",
+              "code": 406,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 406,\n  \"message\": \"Not Acceptable\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a7b22e2-84f3-4c76-b521-a25f32a83e92",
+              "name": "Unsupported Media Type",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wirestatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentIdentification\": {\n    \"endToEndIdentification\": \"ABC13609-15-18\",\n    \"uniqueEndToEndTransactionReference\": \"E2ERef1\",\n    \"accountServicerReference\": \"ABC\",\n    \"clearingSystemReference\": \"Fedwire ID\"\n  },\n  \"debtor\": {\n    \"identification\": \"1234567891\",\n    \"identificationCode\": \"CBID\",\n    \"identificationCodeIssuer\": \"Test Bank of Virginia\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 415,\n  \"message\": \"Unsupported Media Type\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e4547e4-3dd4-4c14-ae25-45325ab5a073",
+              "name": "Unprocessable request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wirestatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentIdentification\": {\n    \"endToEndIdentification\": \"ABC13609-15-18\",\n    \"uniqueEndToEndTransactionReference\": \"E2ERef1\",\n    \"accountServicerReference\": \"ABC\",\n    \"clearingSystemReference\": \"Fedwire ID\"\n  },\n  \"debtor\": {\n    \"identification\": \"1234567891\",\n    \"identificationCode\": \"CBID\",\n    \"identificationCodeIssuer\": \"Test Bank of Virginia\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"errorCode\": 4001,\n      \"message\": \"Unprocessable request due to \\\"%%\\\"\"\n    },\n    {\n      \"errorCode\": 4001,\n      \"message\": \"Unprocessable request due to \\\"%%\\\"\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3bc6a7a-8d6d-4283-962d-935549f9284f",
+              "name": "Internal Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wirestatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentIdentification\": {\n    \"endToEndIdentification\": \"ABC13609-15-18\",\n    \"uniqueEndToEndTransactionReference\": \"E2ERef1\",\n    \"accountServicerReference\": \"ABC\",\n    \"clearingSystemReference\": \"Fedwire ID\"\n  },\n  \"debtor\": {\n    \"identification\": \"1234567891\",\n    \"identificationCode\": \"CBID\",\n    \"identificationCodeIssuer\": \"Test Bank of Virginia\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"errorCode\": 3001,\n      \"message\": \"Internal Server error\"\n    },\n    {\n      \"errorCode\": 3001,\n      \"message\": \"Internal Server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74925e74-e80e-4fa3-9fb2-a17f93c73daf",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wirestatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentIdentification\": {\n    \"endToEndIdentification\": \"ABC13609-15-18\",\n    \"uniqueEndToEndTransactionReference\": \"E2ERef1\",\n    \"accountServicerReference\": \"ABC\",\n    \"clearingSystemReference\": \"Fedwire ID\"\n  },\n  \"debtor\": {\n    \"identification\": \"1234567891\",\n    \"identificationCode\": \"CBID\",\n    \"identificationCodeIssuer\": \"Test Bank of Virginia\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 503,\n  \"message\": \"Service is temporarily unavailable.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.asig.org/payments/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fbe4e302-fc2b-48b0-9456-60dbb808e48f",
+    "name": "Get Wire Status",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Wire Status API will enable Originator of the wire to know the status of the wire payment.\n\nContact Support:\n Email: info@afinis.org",
+      "type": "text/plain"
+    }
+  }
+}

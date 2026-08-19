@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bank Contacts APIs",
+    "version": "1.0.5"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Banks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Financial institution contact information for fraud or operational issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/banks/:bank_id/contact",
+            "headers": [
+              {
+                "name": "Request_Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "bank_id",
+                "value": "",
+                "type": "path",
+                "description": "9 digit financial institution routing transit number (RTN)"
+              },
+              {
+                "name": "reason",
+                "value": "",
+                "type": "query",
+                "description": "Reason for Inquiry * ACH_FRAUD - ACH fraud operations\n"
+              }
+            ]
+          },
+          "docs": "Financial institution contact information for fraud or operational issues"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

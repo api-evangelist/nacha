@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Request Copy of Written Statement of Unauthorized Debit (WSUD) API",
+    "version": "1.0.8"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Written Statement of Unauthorized Debit (WSUD)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Request a copy of the WSUD",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/transactions/WSUD",
+            "headers": [
+              {
+                "name": "apiVersion",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Optional API Version number which will be used to serve the API request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

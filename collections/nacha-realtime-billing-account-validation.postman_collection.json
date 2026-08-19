@@ -1,0 +1,535 @@
+{
+  "item": [
+    {
+      "id": "f015a91a-8a2c-4016-9821-160c61632ab3",
+      "name": "Account Validation",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6fe07e24-3c2b-4847-a216-bdaccf66cdea",
+          "name": "Real Time Billing Account Validation",
+          "request": {
+            "name": "Real Time Billing Account Validation",
+            "description": {
+              "content": "Real Time Billing Account Validation",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                "payers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                "key": "Request_Id",
+                "value": "<uuid>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apikey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"creditor\": {\n    \"name\": \"<string>\",\n    \"postalAddress\": {\n      \"streetName\": \"<string>\",\n      \"postCode\": \"<string>\",\n      \"townName\": \"<string>\",\n      \"countrySubDivision\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  },\n  \"debtor\": {\n    \"identification\": \"<string>\",\n    \"schemeName\": \"CUST\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "67450b69-8d74-4aba-8c39-85f56f984a9d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "payers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"creditor\": {\n    \"name\": \"Tele Co. ABC\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"19801\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    }\n  },\n  \"debtor\": {\n    \"identification\": \"1234567891\",\n    \"schemeName\": \"CUST\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"Invalid\",\n  \"debtor\": {\n    \"identification\": \"1234567891\",\n    \"schemeName\": \"CUST\"\n  },\n  \"statusReasonInformation\": {\n    \"reason\": \"AC04\",\n    \"additionalInformation\": \"Invalid remittance information\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e5c265d-ef84-4287-aa22-cb7945f17900",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "payers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"creditor\": {\n    \"name\": \"Tele Co. ABC\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"19801\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    }\n  },\n  \"debtor\": {\n    \"identification\": \"1234567891\",\n    \"schemeName\": \"CUST\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"errorCode\": 2000,\n      \"message\": \"Invalid JSON structure.\"\n    },\n    {\n      \"errorCode\": 2000,\n      \"message\": \"Invalid JSON structure.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "93b7b5d6-1993-4960-9efb-c12af2edcea4",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "payers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"creditor\": {\n    \"name\": \"Tele Co. ABC\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"19801\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    }\n  },\n  \"debtor\": {\n    \"identification\": \"1234567891\",\n    \"schemeName\": \"CUST\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"errorCode\": 1000,\n      \"message\": \"API key is missing, invalid or expired.\"\n    },\n    {\n      \"errorCode\": 1000,\n      \"message\": \"API key is missing, invalid or expired.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6256bb8b-256b-4a86-929c-d44a31c22211",
+              "name": "Access denied, the operation is not allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "payers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"creditor\": {\n    \"name\": \"Tele Co. ABC\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"19801\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    }\n  },\n  \"debtor\": {\n    \"identification\": \"1234567891\",\n    \"schemeName\": \"CUST\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"errorCode\": 1000,\n      \"message\": \"API key is missing, invalid or expired.\"\n    },\n    {\n      \"errorCode\": 1000,\n      \"message\": \"API key is missing, invalid or expired.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5e0c538-78ea-4678-8490-48c60c6e3431",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "payers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"creditor\": {\n    \"name\": \"Tele Co. ABC\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"19801\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    }\n  },\n  \"debtor\": {\n    \"identification\": \"1234567891\",\n    \"schemeName\": \"CUST\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "38187c21-4696-46ef-8cea-5e007a7e1301",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "payers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"creditor\": {\n    \"name\": \"Tele Co. ABC\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"19801\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    }\n  },\n  \"debtor\": {\n    \"identification\": \"1234567891\",\n    \"schemeName\": \"CUST\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorCode\": 4001,\n      \"message\": \"Unprocessable request due to duplicate records\"\n    },\n    {\n      \"errorCode\": 4001,\n      \"message\": \"Unprocessable request due to duplicate records\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc4e4b50-1433-4a5d-bb5b-f488494adcf4",
+              "name": "Internal Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "payers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"creditor\": {\n    \"name\": \"Tele Co. ABC\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"19801\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    }\n  },\n  \"debtor\": {\n    \"identification\": \"1234567891\",\n    \"schemeName\": \"CUST\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorCode\": 3001,\n      \"message\": \"Internal Server error\"\n    },\n    {\n      \"errorCode\": 3001,\n      \"message\": \"Internal Server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13d9e76c-9eb4-42dd-85c1-f8bbe7501e4c",
+              "name": "Service unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "payers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"creditor\": {\n    \"name\": \"Tele Co. ABC\",\n    \"postalAddress\": {\n      \"streetName\": \"Lexington Street\",\n      \"postCode\": \"19801\",\n      \"townName\": \"Wilmington\",\n      \"countrySubDivision\": \"DE\",\n      \"country\": \"US\"\n    }\n  },\n  \"debtor\": {\n    \"identification\": \"1234567891\",\n    \"schemeName\": \"CUST\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.afinis.org/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "21073561-8d96-4967-86a1-5fadec61e39f",
+    "name": "Real Time Billing Account Validation User Story 1",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Afinis is a diverse group of organizations working to support advancement and use of API standardization in the financial services industry. Utilization of this API requires a developer to [register](https://www.afinis.org/user/register) their application.\n\nContact Support:\n Email: info@afinis.org",
+      "type": "text/plain"
+    }
+  }
+}

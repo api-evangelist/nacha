@@ -1,0 +1,426 @@
+{
+  "item": [
+    {
+      "id": "1dcd0789-7ef8-4a71-8ce6-f71e59d40ef4",
+      "name": "Reporting ACH Return Payments",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f87fbe2a-45b4-400f-818b-123feb7fe8c7",
+          "name": "Reporting ACH Return Payments",
+          "request": {
+            "name": "Reporting ACH Return Payments",
+            "description": {
+              "content": "Alert the network of ACH users about problematic ACH payments to help mitigate the risk of suspected bad actors perpetuating fraud against other ACH users",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ret"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apikey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"originatorName\": \"<string>\",\n  \"originatorAgentName\": \"<string>\",\n  \"receiverName\": \"<string>\",\n  \"receiverAgent\": {\n    \"clearingSystemIdentification\": \"<string>\",\n    \"memberIdentification\": \"<string>\"\n  },\n  \"receiverAccount\": {\n    \"identification\": \"<string>\",\n    \"type\": \"<number>\"\n  },\n  \"endToEndIdentification\": \"<string>\",\n  \"requestedExecutionDate\": \"<string>\",\n  \"settlementDate\": \"<string>\",\n  \"localInstrument\": \"<string>\",\n  \"amount\": {\n    \"amount\": \"<float>\",\n    \"currency\": \"<string>\"\n  },\n  \"returnReason\": \"<string>\",\n  \"purpose\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c00800ea-cbd8-46b8-9f2a-50ac0448c7c5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"originatorName\": \"John Edison\",\n  \"originatorAgentName\": \"Hank's Bank, the Think Tank at Mont Blanc\",\n  \"receiverName\": \"Jane Edison\",\n  \"receiverAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"receiverAccount\": {\n    \"identification\": \"111010151\",\n    \"type\": \"<number>\"\n  },\n  \"endToEndIdentification\": \"ABC13609-15-18\",\n  \"requestedExecutionDate\": \"2023-02-24\",\n  \"settlementDate\": \"2023-02-24\",\n  \"localInstrument\": \"WEB\",\n  \"amount\": {\n    \"amount\": 1.01,\n    \"currency\": \"USD\"\n  },\n  \"returnReason\": \"R01\",\n  \"purpose\": \"Pay rent\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"RCVD\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d11c307-cb4f-4067-ad27-9cd4cea3a4ea",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"originatorName\": \"John Edison\",\n  \"originatorAgentName\": \"Hank's Bank, the Think Tank at Mont Blanc\",\n  \"receiverName\": \"Jane Edison\",\n  \"receiverAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"receiverAccount\": {\n    \"identification\": \"111010151\",\n    \"type\": \"<number>\"\n  },\n  \"endToEndIdentification\": \"ABC13609-15-18\",\n  \"requestedExecutionDate\": \"2023-02-24\",\n  \"settlementDate\": \"2023-02-24\",\n  \"localInstrument\": \"WEB\",\n  \"amount\": {\n    \"amount\": 1.01,\n    \"currency\": \"USD\"\n  },\n  \"returnReason\": \"R01\",\n  \"purpose\": \"Pay rent\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorCode\": 2000,\n      \"message\": \"Invalid JSON structure.\"\n    },\n    {\n      \"errorCode\": 2000,\n      \"message\": \"Invalid JSON structure.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "998cf4cf-c450-473d-bfbb-735ffa667cec",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"originatorName\": \"John Edison\",\n  \"originatorAgentName\": \"Hank's Bank, the Think Tank at Mont Blanc\",\n  \"receiverName\": \"Jane Edison\",\n  \"receiverAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"receiverAccount\": {\n    \"identification\": \"111010151\",\n    \"type\": \"<number>\"\n  },\n  \"endToEndIdentification\": \"ABC13609-15-18\",\n  \"requestedExecutionDate\": \"2023-02-24\",\n  \"settlementDate\": \"2023-02-24\",\n  \"localInstrument\": \"WEB\",\n  \"amount\": {\n    \"amount\": 1.01,\n    \"currency\": \"USD\"\n  },\n  \"returnReason\": \"R01\",\n  \"purpose\": \"Pay rent\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"message\": \"API key is missing, invalid or expired.\",\n      \"errorCode\": 1000\n    },\n    {\n      \"message\": \"API key is missing, invalid or expired.\",\n      \"errorCode\": 1000\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5bb21680-68c4-4b85-8e90-ba0950898304",
+              "name": "Access denied, the operation is not allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"originatorName\": \"John Edison\",\n  \"originatorAgentName\": \"Hank's Bank, the Think Tank at Mont Blanc\",\n  \"receiverName\": \"Jane Edison\",\n  \"receiverAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"receiverAccount\": {\n    \"identification\": \"111010151\",\n    \"type\": \"<number>\"\n  },\n  \"endToEndIdentification\": \"ABC13609-15-18\",\n  \"requestedExecutionDate\": \"2023-02-24\",\n  \"settlementDate\": \"2023-02-24\",\n  \"localInstrument\": \"WEB\",\n  \"amount\": {\n    \"amount\": 1.01,\n    \"currency\": \"USD\"\n  },\n  \"returnReason\": \"R01\",\n  \"purpose\": \"Pay rent\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9e4b2c2f-de2c-4cd1-849f-f5ca36456ab2",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"originatorName\": \"John Edison\",\n  \"originatorAgentName\": \"Hank's Bank, the Think Tank at Mont Blanc\",\n  \"receiverName\": \"Jane Edison\",\n  \"receiverAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"receiverAccount\": {\n    \"identification\": \"111010151\",\n    \"type\": \"<number>\"\n  },\n  \"endToEndIdentification\": \"ABC13609-15-18\",\n  \"requestedExecutionDate\": \"2023-02-24\",\n  \"settlementDate\": \"2023-02-24\",\n  \"localInstrument\": \"WEB\",\n  \"amount\": {\n    \"amount\": 1.01,\n    \"currency\": \"USD\"\n  },\n  \"returnReason\": \"R01\",\n  \"purpose\": \"Pay rent\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 404,\n  \"message\": \"Resource was not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3473e8b8-4640-4145-ac6c-a8c537387118",
+              "name": "Internal Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"originatorName\": \"John Edison\",\n  \"originatorAgentName\": \"Hank's Bank, the Think Tank at Mont Blanc\",\n  \"receiverName\": \"Jane Edison\",\n  \"receiverAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"receiverAccount\": {\n    \"identification\": \"111010151\",\n    \"type\": \"<number>\"\n  },\n  \"endToEndIdentification\": \"ABC13609-15-18\",\n  \"requestedExecutionDate\": \"2023-02-24\",\n  \"settlementDate\": \"2023-02-24\",\n  \"localInstrument\": \"WEB\",\n  \"amount\": {\n    \"amount\": 1.01,\n    \"currency\": \"USD\"\n  },\n  \"returnReason\": \"R01\",\n  \"purpose\": \"Pay rent\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": 3001,\n      \"message\": \"Internal Server error\"\n    },\n    {\n      \"errorcode\": 3001,\n      \"message\": \"Internal Server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "429ecb8a-91b4-448d-b17e-490fd69ce41e",
+              "name": "Service unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"originatorName\": \"John Edison\",\n  \"originatorAgentName\": \"Hank's Bank, the Think Tank at Mont Blanc\",\n  \"receiverName\": \"Jane Edison\",\n  \"receiverAgent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"receiverAccount\": {\n    \"identification\": \"111010151\",\n    \"type\": \"<number>\"\n  },\n  \"endToEndIdentification\": \"ABC13609-15-18\",\n  \"requestedExecutionDate\": \"2023-02-24\",\n  \"settlementDate\": \"2023-02-24\",\n  \"localInstrument\": \"WEB\",\n  \"amount\": {\n    \"amount\": 1.01,\n    \"currency\": \"USD\"\n  },\n  \"returnReason\": \"R01\",\n  \"purpose\": \"Pay rent\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 503,\n  \"message\": \"Service is temporarily unavailable.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.afinis.org/payments/ach/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3feebc4b-7330-4c5f-bc5a-6b4ce9eab4fc",
+    "name": "RET (Reporting ACH Return Payments) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Allow Originators and payment providers to share ACH return payment data to support fraud/risk mitigation.\n\nContact Support:\n Email: info@afinis.org",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,1788 @@
+{
+  "item": [
+    {
+      "id": "72d3f191-ac8b-41fb-bf36-b20f196c5b92",
+      "name": "ACH Transaction Status",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6837e9ae-2d93-4864-9f4e-da35824b4d6b",
+          "name": "Get ACH Transaction status with unique transaction identification",
+          "request": {
+            "name": "Get ACH Transaction status with unique transaction identification",
+            "description": {
+              "content": "ACH Transaction status",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                "ach",
+                "status",
+                "transactionId",
+                ":transactionIdentification"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionIdentification",
+                  "description": "(Required) Unique identification, as assigned by first instructing agent, to unambiguously identify the transaction that is passed on, unchanged, throughout the entire interbank chain. (ODFI assigned ID)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                "key": "Request_Id",
+                "value": "<uuid>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apikey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "55f02e1c-cb5f-4f87-8db1-1fd149cc2d0a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "status",
+                    "transactionId",
+                    ":transactionIdentification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionIdentification",
+                      "description": "(Required) Unique identification, as assigned by first instructing agent, to unambiguously identify the transaction that is passed on, unchanged, throughout the entire interbank chain. (ODFI assigned ID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ACWC\",\n  \"statusReasonInformation\": {\n    \"reason\": \"NARR\",\n    \"additionalInformation\": \"C01\",\n    \"statusDate\": \"2019-02-20\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b7dd6ac-ea39-4367-8171-ddac8e020293",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "status",
+                    "transactionId",
+                    ":transactionIdentification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionIdentification",
+                      "description": "(Required) Unique identification, as assigned by first instructing agent, to unambiguously identify the transaction that is passed on, unchanged, throughout the entire interbank chain. (ODFI assigned ID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": \"[object Object]\",\n      \"message\": \"Invalid JSON structure.\"\n    },\n    {\n      \"errorcode\": \"[object Object]\",\n      \"message\": \"Invalid JSON structure.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4054a36-ce30-420b-baeb-ae5f06414086",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "status",
+                    "transactionId",
+                    ":transactionIdentification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionIdentification",
+                      "description": "(Required) Unique identification, as assigned by first instructing agent, to unambiguously identify the transaction that is passed on, unchanged, throughout the entire interbank chain. (ODFI assigned ID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": null,\n      \"message\": \"API key is missing, invalid or expired.\"\n    },\n    {\n      \"errorcode\": 1000,\n      \"message\": \"API key is missing, invalid or expired.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e5df2c6-d2ef-4bad-8689-926bea0bf0b1",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "status",
+                    "transactionId",
+                    ":transactionIdentification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionIdentification",
+                      "description": "(Required) Unique identification, as assigned by first instructing agent, to unambiguously identify the transaction that is passed on, unchanged, throughout the entire interbank chain. (ODFI assigned ID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "050fd4e5-82e5-4617-8ce2-40d1566d312f",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "status",
+                    "transactionId",
+                    ":transactionIdentification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionIdentification",
+                      "description": "(Required) Unique identification, as assigned by first instructing agent, to unambiguously identify the transaction that is passed on, unchanged, throughout the entire interbank chain. (ODFI assigned ID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": null,\n      \"message\": \"Unprocessable request due to duplicate records\"\n    },\n    {\n      \"errorcode\": 4001,\n      \"message\": \"Unprocessable request due to duplicate records\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c96f988e-ef00-4325-8fea-b3201b84d34f",
+              "name": "Internal Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "status",
+                    "transactionId",
+                    ":transactionIdentification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionIdentification",
+                      "description": "(Required) Unique identification, as assigned by first instructing agent, to unambiguously identify the transaction that is passed on, unchanged, throughout the entire interbank chain. (ODFI assigned ID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": null,\n      \"message\": \"Internal Server error\"\n    },\n    {\n      \"errorcode\": 3001,\n      \"message\": \"Internal Server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4ca203e-d5f9-423d-8611-a19e38b00ebf",
+              "name": "Service unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "status",
+                    "transactionId",
+                    ":transactionIdentification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionIdentification",
+                      "description": "(Required) Unique identification, as assigned by first instructing agent, to unambiguously identify the transaction that is passed on, unchanged, throughout the entire interbank chain. (ODFI assigned ID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "33e64354-3634-49d2-a400-81a10510cdb9",
+          "name": "Get ACH Transaction status with unique instruction identification",
+          "request": {
+            "name": "Get ACH Transaction status with unique instruction identification",
+            "description": {
+              "content": "ACH Transaction status",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                "ach",
+                "status",
+                "instructionId",
+                ":instructionIdentification"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "instructionIdentification",
+                  "description": "(Required) Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                "key": "Request_Id",
+                "value": "<uuid>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apikey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "efe8ca7c-e42a-4c90-8c0c-c16fef3010c9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "status",
+                    "instructionId",
+                    ":instructionIdentification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instructionIdentification",
+                      "description": "(Required) Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ACWC\",\n  \"statusReasonInformation\": {\n    \"reason\": \"NARR\",\n    \"additionalInformation\": \"C01\",\n    \"statusDate\": \"2019-02-20\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bcb9b2b7-8707-45c8-9191-33f3aad89ab5",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "status",
+                    "instructionId",
+                    ":instructionIdentification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instructionIdentification",
+                      "description": "(Required) Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": \"[object Object]\",\n      \"message\": \"Invalid JSON structure.\"\n    },\n    {\n      \"errorcode\": \"[object Object]\",\n      \"message\": \"Invalid JSON structure.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "064a56d0-7ddc-4419-afe5-bef7a15383e6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "status",
+                    "instructionId",
+                    ":instructionIdentification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instructionIdentification",
+                      "description": "(Required) Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": null,\n      \"message\": \"API key is missing, invalid or expired.\"\n    },\n    {\n      \"errorcode\": 1000,\n      \"message\": \"API key is missing, invalid or expired.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da1fa070-ce84-4a8b-966e-9647e030d7b6",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "status",
+                    "instructionId",
+                    ":instructionIdentification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instructionIdentification",
+                      "description": "(Required) Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4a95ab71-6250-4f5d-8357-d566877c174b",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "status",
+                    "instructionId",
+                    ":instructionIdentification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instructionIdentification",
+                      "description": "(Required) Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": null,\n      \"message\": \"Unprocessable request due to duplicate records\"\n    },\n    {\n      \"errorcode\": 4001,\n      \"message\": \"Unprocessable request due to duplicate records\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f04af56-1598-4b89-8c0f-a5f04cf73057",
+              "name": "Internal Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "status",
+                    "instructionId",
+                    ":instructionIdentification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instructionIdentification",
+                      "description": "(Required) Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": null,\n      \"message\": \"Internal Server error\"\n    },\n    {\n      \"errorcode\": 3001,\n      \"message\": \"Internal Server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f9a9ff51-b06f-47c9-8333-e04c75ef132a",
+              "name": "Service unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "status",
+                    "instructionId",
+                    ":instructionIdentification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instructionIdentification",
+                      "description": "(Required) Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3c461039-19cb-4f0e-944b-e8c5c0927929",
+          "name": "ACH Credit Transaction status",
+          "request": {
+            "name": "ACH Credit Transaction status",
+            "description": {
+              "content": "ACH Credit Transaction status",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                "ach",
+                "credit",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                "key": "Request_Id",
+                "value": "<uuid>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apikey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"paymentInformation\": {\n    \"debtor\": {\n      \"identification\": \"<string>\"\n    },\n    \"requestedExecutionDate\": \"<string>\",\n    \"dateFrom\": \"<string>\",\n    \"dateTo\": \"<string>\",\n    \"instructedAmount\": {\n      \"amount\": \"<number>\",\n      \"currency\": \"USD\"\n    },\n    \"minimumAmount\": {\n      \"amount\": \"<number>\",\n      \"currency\": \"USD\"\n    },\n    \"maximumAmount\": {\n      \"amount\": \"<number>\",\n      \"currency\": \"USD\"\n    },\n    \"creditorAccount\": {\n      \"identification\": \"<string>\"\n    },\n    \"creditorAgent\": {\n      \"memberIdentification\": \"<string>\",\n      \"clearingSystemIdentification\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8a058b0c-fcb7-480d-873f-68f80d4e26a1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "credit",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentInformation\": {\n    \"debtor\": {\n      \"identification\": \"1234567891\"\n    },\n    \"requestedExecutionDate\": \"2018-12-12\",\n    \"dateFrom\": \"2019-03-01\",\n    \"dateTo\": \"2019-03-11\",\n    \"instructedAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"minimumAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"maximumAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"creditorAccount\": {\n      \"identification\": \"1234567891\"\n    },\n    \"creditorAgent\": {\n      \"memberIdentification\": \"061103852\",\n      \"clearingSystemIdentification\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"debtor\": {\n    \"identification\": \"1234567891\"\n  },\n  \"requestedExecutionDate\": \"2018-12-12\",\n  \"dateFrom\": \"2019-03-01\",\n  \"dateTo\": \"2019-03-11\",\n  \"instructedAmount\": {\n    \"amount\": 100.01,\n    \"currency\": \"USD\"\n  },\n  \"minimumAmount\": {\n    \"amount\": 100.01,\n    \"currency\": \"USD\"\n  },\n  \"maximumAmount\": {\n    \"amount\": 100.01,\n    \"currency\": \"USD\"\n  },\n  \"creditorAccount\": {\n    \"identification\": \"1234567891\"\n  },\n  \"creditorAgent\": {\n    \"memberIdentification\": \"061103852\",\n    \"clearingSystemIdentification\": \"<string>\"\n  },\n  \"transactions\": [\n    {\n      \"paymentIdentification\": {\n        \"instructionIdentification\": \"ABC0928\",\n        \"transactionIdentification\": \"ABC136/09-15-18\"\n      },\n      \"status\": \"RJCT\",\n      \"statusReasonInformation\": {\n        \"reason\": \"NARR\",\n        \"additionalInformation\": \"R12\",\n        \"statusDate\": \"2019-02-20\"\n      }\n    },\n    {\n      \"paymentIdentification\": {\n        \"instructionIdentification\": \"ABC0928\",\n        \"transactionIdentification\": \"ABC136/09-15-18\"\n      },\n      \"status\": \"RJCT\",\n      \"statusReasonInformation\": {\n        \"reason\": \"NARR\",\n        \"additionalInformation\": \"R12\",\n        \"statusDate\": \"2019-02-20\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e283a62a-9b0e-4f2e-814e-621b962c8123",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "credit",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentInformation\": {\n    \"debtor\": {\n      \"identification\": \"1234567891\"\n    },\n    \"requestedExecutionDate\": \"2018-12-12\",\n    \"dateFrom\": \"2019-03-01\",\n    \"dateTo\": \"2019-03-11\",\n    \"instructedAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"minimumAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"maximumAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"creditorAccount\": {\n      \"identification\": \"1234567891\"\n    },\n    \"creditorAgent\": {\n      \"memberIdentification\": \"061103852\",\n      \"clearingSystemIdentification\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": \"[object Object]\",\n      \"message\": \"Invalid JSON structure.\"\n    },\n    {\n      \"errorcode\": \"[object Object]\",\n      \"message\": \"Invalid JSON structure.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b44f4247-7c85-4cee-82ce-f3f2920f10a9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "credit",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentInformation\": {\n    \"debtor\": {\n      \"identification\": \"1234567891\"\n    },\n    \"requestedExecutionDate\": \"2018-12-12\",\n    \"dateFrom\": \"2019-03-01\",\n    \"dateTo\": \"2019-03-11\",\n    \"instructedAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"minimumAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"maximumAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"creditorAccount\": {\n      \"identification\": \"1234567891\"\n    },\n    \"creditorAgent\": {\n      \"memberIdentification\": \"061103852\",\n      \"clearingSystemIdentification\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": null,\n      \"message\": \"API key is missing, invalid or expired.\"\n    },\n    {\n      \"errorcode\": 1000,\n      \"message\": \"API key is missing, invalid or expired.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64d6e26b-1b59-4f1f-babb-0d761c5b2bb0",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "credit",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentInformation\": {\n    \"debtor\": {\n      \"identification\": \"1234567891\"\n    },\n    \"requestedExecutionDate\": \"2018-12-12\",\n    \"dateFrom\": \"2019-03-01\",\n    \"dateTo\": \"2019-03-11\",\n    \"instructedAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"minimumAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"maximumAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"creditorAccount\": {\n      \"identification\": \"1234567891\"\n    },\n    \"creditorAgent\": {\n      \"memberIdentification\": \"061103852\",\n      \"clearingSystemIdentification\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": null,\n      \"message\": \"Unprocessable request due to duplicate records\"\n    },\n    {\n      \"errorcode\": 4001,\n      \"message\": \"Unprocessable request due to duplicate records\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42e2c8fe-df0c-4b7e-be5c-4b4244adbf6c",
+              "name": "Internal Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "credit",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentInformation\": {\n    \"debtor\": {\n      \"identification\": \"1234567891\"\n    },\n    \"requestedExecutionDate\": \"2018-12-12\",\n    \"dateFrom\": \"2019-03-01\",\n    \"dateTo\": \"2019-03-11\",\n    \"instructedAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"minimumAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"maximumAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"creditorAccount\": {\n      \"identification\": \"1234567891\"\n    },\n    \"creditorAgent\": {\n      \"memberIdentification\": \"061103852\",\n      \"clearingSystemIdentification\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": null,\n      \"message\": \"Internal Server error\"\n    },\n    {\n      \"errorcode\": 3001,\n      \"message\": \"Internal Server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0086ab6a-bbf1-4ec8-a9b3-2a0e330b9bb7",
+              "name": "Service unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "credit",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentInformation\": {\n    \"debtor\": {\n      \"identification\": \"1234567891\"\n    },\n    \"requestedExecutionDate\": \"2018-12-12\",\n    \"dateFrom\": \"2019-03-01\",\n    \"dateTo\": \"2019-03-11\",\n    \"instructedAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"minimumAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"maximumAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"creditorAccount\": {\n      \"identification\": \"1234567891\"\n    },\n    \"creditorAgent\": {\n      \"memberIdentification\": \"061103852\",\n      \"clearingSystemIdentification\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fdd1daaf-be58-44aa-9b91-c7f43c7d3ad6",
+          "name": "ACH Debit Transaction status",
+          "request": {
+            "name": "ACH Debit Transaction status",
+            "description": {
+              "content": "ACH Debit Transaction status",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                "ach",
+                "debit",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                "key": "Request_Id",
+                "value": "<uuid>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apikey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"paymentInformation\": {\n    \"creditor\": {\n      \"identification\": \"<string>\"\n    },\n    \"requestedCollectionDate\": \"<string>\",\n    \"dateFrom\": \"<string>\",\n    \"dateTo\": \"<string>\",\n    \"instructedAmount\": {\n      \"amount\": \"<number>\",\n      \"currency\": \"USD\"\n    },\n    \"minimumAmount\": {\n      \"amount\": \"<number>\",\n      \"currency\": \"USD\"\n    },\n    \"maximumAmount\": {\n      \"amount\": \"<number>\",\n      \"currency\": \"USD\"\n    },\n    \"debtorAccount\": {\n      \"identification\": \"<string>\"\n    },\n    \"debtorAgent\": {\n      \"clearingSystemIdentification\": \"<string>\",\n      \"memberIdentification\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0caef4a9-8767-4d8c-9ea0-f285bcbb660e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "debit",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentInformation\": {\n    \"creditor\": {\n      \"identification\": \"1234567891\"\n    },\n    \"requestedCollectionDate\": \"2018-12-12\",\n    \"dateFrom\": \"2019-03-01\",\n    \"dateTo\": \"2019-03-11\",\n    \"instructedAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"minimumAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"maximumAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"debtorAccount\": {\n      \"identification\": \"1234567891\"\n    },\n    \"debtorAgent\": {\n      \"clearingSystemIdentification\": \"<string>\",\n      \"memberIdentification\": \"061103852\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"creditor\": {\n    \"identification\": \"1234567891\"\n  },\n  \"requestedCollectionDate\": \"2018-12-12\",\n  \"dateFrom\": \"2019-03-01\",\n  \"dateTo\": \"2019-03-11\",\n  \"instructedAmount\": {\n    \"amount\": 100.01,\n    \"currency\": \"USD\"\n  },\n  \"minimumAmount\": {\n    \"amount\": 100.01,\n    \"currency\": \"USD\"\n  },\n  \"maximumAmount\": {\n    \"amount\": 100.01,\n    \"currency\": \"USD\"\n  },\n  \"debtorAccount\": {\n    \"identification\": \"1234567891\"\n  },\n  \"debtorAgent\": {\n    \"clearingSystemIdentification\": \"<string>\",\n    \"memberIdentification\": \"061103852\"\n  },\n  \"transactions\": [\n    {\n      \"paymentIdentification\": {\n        \"instructionIdentification\": \"ABC0928\",\n        \"transactionIdentification\": \"ABC136/09-15-18\"\n      },\n      \"status\": \"RJCT\",\n      \"statusReasonInformation\": {\n        \"reason\": \"NARR\",\n        \"additionalInformation\": \"R12\",\n        \"statusDate\": \"2019-02-20\"\n      }\n    },\n    {\n      \"paymentIdentification\": {\n        \"instructionIdentification\": \"ABC0928\",\n        \"transactionIdentification\": \"ABC136/09-15-18\"\n      },\n      \"status\": \"RJCT\",\n      \"statusReasonInformation\": {\n        \"reason\": \"NARR\",\n        \"additionalInformation\": \"R12\",\n        \"statusDate\": \"2019-02-20\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7bcda53e-2bca-4f8f-840f-260a4e63afdc",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "debit",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentInformation\": {\n    \"creditor\": {\n      \"identification\": \"1234567891\"\n    },\n    \"requestedCollectionDate\": \"2018-12-12\",\n    \"dateFrom\": \"2019-03-01\",\n    \"dateTo\": \"2019-03-11\",\n    \"instructedAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"minimumAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"maximumAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"debtorAccount\": {\n      \"identification\": \"1234567891\"\n    },\n    \"debtorAgent\": {\n      \"clearingSystemIdentification\": \"<string>\",\n      \"memberIdentification\": \"061103852\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": \"[object Object]\",\n      \"message\": \"Invalid JSON structure.\"\n    },\n    {\n      \"errorcode\": \"[object Object]\",\n      \"message\": \"Invalid JSON structure.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7452db95-3dc3-49bf-b463-b0c6aa5f8f80",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "debit",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentInformation\": {\n    \"creditor\": {\n      \"identification\": \"1234567891\"\n    },\n    \"requestedCollectionDate\": \"2018-12-12\",\n    \"dateFrom\": \"2019-03-01\",\n    \"dateTo\": \"2019-03-11\",\n    \"instructedAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"minimumAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"maximumAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"debtorAccount\": {\n      \"identification\": \"1234567891\"\n    },\n    \"debtorAgent\": {\n      \"clearingSystemIdentification\": \"<string>\",\n      \"memberIdentification\": \"061103852\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": null,\n      \"message\": \"API key is missing, invalid or expired.\"\n    },\n    {\n      \"errorcode\": 1000,\n      \"message\": \"API key is missing, invalid or expired.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab31e2ae-41df-4dc7-9d47-ed176aaf052b",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "debit",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentInformation\": {\n    \"creditor\": {\n      \"identification\": \"1234567891\"\n    },\n    \"requestedCollectionDate\": \"2018-12-12\",\n    \"dateFrom\": \"2019-03-01\",\n    \"dateTo\": \"2019-03-11\",\n    \"instructedAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"minimumAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"maximumAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"debtorAccount\": {\n      \"identification\": \"1234567891\"\n    },\n    \"debtorAgent\": {\n      \"clearingSystemIdentification\": \"<string>\",\n      \"memberIdentification\": \"061103852\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": null,\n      \"message\": \"Unprocessable request due to duplicate records\"\n    },\n    {\n      \"errorcode\": 4001,\n      \"message\": \"Unprocessable request due to duplicate records\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58b04953-2e39-40bd-82a2-15c5617e11e4",
+              "name": "Internal Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "debit",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentInformation\": {\n    \"creditor\": {\n      \"identification\": \"1234567891\"\n    },\n    \"requestedCollectionDate\": \"2018-12-12\",\n    \"dateFrom\": \"2019-03-01\",\n    \"dateTo\": \"2019-03-11\",\n    \"instructedAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"minimumAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"maximumAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"debtorAccount\": {\n      \"identification\": \"1234567891\"\n    },\n    \"debtorAgent\": {\n      \"clearingSystemIdentification\": \"<string>\",\n      \"memberIdentification\": \"061103852\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorcode\": null,\n      \"message\": \"Internal Server error\"\n    },\n    {\n      \"errorcode\": 3001,\n      \"message\": \"Internal Server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "565090b1-c016-4b80-9e96-6951a707eac7",
+              "name": "Service unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "ach",
+                    "debit",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Optional Request ID allows application developer to trace requests through the systems logs",
+                    "key": "Request_Id",
+                    "value": "<uuid>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentInformation\": {\n    \"creditor\": {\n      \"identification\": \"1234567891\"\n    },\n    \"requestedCollectionDate\": \"2018-12-12\",\n    \"dateFrom\": \"2019-03-01\",\n    \"dateTo\": \"2019-03-11\",\n    \"instructedAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"minimumAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"maximumAmount\": {\n      \"amount\": 100.01,\n      \"currency\": \"USD\"\n    },\n    \"debtorAccount\": {\n      \"identification\": \"1234567891\"\n    },\n    \"debtorAgent\": {\n      \"clearingSystemIdentification\": \"<string>\",\n      \"memberIdentification\": \"061103852\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.afinis.org/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5e2aa923-0b10-45cf-bbd4-2fe699b6f37f",
+    "name": "Transaction Status API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Afinis is a diverse group of organizations working to support advancement and use of API standardization in the financial services industry. Utilization of this API requires a developer to [register](https://www.afinis.org/user/register) their application.\n\nContact Support:\n Email: info@afinis.org",
+      "type": "text/plain"
+    }
+  }
+}

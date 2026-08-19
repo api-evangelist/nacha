@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Payee Profile API",
+    "version": "2.1.3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Get Participants Profile",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Participants Profile with unique identification",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/profile",
+            "headers": [
+              {
+                "name": "requestId",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "requestordid",
+                "value": "",
+                "type": "query",
+                "description": "Unique identification, as assigned by directory service, to unambiguously identify the requestor participant"
+              },
+              {
+                "name": "counterpartydid",
+                "value": "",
+                "type": "query",
+                "description": "Unique identification, as assigned by directory service, to unambiguously identify the Payee participant"
+              }
+            ]
+          },
+          "docs": "Get Participants Profile"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

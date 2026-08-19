@@ -1,0 +1,102 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Transaction Status API",
+    "version": "1.0.14"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ACH Transaction Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get ACH Transaction status with unique transaction identification",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/payments/ach/status/transactionId/:transactionIdentification",
+            "headers": [
+              {
+                "name": "Request_Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "transactionIdentification",
+                "value": "",
+                "type": "path",
+                "description": "Unique identification, as assigned by first instructing agent, to unambiguously identify the transaction that is passed on, unchanged, throughout the entire interbank chain. (ODFI assigned ID)"
+              }
+            ]
+          },
+          "docs": "ACH Transaction status"
+        },
+        {
+          "info": {
+            "name": "Get ACH Transaction status with unique instruction identification",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/payments/ach/status/instructionId/:instructionIdentification",
+            "headers": [
+              {
+                "name": "Request_Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "instructionIdentification",
+                "value": "",
+                "type": "path",
+                "description": "Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction."
+              }
+            ]
+          },
+          "docs": "ACH Transaction status"
+        },
+        {
+          "info": {
+            "name": "ACH Credit Transaction status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/payments/ach/credit/status",
+            "headers": [
+              {
+                "name": "Request_Id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "ACH Credit Transaction status"
+        },
+        {
+          "info": {
+            "name": "ACH Debit Transaction status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/payments/ach/debit/status",
+            "headers": [
+              {
+                "name": "Request_Id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "ACH Debit Transaction status"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

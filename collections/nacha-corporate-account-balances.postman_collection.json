@@ -1,0 +1,414 @@
+{
+  "item": [
+    {
+      "id": "29d679f2-0772-4f1d-bc57-cbab891f662a",
+      "name": "Get Corporate Account Balances",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5a90eb37-57e4-40db-83b3-3672b82fe7d4",
+          "name": "Get Corporate Account Balances",
+          "request": {
+            "name": "Get Corporate Account Balances",
+            "description": {
+              "content": "Retrieve balance information for my account(s) for a date or date range",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "balance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "apikey"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"searchCriteria\": [\n    {\n      \"accountIdentification\": {\n        \"identification\": \"<string>\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"<string>\",\n      \"toDate\": \"<string>\"\n    },\n    {\n      \"accountIdentification\": {\n        \"identification\": \"<string>\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"<string>\",\n      \"toDate\": \"<string>\"\n    }\n  ],\n  \"agent\": {\n    \"clearingSystemIdentification\": \"<string>\",\n    \"memberIdentification\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "82bfccf4-546c-443d-a098-bcde9a1a3f48",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"searchCriteria\": [\n    {\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"2020-04-29\",\n      \"toDate\": \"2020-05-19\"\n    },\n    {\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"2020-04-29\",\n      \"toDate\": \"2020-05-19\"\n    }\n  ],\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accountReport\": [\n    {\n      \"account\": {\n        \"currency\": \"USD\",\n        \"balance\": [\n          {\n            \"amount\": 1.01,\n            \"currency\": \"USD\",\n            \"creditDebitIndicator\": \"string\",\n            \"type\": \"string\"\n          },\n          {\n            \"amount\": 1.01,\n            \"currency\": \"USD\",\n            \"creditDebitIndicator\": \"string\",\n            \"type\": \"string\"\n          }\n        ],\n        \"type\": \"CASH\",\n        \"name\": \"Example account\",\n        \"date\": \"2020-04-29\"\n      },\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      }\n    },\n    {\n      \"account\": {\n        \"currency\": \"USD\",\n        \"balance\": [\n          {\n            \"amount\": 1.01,\n            \"currency\": \"USD\",\n            \"creditDebitIndicator\": \"string\",\n            \"type\": \"string\"\n          },\n          {\n            \"amount\": 1.01,\n            \"currency\": \"USD\",\n            \"creditDebitIndicator\": \"string\",\n            \"type\": \"string\"\n          }\n        ],\n        \"type\": \"CASH\",\n        \"name\": \"Example account\",\n        \"date\": \"2020-04-29\"\n      },\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      }\n    }\n  ],\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de9874c9-db85-4a1b-b893-4ae8801795e5",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"searchCriteria\": [\n    {\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"2020-04-29\",\n      \"toDate\": \"2020-05-19\"\n    },\n    {\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"2020-04-29\",\n      \"toDate\": \"2020-05-19\"\n    }\n  ],\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"errorCode\": 2000,\n      \"message\": \"Invalid JSON structure.\"\n    },\n    {\n      \"errorCode\": 2000,\n      \"message\": \"Invalid JSON structure.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cef0f1c6-a44d-4bd2-8ed2-d30fa95e581c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"searchCriteria\": [\n    {\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"2020-04-29\",\n      \"toDate\": \"2020-05-19\"\n    },\n    {\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"2020-04-29\",\n      \"toDate\": \"2020-05-19\"\n    }\n  ],\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"errorCode\": 1000,\n      \"message\": \"API key is missing, invalid or expired.\"\n    },\n    {\n      \"errorCode\": 1000,\n      \"message\": \"API key is missing, invalid or expired.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e027f1f-4811-49c2-82af-1f85b30e8d66",
+              "name": "Access denied, the operation is not allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"searchCriteria\": [\n    {\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"2020-04-29\",\n      \"toDate\": \"2020-05-19\"\n    },\n    {\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"2020-04-29\",\n      \"toDate\": \"2020-05-19\"\n    }\n  ],\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d8562c90-956c-4c99-bb8f-b5aba7003575",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"searchCriteria\": [\n    {\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"2020-04-29\",\n      \"toDate\": \"2020-05-19\"\n    },\n    {\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"2020-04-29\",\n      \"toDate\": \"2020-05-19\"\n    }\n  ],\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bb395c15-4412-4e56-b415-cc7850b69563",
+              "name": "Internal Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"searchCriteria\": [\n    {\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"2020-04-29\",\n      \"toDate\": \"2020-05-19\"\n    },\n    {\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"2020-04-29\",\n      \"toDate\": \"2020-05-19\"\n    }\n  ],\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"errorCode\": 3001,\n      \"message\": \"Internal Server error\"\n    },\n    {\n      \"errorCode\": 3001,\n      \"message\": \"Internal Server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c7a105bb-2d88-4530-845e-c4a0b220071a",
+              "name": "Service unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"searchCriteria\": [\n    {\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"2020-04-29\",\n      \"toDate\": \"2020-05-19\"\n    },\n    {\n      \"accountIdentification\": {\n        \"identification\": \"12345678\",\n        \"isToken\": \"N\"\n      },\n      \"fromDate\": \"2020-04-29\",\n      \"toDate\": \"2020-05-19\"\n    }\n  ],\n  \"agent\": {\n    \"clearingSystemIdentification\": \"USABA\",\n    \"memberIdentification\": \"061103852\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.afinis.org/accounts/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ffa984ad-c53d-4b08-832a-e64fb563814d",
+    "name": "Get Corporate Account Balances API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "As a corporate or business customer of the bank, I need to be able to retrieve balance information for my account(s) for a date or date range so that I can make informed cash management decisions.\n\nContact Support:\n Email: info@afinis.org",
+      "type": "text/plain"
+    }
+  }
+}

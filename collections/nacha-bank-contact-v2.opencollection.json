@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bank Contact V2",
+    "version": "1.0.9"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Expand Bank Contact V2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Allow a FI to retrieve data from the FI contact data base",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/banks/contact",
+            "params": [
+              {
+                "name": "memberIdentification",
+                "value": "",
+                "type": "query",
+                "description": "Identification of a member of a clearing system  e.g., a U.S. transit routing number or Canadian Payments Association Routing Number"
+              },
+              {
+                "name": "contactCategory",
+                "value": "",
+                "type": "query",
+                "description": "Contact Category"
+              }
+            ]
+          },
+          "docs": "Expand Get Bank Contact"
+        },
+        {
+          "info": {
+            "name": "Allow a FI to input data into the FI contact data base",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/banks/contact"
+          },
+          "docs": "Expand Get Bank Contact"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

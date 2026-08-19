@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Account Validation APIs",
+    "version": "1.0.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Account eligibility for debit ACH transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/accounts/validate/achPaymentDebitAcceptance",
+            "headers": [
+              {
+                "name": "Request_Id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Account eligibility for debit ACH transactions"
+        },
+        {
+          "info": {
+            "name": "Account eligibility for credit ACH transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/accounts/validate/achPaymentCreditAcceptance",
+            "headers": [
+              {
+                "name": "Request_Id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Account eligibility for credit ACH transactions"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

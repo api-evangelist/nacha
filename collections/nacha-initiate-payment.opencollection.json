@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Initiate Payment API",
+    "version": "1.0.7"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ACH Payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Process ACH Debit Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/payments/ach/debit",
+            "headers": [
+              {
+                "name": "Request_Id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Process ACH Debit Transactions"
+        },
+        {
+          "info": {
+            "name": "Process ACH Credit Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/payments/ach/credit",
+            "headers": [
+              {
+                "name": "Request_Id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Process ACH Credit Transactions"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
