@@ -41,448 +41,1206 @@ created: '2026-07-24'
 modified: '2026-07-24'
 specificationVersion: '0.23'
 apis:
-- aid: nacha:nacha-initiate-payment
-  name: Afinis Initiate ACH Payment API
-  description: Afinis Interoperability Standards API for initiating an ACH credit or debit payment instruction
-    from an originator through their financial institution. Part of the Afinis standardized payments API
-    set stewarded by Nacha.
+- aid: nacha:nacha-account-validation-api
+  name: Nacha Account Validation API
+  description: The Account Validation API from Nacha — 1 operation(s) for account validation.
   humanURL: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
   baseURL: https://api.asig.org/v1
   tags:
-  - ACH
-  - Payment Initiation
-  - ISO 20022
+  - Account Validation
   properties:
   - type: OpenAPI
-    url: openapi/nacha-initiate-payment.json
+    url: openapi/nacha-account-validation-api-openapi.yml
   - type: APIReference
     url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
   - type: Documentation
     url: https://www.nacha.org/content/apis-development
-  - type: Overlay
-    url: overlays/nacha-initiate-payment-overlay.yaml
-- aid: nacha:nacha-iar
-  name: Afinis International ACH Remittance (IAR) API
-  description: Afinis International ACH Remittance (IAR) API for sending remittance information tied to
-    incoming IAT (International ACH Transaction) credits.
-  humanURL: https://app.swaggerhub.com/apis/ASIG/IAR/1.0.1
-  baseURL: https://api.asig.org/payments/v1
-  tags:
-  - ACH
-  - Cross-Border
-  - IAT
-  properties:
-  - type: OpenAPI
-    url: openapi/nacha-iar.json
   - type: APIReference
     url: https://app.swaggerhub.com/apis/ASIG/IAR/1.0.1
-  - type: Documentation
-    url: https://www.nacha.org/content/apis-development
-  - type: Overlay
-    url: overlays/nacha-iar-overlay.yaml
-- aid: nacha:nacha-iar-plus
-  name: Afinis IAR Plus API
-  description: Afinis IAR Plus API, an extended International ACH Remittance message for incoming IAT
-    credits carrying additional remittance detail.
-  humanURL: https://app.swaggerhub.com/apis/ASIG/IAR_Plus/1.0.1
-  baseURL: https://api.asig.org/payments/v1
-  tags:
-  - ACH
-  - Cross-Border
-  - IAT
-  properties:
-  - type: OpenAPI
-    url: openapi/nacha-iar-plus.json
   - type: APIReference
     url: https://app.swaggerhub.com/apis/ASIG/IAR_Plus/1.0.1
-  - type: Documentation
-    url: https://www.nacha.org/content/apis-development
-  - type: Overlay
-    url: overlays/nacha-iar-plus-overlay.yaml
-- aid: nacha:nacha-transaction-status
-  name: Afinis Transaction Status API
-  description: Afinis Transaction Status API for querying the status of an ACH credit or debit payment
-    by instruction ID or transaction ID.
-  humanURL: https://app.swaggerhub.com/apis/ASIG/transaction_status/1.0.14
-  baseURL: https://api.afinis.org/v1
-  tags:
-  - ACH
-  - Transaction Status
-  properties:
-  - type: OpenAPI
-    url: openapi/nacha-transaction-status.json
   - type: APIReference
     url: https://app.swaggerhub.com/apis/ASIG/transaction_status/1.0.14
-  - type: Documentation
-    url: https://www.nacha.org/content/apis-development
-  - type: Overlay
-    url: overlays/nacha-transaction-status-overlay.yaml
-- aid: nacha:nacha-initiate-wire-payment
-  name: Afinis Initiate Wire Payment API
-  description: Afinis Initiate Wire Payment API enabling a business to originate a wire transfer through
-    its financial institution via a standardized API call.
-  humanURL: https://app.swaggerhub.com/apis/ASIG/Initiate_Wire_Payment_API/1.0.3
-  baseURL: https://api.asig.org/payments/v1
-  tags:
-  - Wire Transfer
-  - Payment Initiation
-  properties:
-  - type: OpenAPI
-    url: openapi/nacha-initiate-wire-payment.json
   - type: APIReference
     url: https://app.swaggerhub.com/apis/ASIG/Initiate_Wire_Payment_API/1.0.3
-  - type: Documentation
-    url: https://www.nacha.org/content/apis-development
-  - type: Overlay
-    url: overlays/nacha-initiate-wire-payment-overlay.yaml
-- aid: nacha:nacha-get-wire-status
-  name: Afinis Get Wire Status API
-  description: Afinis Get Wire Status API enabling the originator of a wire to retrieve the status of
-    the wire payment.
-  humanURL: https://app.swaggerhub.com/apis/ASIG/Get_Wire_Status_API/1.0.0
-  baseURL: https://api.asig.org/payments/v1
-  tags:
-  - Wire Transfer
-  - Transaction Status
-  properties:
-  - type: OpenAPI
-    url: openapi/nacha-get-wire-status.json
   - type: APIReference
     url: https://app.swaggerhub.com/apis/ASIG/Get_Wire_Status_API/1.0.0
-  - type: Documentation
-    url: https://www.nacha.org/content/apis-development
-  - type: Overlay
-    url: overlays/nacha-get-wire-status-overlay.yaml
-- aid: nacha:nacha-initiate-instant-payment
-  name: Afinis Initiate Instant Payment API (IIP)
-  description: Afinis Initiate Instant Payment (IIP) API enabling a business to make an instant payment
-    through its financial institution, mapping to US real-time rails (RTP and FedNow).
-  humanURL: https://app.swaggerhub.com/apis/ASIG/Initiate_Instant_Payment_API/1.0.6
-  baseURL: https://api.asig.org/payments/v1
-  tags:
-  - Real-Time Payments
-  - Instant Payments
-  - Payment Initiation
-  properties:
-  - type: OpenAPI
-    url: openapi/nacha-initiate-instant-payment.json
   - type: APIReference
     url: https://app.swaggerhub.com/apis/ASIG/Initiate_Instant_Payment_API/1.0.6
-  - type: Documentation
-    url: https://www.nacha.org/content/apis-development
-  - type: Overlay
-    url: overlays/nacha-initiate-instant-payment-overlay.yaml
-- aid: nacha:nacha-instant-payment-transfer
-  name: Afinis Instant Payment Transfer API (IPT)
-  description: Afinis Instant Payment Transfer (IPT) API enabling a financial institution to send another
-    financial institution an instant payment via an API.
-  humanURL: https://app.swaggerhub.com/apis/ASIG/Instant_Payment_Transfer/1.0.1
-  baseURL: https://api.asig.org/payments/v1
-  tags:
-  - Real-Time Payments
-  - Instant Payments
-  properties:
-  - type: OpenAPI
-    url: openapi/nacha-instant-payment-transfer.json
   - type: APIReference
     url: https://app.swaggerhub.com/apis/ASIG/Instant_Payment_Transfer/1.0.1
-  - type: Documentation
-    url: https://www.nacha.org/content/apis-development
-  - type: Overlay
-    url: overlays/nacha-instant-payment-transfer-overlay.yaml
-- aid: nacha:nacha-initiate-payment-api
-  name: Afinis Initiate Payment API
-  description: Afinis Initiate Payment API used to request movement of funds from a debtor account to
-    a creditor account across supported payment rails.
-  humanURL: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment_API/1.0.2
-  baseURL: https://api.asig.org/payments/v1
-  tags:
-  - Payment Initiation
-  - ACH
-  properties:
-  - type: OpenAPI
-    url: openapi/nacha-initiate-payment-api.json
   - type: APIReference
     url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment_API/1.0.2
-  - type: Documentation
-    url: https://www.nacha.org/content/apis-development
-  - type: Overlay
-    url: overlays/nacha-initiate-payment-api-overlay.yaml
-- aid: nacha:nacha-ret
-  name: Afinis Reporting ACH Return (RET) API
-  description: Afinis Reporting ACH Return (RET) API allowing originators and payment providers to share
-    ACH return payment data in support of fraud and risk mitigation.
-  humanURL: https://app.swaggerhub.com/apis/ASIG/RET_API/1.0.3
-  baseURL: https://api.afinis.org/payments/ach/v1
-  tags:
-  - ACH
-  - Returns
-  - Fraud
-  properties:
-  - type: OpenAPI
-    url: openapi/nacha-ret.json
   - type: APIReference
     url: https://app.swaggerhub.com/apis/ASIG/RET_API/1.0.3
-  - type: Documentation
-    url: https://www.nacha.org/content/apis-development
-  - type: Overlay
-    url: overlays/nacha-ret-overlay.yaml
-- aid: nacha:nacha-authorize-to-pay
-  name: Afinis Authorize to Pay (Debit Authorizations) API
-  description: Afinis Authorize to Pay API letting a buyer business provide bank account or virtual card
-    details, purpose of payment, and authorization for a seller to debit the account.
-  humanURL: https://app.swaggerhub.com/apis/ASIG/Authorize_To_Pay/1.0.6
-  baseURL: https://api.afinis.org/v1
-  tags:
-  - ACH
-  - Authorization
-  - Debit
-  properties:
-  - type: OpenAPI
-    url: openapi/nacha-authorize-to-pay.json
   - type: APIReference
     url: https://app.swaggerhub.com/apis/ASIG/Authorize_To_Pay/1.0.6
-  - type: Documentation
-    url: https://www.nacha.org/content/apis-development
-  - type: Overlay
-    url: overlays/nacha-authorize-to-pay-overlay.yaml
-- aid: nacha:nacha-pay-me
-  name: Afinis Pay Me API
-  description: Afinis Pay Me API for requesting a payment (request-for-payment) from a payer through standardized
-    messaging.
-  humanURL: https://app.swaggerhub.com/apis/ASIG/Pay_Me_API/1.0.11
-  baseURL: https://api.afinis.org/ASIG/Pay_Me_API/1.0.10
-  tags:
-  - Request to Pay
-  - Payment Initiation
-  properties:
-  - type: OpenAPI
-    url: openapi/nacha-pay-me.json
   - type: APIReference
     url: https://app.swaggerhub.com/apis/ASIG/Pay_Me_API/1.0.11
-  - type: Documentation
-    url: https://www.nacha.org/content/apis-development
-  - type: Overlay
-    url: overlays/nacha-pay-me-overlay.yaml
-- aid: nacha:nacha-account-validation
-  name: Afinis Account Validation API
-  description: Afinis Account Validation API for validating that a bank account is open and able to accept
-    ACH credits or debits, reducing returns and fraud.
-  humanURL: https://app.swaggerhub.com/apis/ASIG/account_validation/1.0.2
-  baseURL: https://api.afinis.org/v1
-  tags:
-  - Account Validation
-  - Fraud
-  properties:
-  - type: OpenAPI
-    url: openapi/nacha-account-validation.json
   - type: APIReference
     url: https://app.swaggerhub.com/apis/ASIG/account_validation/1.0.2
-  - type: Documentation
-    url: https://www.nacha.org/content/apis-development
-  - type: Overlay
-    url: overlays/nacha-account-validation-overlay.yaml
-- aid: nacha:nacha-account-validation-plus-name
-  name: Afinis Account Validation Plus Ownership (Name) API
-  description: Afinis Account Validation Plus Ownership API validating account status together with account-owner
-    name/ownership for confirmation-of-payee style checks.
-  humanURL: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Ownership_API/1.1.0
-  baseURL: https://api.asig.org/afinis/accounts/aavplus/v1
-  tags:
-  - Account Validation
-  - Name Verification
-  - Fraud
-  properties:
-  - type: OpenAPI
-    url: openapi/nacha-account-validation-plus-name.json
   - type: APIReference
     url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Ownership_API/1.1.0
-  - type: Documentation
-    url: https://www.nacha.org/content/apis-development
-  - type: Overlay
-    url: overlays/nacha-account-validation-plus-name-overlay.yaml
-- aid: nacha:nacha-account-validation-plus-name-ret
-  name: Afinis Account Validation Plus Name Plus Return API
-  description: Afinis Account Validation combined with name verification and ACH return-history signals
-    in a single standardized message.
-  humanURL: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Name_and_RET/1.0.4
-  tags:
-  - Account Validation
-  - Fraud
-  properties:
-  - type: OpenAPI
-    url: openapi/nacha-account-validation-plus-name-ret.json
   - type: APIReference
     url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Name_and_RET/1.0.4
-  - type: Documentation
-    url: https://www.nacha.org/content/apis-development
-  - type: Overlay
-    url: overlays/nacha-account-validation-plus-name-ret-overlay.yaml
-- aid: nacha:nacha-realtime-billing-account-validation
-  name: Afinis Real-Time Billing Account Validation API
-  description: Afinis Real-Time Billing Account Validation API for validating a consumer bank account
-    at the point of billing enrollment.
-  humanURL: https://app.swaggerhub.com/apis/ASIG/RealTimeBillingAccountValidation/1.0.7
-  baseURL: https://api.afinis.org/v1
-  tags:
-  - Account Validation
-  properties:
-  - type: OpenAPI
-    url: openapi/nacha-realtime-billing-account-validation.json
   - type: APIReference
     url: https://app.swaggerhub.com/apis/ASIG/RealTimeBillingAccountValidation/1.0.7
-  - type: Documentation
-    url: https://www.nacha.org/content/apis-development
-  - type: Overlay
-    url: overlays/nacha-realtime-billing-account-validation-overlay.yaml
-- aid: nacha:nacha-corporate-account-balances
-  name: Afinis Get Corporate Account Balances API
-  description: Afinis Get Corporate Account Balances API letting a corporate/business customer retrieve
-    balance information for their accounts for a date or date range.
-  humanURL: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Account_Balances_API/1.0.3
-  baseURL: https://api.afinis.org/accounts/v1
-  tags:
-  - Cash Management
-  - Corporate
-  - Balances
-  properties:
-  - type: OpenAPI
-    url: openapi/nacha-corporate-account-balances.json
   - type: APIReference
     url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Account_Balances_API/1.0.3
-  - type: Documentation
-    url: https://www.nacha.org/content/apis-development
-  - type: Overlay
-    url: overlays/nacha-corporate-account-balances-overlay.yaml
-- aid: nacha:nacha-corporate-transaction-history
-  name: Afinis Get Corporate Transaction History API
-  description: Afinis Get Corporate Transaction History API letting a corporate bank customer retrieve
-    financial transaction history for review or integration.
-  humanURL: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Transaction_History_API/1.0.5
-  baseURL: https://api.afinis.org/accounts/v1
-  tags:
-  - Cash Management
-  - Corporate
-  properties:
-  - type: OpenAPI
-    url: openapi/nacha-corporate-transaction-history.json
   - type: APIReference
     url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Transaction_History_API/1.0.5
-  - type: Documentation
-    url: https://www.nacha.org/content/apis-development
-  - type: Overlay
-    url: overlays/nacha-corporate-transaction-history-overlay.yaml
-- aid: nacha:nacha-corporate-transaction-detail
-  name: Afinis Get Transaction Detail API
-  description: Afinis Get Transaction Detail API letting a corporate financial professional request detailed
-    information for a specific transaction in their account.
-  humanURL: https://app.swaggerhub.com/apis/ASIG/Get_Transaction_Detail_API/1.0.4
-  baseURL: https://api.afinis.org/accounts/v1
-  tags:
-  - Cash Management
-  - Corporate
-  properties:
-  - type: OpenAPI
-    url: openapi/nacha-corporate-transaction-detail.json
   - type: APIReference
     url: https://app.swaggerhub.com/apis/ASIG/Get_Transaction_Detail_API/1.0.4
-  - type: Documentation
-    url: https://www.nacha.org/content/apis-development
-  - type: Overlay
-    url: overlays/nacha-corporate-transaction-detail-overlay.yaml
-- aid: nacha:nacha-payee-profile
-  name: Afinis Payee Profile API
-  description: Afinis Payee Profile API for exchanging standardized payee onboarding and directory profile
-    information between participants.
-  humanURL: https://app.swaggerhub.com/apis/ASIG/Payee_Profile_API/2.1.3
-  baseURL: https://api.afinis.org/participants/v2
-  tags:
-  - Directory
-  - Onboarding
-  - Payee
-  properties:
-  - type: OpenAPI
-    url: openapi/nacha-payee-profile.json
   - type: APIReference
     url: https://app.swaggerhub.com/apis/ASIG/Payee_Profile_API/2.1.3
-  - type: Documentation
-    url: https://www.nacha.org/content/apis-development
-  - type: Overlay
-    url: overlays/nacha-payee-profile-overlay.yaml
-- aid: nacha:nacha-wsud
-  name: Afinis Written Statement of Unauthorized Debit (WSUD) API
-  description: Afinis WSUD API letting an ODFI send an automated electronic request to an RDFI for a copy
-    of a consumer's Written Statement of Unauthorized Debit.
-  humanURL: https://app.swaggerhub.com/apis/ASIG/Written_Statement_of_Unauthorized_Debit/1.0.8
-  tags:
-  - ACH
-  - Disputes
-  - Unauthorized
-  properties:
-  - type: OpenAPI
-    url: openapi/nacha-wsud.json
   - type: APIReference
     url: https://app.swaggerhub.com/apis/ASIG/Written_Statement_of_Unauthorized_Debit/1.0.8
-  - type: Documentation
-    url: https://www.nacha.org/content/apis-development
-  - type: Overlay
-    url: overlays/nacha-wsud-overlay.yaml
-- aid: nacha:nacha-proof-of-authorization
-  name: Afinis Proof of Authorization API
-  description: Afinis Proof of Authorization API providing a real-time alternative message for a request
-    for an ACH proof of authorization to increase automation and reduce manual handling.
-  humanURL: https://app.swaggerhub.com/apis/ASIG/Proof_of_Authorization/1.0.6
-  baseURL: https://api.afinis.org/banks/v1
-  tags:
-  - ACH
-  - Authorization
-  - Compliance
-  properties:
-  - type: OpenAPI
-    url: openapi/nacha-proof-of-authorization.json
   - type: APIReference
     url: https://app.swaggerhub.com/apis/ASIG/Proof_of_Authorization/1.0.6
-  - type: Documentation
-    url: https://www.nacha.org/content/apis-development
-  - type: Overlay
-    url: overlays/nacha-proof-of-authorization-overlay.yaml
-- aid: nacha:nacha-bank-contacts
-  name: Afinis Bank Contacts API
-  description: Afinis Bank Contacts API for retrieving standardized operational contact information for
-    financial institutions.
-  humanURL: https://app.swaggerhub.com/apis/ASIG/bank_contacts/1.0.5
-  baseURL: https://api.afinis.org/v1
-  tags:
-  - Directory
-  - Bank Contacts
-  properties:
-  - type: OpenAPI
-    url: openapi/nacha-bank-contacts.json
   - type: APIReference
     url: https://app.swaggerhub.com/apis/ASIG/bank_contacts/1.0.5
-  - type: Documentation
-    url: https://www.nacha.org/content/apis-development
-  - type: Overlay
-    url: overlays/nacha-bank-contacts-overlay.yaml
-- aid: nacha:nacha-bank-contact-v2
-  name: Afinis Bank Contact V2 API
-  description: Afinis Bank Contact V2 API, a two-step input/retrieve interface for exchanging standardized
-    financial-institution contact information.
-  humanURL: https://app.swaggerhub.com/apis/ASIG/Bank_Contact_V2/1.0.9
-  baseURL: https://api.afinis.org/ASIG/Bank_Contact_v2/1.0.5
-  tags:
-  - Directory
-  - Bank Contacts
-  properties:
-  - type: OpenAPI
-    url: openapi/nacha-bank-contact-v2.json
   - type: APIReference
     url: https://app.swaggerhub.com/apis/ASIG/Bank_Contact_V2/1.0.9
+- aid: nacha:nacha-accounts-api
+  name: Nacha Accounts API
+  description: The Accounts API from Nacha — 4 operation(s) for accounts.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  baseURL: https://api.asig.org/v1
+  tags:
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-accounts-api-openapi.yml
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
   - type: Documentation
     url: https://www.nacha.org/content/apis-development
-  - type: Overlay
-    url: overlays/nacha-bank-contact-v2-overlay.yaml
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR_Plus/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/transaction_status/1.0.14
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Wire_Payment_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Wire_Status_API/1.0.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Instant_Payment_API/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Instant_Payment_Transfer/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment_API/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RET_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Authorize_To_Pay/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Pay_Me_API/1.0.11
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/account_validation/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Ownership_API/1.1.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Name_and_RET/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RealTimeBillingAccountValidation/1.0.7
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Account_Balances_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Transaction_History_API/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Transaction_Detail_API/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Payee_Profile_API/2.1.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Written_Statement_of_Unauthorized_Debit/1.0.8
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Proof_of_Authorization/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/bank_contacts/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Bank_Contact_V2/1.0.9
+- aid: nacha:nacha-ach-payments-api
+  name: Nacha ACH Payments API
+  description: The ACH Payments API from Nacha — 2 operation(s) for ach payments.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  baseURL: https://api.asig.org/v1
+  tags:
+  - ACH Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-ach-payments-api-openapi.yml
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR_Plus/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/transaction_status/1.0.14
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Wire_Payment_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Wire_Status_API/1.0.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Instant_Payment_API/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Instant_Payment_Transfer/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment_API/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RET_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Authorize_To_Pay/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Pay_Me_API/1.0.11
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/account_validation/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Ownership_API/1.1.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Name_and_RET/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RealTimeBillingAccountValidation/1.0.7
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Account_Balances_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Transaction_History_API/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Transaction_Detail_API/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Payee_Profile_API/2.1.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Written_Statement_of_Unauthorized_Debit/1.0.8
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Proof_of_Authorization/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/bank_contacts/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Bank_Contact_V2/1.0.9
+- aid: nacha:nacha-ach-transaction-status-api
+  name: Nacha ACH Transaction Status API
+  description: The ACH Transaction Status API from Nacha — 4 operation(s) for ach transaction status.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  baseURL: https://api.asig.org/v1
+  tags:
+  - ACH Transaction Status
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-ach-transaction-status-api-openapi.yml
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR_Plus/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/transaction_status/1.0.14
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Wire_Payment_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Wire_Status_API/1.0.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Instant_Payment_API/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Instant_Payment_Transfer/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment_API/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RET_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Authorize_To_Pay/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Pay_Me_API/1.0.11
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/account_validation/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Ownership_API/1.1.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Name_and_RET/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RealTimeBillingAccountValidation/1.0.7
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Account_Balances_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Transaction_History_API/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Transaction_Detail_API/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Payee_Profile_API/2.1.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Written_Statement_of_Unauthorized_Debit/1.0.8
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Proof_of_Authorization/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/bank_contacts/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Bank_Contact_V2/1.0.9
+- aid: nacha:nacha-authorize-to-pay-api
+  name: Nacha Authorize to Pay API
+  description: The Authorize to Pay API from Nacha — 1 operation(s) for authorize to pay.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  baseURL: https://api.asig.org/v1
+  tags:
+  - Authorize to Pay
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-authorize-to-pay-api-openapi.yml
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR_Plus/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/transaction_status/1.0.14
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Wire_Payment_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Wire_Status_API/1.0.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Instant_Payment_API/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Instant_Payment_Transfer/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment_API/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RET_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Authorize_To_Pay/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Pay_Me_API/1.0.11
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/account_validation/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Ownership_API/1.1.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Name_and_RET/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RealTimeBillingAccountValidation/1.0.7
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Account_Balances_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Transaction_History_API/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Transaction_Detail_API/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Payee_Profile_API/2.1.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Written_Statement_of_Unauthorized_Debit/1.0.8
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Proof_of_Authorization/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/bank_contacts/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Bank_Contact_V2/1.0.9
+- aid: nacha:nacha-banks-api
+  name: Nacha Banks API
+  description: The Banks API from Nacha — 1 operation(s) for banks.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  baseURL: https://api.asig.org/v1
+  tags:
+  - Banks
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-banks-api-openapi.yml
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR_Plus/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/transaction_status/1.0.14
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Wire_Payment_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Wire_Status_API/1.0.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Instant_Payment_API/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Instant_Payment_Transfer/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment_API/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RET_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Authorize_To_Pay/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Pay_Me_API/1.0.11
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/account_validation/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Ownership_API/1.1.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Name_and_RET/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RealTimeBillingAccountValidation/1.0.7
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Account_Balances_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Transaction_History_API/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Transaction_Detail_API/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Payee_Profile_API/2.1.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Written_Statement_of_Unauthorized_Debit/1.0.8
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Proof_of_Authorization/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/bank_contacts/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Bank_Contact_V2/1.0.9
+- aid: nacha:nacha-expand-bank-contact-v2-api
+  name: Nacha Expand Bank Contact V2 API
+  description: The Expand Bank Contact V2 API from Nacha — 1 operation(s) for expand bank contact v2.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  baseURL: https://api.asig.org/v1
+  tags:
+  - Expand Bank Contact V2
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-expand-bank-contact-v2-api-openapi.yml
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR_Plus/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/transaction_status/1.0.14
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Wire_Payment_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Wire_Status_API/1.0.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Instant_Payment_API/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Instant_Payment_Transfer/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment_API/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RET_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Authorize_To_Pay/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Pay_Me_API/1.0.11
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/account_validation/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Ownership_API/1.1.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Name_and_RET/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RealTimeBillingAccountValidation/1.0.7
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Account_Balances_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Transaction_History_API/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Transaction_Detail_API/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Payee_Profile_API/2.1.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Written_Statement_of_Unauthorized_Debit/1.0.8
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Proof_of_Authorization/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/bank_contacts/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Bank_Contact_V2/1.0.9
+- aid: nacha:nacha-get-corporate-account-balances-api
+  name: Nacha Get Corporate Account Balances API
+  description: >-
+    The Get Corporate Account Balances API from Nacha — 1 operation(s) for get corporate account balances.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  baseURL: https://api.asig.org/v1
+  tags:
+  - Get Corporate Account Balances
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-get-corporate-account-balances-api-openapi.yml
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR_Plus/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/transaction_status/1.0.14
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Wire_Payment_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Wire_Status_API/1.0.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Instant_Payment_API/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Instant_Payment_Transfer/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment_API/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RET_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Authorize_To_Pay/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Pay_Me_API/1.0.11
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/account_validation/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Ownership_API/1.1.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Name_and_RET/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RealTimeBillingAccountValidation/1.0.7
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Account_Balances_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Transaction_History_API/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Transaction_Detail_API/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Payee_Profile_API/2.1.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Written_Statement_of_Unauthorized_Debit/1.0.8
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Proof_of_Authorization/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/bank_contacts/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Bank_Contact_V2/1.0.9
+- aid: nacha:nacha-get-corporate-transaction-history-api
+  name: Nacha Get Corporate Transaction History API
+  description: >-
+    The Get Corporate Transaction History API from Nacha — 2 operation(s) for get corporate transaction
+    history.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  baseURL: https://api.asig.org/v1
+  tags:
+  - Get Corporate Transaction History
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-get-corporate-transaction-history-api-openapi.yml
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR_Plus/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/transaction_status/1.0.14
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Wire_Payment_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Wire_Status_API/1.0.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Instant_Payment_API/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Instant_Payment_Transfer/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment_API/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RET_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Authorize_To_Pay/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Pay_Me_API/1.0.11
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/account_validation/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Ownership_API/1.1.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Name_and_RET/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RealTimeBillingAccountValidation/1.0.7
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Account_Balances_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Transaction_History_API/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Transaction_Detail_API/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Payee_Profile_API/2.1.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Written_Statement_of_Unauthorized_Debit/1.0.8
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Proof_of_Authorization/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/bank_contacts/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Bank_Contact_V2/1.0.9
+- aid: nacha:nacha-get-participants-profile-api
+  name: Nacha Get Participants Profile API
+  description: >-
+    The Get Participants Profile API from Nacha — 1 operation(s) for get participants profile.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  baseURL: https://api.asig.org/v1
+  tags:
+  - Get Participants Profile
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-get-participants-profile-api-openapi.yml
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR_Plus/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/transaction_status/1.0.14
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Wire_Payment_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Wire_Status_API/1.0.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Instant_Payment_API/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Instant_Payment_Transfer/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment_API/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RET_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Authorize_To_Pay/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Pay_Me_API/1.0.11
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/account_validation/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Ownership_API/1.1.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Name_and_RET/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RealTimeBillingAccountValidation/1.0.7
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Account_Balances_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Transaction_History_API/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Transaction_Detail_API/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Payee_Profile_API/2.1.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Written_Statement_of_Unauthorized_Debit/1.0.8
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Proof_of_Authorization/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/bank_contacts/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Bank_Contact_V2/1.0.9
+- aid: nacha:nacha-initiate-payment-api
+  name: Nacha Initiate Payment API
+  description: The Initiate Payment API from Nacha — 1 operation(s) for initiate payment.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  baseURL: https://api.asig.org/v1
+  tags:
+  - Initiate Payment
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-initiate-payment-api-openapi.yml
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR_Plus/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/transaction_status/1.0.14
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Wire_Payment_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Wire_Status_API/1.0.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Instant_Payment_API/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Instant_Payment_Transfer/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment_API/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RET_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Authorize_To_Pay/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Pay_Me_API/1.0.11
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/account_validation/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Ownership_API/1.1.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Name_and_RET/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RealTimeBillingAccountValidation/1.0.7
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Account_Balances_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Transaction_History_API/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Transaction_Detail_API/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Payee_Profile_API/2.1.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Written_Statement_of_Unauthorized_Debit/1.0.8
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Proof_of_Authorization/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/bank_contacts/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Bank_Contact_V2/1.0.9
+- aid: nacha:nacha-instant-payment-api
+  name: Nacha Instant Payment API
+  description: The Instant Payment API from Nacha — 1 operation(s) for instant payment.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  baseURL: https://api.asig.org/v1
+  tags:
+  - Instant Payment
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-instant-payment-api-openapi.yml
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR_Plus/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/transaction_status/1.0.14
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Wire_Payment_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Wire_Status_API/1.0.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Instant_Payment_API/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Instant_Payment_Transfer/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment_API/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RET_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Authorize_To_Pay/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Pay_Me_API/1.0.11
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/account_validation/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Ownership_API/1.1.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Name_and_RET/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RealTimeBillingAccountValidation/1.0.7
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Account_Balances_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Transaction_History_API/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Transaction_Detail_API/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Payee_Profile_API/2.1.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Written_Statement_of_Unauthorized_Debit/1.0.8
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Proof_of_Authorization/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/bank_contacts/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Bank_Contact_V2/1.0.9
+- aid: nacha:nacha-instant-payment-transfer-api
+  name: Nacha Instant Payment Transfer API
+  description: >-
+    The Instant Payment Transfer API from Nacha — 1 operation(s) for instant payment transfer.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  baseURL: https://api.asig.org/v1
+  tags:
+  - Instant Payment Transfer
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-instant-payment-transfer-api-openapi.yml
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR_Plus/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/transaction_status/1.0.14
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Wire_Payment_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Wire_Status_API/1.0.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Instant_Payment_API/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Instant_Payment_Transfer/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment_API/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RET_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Authorize_To_Pay/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Pay_Me_API/1.0.11
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/account_validation/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Ownership_API/1.1.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Name_and_RET/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RealTimeBillingAccountValidation/1.0.7
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Account_Balances_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Transaction_History_API/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Transaction_Detail_API/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Payee_Profile_API/2.1.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Written_Statement_of_Unauthorized_Debit/1.0.8
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Proof_of_Authorization/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/bank_contacts/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Bank_Contact_V2/1.0.9
+- aid: nacha:nacha-international-ach-remittance-iar-api
+  name: Nacha International ACH Remittance (IAR) API
+  description: >-
+    The International ACH Remittance (IAR) API from Nacha — 2 operation(s) for international ach remittance
+    (iar).
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  baseURL: https://api.asig.org/v1
+  tags:
+  - International ACH Remittance (IAR)
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-international-ach-remittance-iar-api-openapi.yml
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR_Plus/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/transaction_status/1.0.14
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Wire_Payment_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Wire_Status_API/1.0.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Instant_Payment_API/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Instant_Payment_Transfer/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment_API/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RET_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Authorize_To_Pay/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Pay_Me_API/1.0.11
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/account_validation/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Ownership_API/1.1.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Name_and_RET/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RealTimeBillingAccountValidation/1.0.7
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Account_Balances_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Transaction_History_API/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Transaction_Detail_API/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Payee_Profile_API/2.1.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Written_Statement_of_Unauthorized_Debit/1.0.8
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Proof_of_Authorization/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/bank_contacts/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Bank_Contact_V2/1.0.9
+- aid: nacha:nacha-proof-of-authorization-api
+  name: Nacha Proof of Authorization API
+  description: The Proof of Authorization API from Nacha — 1 operation(s) for proof of authorization.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  baseURL: https://api.asig.org/v1
+  tags:
+  - Proof of Authorization
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-proof-of-authorization-api-openapi.yml
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR_Plus/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/transaction_status/1.0.14
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Wire_Payment_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Wire_Status_API/1.0.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Instant_Payment_API/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Instant_Payment_Transfer/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment_API/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RET_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Authorize_To_Pay/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Pay_Me_API/1.0.11
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/account_validation/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Ownership_API/1.1.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Name_and_RET/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RealTimeBillingAccountValidation/1.0.7
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Account_Balances_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Transaction_History_API/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Transaction_Detail_API/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Payee_Profile_API/2.1.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Written_Statement_of_Unauthorized_Debit/1.0.8
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Proof_of_Authorization/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/bank_contacts/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Bank_Contact_V2/1.0.9
+- aid: nacha:nacha-reporting-ach-return-payments-api
+  name: Nacha Reporting ACH Return Payments API
+  description: >-
+    The Reporting ACH Return Payments API from Nacha — 1 operation(s) for reporting ach return payments.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  baseURL: https://api.asig.org/v1
+  tags:
+  - Reporting ACH Return Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-reporting-ach-return-payments-api-openapi.yml
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR_Plus/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/transaction_status/1.0.14
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Wire_Payment_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Wire_Status_API/1.0.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Instant_Payment_API/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Instant_Payment_Transfer/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment_API/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RET_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Authorize_To_Pay/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Pay_Me_API/1.0.11
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/account_validation/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Ownership_API/1.1.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Name_and_RET/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RealTimeBillingAccountValidation/1.0.7
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Account_Balances_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Transaction_History_API/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Transaction_Detail_API/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Payee_Profile_API/2.1.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Written_Statement_of_Unauthorized_Debit/1.0.8
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Proof_of_Authorization/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/bank_contacts/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Bank_Contact_V2/1.0.9
+- aid: nacha:nacha-route-billing-information-api
+  name: Nacha Route Billing Information API
+  description: >-
+    The Route Billing Information API from Nacha — 1 operation(s) for route billing information.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  baseURL: https://api.asig.org/v1
+  tags:
+  - Route Billing Information
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-route-billing-information-api-openapi.yml
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR_Plus/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/transaction_status/1.0.14
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Wire_Payment_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Wire_Status_API/1.0.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Instant_Payment_API/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Instant_Payment_Transfer/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment_API/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RET_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Authorize_To_Pay/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Pay_Me_API/1.0.11
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/account_validation/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Ownership_API/1.1.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Name_and_RET/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RealTimeBillingAccountValidation/1.0.7
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Account_Balances_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Transaction_History_API/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Transaction_Detail_API/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Payee_Profile_API/2.1.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Written_Statement_of_Unauthorized_Debit/1.0.8
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Proof_of_Authorization/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/bank_contacts/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Bank_Contact_V2/1.0.9
+- aid: nacha:nacha-wire-transfer-api
+  name: Nacha Wire Transfer API
+  description: The Wire Transfer API from Nacha — 2 operation(s) for wire transfer.
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  baseURL: https://api.asig.org/v1
+  tags:
+  - Wire Transfer
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-wire-transfer-api-openapi.yml
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR_Plus/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/transaction_status/1.0.14
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Wire_Payment_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Wire_Status_API/1.0.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Instant_Payment_API/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Instant_Payment_Transfer/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment_API/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RET_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Authorize_To_Pay/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Pay_Me_API/1.0.11
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/account_validation/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Ownership_API/1.1.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Name_and_RET/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RealTimeBillingAccountValidation/1.0.7
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Account_Balances_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Transaction_History_API/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Transaction_Detail_API/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Payee_Profile_API/2.1.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Written_Statement_of_Unauthorized_Debit/1.0.8
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Proof_of_Authorization/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/bank_contacts/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Bank_Contact_V2/1.0.9
+- aid: nacha:nacha-written-statement-of-unauthorized-debit-wsud-api
+  name: Nacha Written Statement of Unauthorized Debit (WSUD) API
+  description: >-
+    The Written Statement of Unauthorized Debit (WSUD) API from Nacha — 1 operation(s) for written statement
+    of unauthorized debit (wsud).
+  humanURL: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  baseURL: https://api.asig.org/v1
+  tags:
+  - Written Statement of Unauthorized Debit (WSUD)
+  properties:
+  - type: OpenAPI
+    url: openapi/nacha-written-statement-of-unauthorized-debit-wsud-api-openapi.yml
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
+  - type: Documentation
+    url: https://www.nacha.org/content/apis-development
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/IAR_Plus/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/transaction_status/1.0.14
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Wire_Payment_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Wire_Status_API/1.0.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Instant_Payment_API/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Instant_Payment_Transfer/1.0.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment_API/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RET_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Authorize_To_Pay/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Pay_Me_API/1.0.11
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/account_validation/1.0.2
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Ownership_API/1.1.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Name_and_RET/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/RealTimeBillingAccountValidation/1.0.7
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Account_Balances_API/1.0.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Transaction_History_API/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Get_Transaction_Detail_API/1.0.4
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Payee_Profile_API/2.1.3
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Written_Statement_of_Unauthorized_Debit/1.0.8
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Proof_of_Authorization/1.0.6
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/bank_contacts/1.0.5
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/ASIG/Bank_Contact_V2/1.0.9
 common:
+- type: Overlay
+  url: overlays/nacha-initiate-payment-overlay.yaml
+- type: Overlay
+  url: overlays/nacha-iar-overlay.yaml
+- type: Overlay
+  url: overlays/nacha-iar-plus-overlay.yaml
+- type: Overlay
+  url: overlays/nacha-transaction-status-overlay.yaml
+- type: Overlay
+  url: overlays/nacha-initiate-wire-payment-overlay.yaml
+- type: Overlay
+  url: overlays/nacha-get-wire-status-overlay.yaml
+- type: Overlay
+  url: overlays/nacha-initiate-instant-payment-overlay.yaml
+- type: Overlay
+  url: overlays/nacha-instant-payment-transfer-overlay.yaml
+- type: Overlay
+  url: overlays/nacha-initiate-payment-api-overlay.yaml
+- type: Overlay
+  url: overlays/nacha-ret-overlay.yaml
+- type: Overlay
+  url: overlays/nacha-authorize-to-pay-overlay.yaml
+- type: Overlay
+  url: overlays/nacha-pay-me-overlay.yaml
+- type: Overlay
+  url: overlays/nacha-account-validation-overlay.yaml
+- type: Overlay
+  url: overlays/nacha-account-validation-plus-name-overlay.yaml
+- type: Overlay
+  url: overlays/nacha-account-validation-plus-name-ret-overlay.yaml
+- type: Overlay
+  url: overlays/nacha-realtime-billing-account-validation-overlay.yaml
+- type: Overlay
+  url: overlays/nacha-corporate-account-balances-overlay.yaml
+- type: Overlay
+  url: overlays/nacha-corporate-transaction-history-overlay.yaml
+- type: Overlay
+  url: overlays/nacha-corporate-transaction-detail-overlay.yaml
+- type: Overlay
+  url: overlays/nacha-payee-profile-overlay.yaml
+- type: Overlay
+  url: overlays/nacha-wsud-overlay.yaml
+- type: Overlay
+  url: overlays/nacha-proof-of-authorization-overlay.yaml
+- type: Overlay
+  url: overlays/nacha-bank-contacts-overlay.yaml
+- type: Overlay
+  url: overlays/nacha-bank-contact-v2-overlay.yaml
 - type: AgentSkill
   url: skills/nacha-initiate-ach-payment.md
 - type: Login
