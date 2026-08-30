@@ -107,6 +107,8 @@ apis:
   humanURL: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
   baseURL: https://api.asig.org/v1
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
