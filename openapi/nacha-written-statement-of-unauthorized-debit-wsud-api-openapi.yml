@@ -1,0 +1,573 @@
+openapi: 3.2.0
+info:
+  version: 1.0.8
+  title: Request Copy of Written Statement of Unauthorized Debit (WSUD) Written Statement of Unauthorized Debit (WSUD) API
+  description: 'A Originating Depository Financial Institution (ODFI) wants to send an automated electronic request to the Receiving Depository Financial Institution (RDFI) for a copy of the WSUD which includes details on how to send the copy of the WSUD, and receive back a real time acknowledgement when the request is received. '
+  contact:
+    email: info@afinis.org
+    url: https://www.afinis.org
+servers:
+- url: https://api.afinis.org/ASIG/Written_Statement_of_Unauthorized_Debit/1.0.0/accounts/v1
+tags:
+- name: Written Statement of Unauthorized Debit (WSUD)
+paths:
+  /transactions/WSUD:
+    post:
+      description: Optional API Version number which will be used to serve the API request.
+      operationId: Written Statement of Unauthorized Debit - Request
+      tags:
+      - Written Statement of Unauthorized Debit (WSUD)
+      summary: Request a copy of the WSUD
+      parameters:
+      - name: apiVersion
+        in: header
+        required: false
+        schema:
+          type: string
+          format: string
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response-201'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-400'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-401'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-403'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-404'
+        '405':
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-405'
+        '406':
+          description: Not Acceptable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-406'
+        '415':
+          description: Unsupported Media Type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-415'
+        '500':
+          description: Internal Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-500'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-503'
+      security:
+      - APIKeyQueryParam: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - initiatingParty
+              - instructingAgent
+              - instructedAgent
+              - originalTransactionReference
+              - WSUDMethod
+              properties:
+                messageIdentification:
+                  type: string
+                  maxLength: 20
+                  example: Id_ABC123
+                initiatingParty:
+                  $ref: '#/components/schemas/party'
+                instructingAgent:
+                  $ref: '#/components/schemas/agent'
+                instructedAgent:
+                  $ref: '#/components/schemas/agent'
+                originalTransactionReference:
+                  $ref: '#/components/schemas/originalTransactionReference'
+                returnTransactionReference:
+                  $ref: '#/components/schemas/returnTransactionReference'
+                WSUDMethod:
+                  $ref: '#/components/schemas/WSUDMethod'
+        description: Allow a FI to input data into the FI contact data base
+components:
+  schemas:
+    errorDetails-400:
+      title: Error 400 - Bad Request - Details
+      type: object
+      properties:
+        errorCode:
+          description: "A programmatic error code:\n  * `2000` - Invalid JSON structure.\n  * `2001` - '[Field name] is missing or invalid.'\n  * `2002` - Invalid date.\n  * `2003` - Invalid combination of fields submitted. Check the API specification for eligible combinations. \n  * `2004` - '[Field name] cannot be more than [max number] characters.'\n"
+          example: 2000
+          type: number
+          enum:
+          - 2000
+          - 2001
+          - 2002
+          - 2003
+          - 2004
+        message:
+          description: A human readable description of the problem
+          example: Invalid JSON structure.
+          type: string
+    error-401:
+      title: Error 401 - Unauthorized
+      description: Authentication failed or user doesn’t have permissions for requested operation
+      type: object
+      properties:
+        details:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/errorDetails-401'
+    party:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 70
+          example: John Edison
+        identification:
+          type: string
+          maxLength: 35
+          example: PartyId_123456789
+        phoneNumber:
+          type: string
+          maxLength: 30
+          example: +1-302-515-5000
+        emailAddress:
+          type: string
+          maxLength: 2048
+          example: zachary.eastwood@ABCcorp.com
+    postalAddress:
+      description: Information that locates and identifies a specific address, as defined by postal services.
+      type: object
+      properties:
+        streetName:
+          description: Name of a street or throughfare
+          type: string
+          maxLength: 70
+          example: Lexington Street
+        postCode:
+          description: Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail
+          type: string
+          maxLength: 11
+          example: 19801
+        townName:
+          description: Name of a built-up area, with defined boundaries, and a local government
+          type: string
+          maxLength: 35
+          example: Wilmington
+        countrySubDivision:
+          description: Identifies a subdivision of a country such as state, region, county
+          type: string
+          maxLength: 35
+          example: DE
+        country:
+          description: Nation with its own government
+          type: string
+          minLength: 2
+          maxLength: 2
+          example: US
+    returnTransactionReference:
+      type: object
+      properties:
+        endToEndIdentification:
+          type: string
+          maxLength: 35
+          example: CBA321
+        entryDate:
+          type: string
+          maxLength: 10
+          example: '2019-03-01'
+    received:
+      title: Received
+      type: object
+      description: Information sent for Received statuses
+      required:
+      - amount
+      - returnTransactionReference
+      properties:
+        message:
+          example: Received
+          type: string
+          enum:
+          - Received
+        originalMessageIdentification:
+          type: string
+          maxLength: 20
+          example: Id_ABC123
+        amount:
+          $ref: '#/components/schemas/amount'
+        returnTransactionReference:
+          $ref: '#/components/schemas/returnTransactionReference'
+        initiatingParty:
+          $ref: '#/components/schemas/party'
+        notificationDate:
+          type: string
+          description: Start date of the range
+          example: '2020-04-29'
+          minLength: 10
+          maxLength: 10
+        notificationTime:
+          type: string
+          description: Start date of the range
+          example: '20:30'
+          minLength: 5
+    error-503:
+      title: Error 503 - Service Unavailable
+      description: Service is temporarily unavailable
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 503
+          type: number
+          enum:
+          - 503
+          description: "A programmatic error code:\n  * `503` - Service Unavailable\n"
+        message:
+          description: A human readable description of the problem
+          example: Service is temporarily unavailable.
+          type: string
+    sent:
+      title: Sent
+      type: object
+      description: Information sent for Sent statuses
+      required:
+      - amount
+      - returnTransactionReference
+      properties:
+        message:
+          example: Sent
+          type: string
+          enum:
+          - Sent
+        originalMessageIdentification:
+          type: string
+          maxLength: 20
+          example: Id_ABC123
+        amount:
+          $ref: '#/components/schemas/amount'
+        returnTransactionReference:
+          $ref: '#/components/schemas/returnTransactionReference'
+        initiatingParty:
+          $ref: '#/components/schemas/party'
+        notificationDate:
+          type: string
+          description: Start date of the range
+          example: '2020-04-29'
+          minLength: 10
+          maxLength: 10
+        notificationTime:
+          type: string
+          description: Start date of the range
+          example: '20:30'
+          minLength: 5
+        WSUDMethod:
+          $ref: '#/components/schemas/WSUDMethod'
+    error-400:
+      title: Error 400 - Bad Request
+      description: The request could not be understood or required parameters were missing
+      type: object
+      properties:
+        details:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/errorDetails-400'
+    error-415:
+      title: Error 415 - Unsupported Media Type
+      description: The media format of the requested data is not supported by the server, so the server is rejecting the request.
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 415
+          type: number
+          enum:
+          - 415
+          description: "A programmatic error code:\n  * `415` - Unsupported Media Type\n"
+        message:
+          description: A human readable description of the problem
+          example: Unsupported Media Type
+          type: string
+    error-403:
+      title: Error 403 - Forbidden
+      description: The client does not have access rights to the content; that is, it is unauthorized, so the server is refusing to give the requested resource. Unlike 401, the client's identity is known to the server.
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 403
+          type: number
+          enum:
+          - 403
+          description: "A programmatic error code:\n  * `403` - Forbidden\n"
+        message:
+          description: A human readable description of the problem
+          example: Forbidden
+          type: string
+    error-500:
+      title: Internal Server Error
+      description: 500 - Internal Server Error
+      type: object
+      required:
+      - details
+      properties:
+        details:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/internalServerErrorDetails'
+    originalTransactionReference:
+      type: object
+      properties:
+        endToEndIdentification:
+          type: string
+          maxLength: 35
+          example: CBA321
+        localInstrument:
+          type: string
+          minLength: 3
+          maxLength: 3
+          example: WEB
+        amount:
+          $ref: '#/components/schemas/amount'
+        creditor:
+          $ref: '#/components/schemas/party'
+        debtor:
+          $ref: '#/components/schemas/party'
+        debtorAccount:
+          type: string
+          description: Identification assigned by an institution
+          example: '12345678'
+          minLength: 1
+          maxLength: 17
+    WSUDMethod:
+      type: object
+      properties:
+        preferredMethod:
+          type: string
+          enum:
+          - EMAL
+          - FAXI
+          - POST
+        postalAddress:
+          $ref: '#/components/schemas/postalAddress'
+        faxNumber:
+          type: string
+          maxLength: 30
+          example: +1-302-515-7000
+        emailAddress:
+          type: string
+          maxLength: 2048
+          example: zachary.westwood@ABCcorp.com
+    amount:
+      description: Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party
+      type: object
+      required:
+      - amount
+      - currency
+      properties:
+        amount:
+          type: number
+          format: float
+          example: 1.01
+          maxLength: 11
+        currency:
+          type: string
+          example: USD
+          enum:
+          - USD
+    unableToComply:
+      title: Unable to Comply
+      description: Information sent for Unable to Comply statuses
+      type: object
+      required:
+      - amount
+      - returnTransactionReference
+      properties:
+        message:
+          example: Unable to Comply
+          type: string
+          enum:
+          - Unable to Comply
+        originalMessageIdentification:
+          type: string
+          maxLength: 20
+          example: Id_ABC123
+        amount:
+          $ref: '#/components/schemas/amount'
+        returnTransactionReference:
+          $ref: '#/components/schemas/returnTransactionReference'
+        initiatingParty:
+          $ref: '#/components/schemas/party'
+        notificationDate:
+          type: string
+          description: Start date of the range
+          example: '2020-04-29'
+          minLength: 10
+          maxLength: 10
+        notificationTime:
+          type: string
+          description: Start date of the range
+          example: '20:30'
+          minLength: 5
+    errorDetails-401:
+      title: Error 401 - Unauthorized - Details
+      type: object
+      properties:
+        errorCode:
+          example: 1000
+          type: number
+          enum:
+          - 1000
+          - 1001
+          description: "A programmatic error code:\n  * `1000` - API key is missing, invalid or expired. \n  * `1001` - API token is invalid, expired, or account associated with key does not have access to that API.\n"
+        message:
+          description: A human readable description of the problem
+          example: API key is missing, invalid or expired.
+          type: string
+      required:
+      - errorcode
+      - message
+    internalServerErrorDetails:
+      title: Internal Server Error Details
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 3001
+          type: number
+          enum:
+          - 3001
+          description: "A programmatic error code:\n  * `3001` - Internal Server error.\n"
+        message:
+          description: A human readable description of the problem
+          example: Internal Server error
+          type: string
+    error-406:
+      title: Error 406 - Not Acceptable
+      description: Web server doesn't find any content that conforms to the criteria given by the user agent.
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 406
+          type: number
+          enum:
+          - 406
+          description: "A programmatic error code:\n  * `406` - Not Acceptable\n"
+        message:
+          description: A human readable description of the problem
+          example: Not Acceptable
+          type: string
+    response-201:
+      title: Response
+      type: object
+      description: 201 - Created
+      properties:
+        received:
+          $ref: '#/components/schemas/received'
+        sent:
+          $ref: '#/components/schemas/sent'
+        unableToComply:
+          $ref: '#/components/schemas/unableToComply'
+    agent:
+      description: Identification of a financial institution.
+      type: object
+      required:
+      - clearingSystemIdentification
+      - memberIdentification
+      properties:
+        clearingSystemIdentification:
+          type: string
+          example: USABA
+          enum:
+          - USABA
+          description: "Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed: \n * `USABA` - Routing Transit number assigned by the ABA for US financial Institutions. \n"
+        memberIdentification:
+          type: string
+          maxLength: 35
+          example: 061103852
+    error-404:
+      title: Error 404 - Not Found
+      description: Resource was not found.
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 404
+          type: number
+          enum:
+          - 404
+          description: "A programmatic error code:\n  * `404` - Resource was not found.\n"
+        message:
+          description: A human readable description of the problem
+          example: Resource was not found.
+          type: string
+    error-405:
+      title: Error 405 - Method Not Allowed
+      description: The request method is known by the server but has been disabled and cannot be used.
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 405
+          type: number
+          enum:
+          - 405
+          description: "A programmatic error code:\n  * `405` - Method Not Allowed\n"
+        message:
+          description: A human readable description of the problem
+          example: Method Not Allowed
+          type: string
+  securitySchemes:
+    APIKeyQueryParam:
+      type: apiKey
+      in: query
+      name: apikey

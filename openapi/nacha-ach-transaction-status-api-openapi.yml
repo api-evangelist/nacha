@@ -1,0 +1,732 @@
+openapi: 3.2.0
+info:
+  description: Afinis is a diverse group of organizations working to support advancement and use of API standardization in the financial services industry. Utilization of this API requires a developer to [register](https://www.afinis.org/user/register) their application.
+  version: 1.0.14
+  title: ACH Transaction Status API
+  contact:
+    email: info@afinis.org
+    url: https://www.afinis.org
+servers:
+- url: https://api.afinis.org/v1
+tags:
+- name: ACH Transaction Status
+paths:
+  /payments/ach/status/transactionId/{transactionIdentification}:
+    get:
+      operationId: GetTransactionStatusByTransactionId
+      tags:
+      - ACH Transaction Status
+      summary: Get ACH Transaction status with unique transaction identification
+      description: ACH Transaction status
+      parameters:
+      - name: transactionIdentification
+        in: path
+        required: true
+        description: Unique identification, as assigned by first instructing agent, to unambiguously identify the transaction that is passed on, unchanged, throughout the entire interbank chain. (ODFI assigned ID)
+        schema:
+          type: string
+      - name: Request_Id
+        in: header
+        required: false
+        description: Optional Request ID allows application developer to trace requests through the systems logs
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/transactionStatusSingleResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-401'
+        '404':
+          description: Not Found
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-422'
+        '500':
+          description: Internal Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-500'
+        '503':
+          description: Service unavailable
+      security:
+      - APIKeyQueryParam: []
+  /payments/ach/status/instructionId/{instructionIdentification}:
+    get:
+      operationId: GetTransactionStatusByInstructionId
+      tags:
+      - ACH Transaction Status
+      summary: Get ACH Transaction status with unique instruction identification
+      description: ACH Transaction status
+      parameters:
+      - name: instructionIdentification
+        in: path
+        required: true
+        description: Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction.
+        schema:
+          type: string
+      - name: Request_Id
+        in: header
+        required: false
+        description: Optional Request ID allows application developer to trace requests through the systems logs
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/transactionStatusSingleResponse2'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-401'
+        '404':
+          description: Not Found
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-422'
+        '500':
+          description: Internal Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-500'
+        '503':
+          description: Service unavailable
+      security:
+      - APIKeyQueryParam: []
+  /payments/ach/credit/status:
+    post:
+      tags:
+      - ACH Transaction Status
+      summary: ACH Credit Transaction status
+      description: ACH Credit Transaction status
+      parameters:
+      - name: Request_Id
+        in: header
+        required: false
+        description: Optional Request ID allows application developer to trace requests through the systems logs
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/creditTransactionStatusResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-401'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-422'
+        '500':
+          description: Internal Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-500'
+        '503':
+          description: Service unavailable
+      security:
+      - APIKeyQueryParam: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                paymentInformation:
+                  $ref: '#/components/schemas/creditTransactionStatusRequest'
+        description: ACH Credit Transaction status
+        required: true
+  /payments/ach/debit/status:
+    post:
+      tags:
+      - ACH Transaction Status
+      summary: ACH Debit Transaction status
+      description: ACH Debit Transaction status
+      parameters:
+      - name: Request_Id
+        in: header
+        required: false
+        description: Optional Request ID allows application developer to trace requests through the systems logs
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/debitTransactionStatusResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-401'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-422'
+        '500':
+          description: Internal Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-500'
+        '503':
+          description: Service unavailable
+      security:
+      - APIKeyQueryParam: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                paymentInformation:
+                  $ref: '#/components/schemas/debitTransactionStatusRequest'
+        description: ACH Debit Transaction status
+        required: true
+components:
+  schemas:
+    transactionStatusSingleResponse:
+      title: TransactionStatusResponse
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/transactionstatus'
+        statusReasonInformation:
+          $ref: '#/components/schemas/statusReasonInformation2'
+    creditorAccount:
+      title: CreditorAccount
+      type: object
+      required:
+      - identification
+      properties:
+        identification:
+          description: Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.
+          type: string
+          example: '1234567891'
+          maxLength: 17
+    creditTransactionStatusRequest:
+      title: TransactionStatusRequest
+      type: object
+      properties:
+        debtor:
+          $ref: '#/components/schemas/debtor'
+        requestedExecutionDate:
+          type: string
+          example: '2018-12-12'
+          maxLength: 10
+        dateFrom:
+          type: string
+          maxLength: 10
+          example: '2019-03-01'
+        dateTo:
+          type: string
+          maxLength: 10
+          example: '2019-03-11'
+        instructedAmount:
+          $ref: '#/components/schemas/instructedAmount'
+        minimumAmount:
+          $ref: '#/components/schemas/minimumAmount'
+        maximumAmount:
+          $ref: '#/components/schemas/maximumAmount'
+        creditorAccount:
+          $ref: '#/components/schemas/creditorAccount'
+        creditorAgent:
+          $ref: '#/components/schemas/creditorAgent'
+    error-401:
+      title: 401 Error
+      type: object
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/errorDetails-401'
+    maximumAmount:
+      title: MaximumAmount
+      description: Maximum amount of a transaction history
+      type: object
+      required:
+      - amount
+      - currency
+      properties:
+        amount:
+          type: number
+          example: 100.01
+          maxLength: 11
+        currency:
+          type: string
+          example: USD
+          default: USD
+    errorDetails:
+      title: ErrorDetails
+      type: object
+      properties:
+        errorcode:
+          description: A programmatic error code
+          example: 2000
+          type: string
+          enum:
+          - '2000': null
+            description: Invalid JSON structure.
+          - '2001': null
+            description: “field name” is missing or invalid.
+          - '2002': null
+            description: Invalid date.
+          - '2003': null
+            description: Invalid combination of fields submitted. Check the API specification for eligible combinations.
+          - '2004': null
+            description: “field name” cannot be more than [max] characters.
+        message:
+          description: A human readable description of the problem
+          example: Invalid JSON structure.
+          type: string
+      required:
+      - errorcode
+      - message
+    instructedAmount:
+      title: InstructedAmount
+      description: Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party.
+      type: object
+      required:
+      - amount
+      - currency
+      properties:
+        amount:
+          type: number
+          example: 100.01
+          maxLength: 11
+        currency:
+          type: string
+          example: USD
+          default: USD
+    creditTransactionStatusResponse:
+      title: TransactionStatus
+      type: object
+      properties:
+        debtor:
+          $ref: '#/components/schemas/debtor'
+        requestedExecutionDate:
+          type: string
+          example: '2018-12-12'
+          maxLength: 10
+        dateFrom:
+          type: string
+          maxLength: 10
+          example: '2019-03-01'
+        dateTo:
+          type: string
+          maxLength: 10
+          example: '2019-03-11'
+        instructedAmount:
+          $ref: '#/components/schemas/instructedAmount'
+        minimumAmount:
+          $ref: '#/components/schemas/minimumAmount'
+        maximumAmount:
+          $ref: '#/components/schemas/maximumAmount'
+        creditorAccount:
+          $ref: '#/components/schemas/creditorAccount'
+        creditorAgent:
+          $ref: '#/components/schemas/creditorAgent'
+        transactions:
+          $ref: '#/components/schemas/transactionArray'
+    paymentIdentification:
+      title: PaymentIdentification
+      type: object
+      required:
+      - instructionIdentification
+      properties:
+        instructionIdentification:
+          description: Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. (Originator created ID)
+          type: string
+          example: ABC0928
+          maxLength: 7
+        transactionIdentification:
+          description: Unique identification, as assigned by first instructing agent to unambiguously identify the transaction is passed on, unchanged, throughout the entire interbank chain.
+          type: string
+          example: ABC136/09-15-18
+          maxLength: 22
+    transactionStatusSingleResponse2:
+      title: TransactionStatusResponse
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/transactionstatus'
+        statusReasonInformation:
+          $ref: '#/components/schemas/statusReasonInformation2'
+    transactionstatus3:
+      type: string
+      example: RJCT
+      enum:
+      - RCVD
+      - PDNG
+      - ACSP
+      - OHLD
+      - RJCT
+      - ACWC
+      - FAIL
+    debtorAgent:
+      title: DebtorAgent
+      type: object
+      description: Financial institution servicing an account for the debtor.
+      required:
+      - clearingSystemIdentification
+      - memberIdentification
+      properties:
+        clearingSystemIdentification:
+          description: Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed
+          type: string
+          example: USABA
+          enum:
+          - CACPA: null
+            description: Bank Branch Code used in Canada.
+          - USABA: null
+            description: Routing Transit number assigned by the ABA for US financial Institutions.
+        memberIdentification:
+          description: Identification of a member of a clearing system  e.g., a U.S. transit routing number or Canadian Payments Association Routing Number
+          type: string
+          minLength: 9
+          maxLength: 9
+          example: 061103852
+    minimumAmount:
+      title: MinimumAmount
+      description: Miniumum amount of a transaction history
+      type: object
+      required:
+      - amount
+      - currency
+      properties:
+        amount:
+          type: number
+          example: 100.01
+          maxLength: 10
+        currency:
+          type: string
+          example: USD
+          default: USD
+    error-500:
+      title: 500 Error
+      type: object
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/errorDetails-500'
+    debitTransactionStatusResponse:
+      title: TransactionStatus
+      type: object
+      properties:
+        creditor:
+          $ref: '#/components/schemas/creditor'
+        requestedCollectionDate:
+          description: Date and time at which the creditor requests that the amount of money is to be collected from the debtor
+          type: string
+          maxLength: 10
+          example: '2018-12-12'
+        dateFrom:
+          type: string
+          maxLength: 10
+          example: '2019-03-01'
+        dateTo:
+          type: string
+          maxLength: 10
+          example: '2019-03-11'
+        instructedAmount:
+          $ref: '#/components/schemas/instructedAmount'
+        minimumAmount:
+          $ref: '#/components/schemas/minimumAmount'
+        maximumAmount:
+          $ref: '#/components/schemas/maximumAmount'
+        debtorAccount:
+          $ref: '#/components/schemas/debtorAccount'
+        debtorAgent:
+          $ref: '#/components/schemas/debtorAgent'
+        transactions:
+          $ref: '#/components/schemas/transactionArray2'
+    debtorAccount:
+      title: DebtorAccount
+      type: object
+      required:
+      - identification
+      properties:
+        identification:
+          description: Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.
+          type: string
+          example: '1234567891'
+          maxLength: 17
+    transactionArray:
+      title: Transactions
+      type: array
+      items:
+        type: object
+        properties:
+          paymentIdentification:
+            $ref: '#/components/schemas/paymentIdentification'
+          status:
+            $ref: '#/components/schemas/transactionstatus3'
+          statusReasonInformation:
+            $ref: '#/components/schemas/statusReasonInformation'
+    error-422:
+      title: 422 Error
+      type: object
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/errorDetails-422'
+    debitTransactionStatusRequest:
+      title: TransactionStatusRequest
+      type: object
+      properties:
+        creditor:
+          $ref: '#/components/schemas/creditor'
+        requestedCollectionDate:
+          description: Date and time at which the creditor requests that the amount of money is to be collected from the debtor
+          type: string
+          maxLength: 10
+          example: '2018-12-12'
+        dateFrom:
+          type: string
+          maxLength: 10
+          example: '2019-03-01'
+        dateTo:
+          type: string
+          maxLength: 10
+          example: '2019-03-11'
+        instructedAmount:
+          $ref: '#/components/schemas/instructedAmount'
+        minimumAmount:
+          $ref: '#/components/schemas/minimumAmount'
+        maximumAmount:
+          $ref: '#/components/schemas/maximumAmount'
+        debtorAccount:
+          $ref: '#/components/schemas/debtorAccount'
+        debtorAgent:
+          $ref: '#/components/schemas/debtorAgent'
+    creditor:
+      title: Creditor
+      type: object
+      description: Party to which an amount of money is due.
+      required:
+      - identification
+      properties:
+        identification:
+          description: Identification assigned by an institution
+          type: string
+          example: '1234567891'
+          maxLength: 10
+    statusReasonInformation2:
+      type: object
+      properties:
+        reason:
+          type: string
+          example: NARR
+        additionalInformation:
+          type: string
+          example: C01
+        statusDate:
+          type: string
+          example: '2019-02-20'
+    transactionstatus:
+      type: string
+      example: ACWC
+      enum:
+      - RCVD
+      - PDNG
+      - ACSP
+      - OHLD
+      - RJCT
+      - ACWC
+      - FAIL
+    errorDetails-401:
+      title: 401 ErrorDetails
+      type: object
+      properties:
+        errorcode:
+          description: A programmatic error code
+          example: 1000
+          type: number
+          enum:
+          - '1000': null
+            description: API key is missing, invalid or expired.
+          - '1001': null
+            description: API token is invalid, expired, or account associated with key does not have access to that API.
+        message:
+          description: A human readable description of the problem
+          example: API key is missing, invalid or expired.
+          type: string
+      required:
+      - errorcode
+      - message
+    debtor:
+      title: Debtor
+      type: object
+      description: Party that owes an amount of money to the (ultimate) creditor.
+      required:
+      - identification
+      properties:
+        identification:
+          description: Identification assigned by an institution
+          type: string
+          example: '1234567891'
+          maxLength: 10
+    errorDetails-500:
+      title: 500 ErrorDetails
+      type: object
+      properties:
+        errorcode:
+          description: A programmatic error code
+          example: 3001
+          type: number
+          enum:
+          - '3001': null
+            description: Internal Server error.
+        message:
+          description: A human readable description of the problem
+          example: Internal Server error
+          type: string
+      required:
+      - errorcode
+      - message
+    transactionArray2:
+      title: Transactions
+      type: array
+      items:
+        type: object
+        properties:
+          paymentIdentification:
+            $ref: '#/components/schemas/paymentIdentification'
+          status:
+            $ref: '#/components/schemas/transactionstatus3'
+          statusReasonInformation:
+            $ref: '#/components/schemas/statusReasonInformation'
+    error:
+      title: Error
+      type: object
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/errorDetails'
+    creditorAgent:
+      title: CreditorAgent
+      type: object
+      description: Financial institution servicing an account for the creditor.
+      required:
+      - memberIdentification
+      - clearingSystemIdentification
+      properties:
+        clearingSystemIdentification:
+          description: Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed
+          type: string
+          example: USABA
+          enum:
+          - CACPA: null
+            description: Bank Branch Code used in Canada.
+          - USABA: null
+            description: Routing Transit number assigned by the ABA for US financial Institutions.
+        memberIdentification:
+          description: Identification of a member of a clearing system  e.g., a U.S. transit routing number or Canadian Payments Association Routing Number
+          type: string
+          minLength: 9
+          maxLength: 9
+          example: 061103852
+    statusReasonInformation:
+      type: object
+      properties:
+        reason:
+          type: string
+          example: NARR
+        additionalInformation:
+          type: string
+          example: R12
+        statusDate:
+          type: string
+          example: '2019-02-20'
+    errorDetails-422:
+      title: 422 ErrorDetails
+      type: object
+      properties:
+        errorcode:
+          description: A programmatic error code
+          example: 4001
+          type: number
+          enum:
+          - '4001': null
+            description: Unprocessable request due to "%%"
+        message:
+          description: A human readable description of the problem
+          example: Unprocessable request due to duplicate records
+          type: string
+      required:
+      - errorcode
+      - message
+  securitySchemes:
+    APIKeyQueryParam:
+      type: apiKey
+      in: query
+      name: apikey

@@ -1,0 +1,474 @@
+openapi: 3.2.0
+info:
+  description: Afinis is a diverse group of organizations working to support advancement and use of API standardization in the financial services industry. Utilization of this API requires a developer to [register](https://www.afinis.org/user/register) their application.
+  version: 1.0.11
+  title: Pay Me Route Billing Information API
+  contact:
+    email: info@afinis.org
+    url: https://www.afinis.org
+servers:
+- url: https://api.afinis.org/ASIG/Pay_Me_API/1.0.10
+tags:
+- name: Route Billing Information
+paths:
+  /accounts/payers/bill:
+    post:
+      operationId: Route Billing Information
+      tags:
+      - Route Billing Information
+      summary: Enable a biller to route billing information electronically to any customer through any network.
+      description: Route Billing Information
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/created'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/badRequest'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unauthorized'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/notFound'
+        '500':
+          description: Internal Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/internalServerError'
+      security:
+      - APIKeyQueryParam: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - primaryIdentifier
+              properties:
+                primaryIdentifier:
+                  $ref: '#/components/schemas/primaryIdentifier'
+                secondaryIdentifier:
+                  $ref: '#/components/schemas/secondaryIdentifier'
+                creditor:
+                  $ref: '#/components/schemas/creditor'
+                minimumAmount:
+                  $ref: '#/components/schemas/minimumAmount'
+                instructedAmount:
+                  $ref: '#/components/schemas/instructedAmount'
+                requestedExecutionDate:
+                  description: Date at which the initiating party requests the clearing agent to process the payment
+                  type: string
+                  format: date
+                  example: '2020-12-24'
+                debtor:
+                  $ref: '#/components/schemas/debtor'
+                paymentIdentification:
+                  $ref: '#/components/schemas/paymentIdentification'
+                locationAndContact:
+                  $ref: '#/components/schemas/locationAndContact'
+                remittanceInformation:
+                  $ref: '#/components/schemas/remittanceInformation'
+        description: Route Billing Information
+        required: true
+components:
+  schemas:
+    unauthorized:
+      title: Unauthorized
+      type: object
+      description: 401 - Unauthorized
+      required:
+      - detail
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/unauthorizedErrorDetails'
+    unauthorizedErrorDetails:
+      title: Unauthorized Error Details
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 1000
+          type: number
+          enum:
+          - 1000
+          - 1001
+          description: "A programmatic error code:\n  * `1000` - API key is missing, invalid or expired. \n  * `1001` - API token is invalid, expired, or account associated with key does not have access to that API.\n"
+        message:
+          description: A human readable description of the problem
+          example: API key is missing, invalid or expired.
+          type: string
+    created:
+      title: Created
+      type: object
+      description: 201 - Success - Created
+      required:
+      - detail
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/createdDetails'
+    badRequest:
+      title: Bad Request
+      type: object
+      description: 400 - Bad Request
+      required:
+      - detail
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/badRequestErrorDetails'
+    notFound:
+      title: Not Found
+      description: 404 - Resource was not found.
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 404
+          type: number
+          enum:
+          - 404
+          description: "A programmatic error code:\n  * `404` - Resource was not found.\n"
+        message:
+          description: A human readable description of the problem
+          example: Resource was not found.
+          type: string
+    instructedAmount:
+      title: Instructed Amount
+      description: Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party
+      type: object
+      required:
+      - amount
+      - currency
+      properties:
+        amount:
+          type: number
+          example: 1.01
+          maxLength: 11
+        currency:
+          type: string
+          example: USD
+          enum:
+          - USD
+    paymentIdentification:
+      title: Payment Identification
+      description: Unique identifier generated by the biller, which can be used for reconciliation purpose and to link a payment to the original bill.
+      type: object
+      required:
+      - endToEndIdentification
+      properties:
+        endToEndIdentification:
+          description: Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain.
+          type: string
+          example: ABC123
+          maxLength: 35
+    other:
+      type: object
+      required:
+      - channelType
+      - identification
+      properties:
+        channelType:
+          type: string
+          example: EXT
+          enum:
+          - EXT
+          description: "Name of the identification scheme:\n   * `EXT` - Phone Number Extension\n"
+        identification:
+          description: Contact details in another form.
+          type: string
+          maxLength: 128
+          example: null
+    postalAddress:
+      description: Information that locates and identifies a specific address, as defined by postal services.
+      type: object
+      properties:
+        streetName:
+          description: Name of a street or throughfare
+          type: string
+          maxLength: 70
+          example: Lexington Street
+        postCode:
+          description: Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail
+          type: string
+          maxLength: 11
+          example: 19801
+        townName:
+          description: Name of a built-up area, with defined boundaries, and a local government
+          type: string
+          maxLength: 35
+          example: Wilmington
+        countrySubDivision:
+          description: Identifies a subdivision of a country such as state, region, county
+          type: string
+          maxLength: 35
+          example: DE
+        country:
+          description: Nation with its own government
+          type: string
+          minLength: 2
+          maxLength: 2
+          example: US
+    secondaryIdentifier:
+      title: secondaryIdentifier
+      type: object
+      description: Secondary Unique Identifier
+      properties:
+        debtor:
+          $ref: '#/components/schemas/debtor'
+    internalServerError:
+      title: Internal Server Error
+      description: 500 - Internal Server Error
+      type: object
+      required:
+      - detail
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/internalServerErrorDetails'
+    debtorAgent:
+      title: Debtor Agent
+      description: Financial institution servicing an account for the debtor
+      type: object
+      required:
+      - clearingSystemIdentification
+      - memberIdentification
+      properties:
+        clearingSystemIdentification:
+          type: string
+          example: USABA
+          enum:
+          - USABA
+          description: "Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed:  \n * `USABA` - Routing Transit number assigned by the ABA for US financial Institutions. \n"
+        memberIdentification:
+          description: Identification of a member of a clearing system  e.g., a U.S. transit routing number or Canadian Payments Association Routing Number.
+          type: string
+          maxLength: 35
+          example: 061103852
+    minimumAmount:
+      title: Minimum Amount
+      description: Minimum amount of payment accepted by supplier for the payment type selected
+      type: object
+      required:
+      - amount
+      - currency
+      properties:
+        amount:
+          type: number
+          example: 1.01
+          maxLength: 11
+        currency:
+          type: string
+          example: USD
+          enum:
+          - USD
+    primaryIdentifier:
+      title: primaryIdentifier
+      type: object
+      description: Primary Unique Identifier
+      properties:
+        debtorAgent:
+          $ref: '#/components/schemas/debtorAgent'
+        debtorAccount:
+          $ref: '#/components/schemas/debtorAccount'
+        debtor:
+          $ref: '#/components/schemas/debtor'
+    remittanceInformation:
+      title: RemittanceInformation
+      description: Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system
+      type: object
+      required:
+      - unstructured
+      properties:
+        unstructured:
+          description: Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form
+          type: string
+          example: Invoice# 1234
+          maxLength: 140
+    createdDetails:
+      title: Request Successful Details
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          example: CRTD
+          type: string
+          enum:
+          - CRTD
+          description: "A programmatic error code:\n  * `CRTD` - Created\n"
+        message:
+          description: A human readable response message.
+          example: The request has been fulfilled
+          type: string
+    debtorAccount:
+      title: Debtor Account
+      description: Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.
+      type: object
+      properties:
+        identification:
+          description: Unique and unambiguous identification for the account between the account owner and the account servicer.
+          type: string
+          example: '1234567891'
+          maxLength: 34
+        proxy:
+          description: Specifies an alternate assumed name for the identification of the account.
+          type: object
+          required:
+          - type
+          - identification
+          properties:
+            type:
+              type: string
+              enum:
+              - EMAL
+              - MBNO
+              description: "Identification used to indicate the account identification:\n * `EMAL` - Email - Receiver's Email\n * `MBNO` - Mobile Number - Receiver's Phone Number\n"
+              example: EMAL
+            identification:
+              description: Identification used to indicate the account identification under another specified name.
+              type: string
+              example: bob.jones@gmail.com
+    locationAndContact:
+      title: LocationAndContact
+      description: Location and contact information of the merchant (business) performing the transaction
+      type: object
+      required:
+      - URLAddress
+      properties:
+        URLAddress:
+          type: string
+          example: https://www.energy.com/welcome
+          maxLength: 256
+    creditor:
+      title: Creditor
+      type: object
+      description: Party to which an amount of money is due.
+      required:
+      - name
+      properties:
+        name:
+          description: Name by which a party is known and which is usually used to identify that party.
+          type: string
+          maxLength: 140
+          example: Tele Co. ABC
+        postalAddress:
+          $ref: '#/components/schemas/postalAddress'
+        contactDetails:
+          $ref: '#/components/schemas/contactDetails'
+    contactDetails:
+      type: object
+      required:
+      - phoneNumber
+      properties:
+        phoneNumber:
+          description: Collection of information that identifies a phone number, as defined by telecom services.
+          type: string
+          maxLength: 30
+          example: +1-302-515-5000
+        other:
+          $ref: '#/components/schemas/other'
+    internalServerErrorDetails:
+      title: Internal Server Error Details
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 3001
+          type: number
+          enum:
+          - 3001
+          description: "A programmatic error code:\n  * `3001` - Internal Server error.\n"
+        message:
+          description: A human readable description of the problem
+          example: Internal Server error
+          type: string
+    debtor:
+      title: Debtor
+      type: object
+      description: Party that owes an amount of money to the (ultimate) creditor.
+      properties:
+        name:
+          description: Name by which a party is known and which is usually used to identify that party.
+          type: string
+          maxLength: 140
+          example: Bob Jones
+        identification:
+          description: Identification assigned by an institution
+          type: string
+          maxLength: 35
+          example: 1234567891
+        schemeName:
+          type: string
+          example: CUST
+          enum:
+          - CUST
+          - TXID
+          - Other
+          - Biller Access Code
+          - TrucTXID
+          - Other Secondary
+          description: "Name of the identification scheme:\n   * `CUST` - CustomerIdentificationNumber, Number assigned by an issuer to identify a customer\n   * `TXID` - TaxIdentificationNumber, Number assigned by a tax authority to identify a person\n   * `Other` - Other Identifier\n   * `Biller Access Code` - Biller Access Cod\n   * `TrucTXID` - Truncated TaxIdentificationNumber\n   * `Other Secondary` - Secondary Other Identifier\n"
+        postalAddress:
+          $ref: '#/components/schemas/postalAddress'
+        birthDate:
+          description: Date on which a person is born
+          type: string
+          format: date
+          example: '2020-06-24'
+    badRequestErrorDetails:
+      title: Bad Request Error Details
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          description: "A programmatic error code:\n  * `2000` - Invalid JSON structure.\n  * `2001` - '[Field name] is missing or invalid.'\n  * `2002` - Invalid date.\n  * `2003` - Invalid combination of fields submitted. Check the API specification for eligible combinations. \n  * `2004` - '[Field name] cannot be more than [max number] characters.'\n"
+          example: 2000
+          type: number
+          enum:
+          - 2000
+          - 2001
+          - 2002
+          - 2003
+          - 2004
+        message:
+          description: A human readable description of the problem
+          example: Invalid JSON structure.
+          type: string
+  securitySchemes:
+    APIKeyQueryParam:
+      type: apiKey
+      in: query
+      name: apikey

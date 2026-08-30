@@ -1,0 +1,1254 @@
+openapi: 3.2.0
+info:
+  title: Nacha International ACH Remittance (IAR) API
+  version: 1.0.1
+  contact:
+    email: info@afinis.org
+    url: https://www.afinis.org
+  description: 'Operations tagged International ACH Remittance (IAR) across 2 of this provider''s published API definitions: nacha-iar-plus.json, nacha-iar.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.asig.org/payments/v1
+tags:
+- name: International ACH Remittance (IAR)
+paths:
+  /iarplus:
+    post:
+      operationId: International ACH Remittance
+      tags:
+      - International ACH Remittance (IAR)
+      summary: Send all information known about the transaction’s parties prior to the sending of the IAT
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response-200'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-400'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-401'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-403'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-404'
+        '405':
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-405'
+        '406':
+          description: Not Acceptable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-406'
+        '415':
+          description: Unsupported Media Type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-415'
+        '422':
+          description: Unprocessable request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-422'
+        '500':
+          description: Internal Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-500'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-503'
+      security:
+      - APIKeyQueryParam: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - debtor
+              - debtorAgent
+              - creditor
+              - creditorAgent
+              properties:
+                ultimateDebtor:
+                  $ref: '#/components/schemas/party'
+                initiatingParty:
+                  $ref: '#/components/schemas/party'
+                debtor:
+                  $ref: '#/components/schemas/party'
+                debtorAccount:
+                  $ref: '#/components/schemas/account'
+                debtorAgent:
+                  $ref: '#/components/schemas/agent'
+                debtorAgentAccount:
+                  $ref: '#/components/schemas/account'
+                previousInstructingAgent:
+                  $ref: '#/components/schemas/agent'
+                previousInstructingAgentAccount:
+                  $ref: '#/components/schemas/account'
+                intermediaryAgent:
+                  $ref: '#/components/schemas/agent'
+                intermediaryAgentAccount:
+                  $ref: '#/components/schemas/account'
+                creditorAgent:
+                  $ref: '#/components/schemas/agent'
+                creditorAgentAccount:
+                  $ref: '#/components/schemas/account'
+                creditor:
+                  $ref: '#/components/schemas/party'
+                creditorAccount:
+                  $ref: '#/components/schemas/account'
+                ultimateCreditor:
+                  $ref: '#/components/schemas/party'
+                instructionForCreditorAgent:
+                  $ref: '#/components/schemas/agent'
+                remittanceInformation:
+                  $ref: '#/components/schemas/remittanceInformation'
+        required: true
+    servers:
+    - url: https://api.asig.org/payments/v1
+  /iar:
+    post:
+      operationId: International ACH Remittance
+      tags:
+      - International ACH Remittance (IAR)
+      summary: Send all information known about the transaction’s parties prior to the sending of the IAT
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response-200'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-400'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-401'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-403'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-404'
+        '405':
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-405'
+        '406':
+          description: Not Acceptable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-406'
+        '415':
+          description: Unsupported Media Type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-415'
+        '422':
+          description: Unprocessable request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-422'
+        '500':
+          description: Internal Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-500'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error-503'
+      security:
+      - APIKeyQueryParam: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - debtor
+              - debtorAgent
+              - creditor
+              - creditorAgent
+              properties:
+                ultimateDebtor:
+                  $ref: '#/components/schemas/party'
+                initiatingParty:
+                  $ref: '#/components/schemas/party'
+                debtor:
+                  $ref: '#/components/schemas/party'
+                debtorAccount:
+                  $ref: '#/components/schemas/account'
+                debtorAgent:
+                  $ref: '#/components/schemas/agent'
+                debtorAgentAccount:
+                  $ref: '#/components/schemas/account'
+                previousInstructingAgent:
+                  $ref: '#/components/schemas/agent'
+                previousInstructingAgentAccount:
+                  $ref: '#/components/schemas/account'
+                intermediaryAgent:
+                  $ref: '#/components/schemas/agent'
+                intermediaryAgentAccount:
+                  $ref: '#/components/schemas/account'
+                creditorAgent:
+                  $ref: '#/components/schemas/agent'
+                creditorAgentAccount:
+                  $ref: '#/components/schemas/account'
+                creditor:
+                  $ref: '#/components/schemas/party'
+                creditorAccount:
+                  $ref: '#/components/schemas/account'
+                ultimateCreditor:
+                  $ref: '#/components/schemas/party'
+                instructionForCreditorAgent:
+                  $ref: '#/components/schemas/agent'
+        required: true
+    servers:
+    - url: https://api.asig.org/payments/v1
+components:
+  schemas:
+    amountAndType:
+      title: AmountAndType
+      type: array
+      items:
+        type: object
+        properties:
+          typeCode:
+            type: string
+            minLength: 1
+            maxLength: 35
+          amount:
+            $ref: '#/components/schemas/amount'
+    taxPeriod:
+      title: Period
+      type: object
+      description: Party to which the tax applies.
+      properties:
+        year:
+          type: string
+          minLength: 4
+          maxLength: 10
+        type:
+          type: string
+          minLength: 4
+          maxLength: 4
+        taxType:
+          type: string
+          minLength: 1
+          maxLength: 35
+        fromDate:
+          type: string
+          minLength: 10
+          maxLength: 10
+        toDate:
+          type: string
+          minLength: 10
+          maxLength: 10
+    errorDetails-400:
+      title: Error 400 - Bad Request - Details
+      type: object
+      properties:
+        errorCode:
+          description: "A programmatic error code:\n  * `2000` - Invalid JSON structure.\n  * `2001` - '[Field name] is missing or invalid.'\n  * `2002` - Invalid date.\n  * `2003` - Invalid combination of fields submitted. Check the API specification for eligible combinations. \n  * `2004` - '[Field name] cannot be more than [max number] characters.'\n"
+          example: 2000
+          type: number
+          enum:
+          - 2000
+          - 2001
+          - 2002
+          - 2003
+          - 2004
+        message:
+          description: A human readable description of the problem
+          example: Invalid JSON structure.
+          type: string
+    error-401:
+      title: Error 401 - Unauthorized
+      description: Authentication failed or user doesn’t have permissions for requested operation
+      type: object
+      properties:
+        details:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/errorDetails-401'
+    party:
+      title: Party
+      type: object
+      description: Identification of a person or an organisation
+      properties:
+        name:
+          description: Name by which a party is known and which is usually used to identify that party.
+          type: string
+          example: Company ABC
+          minLength: 1
+          maxLength: 140
+        postalAddress:
+          $ref: '#/components/schemas/postalAddress'
+        organisationIdentification:
+          $ref: '#/components/schemas/organisationIdentification'
+        privateIdentification:
+          $ref: '#/components/schemas/privateIdentification'
+        countryOfResidence:
+          type: string
+          example: CA
+          minLength: 2
+          maxLength: 2
+        contactDetails:
+          $ref: '#/components/schemas/contactDetails'
+    organisationIdentification:
+      title: Organisation Identification
+      type: object
+      description: Identification of an organisation
+      properties:
+        anyBIC:
+          type: string
+          example: NDEAFIHH
+          minLength: 8
+          maxLength: 11
+        LEI:
+          type: string
+          minLength: 20
+          maxLength: 20
+        identification:
+          type: string
+          example: '1234567891'
+          minLength: 1
+          maxLength: 35
+        schemeName:
+          type: string
+          minLength: 1
+          maxLength: 35
+        issuer:
+          type: string
+          minLength: 1
+          maxLength: 35
+    amountAndReason:
+      title: AdjustmentAmountAndReason
+      type: array
+      items:
+        type: object
+        properties:
+          amount:
+            $ref: '#/components/schemas/amount'
+          creditDebitIndicator:
+            type: string
+            minLength: 4
+            maxLength: 4
+            enum:
+            - CRDT
+            - DBIT
+            description: "A programmatic code:\n  * `CRDT - Operation is an increase.\n  * `DBIT - Operation is a decrease.\n"
+          reason:
+            type: string
+            minLength: 1
+            maxLength: 4
+          additionalInformation:
+            type: string
+            minLength: 1
+            maxLength: 140
+    accountIdentification:
+      title: Account Identification
+      type: object
+      description: Identification of an organisation
+      properties:
+        IBAN:
+          description: International Bank Account Number (IBAN) - identifier used internationally by financial institutions to uniquely identify the account of a customer.
+          type: string
+          example: FI0154367822126
+          minLength: 5
+          maxLength: 35
+        otherIdentification:
+          description: Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.
+          type: string
+          example: '111010151'
+          maxLength: 17
+        otherSchemeName:
+          type: string
+          minLength: 1
+          maxLength: 35
+        otherIssuer:
+          type: string
+          minLength: 1
+          maxLength: 35
+    postalAddress:
+      title: Postal Address
+      description: Information that locates and identifies a specific address, as defined by postal services.
+      type: object
+      properties:
+        addressTypeIdentification:
+          type: string
+          minLength: 4
+          maxLength: 4
+          example: ADDR
+        addressTypeSchemeName:
+          type: string
+          minLength: 1
+          maxLength: 35
+        addressTypeIssuer:
+          type: string
+          minLength: 1
+          maxLength: 35
+        department:
+          type: string
+          minLength: 1
+          maxLength: 70
+        subDepartment:
+          type: string
+          minLength: 1
+          maxLength: 70
+        streetName:
+          description: Name of a street or throughfare
+          type: string
+          minLength: 1
+          maxLength: 70
+          example: Lexington Street
+        buildingNumber:
+          type: string
+          minLength: 1
+          maxLength: 16
+        buildingName:
+          type: string
+          minLength: 1
+          maxLength: 35
+        floor:
+          type: string
+          minLength: 1
+          maxLength: 70
+        postBox:
+          type: string
+          minLength: 1
+          maxLength: 16
+        room:
+          type: string
+          minLength: 1
+          maxLength: 70
+        postCode:
+          description: Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail
+          type: string
+          minLength: 1
+          maxLength: 11
+          example: 19801
+        townName:
+          description: Name of a built-up area, with defined boundaries, and a local government
+          type: string
+          minLength: 1
+          maxLength: 35
+          example: Wilmington
+        townLocationName:
+          type: string
+          minLength: 1
+          maxLength: 35
+        districtName:
+          type: string
+          minLength: 1
+          maxLength: 35
+        countrySubDivision:
+          description: Identifies a subdivision of a country such as state, region, county
+          type: string
+          minLength: 1
+          maxLength: 35
+          example: DE
+        country:
+          description: Nation with its own government
+          type: string
+          minLength: 2
+          maxLength: 2
+          example: US
+        addressLine:
+          type: array
+          minItems: 1
+          maxItems: 7
+          items:
+            type: string
+            minLength: 1
+            maxLength: 70
+    error-503:
+      title: Error 503 - Service Unavailable
+      description: Service is temporarily unavailable
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 503
+          type: number
+          enum:
+          - 503
+          description: "A programmatic error code:\n  * `503` - Service Unavailable\n"
+        message:
+          description: A human readable description of the problem
+          example: Service is temporarily unavailable.
+          type: string
+    unprocessableRequestErrorDetails:
+      title: Unprocessable request Error Details
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 4001
+          type: number
+          enum:
+          - 4001
+          description: "A programmatic error code:\n  * `4001` - Unprocessable request due to \"%%\"\n"
+        message:
+          description: A human readable description of the problem
+          example: Unprocessable request due to "%%"
+          type: string
+    taxRemittance:
+      title: TaxRemittance
+      type: object
+      description: Provides remittance information about a payment made for tax-related purposes.
+      properties:
+        creditor:
+          $ref: '#/components/schemas/taxParty'
+        debtor:
+          $ref: '#/components/schemas/taxParty'
+        ultimateDebtor:
+          $ref: '#/components/schemas/taxParty'
+        administrationZone:
+          type: string
+          minLength: 1
+          maxLength: 35
+        referenceNumber:
+          type: string
+          minLength: 1
+          maxLength: 140
+        method:
+          type: string
+          minLength: 1
+          maxLength: 35
+        totalTaxableBaseAmount:
+          $ref: '#/components/schemas/amount'
+        totalTaxAmount:
+          $ref: '#/components/schemas/amount'
+        date:
+          type: string
+          minLength: 1
+          maxLength: 35
+        sequenceNumber:
+          type: string
+          minLength: 1
+          maxLength: 35
+        record:
+          $ref: '#/components/schemas/taxRecord'
+    error-400:
+      title: Error 400 - Bad Request
+      description: The request could not be understood or required parameters were missing
+      type: object
+      properties:
+        details:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/errorDetails-400'
+    error-415:
+      title: Error 415 - Unsupported Media Type
+      description: The media format of the requested data is not supported by the server, so the server is rejecting the request.
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 415
+          type: number
+          enum:
+          - 415
+          description: "A programmatic error code:\n  * `415` - Unsupported Media Type\n"
+        message:
+          description: A human readable description of the problem
+          example: Unsupported Media Type
+          type: string
+    lineIdentification:
+      title: lineIdentification
+      type: array
+      items:
+        type: object
+        description: Set of elements used to provide the content of the referred document line.
+        properties:
+          typeCode:
+            type: string
+            minLength: 1
+            maxLength: 35
+          typeIssuer:
+            type: string
+            minLength: 1
+            maxLength: 35
+          number:
+            type: string
+            minLength: 1
+            maxLength: 35
+          relatedDate:
+            type: string
+            example: '2021-08-13'
+            minLength: 10
+            maxLength: 10
+    error-403:
+      title: Error 403 - Forbidden
+      description: The client does not have access rights to the content; that is, it is unauthorized, so the server is refusing to give the requested resource. Unlike 401, the client's identity is known to the server.
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 403
+          type: number
+          enum:
+          - 403
+          description: "A programmatic error code:\n  * `403` - Forbidden\n"
+        message:
+          description: A human readable description of the problem
+          example: Forbidden
+          type: string
+    remittanceAmount:
+      title: RemittanceAmount
+      type: object
+      description: Provides details on the amounts.
+      properties:
+        duePayableAmount:
+          $ref: '#/components/schemas/amount'
+        discountAppliedAmount:
+          $ref: '#/components/schemas/amountAndType'
+        creditNoteAmount:
+          $ref: '#/components/schemas/amount'
+        taxAmt:
+          $ref: '#/components/schemas/amountAndType'
+        adjustmentAmountAndReason:
+          $ref: '#/components/schemas/amountAndReason'
+        remittedAmount:
+          $ref: '#/components/schemas/amount'
+    error-500:
+      title: Internal Server Error
+      description: 500 - Internal Server Error
+      type: object
+      required:
+      - details
+      properties:
+        details:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/internalServerErrorDetails'
+    remittanceInformation:
+      title: RemittanceInformation
+      description: Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.
+      type: object
+      properties:
+        unstructured:
+          type: array
+          items:
+            type: string
+            example: Payment for Example Invoice 1234
+            minLength: 1
+            maxLength: 140
+        structured:
+          $ref: '#/components/schemas/structuredRemittanceInformation'
+    error-422:
+      title: Unprocessable request
+      description: 422 - Unprocessable request
+      type: object
+      required:
+      - details
+      properties:
+        details:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/unprocessableRequestErrorDetails'
+    branchData:
+      title: Branch Data
+      type: object
+      description: Identifies a specific branch of a financial institution.
+      properties:
+        identification:
+          description: Unique and unambiguous identification of a branch of a financial institution.
+          type: string
+          example: '1234567891'
+          minLength: 1
+          maxLength: 35
+        LEI:
+          description: Legal entity identifier of the financial institution.
+          type: string
+          minLength: 20
+          maxLength: 20
+        name:
+          description: Name by which an agent is known and which is usually used to identify that agent.
+          type: string
+          minLength: 1
+          maxLength: 140
+        postalAddress:
+          $ref: '#/components/schemas/postalAddress'
+    privateIdentification:
+      title: Private Identification
+      type: object
+      description: Unique and unambiguous identification of a person, for example a passport.
+      properties:
+        birthDate:
+          type: string
+          example: '1967-08-13'
+          minLength: 10
+          maxLength: 10
+        provinceOfBirth:
+          type: string
+          example: Ontario
+          minLength: 1
+          maxLength: 35
+        cityOfBirth:
+          type: string
+          example: Toronto
+          minLength: 1
+          maxLength: 35
+        countryOfBirth:
+          type: string
+          example: CA
+          minLength: 2
+          maxLength: 2
+        identification:
+          type: string
+          example: '1234567891'
+          minLength: 1
+          maxLength: 35
+        schemeName:
+          type: string
+          minLength: 1
+          maxLength: 35
+        issuer:
+          type: string
+          minLength: 1
+          maxLength: 35
+    garnishmentRemittance:
+      title: GarnishmentRemittance
+      type: object
+      description: Provides remittance information about a payment for garnishment-related purposes.
+      properties:
+        typeCode:
+          type: string
+          minLength: 1
+          maxLength: 35
+        typeIssuer:
+          type: string
+          minLength: 1
+          maxLength: 35
+        garnishee:
+          $ref: '#/components/schemas/party'
+        garnishmentAdministrator:
+          $ref: '#/components/schemas/party'
+        certificateIdentification:
+          type: string
+          minLength: 1
+          maxLength: 35
+        referenceNumber:
+          type: string
+          minLength: 1
+          maxLength: 140
+        date:
+          type: string
+          minLength: 10
+          maxLength: 10
+        remittedAmount:
+          $ref: '#/components/schemas/amount'
+        familyMedicalInsuranceIndicator:
+          type: boolean
+        employeeTerminationIndicator:
+          type: boolean
+    contactDetails:
+      title: Contact Details
+      type: object
+      description: Set of elements used to indicate how to contact the party.
+      properties:
+        namePrefix:
+          type: string
+          example: DOCT
+          minLength: 4
+          maxLength: 4
+        name:
+          type: string
+          example: John
+          minLength: 1
+          maxLength: 140
+        phoneNumber:
+          type: string
+          minLength: 1
+          maxLength: 30
+        mobileNumber:
+          type: string
+          minLength: 1
+          maxLength: 30
+        faxNumber:
+          type: string
+          minLength: 1
+          maxLength: 30
+        emailAddress:
+          type: string
+          minLength: 1
+          maxLength: 2048
+        emailPurpose:
+          type: string
+          minLength: 1
+          maxLength: 35
+        jobTitle:
+          type: string
+          minLength: 1
+          maxLength: 35
+        responsibility:
+          type: string
+          minLength: 1
+          maxLength: 35
+        department:
+          type: string
+          minLength: 1
+          maxLength: 70
+        channelType:
+          type: string
+          minLength: 1
+          maxLength: 4
+        channelTypeIdentification:
+          type: string
+          minLength: 1
+          maxLength: 128
+        preferredMethod:
+          type: string
+          minLength: 4
+          maxLength: 4
+    amount:
+      title: Amount
+      type: object
+      required:
+      - amount
+      - currency
+      properties:
+        amount:
+          type: number
+          format: float
+          example: 1.01
+          minLength: 1
+          maxLength: 11
+        currency:
+          type: string
+          example: USD
+          default: USD
+    taxParty:
+      title: TaxParty
+      type: object
+      description: Party to which the tax applies.
+      properties:
+        taxIdentification:
+          type: string
+          minLength: 1
+          maxLength: 35
+        registrationIdentification:
+          type: string
+          minLength: 1
+          maxLength: 35
+        taxType:
+          type: string
+          minLength: 1
+          maxLength: 35
+        authorisationTitle:
+          type: string
+          minLength: 1
+          maxLength: 35
+        authorisationName:
+          type: string
+          minLength: 1
+          maxLength: 35
+    lineDetails:
+      title: LineDetails
+      type: array
+      items:
+        type: object
+        description: Set of elements used to provide the content of the referred document line.
+        properties:
+          lineIdentification:
+            $ref: '#/components/schemas/lineIdentification'
+          description:
+            type: string
+            minLength: 1
+            maxLength: 2048
+          amount:
+            $ref: '#/components/schemas/remittanceAmount'
+    errorDetails-401:
+      title: Error 401 - Unauthorized - Details
+      type: object
+      properties:
+        errorCode:
+          example: 1000
+          type: number
+          enum:
+          - 1000
+          - 1001
+          description: "A programmatic error code:\n  * `1000` - API key is missing, invalid or expired. \n  * `1001` - API token is invalid, expired, or account associated with key does not have access to that API.\n"
+        message:
+          description: A human readable description of the problem
+          example: API key is missing, invalid or expired.
+          type: string
+      required:
+      - errorcode
+      - message
+    referredDocumentInformation:
+      title: ReferredDocumentInformation
+      type: array
+      items:
+        type: object
+        description: Provides the identification and the content of the referred document.
+        properties:
+          typeCode:
+            type: string
+            minLength: 1
+            maxLength: 35
+          typeIssuer:
+            type: string
+            minLength: 1
+            maxLength: 35
+          number:
+            type: string
+            minLength: 1
+            maxLength: 35
+          relatedDate:
+            type: string
+            example: '2021-08-13'
+            minLength: 10
+            maxLength: 10
+          lineDetails:
+            $ref: '#/components/schemas/lineDetails'
+    structuredRemittanceInformation:
+      title: Structured
+      description: Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in a structured form.
+      type: array
+      items:
+        type: object
+        properties:
+          referredDocumentInformation:
+            $ref: '#/components/schemas/referredDocumentInformation'
+          referredDocumentAmount:
+            $ref: '#/components/schemas/remittanceAmount'
+          creditorReferenceInformation:
+            $ref: '#/components/schemas/creditorReferenceInformation'
+          invoicer:
+            $ref: '#/components/schemas/party'
+          invoicee:
+            $ref: '#/components/schemas/party'
+          taxRemittance:
+            $ref: '#/components/schemas/taxRemittance'
+          garnishmentRemittance:
+            $ref: '#/components/schemas/garnishmentRemittance'
+          additionalRemittanceInformation:
+            type: array
+            items:
+              type: string
+              minLength: 1
+              maxLength: 140
+    internalServerErrorDetails:
+      title: Internal Server Error Details
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 3001
+          type: number
+          enum:
+          - 3001
+          description: "A programmatic error code:\n  * `3001` - Internal Server error.\n"
+        message:
+          description: A human readable description of the problem
+          example: Internal Server error
+          type: string
+    response-200:
+      title: IAR Response
+      type: object
+      required:
+      - status
+      properties:
+        status:
+          description: Specifies the status
+          type: string
+          example: 'yes'
+          minLength: 1
+          maxLength: 35
+        additionalInformation:
+          description: Additional information
+          type: string
+          example: RCVD
+          minLength: 1
+          maxLength: 140
+    proxyAccountIdentification:
+      title: Proxy
+      type: object
+      description: Specifies an alternate assumed name for the identification of the account.
+      properties:
+        type:
+          description: Type of the proxy identification.
+          type: string
+          minLength: 1
+          maxLength: 35
+        identification:
+          description: Identification used to indicate the account identification under another specified name.
+          type: string
+          example: '1234567891'
+          minLength: 1
+          maxLength: 2028
+    error-406:
+      title: Error 406 - Not Acceptable
+      description: Web server doesn't find any content that conforms to the criteria given by the user agent.
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 406
+          type: number
+          enum:
+          - 406
+          description: "A programmatic error code:\n  * `406` - Not Acceptable\n"
+        message:
+          description: A human readable description of the problem
+          example: Not Acceptable
+          type: string
+    taxRecord:
+      title: Record
+      type: object
+      description: Record of tax details
+      properties:
+        type:
+          type: string
+          minLength: 1
+          maxLength: 35
+        category:
+          type: string
+          minLength: 1
+          maxLength: 35
+        categoryDetails:
+          type: string
+          minLength: 1
+          maxLength: 35
+        debtorStatus:
+          type: string
+          minLength: 1
+          maxLength: 35
+        certificateIdentification:
+          type: string
+          minLength: 1
+          maxLength: 35
+        formsCode:
+          type: string
+          minLength: 1
+          maxLength: 35
+        period:
+          $ref: '#/components/schemas/taxPeriod'
+        taxAmountRate:
+          type: string
+        taxableBaseAmount:
+          $ref: '#/components/schemas/amount'
+        taxTotalAmount:
+          $ref: '#/components/schemas/amount'
+        taxAmountPeriod:
+          $ref: '#/components/schemas/taxPeriod'
+        taxAmount:
+          $ref: '#/components/schemas/amount'
+        additionalInformation:
+          type: array
+          items:
+            type: string
+            minLength: 1
+            maxLength: 140
+    agent:
+      title: Agent
+      description: Identification of a financial institution.
+      type: array
+      items:
+        type: object
+        properties:
+          BICFI:
+            type: string
+            example: NDEAFIHH
+            minLength: 8
+            maxLength: 11
+          clearingSystemIdentification:
+            type: string
+            example: USABA
+            minLength: 1
+            maxLength: 35
+            description: Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed
+          memberIdentification:
+            type: string
+            minLength: 1
+            maxLength: 35
+            example: 061103852
+          LEI:
+            description: Legal entity identifier of the financial institution.
+            type: string
+            minLength: 20
+            maxLength: 20
+          name:
+            description: Name by which an agent is known and which is usually used to identify that agent.
+            type: string
+            minLength: 1
+            maxLength: 140
+          postalAddress:
+            $ref: '#/components/schemas/postalAddress'
+          otherIdentification:
+            type: string
+            example: '1234567891'
+            minLength: 1
+            maxLength: 35
+          otherSchemeName:
+            type: string
+            minLength: 1
+            maxLength: 35
+          otherIssuer:
+            type: string
+            minLength: 1
+            maxLength: 35
+          branchIdentification:
+            $ref: '#/components/schemas/branchData'
+    creditorReferenceInformation:
+      title: CreditorReferenceInformation
+      type: object
+      description: Reference information provided by the creditor to allow the identification of the underlying documents.
+      properties:
+        typeCode:
+          type: string
+          minLength: 1
+          maxLength: 35
+        typeIssuer:
+          type: string
+          minLength: 1
+          maxLength: 35
+        reference:
+          type: string
+          minLength: 1
+          maxLength: 35
+    error-404:
+      title: Error 404 - Not Found
+      description: Resource was not found.
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 404
+          type: number
+          enum:
+          - 404
+          description: "A programmatic error code:\n  * `404` - Resource was not found.\n"
+        message:
+          description: A human readable description of the problem
+          example: Resource was not found.
+          type: string
+    account:
+      title: Account
+      description: Details to identify an account
+      required:
+      - identification
+      type: array
+      items:
+        type: object
+        properties:
+          identification:
+            $ref: '#/components/schemas/accountIdentification'
+          type:
+            description: Specifies the nature, or use of the account.
+            type: string
+            example: '111010151'
+            minLength: 1
+            maxLength: 35
+          currency:
+            description: Identification of the currency in which the account is held.
+            type: string
+            example: USD
+            default: USD
+            minLength: 3
+            maxLength: 3
+          name:
+            description: Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account.
+            type: string
+            example: Company ABC
+            minLength: 1
+            maxLength: 140
+          proxy:
+            $ref: '#/components/schemas/proxyAccountIdentification'
+    error-405:
+      title: Error 405 - Method Not Allowed
+      description: The request method is known by the server but has been disabled and cannot be used.
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 405
+          type: number
+          enum:
+          - 405
+          description: "A programmatic error code:\n  * `405` - Method Not Allowed\n"
+        message:
+          description: A human readable description of the problem
+          example: Method Not Allowed
+          type: string
+  securitySchemes:
+    APIKeyQueryParam:
+      type: apiKey
+      in: query
+      name: apikey
+x-refined-from:
+- nacha-iar-plus.json
+- nacha-iar.json

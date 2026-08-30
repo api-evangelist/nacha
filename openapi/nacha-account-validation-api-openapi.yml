@@ -1,0 +1,326 @@
+openapi: 3.2.0
+info:
+  description: Afinis is a diverse group of organizations working to support advancement and use of API standardization in the financial services industry. Utilization of this API requires a developer to [register](https://www.afinis.org/user/register) their application.
+  version: 1.0.7
+  title: Real Time Billing User Story 1 Account Validation API
+  contact:
+    email: info@afinis.org
+    url: https://www.afinis.org
+servers:
+- url: https://api.afinis.org/v1
+tags:
+- name: Account Validation
+paths:
+  /accounts/payers:
+    post:
+      operationId: Real Time Billing Account Validation
+      tags:
+      - Account Validation
+      summary: Real Time Billing Account Validation
+      description: Real Time Billing Account Validation
+      parameters:
+      - name: Request_Id
+        in: header
+        required: false
+        description: Optional Request ID allows application developer to trace requests through the systems logs
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/badRequest'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unauthorized'
+        '403':
+          description: Access denied, the operation is not allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/forbidden'
+        '404':
+          description: Not Found
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unprocessableEntity'
+        '500':
+          description: Internal Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/internalServerError'
+        '503':
+          description: Service unavailable
+      security:
+      - APIKeyQueryParam: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - creditor
+              - debtor
+              properties:
+                creditor:
+                  $ref: '#/components/schemas/creditor'
+                debtor:
+                  $ref: '#/components/schemas/debtor'
+        description: Billing Account Details
+        required: true
+components:
+  schemas:
+    forbidden:
+      title: Forbidden
+      type: object
+      required:
+      - details
+      properties:
+        details:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/unauthorizedErrorDetails'
+    unauthorized:
+      title: Unauthorized
+      type: object
+      required:
+      - details
+      properties:
+        details:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/unauthorizedErrorDetails'
+    internalServerErrorDetails:
+      title: Internal Server Error Details
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 3001
+          type: number
+          enum:
+          - 3001
+          description: "A programmatic error code:\n  * `3001` - Internal Server error.\n"
+        message:
+          description: A human readable description of the problem
+          example: Internal Server error
+          type: string
+    postalAddress:
+      type: object
+      required:
+      - streetName
+      - postCode
+      - townName
+      - countrySubDivision
+      - country
+      properties:
+        streetName:
+          description: Name of a street or throughfare
+          type: string
+          maxLength: 70
+          example: Lexington Street
+        postCode:
+          description: Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail
+          type: string
+          maxLength: 11
+          example: '19801'
+        townName:
+          description: Name of a built-up area, with defined boundaries, and a local government
+          type: string
+          maxLength: 35
+          example: Wilmington
+        countrySubDivision:
+          description: Identifies a subdivision of a country such as state, region, county
+          type: string
+          maxLength: 35
+          example: DE
+        country:
+          description: Nation with its own government
+          type: string
+          minLength: 2
+          maxLength: 2
+          example: US
+    debtor:
+      title: Debtor
+      type: object
+      required:
+      - identification
+      - schemeName
+      properties:
+        identification:
+          description: Identification assigned by an institution
+          type: string
+          maxLength: 35
+          example: '1234567891'
+        schemeName:
+          type: string
+          default: CUST
+          example: CUST
+    unauthorizedErrorDetails:
+      title: Unauthorized Error Details
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 1000
+          type: number
+          enum:
+          - 1000
+          - 1001
+          description: "A programmatic error code:\n  * `1000` - API key is missing, invalid or expired. \n  * `1001` - API token is invalid, expired, or account associated with key does not have access to that API.\n"
+        message:
+          description: A human readable description of the problem
+          example: API key is missing, invalid or expired.
+          type: string
+    badRequestErrorDetails:
+      title: Bad Request Error Details
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          description: "A programmatic error code:\n  * `2000` - Invalid JSON structure.\n  * `2001` - '[Field name] is missing or invalid.'\n  * `2002` - Invalid date.\n  * `2003` - Invalid combination of fields submitted. Check the API specification for eligible combinations. \n  * `2004` - '[Field name] cannot be more than [max number] characters.'\n"
+          example: 2000
+          type: number
+          enum:
+          - 2000
+          - 2001
+          - 2002
+          - 2003
+          - 2004
+        message:
+          description: A human readable description of the problem
+          example: Invalid JSON structure.
+          type: string
+    internalServerError:
+      title: Internal Server Error
+      type: object
+      required:
+      - details
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/internalServerErrorDetails'
+    unprocessableEntityErrorDetails:
+      title: Unprocessable Entity Error Details
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 4001
+          type: number
+          enum:
+          - 4001
+          description: "A programmatic error code:\n  * `4001` - Unprocessable request due to \"%%\"\n"
+        message:
+          description: A human readable description of the problem
+          example: Unprocessable request due to duplicate records
+          type: string
+    badRequest:
+      title: Bad Request
+      type: object
+      required:
+      - details
+      properties:
+        details:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/badRequestErrorDetails'
+    response:
+      title: Response
+      type: object
+      required:
+      - status
+      - debtor
+      properties:
+        status:
+          type: string
+          example: Invalid
+          enum:
+          - Valid
+          - Invalid
+        statusReasonInformation:
+          $ref: '#/components/schemas/statusReasonInformation'
+        debtor:
+          $ref: '#/components/schemas/debtor'
+    creditor:
+      title: Creditor
+      type: object
+      description: Party to which an amount of money is due
+      required:
+      - name
+      - postalAddress
+      properties:
+        name:
+          type: string
+          example: Tele Co. ABC
+        postalAddress:
+          $ref: '#/components/schemas/postalAddress'
+    unprocessableEntity:
+      title: Unprocessable Entity
+      type: object
+      required:
+      - details
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/unprocessableEntityErrorDetails'
+    statusReasonInformation:
+      title: statusReasonInformation
+      description: Provides detailed information on the status reason
+      type: object
+      required:
+      - reason
+      - description
+      properties:
+        reason:
+          type: string
+          example: AC04
+          enum:
+          - AC04
+          - BE01
+          - AC01
+          - AC06
+          - BE04
+          - NARR
+          description: "Specifies the reason for the status report\n  * `AC04` - Account closed. A previously active account has been closed by action of the customer or the receiver\n  * `BE01` - Unable to locate account/No account. Account number structure is valid and it passes the biller mask validation, but the account number does not correspond to the individual identified in the Entry, or the account number designated is not an existing account i.e., not an open account\n  * `AC01` - Invalid account structure. Account number structure is not valid \n  * `AC06` - BlockedAccount. Account specified is blocked, prohibiting posting of transactions against it\n  * `BE04` - MissingCreditorAddress. Specification of creditor's address, which is required for payment is missing/not correct\n  * `NARR` - Reasons provided in text format          \n  \n"
+        additionalInformation:
+          description: Reasons provided in text format
+          example: Invalid remittance information
+          type: string
+          maxLength: 140
+  securitySchemes:
+    APIKeyQueryParam:
+      type: apiKey
+      in: query
+      name: apikey
