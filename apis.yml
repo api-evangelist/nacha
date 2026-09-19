@@ -1091,6 +1091,8 @@ apis:
   humanURL: https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7
   baseURL: https://api.asig.org/v1
   tags:
+  - Wire Transfers
+  tags_raw:
   - Wire Transfer
   properties:
   - type: OpenAPI
