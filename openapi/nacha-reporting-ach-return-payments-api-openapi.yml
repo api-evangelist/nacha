@@ -201,17 +201,35 @@ paths:
                   minLength: 1
                   maxLength: 35
         required: true
+      summary: Reporting ACH return payments
+      x-summary-source: derived
 components:
   schemas:
-    error-500:
-      title: Error 500 - Internal server error
+    errorDetails-500:
+      title: Error 500 - Internal server error - Details
+      type: object
+      properties:
+        errorcode:
+          description: A programmatic error code
+          example: 3001
+          type: number
+        message:
+          description: A human readable description of the problem
+          example: Internal Server error
+          type: string
+      required:
+      - errorcode
+      - message
+    error-400:
+      title: Error 400 - Bad Request
+      description: The request could not be understood or required parameters were missing
       type: object
       properties:
         detail:
           description: error details
           type: array
           items:
-            $ref: '#/components/schemas/errorDetails-500'
+            $ref: '#/components/schemas/errorDetails-400'
     errorDetails-401:
       title: Error 401 - Unauthorized - Details
       type: object
@@ -248,105 +266,6 @@ components:
           description: A human readable description of the problem
           example: Invalid JSON structure.
           type: string
-    error-401:
-      title: Error 401 - Unauthorized
-      description: Authentication failed or user doesn’t have permissions for requested operation
-      type: object
-      properties:
-        detail:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/errorDetails-401'
-    response-200:
-      title: Response
-      type: object
-      required:
-      - status
-      properties:
-        status:
-          description: Specifies the status
-          type: string
-          example: RCVD
-          minLength: 1
-          maxLength: 140
-    error-503:
-      title: Error 503 - Service Unavailable
-      description: Service is temporarily unavailable
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          example: 503
-          type: number
-          enum:
-          - 503
-          description: "A programmatic error code:\n  * `503` - Service Unavailable\n"
-        message:
-          description: A human readable description of the problem
-          example: Service is temporarily unavailable.
-          type: string
-    errorDetails-500:
-      title: Error 500 - Internal server error - Details
-      type: object
-      properties:
-        errorcode:
-          description: A programmatic error code
-          example: 3001
-          type: number
-        message:
-          description: A human readable description of the problem
-          example: Internal Server error
-          type: string
-      required:
-      - errorcode
-      - message
-    error-400:
-      title: Error 400 - Bad Request
-      description: The request could not be understood or required parameters were missing
-      type: object
-      properties:
-        detail:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/errorDetails-400'
-    agent:
-      title: Agent
-      description: Identification of a financial institution.
-      type: object
-      properties:
-        clearingSystemIdentification:
-          type: string
-          example: USABA
-          enum:
-          - USABA
-          description: "Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed: \n * `USABA` - Routing Transit number assigned by the ABA for US financial Institutions. \n"
-        memberIdentification:
-          type: string
-          minLength: 1
-          maxLength: 35
-          example: 061103852
-    error-404:
-      title: Error 404 - Not Found
-      description: Resource was not found.
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          example: 404
-          type: number
-          enum:
-          - 404
-          description: "A programmatic error code:\n  * `404` - Resource was not found.\n"
-        message:
-          description: A human readable description of the problem
-          example: Resource was not found.
-          type: string
     account:
       title: Account
       description: Details to identify an account
@@ -375,6 +294,89 @@ components:
           - 47
           - 52
           - 55
+    error-503:
+      title: Error 503 - Service Unavailable
+      description: Service is temporarily unavailable
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 503
+          type: number
+          enum:
+          - 503
+          description: "A programmatic error code:\n  * `503` - Service Unavailable\n"
+        message:
+          description: A human readable description of the problem
+          example: Service is temporarily unavailable.
+          type: string
+    error-500:
+      title: Error 500 - Internal server error
+      type: object
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/errorDetails-500'
+    agent:
+      title: Agent
+      description: Identification of a financial institution.
+      type: object
+      properties:
+        clearingSystemIdentification:
+          type: string
+          example: USABA
+          enum:
+          - USABA
+          description: "Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed: \n * `USABA` - Routing Transit number assigned by the ABA for US financial Institutions. \n"
+        memberIdentification:
+          type: string
+          minLength: 1
+          maxLength: 35
+          example: 061103852
+    error-401:
+      title: Error 401 - Unauthorized
+      description: Authentication failed or user doesn’t have permissions for requested operation
+      type: object
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/errorDetails-401'
+    response-200:
+      title: Response
+      type: object
+      required:
+      - status
+      properties:
+        status:
+          description: Specifies the status
+          type: string
+          example: RCVD
+          minLength: 1
+          maxLength: 140
+    error-404:
+      title: Error 404 - Not Found
+      description: Resource was not found.
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 404
+          type: number
+          enum:
+          - 404
+          description: "A programmatic error code:\n  * `404` - Resource was not found.\n"
+        message:
+          description: A human readable description of the problem
+          example: Resource was not found.
+          type: string
   securitySchemes:
     APIKeyQueryParam:
       type: apiKey

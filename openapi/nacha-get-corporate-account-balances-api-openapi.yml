@@ -65,8 +65,76 @@ paths:
                   items:
                     $ref: '#/components/schemas/searchCriteria'
         required: true
+      summary: Get corporate account balances
+      x-summary-source: derived
 components:
   schemas:
+    response:
+      title: Response
+      type: object
+      description: 200 - Response
+      required:
+      - accountReport
+      properties:
+        agent:
+          $ref: '#/components/schemas/agent'
+        accountReport:
+          type: array
+          items:
+            $ref: '#/components/schemas/accountReport'
+    account:
+      title: Account
+      type: object
+      description: Requested information on the account.
+      required:
+      - currency
+      - balance
+      properties:
+        type:
+          type: string
+          example: CASH
+          enum:
+          - CACC
+          - CASH
+          - CHAR
+          - CISH
+          - COMM
+          - CPAC
+          - LLSV
+          - LOAN
+          - MGLD
+          - MOMA
+          - NREX
+          - ODFT
+          - ONDP
+          - OTHR
+          - SACC
+          - SLRY
+          - SVGS
+          - TAXE
+          - TRAN
+          - TRAS
+          description: "Specifies the nature, or use, of the cash account:\n   * `CACC` -   Account used to post debits and credits when no specific account has been nominated.\n   * `CASH` -   Account used for the payment of cash.\n   * `CHAR` -   Account used for charges if different from the account for\n   payment.\n   * `CISH` -   Account used for payment of income if different from the current cash account\n   * `COMM` -   Account used for commission if different from the account\n   for payment.\n   * `CPAC` -   Account used to post settlement debit and credit entries on behalf of a designated Clearing Participant.\n   * `LLSV` -   Account used for savings with special interest and withdrawal terms.  \n   * `LOAN` -   Account used for loans.\n   * `MGLD` -   Account used for a marginal lending facility.\n   * `MOMA` -   Account used for money markets if different from the cash\n   account.\n   * `NREX` -   Account used for non-resident external.\n   * `ODFT` -   Account is used for overdrafts.\n   * `ONDP` -   Account used for overnight deposits.\n   * `OTHR` -   Account not otherwise specified. \n   * `SACC` -   Account used to post debit and credit entries, as a result of transactions cleared and settled through a specific clearing and settlement system.\n   * `SLRY` -   Accounts used for salary payments.\n   * `SVGS` -   Account used for savings.\n   * `TAXE` -   Account used for taxes if different from the account for\n   payment.\n   * `TRAN` -   A transacting account is the most basic type of bank account that you can get. The main difference between transaction and cheque accounts is that you usually do not get a cheque book with your transacting account and neither are you offered an overdraft facility.\n   * `TRAS` -   Account used for trading if different from the current cash\n   account.\n"
+        name:
+          description: Name of the account.
+          type: string
+          maxLength: 70
+          example: Example account
+        currency:
+          type: string
+          example: USD
+          maxLength: 3
+          minLength: 3
+        balance:
+          type: array
+          items:
+            $ref: '#/components/schemas/balance'
+        date:
+          type: string
+          description: Date at which the balance is or will be available.
+          example: '2020-04-29'
+          minLength: 10
+          maxLength: 10
     searchCriteria:
       title: SearchCriteria
       description: Defines the criteria on which the information is extracted
@@ -88,6 +156,57 @@ components:
           example: '2020-05-19'
           minLength: 10
           maxLength: 10
+    badRequest:
+      title: Bad Request
+      type: object
+      description: 400 - Bad Request
+      required:
+      - details
+      properties:
+        details:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/badRequestErrorDetails'
+    agent:
+      title: Agent
+      description: Identification of a financial institution.
+      type: object
+      required:
+      - clearingSystemIdentification
+      - memberIdentification
+      properties:
+        clearingSystemIdentification:
+          type: string
+          example: USABA
+          enum:
+          - USABA
+          description: "Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed: \n * `USABA` - Routing Transit number assigned by the ABA for US financial Institutions. \n"
+        memberIdentification:
+          type: string
+          maxLength: 35
+          example: 061103852
+    badRequestErrorDetails:
+      title: Bad Request Error Details
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          description: "A programmatic error code:\n  * `2000` - Invalid JSON structure.\n  * `2001` - '[Field name] is missing or invalid.'\n  * `2002` - Invalid date.\n  * `2003` - Invalid combination of fields submitted. Check the API specification for eligible combinations. \n  * `2004` - '[Field name] cannot be more than [max number] characters.'\n"
+          example: 2000
+          type: number
+          enum:
+          - 2000
+          - 2001
+          - 2002
+          - 2003
+          - 2004
+        message:
+          description: A human readable description of the problem
+          example: Invalid JSON structure.
+          type: string
     accountIdentification:
       title: accountIdentification
       description: Unique and unambiguous identification for the account between the account owner and the account servicer.
@@ -108,35 +227,17 @@ components:
           - Y
           - N
           description: "Specifies whether the account identification is tokenized:\n  * `Y` - Account is tokenized\n  * `N` - Account is not tokenized\n"
-    unauthorized:
-      title: Unauthorized
+    accountReport:
+      title: Account Report
       type: object
-      description: 401 - Unauthorized
+      description: Account information
       required:
-      - details
+      - account
       properties:
-        details:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/unauthorizedErrorDetails'
-    internalServerErrorDetails:
-      title: Internal Server Error Details
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          example: 3001
-          type: number
-          enum:
-          - 3001
-          description: "A programmatic error code:\n  * `3001` - Internal Server error.\n"
-        message:
-          description: A human readable description of the problem
-          example: Internal Server error
-          type: string
+        accountIdentification:
+          $ref: '#/components/schemas/accountIdentification'
+        account:
+          $ref: '#/components/schemas/account'
     balance:
       title: Balance
       type: object
@@ -192,27 +293,6 @@ components:
           description: A human readable description of the problem
           example: API key is missing, invalid or expired.
           type: string
-    badRequestErrorDetails:
-      title: Bad Request Error Details
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          description: "A programmatic error code:\n  * `2000` - Invalid JSON structure.\n  * `2001` - '[Field name] is missing or invalid.'\n  * `2002` - Invalid date.\n  * `2003` - Invalid combination of fields submitted. Check the API specification for eligible combinations. \n  * `2004` - '[Field name] cannot be more than [max number] characters.'\n"
-          example: 2000
-          type: number
-          enum:
-          - 2000
-          - 2001
-          - 2002
-          - 2003
-          - 2004
-        message:
-          description: A human readable description of the problem
-          example: Invalid JSON structure.
-          type: string
     internalServerError:
       title: Internal Server Error
       description: 500 - Internal Server Error
@@ -225,23 +305,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/internalServerErrorDetails'
-    response:
-      title: Response
+    unauthorized:
+      title: Unauthorized
       type: object
-      description: 200 - Response
-      required:
-      - accountReport
-      properties:
-        agent:
-          $ref: '#/components/schemas/agent'
-        accountReport:
-          type: array
-          items:
-            $ref: '#/components/schemas/accountReport'
-    badRequest:
-      title: Bad Request
-      type: object
-      description: 400 - Bad Request
+      description: 401 - Unauthorized
       required:
       - details
       properties:
@@ -249,89 +316,24 @@ components:
           description: error details
           type: array
           items:
-            $ref: '#/components/schemas/badRequestErrorDetails'
-    accountReport:
-      title: Account Report
-      type: object
-      description: Account information
-      required:
-      - account
-      properties:
-        accountIdentification:
-          $ref: '#/components/schemas/accountIdentification'
-        account:
-          $ref: '#/components/schemas/account'
-    agent:
-      title: Agent
-      description: Identification of a financial institution.
+            $ref: '#/components/schemas/unauthorizedErrorDetails'
+    internalServerErrorDetails:
+      title: Internal Server Error Details
       type: object
       required:
-      - clearingSystemIdentification
-      - memberIdentification
+      - errorCode
+      - message
       properties:
-        clearingSystemIdentification:
-          type: string
-          example: USABA
+        errorCode:
+          example: 3001
+          type: number
           enum:
-          - USABA
-          description: "Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed: \n * `USABA` - Routing Transit number assigned by the ABA for US financial Institutions. \n"
-        memberIdentification:
+          - 3001
+          description: "A programmatic error code:\n  * `3001` - Internal Server error.\n"
+        message:
+          description: A human readable description of the problem
+          example: Internal Server error
           type: string
-          maxLength: 35
-          example: 061103852
-    account:
-      title: Account
-      type: object
-      description: Requested information on the account.
-      required:
-      - currency
-      - balance
-      properties:
-        type:
-          type: string
-          example: CASH
-          enum:
-          - CACC
-          - CASH
-          - CHAR
-          - CISH
-          - COMM
-          - CPAC
-          - LLSV
-          - LOAN
-          - MGLD
-          - MOMA
-          - NREX
-          - ODFT
-          - ONDP
-          - OTHR
-          - SACC
-          - SLRY
-          - SVGS
-          - TAXE
-          - TRAN
-          - TRAS
-          description: "Specifies the nature, or use, of the cash account:\n   * `CACC` -   Account used to post debits and credits when no specific account has been nominated.\n   * `CASH` -   Account used for the payment of cash.\n   * `CHAR` -   Account used for charges if different from the account for\n   payment.\n   * `CISH` -   Account used for payment of income if different from the current cash account\n   * `COMM` -   Account used for commission if different from the account\n   for payment.\n   * `CPAC` -   Account used to post settlement debit and credit entries on behalf of a designated Clearing Participant.\n   * `LLSV` -   Account used for savings with special interest and withdrawal terms.  \n   * `LOAN` -   Account used for loans.\n   * `MGLD` -   Account used for a marginal lending facility.\n   * `MOMA` -   Account used for money markets if different from the cash\n   account.\n   * `NREX` -   Account used for non-resident external.\n   * `ODFT` -   Account is used for overdrafts.\n   * `ONDP` -   Account used for overnight deposits.\n   * `OTHR` -   Account not otherwise specified. \n   * `SACC` -   Account used to post debit and credit entries, as a result of transactions cleared and settled through a specific clearing and settlement system.\n   * `SLRY` -   Accounts used for salary payments.\n   * `SVGS` -   Account used for savings.\n   * `TAXE` -   Account used for taxes if different from the account for\n   payment.\n   * `TRAN` -   A transacting account is the most basic type of bank account that you can get. The main difference between transaction and cheque accounts is that you usually do not get a cheque book with your transacting account and neither are you offered an overdraft facility.\n   * `TRAS` -   Account used for trading if different from the current cash\n   account.\n"
-        name:
-          description: Name of the account.
-          type: string
-          maxLength: 70
-          example: Example account
-        currency:
-          type: string
-          example: USD
-          maxLength: 3
-          minLength: 3
-        balance:
-          type: array
-          items:
-            $ref: '#/components/schemas/balance'
-        date:
-          type: string
-          description: Date at which the balance is or will be available.
-          example: '2020-04-29'
-          minLength: 10
-          maxLength: 10
   securitySchemes:
     APIKeyQueryParam:
       type: apiKey

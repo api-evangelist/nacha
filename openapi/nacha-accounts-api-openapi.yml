@@ -12,7 +12,7 @@ tags:
 paths:
   /validatewithnameandret:
     post:
-      summary: ''
+      summary: Validate account with name and RET
       tags:
       - Accounts
       operationId: validateAccountWithNameAndRET
@@ -116,6 +116,7 @@ paths:
                   - Current
                   - Savings
         description: Account to be validated
+      x-summary-source: derived
     servers:
     - url: /accounts/v1
   /validate:
@@ -336,18 +337,16 @@ paths:
     - url: https://api.afinis.org/v1
 components:
   schemas:
-    error-500:
-      title: Internal Server Error
-      description: 500 - Internal Server Error
+    error-400:
+      title: Error 400 - Bad Request
+      description: The request could not be understood or required parameters were missing
       type: object
-      required:
-      - details
       properties:
         details:
           description: error details
           type: array
           items:
-            $ref: '#/components/schemas/internalServerErrorDetails'
+            $ref: '#/components/schemas/errorDetails-400'
     errorDetails-401:
       title: Error 401 - Unauthorized - Details
       type: object
@@ -366,58 +365,53 @@ components:
       required:
       - errorcode
       - message
-    internalServerErrorDetails:
-      title: Internal Server Error Details
+    errorDetails-400:
+      title: Error 400 - Bad Request - Details
+      type: object
+      properties:
+        errorCode:
+          description: "A programmatic error code:\n  * `2000` - Invalid JSON structure.\n  * `2001` - '[Field name] is missing or invalid.'\n  * `2002` - Invalid date.\n  * `2003` - Invalid combination of fields submitted. Check the API specification for eligible combinations. \n  * `2004` - '[Field name] cannot be more than [max number] characters.'\n"
+          example: 2000
+          type: number
+          enum:
+          - 2000
+          - 2001
+          - 2002
+          - 2003
+          - 2004
+        message:
+          description: A human readable description of the problem
+          example: Invalid JSON structure.
+          type: string
+    account:
+      title: Account
+      type: object
+      required:
+      - identification
+      properties:
+        identification:
+          description: Account number being verified
+          example: '11101012'
+          minLength: 1
+          maxLength: 34
+    error-503:
+      title: Error 503 - Service Unavailable
+      description: Service is temporarily unavailable
       type: object
       required:
       - errorCode
       - message
       properties:
         errorCode:
-          example: 3001
+          example: 503
           type: number
           enum:
-          - 3001
-          description: "A programmatic error code:\n  * `3001` - Internal Server error.\n"
+          - 503
+          description: "A programmatic error code:\n  * `503` - Service Unavailable\n"
         message:
           description: A human readable description of the problem
-          example: Internal Server error
+          example: Service is temporarily unavailable.
           type: string
-    owner:
-      title: Owner
-      type: object
-      description: Party that legally owns the account.
-      properties:
-        surname:
-          description: Surname is a name added to a given name and is part of a personal name. In many cases, a surname is a family name
-          example: Doe
-          type: string
-          minLength: 1
-          maxLength: 35
-        givenName:
-          description: Name given at birth
-          example: John
-          type: string
-          minLength: 1
-          maxLength: 35
-        middleName:
-          description: Second name of a person
-          example: Samuel
-          type: string
-          minLength: 1
-          maxLength: 35
-        nameSuffix:
-          description: Suffix for name
-          example: PhD
-          type: string
-          minLength: 1
-          maxLength: 35
-        organisationName:
-          description: Name by which an organisation is known and which is usually used to identify that organisation.
-          example: Weyland-Yutani Corporation
-          type: string
-          minLength: 1
-          maxLength: 35
     returns:
       title: Returns
       description: Contains RET fields for the response
@@ -536,24 +530,54 @@ components:
             - R51
             - R52
             - R53
-    errorDetails-400:
-      title: Error 400 - Bad Request - Details
+    error-500:
+      title: Internal Server Error
+      description: 500 - Internal Server Error
       type: object
+      required:
+      - details
+      properties:
+        details:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/internalServerErrorDetails'
+    error-405:
+      title: Error 405 - Method Not Allowed
+      description: The request method is known by the server but has been disabled and cannot be used.
+      type: object
+      required:
+      - errorCode
+      - message
       properties:
         errorCode:
-          description: "A programmatic error code:\n  * `2000` - Invalid JSON structure.\n  * `2001` - '[Field name] is missing or invalid.'\n  * `2002` - Invalid date.\n  * `2003` - Invalid combination of fields submitted. Check the API specification for eligible combinations. \n  * `2004` - '[Field name] cannot be more than [max number] characters.'\n"
-          example: 2000
+          example: 405
           type: number
           enum:
-          - 2000
-          - 2001
-          - 2002
-          - 2003
-          - 2004
+          - 405
+          description: "A programmatic error code:\n  * `405` - Method Not Allowed\n"
         message:
           description: A human readable description of the problem
-          example: Invalid JSON structure.
+          example: Method Not Allowed
           type: string
+    agent:
+      description: Identification of a financial institution.
+      type: object
+      required:
+      - clearingSystemIdentification
+      - memberIdentification
+      properties:
+        clearingSystemIdentification:
+          type: string
+          example: USABA
+          enum:
+          - USABA
+          description: "Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed: \n * `USABA` - Routing Transit number assigned by the ABA for US financial Institutions. \n"
+        memberIdentification:
+          type: string
+          minLength: 1
+          maxLength: 35
+          example: 061103852
     error-401:
       title: Error 401 - Unauthorized
       description: Authentication failed or user doesn’t have permissions for requested operation
@@ -564,6 +588,24 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/errorDetails-401'
+    error-403:
+      title: Error 403 - Forbidden
+      description: The client does not have access rights to the content; that is, it is unauthorized, so the server is refusing to give the requested resource. Unlike 401, the client's identity is known to the server.
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 403
+          type: number
+          enum:
+          - 403
+          description: "A programmatic error code:\n  * `403` - Forbidden\n"
+        message:
+          description: A human readable description of the problem
+          example: Forbidden
+          type: string
     response-200:
       title: Response
       type: object
@@ -627,23 +669,76 @@ components:
           - Savings
         returns:
           $ref: '#/components/schemas/returns'
-    error-503:
-      title: Error 503 - Service Unavailable
-      description: Service is temporarily unavailable
+    error-415:
+      title: Error 415 - Unsupported Media Type
+      description: The media format of the requested data is not supported by the server, so the server is rejecting the request.
       type: object
       required:
       - errorCode
       - message
       properties:
         errorCode:
-          example: 503
+          example: 415
           type: number
           enum:
-          - 503
-          description: "A programmatic error code:\n  * `503` - Service Unavailable\n"
+          - 415
+          description: "A programmatic error code:\n  * `415` - Unsupported Media Type\n"
         message:
           description: A human readable description of the problem
-          example: Service is temporarily unavailable.
+          example: Unsupported Media Type
+          type: string
+    owner:
+      title: Owner
+      type: object
+      description: Party that legally owns the account.
+      properties:
+        surname:
+          description: Surname is a name added to a given name and is part of a personal name. In many cases, a surname is a family name
+          example: Doe
+          type: string
+          minLength: 1
+          maxLength: 35
+        givenName:
+          description: Name given at birth
+          example: John
+          type: string
+          minLength: 1
+          maxLength: 35
+        middleName:
+          description: Second name of a person
+          example: Samuel
+          type: string
+          minLength: 1
+          maxLength: 35
+        nameSuffix:
+          description: Suffix for name
+          example: PhD
+          type: string
+          minLength: 1
+          maxLength: 35
+        organisationName:
+          description: Name by which an organisation is known and which is usually used to identify that organisation.
+          example: Weyland-Yutani Corporation
+          type: string
+          minLength: 1
+          maxLength: 35
+    error-404:
+      title: Error 404 - Not Found
+      description: Resource was not found.
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 404
+          type: number
+          enum:
+          - 404
+          description: "A programmatic error code:\n  * `404` - Resource was not found.\n"
+        message:
+          description: A human readable description of the problem
+          example: Resource was not found.
           type: string
     error-406:
       title: Error 406 - Not Acceptable
@@ -663,35 +758,24 @@ components:
           description: A human readable description of the problem
           example: Not Acceptable
           type: string
-    error-405:
-      title: Error 405 - Method Not Allowed
-      description: The request method is known by the server but has been disabled and cannot be used.
+    internalServerErrorDetails:
+      title: Internal Server Error Details
       type: object
       required:
       - errorCode
       - message
       properties:
         errorCode:
-          example: 405
+          example: 3001
           type: number
           enum:
-          - 405
-          description: "A programmatic error code:\n  * `405` - Method Not Allowed\n"
+          - 3001
+          description: "A programmatic error code:\n  * `3001` - Internal Server error.\n"
         message:
           description: A human readable description of the problem
-          example: Method Not Allowed
+          example: Internal Server error
           type: string
-    error-400:
-      title: Error 400 - Bad Request
-      description: The request could not be understood or required parameters were missing
-      type: object
-      properties:
-        details:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/errorDetails-400'
-    agent:
+    debtorAgent:
       description: Identification of a financial institution.
       type: object
       required:
@@ -708,83 +792,7 @@ components:
           type: string
           minLength: 1
           maxLength: 35
-          example: 061103852
-    error-415:
-      title: Error 415 - Unsupported Media Type
-      description: The media format of the requested data is not supported by the server, so the server is rejecting the request.
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          example: 415
-          type: number
-          enum:
-          - 415
-          description: "A programmatic error code:\n  * `415` - Unsupported Media Type\n"
-        message:
-          description: A human readable description of the problem
-          example: Unsupported Media Type
-          type: string
-    error-404:
-      title: Error 404 - Not Found
-      description: Resource was not found.
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          example: 404
-          type: number
-          enum:
-          - 404
-          description: "A programmatic error code:\n  * `404` - Resource was not found.\n"
-        message:
-          description: A human readable description of the problem
-          example: Resource was not found.
-          type: string
-    account:
-      title: Account
-      type: object
-      required:
-      - identification
-      properties:
-        identification:
-          description: Account number being verified
-          example: '11101012'
-          minLength: 1
-          maxLength: 34
-    error-403:
-      title: Error 403 - Forbidden
-      description: The client does not have access rights to the content; that is, it is unauthorized, so the server is refusing to give the requested resource. Unlike 401, the client's identity is known to the server.
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          example: 403
-          type: number
-          enum:
-          - 403
-          description: "A programmatic error code:\n  * `403` - Forbidden\n"
-        message:
-          description: A human readable description of the problem
-          example: Forbidden
-          type: string
-    debtorAccount:
-      title: Account
-      type: object
-      required:
-      - identification
-      properties:
-        identification:
-          description: Account number being verified
-          example: '3358700016'
-          minLength: 1
-          maxLength: 34
+          example: '121000358'
     statusReasonInformation:
       title: StatusReasonInformation
       type: object
@@ -801,6 +809,23 @@ components:
           type: string
           minLength: 1
           maxLength: 105
+    associatedName:
+      title: AssociatedName
+      type: object
+      description: Party that legally owns the account.
+      properties:
+        surname:
+          description: Surname is a name added to a given name and is part of a personal name. In many cases, a surname is a family name
+          example: CANADY
+          type: string
+          minLength: 1
+          maxLength: 32
+        givenName:
+          description: Name given at birth
+          example: JAYSON
+          type: string
+          minLength: 1
+          maxLength: 32
     response-200_2:
       title: Response
       type: object
@@ -844,73 +869,41 @@ components:
           $ref: '#/components/schemas/debtorAccount'
         debtorAgent:
           $ref: '#/components/schemas/debtorAgent'
-    debtorAgent:
-      description: Identification of a financial institution.
+    debtorAccount:
+      title: Account
       type: object
       required:
-      - clearingSystemIdentification
-      - memberIdentification
+      - identification
       properties:
-        clearingSystemIdentification:
-          type: string
-          example: USABA
-          enum:
-          - USABA
-          description: "Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed: \n * `USABA` - Routing Transit number assigned by the ABA for US financial Institutions. \n"
-        memberIdentification:
-          type: string
+        identification:
+          description: Account number being verified
+          example: '3358700016'
           minLength: 1
-          maxLength: 35
-          example: '121000358'
-    associatedName:
-      title: AssociatedName
-      type: object
-      description: Party that legally owns the account.
-      properties:
-        surname:
-          description: Surname is a name added to a given name and is part of a personal name. In many cases, a surname is a family name
-          example: CANADY
-          type: string
-          minLength: 1
-          maxLength: 32
-        givenName:
-          description: Name given at birth
-          example: JAYSON
-          type: string
-          minLength: 1
-          maxLength: 32
-    ACHPaymentAcceptanceDebit:
-      title: ACHPaymentAcceptanceDebit
+          maxLength: 34
+    errorDetails-500:
+      title: 500 ErrorDetails
       type: object
       properties:
-        debtorAccount:
-          $ref: '#/components/schemas/DebtorAccount'
-        debtorAgent:
-          $ref: '#/components/schemas/DebtorAgent'
-        cashAccountType:
+        errorcode:
+          description: A programmatic error code
+          example: 3001
+          type: number
+        message:
+          description: A human readable description of the problem
+          example: Internal Server error
           type: string
-          enum:
-          - Current
-          - Savings
-    error-500_2:
-      title: 500 Error
+      required:
+      - errorcode
+      - message
+    error-400_2:
+      title: Error
       type: object
       properties:
         detail:
           description: error details
           type: array
           items:
-            $ref: '#/components/schemas/errorDetails-500'
-    CreditorAccount:
-      title: CreditorAccount
-      type: object
-      required:
-      - identification
-      properties:
-        identification:
-          description: Account number of party to be credited
-          example: 11101019
-          type: string
+            $ref: '#/components/schemas/errorDetails-400_2'
     errorDetails-401_2:
       title: 401 ErrorDetails
       type: object
@@ -931,31 +924,14 @@ components:
       required:
       - errorcode
       - message
-    ACHPaymentAcceptanceCredit:
-      title: ACHPaymentAcceptanceCredit
+    AccountStatus:
       type: object
       properties:
-        creditorAccount:
-          $ref: '#/components/schemas/CreditorAccount'
-        creditorAgent:
-          $ref: '#/components/schemas/CreditorAgent'
-        cashAccountType:
+        accountStatus:
           type: string
           enum:
-          - Current
-          - Savings
-    CreditorAgent:
-      title: CreditorAgent
-      type: object
-      properties:
-        memberIdentification:
-          description: Identification number of clearing system e.g., a U.S. transit routing number or Canadian Payments Association Routing Number
-          example: 061103852
-          type: string
-        clearingSystemIdentification:
-          description: Clearing system identification
-          example: United States Routing Number
-          type: string
+          - Enabled
+          - Disabled
     errorDetails-400_2:
       title: ErrorDetails
       type: object
@@ -971,6 +947,60 @@ components:
       required:
       - errorcode
       - message
+    ACHPaymentAcceptanceDebit:
+      title: ACHPaymentAcceptanceDebit
+      type: object
+      properties:
+        debtorAccount:
+          $ref: '#/components/schemas/DebtorAccount'
+        debtorAgent:
+          $ref: '#/components/schemas/DebtorAgent'
+        cashAccountType:
+          type: string
+          enum:
+          - Current
+          - Savings
+    DebtorAccount:
+      title: DebtorAccount
+      type: object
+      required:
+      - identification
+      properties:
+        identification:
+          description: Account number of party who owes funds
+          example: 11101012
+          type: string
+    error-500_2:
+      title: 500 Error
+      type: object
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/errorDetails-500'
+    CreditorAccount:
+      title: CreditorAccount
+      type: object
+      required:
+      - identification
+      properties:
+        identification:
+          description: Account number of party to be credited
+          example: 11101019
+          type: string
+    CreditorAgent:
+      title: CreditorAgent
+      type: object
+      properties:
+        memberIdentification:
+          description: Identification number of clearing system e.g., a U.S. transit routing number or Canadian Payments Association Routing Number
+          example: 061103852
+          type: string
+        clearingSystemIdentification:
+          description: Clearing system identification
+          example: United States Routing Number
+          type: string
     error-401_2:
       title: 401 Error
       type: object
@@ -980,21 +1010,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/errorDetails-401_2'
-    errorDetails-500:
-      title: 500 ErrorDetails
-      type: object
-      properties:
-        errorcode:
-          description: A programmatic error code
-          example: 3001
-          type: number
-        message:
-          description: A human readable description of the problem
-          example: Internal Server error
-          type: string
-      required:
-      - errorcode
-      - message
     DebtorAgent:
       title: DebtorAgent
       type: object
@@ -1007,33 +1022,19 @@ components:
           description: Clearing system identification
           example: United States Routing Number
           type: string
-    error-400_2:
-      title: Error
+    ACHPaymentAcceptanceCredit:
+      title: ACHPaymentAcceptanceCredit
       type: object
       properties:
-        detail:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/errorDetails-400_2'
-    DebtorAccount:
-      title: DebtorAccount
-      type: object
-      required:
-      - identification
-      properties:
-        identification:
-          description: Account number of party who owes funds
-          example: 11101012
-          type: string
-    AccountStatus:
-      type: object
-      properties:
-        accountStatus:
+        creditorAccount:
+          $ref: '#/components/schemas/CreditorAccount'
+        creditorAgent:
+          $ref: '#/components/schemas/CreditorAgent'
+        cashAccountType:
           type: string
           enum:
-          - Enabled
-          - Disabled
+          - Current
+          - Savings
   securitySchemes:
     APIKeyQueryParam:
       type: apiKey

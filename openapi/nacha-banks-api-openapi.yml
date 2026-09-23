@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   version: 1.0.5
   title: Bank Contacts Banks API
-  description: Afinis is a diverse group of organizations working to support advancement and use of API standardization in the financial services industry. Utilization of this API requires a developer to [register](https://www.afinis.org/user/register) their application.
+  description: Afinis is a diverse group of organizations working to support advancement and use of API standardization in the financial services industry. Utilization of this API requires a developer to register their application.
 servers:
 - url: https://api.afinis.org/v1
 tags:
@@ -74,15 +74,36 @@ paths:
       - APIKeyQueryParam: []
 components:
   schemas:
-    error-500:
-      title: 500 Error
+    errorDetails-500:
+      title: 500 ErrorDetails
+      type: object
+      properties:
+        errorcode:
+          description: A programmatic error code
+          example: 3001
+          type: number
+        message:
+          description: A human readable description of the problem
+          example: Internal Server error
+          type: string
+      required:
+      - errorcode
+      - message
+    error-400:
+      title: Error
       type: object
       properties:
         detail:
           description: error details
           type: array
           items:
-            $ref: '#/components/schemas/errorDetails-500'
+            $ref: '#/components/schemas/errorDetails-400'
+    BankContact:
+      title: BankContact
+      type: object
+      properties:
+        contactDetails:
+          $ref: '#/components/schemas/ContactDetails'
     errorDetails-401:
       title: 401 ErrorDetails
       type: object
@@ -118,6 +139,15 @@ components:
       required:
       - errorcode
       - message
+    error-500:
+      title: 500 Error
+      type: object
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/errorDetails-500'
     error-401:
       title: 401 Error
       type: object
@@ -127,36 +157,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/errorDetails-401'
-    errorDetails-500:
-      title: 500 ErrorDetails
-      type: object
-      properties:
-        errorcode:
-          description: A programmatic error code
-          example: 3001
-          type: number
-        message:
-          description: A human readable description of the problem
-          example: Internal Server error
-          type: string
-      required:
-      - errorcode
-      - message
-    error-400:
-      title: Error
-      type: object
-      properties:
-        detail:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/errorDetails-400'
-    BankContact:
-      title: BankContact
-      type: object
-      properties:
-        contactDetails:
-          $ref: '#/components/schemas/ContactDetails'
     ContactDetails:
       title: ContactDetails
       type: object
