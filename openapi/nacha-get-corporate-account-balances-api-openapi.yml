@@ -13,7 +13,7 @@ tags:
 paths:
   /balance:
     post:
-      operationId: Get Corporate Account Balances
+      operationId: GetCorporateAccountBalances
       tags:
       - Get Corporate Account Balances
       description: Retrieve balance information for my account(s) for a date or date range
@@ -67,21 +67,10 @@ paths:
         required: true
       summary: Get corporate account balances
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Get Corporate Account Balances
 components:
   schemas:
-    response:
-      title: Response
-      type: object
-      description: 200 - Response
-      required:
-      - accountReport
-      properties:
-        agent:
-          $ref: '#/components/schemas/agent'
-        accountReport:
-          type: array
-          items:
-            $ref: '#/components/schemas/accountReport'
     account:
       title: Account
       type: object
@@ -135,27 +124,37 @@ components:
           example: '2020-04-29'
           minLength: 10
           maxLength: 10
-    searchCriteria:
-      title: SearchCriteria
-      description: Defines the criteria on which the information is extracted
+    response:
+      title: Response
+      type: object
+      description: 200 - Response
+      required:
+      - accountReport
+      properties:
+        agent:
+          $ref: '#/components/schemas/agent'
+        accountReport:
+          type: array
+          items:
+            $ref: '#/components/schemas/accountReport'
+    unauthorizedErrorDetails:
+      title: Unauthorized Error Details
       type: object
       required:
-      - accountIdentification
+      - errorCode
+      - message
       properties:
-        accountIdentification:
-          $ref: '#/components/schemas/accountIdentification'
-        fromDate:
+        errorCode:
+          example: 1000
+          type: number
+          enum:
+          - 1000
+          - 1001
+          description: "A programmatic error code:\n  * `1000` - API key is missing, invalid or expired. \n  * `1001` - API token is invalid, expired, or account associated with key does not have access to that API.\n"
+        message:
+          description: A human readable description of the problem
+          example: API key is missing, invalid or expired.
           type: string
-          description: Start date of the range
-          example: '2020-04-29'
-          minLength: 10
-          maxLength: 10
-        toDate:
-          type: string
-          description: End date of the range
-          example: '2020-05-19'
-          minLength: 10
-          maxLength: 10
     badRequest:
       title: Bad Request
       type: object
@@ -168,6 +167,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/badRequestErrorDetails'
+    accountReport:
+      title: Account Report
+      type: object
+      description: Account information
+      required:
+      - account
+      properties:
+        accountIdentification:
+          $ref: '#/components/schemas/accountIdentification'
+        account:
+          $ref: '#/components/schemas/account'
     agent:
       title: Agent
       description: Identification of a financial institution.
@@ -186,58 +196,6 @@ components:
           type: string
           maxLength: 35
           example: 061103852
-    badRequestErrorDetails:
-      title: Bad Request Error Details
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          description: "A programmatic error code:\n  * `2000` - Invalid JSON structure.\n  * `2001` - '[Field name] is missing or invalid.'\n  * `2002` - Invalid date.\n  * `2003` - Invalid combination of fields submitted. Check the API specification for eligible combinations. \n  * `2004` - '[Field name] cannot be more than [max number] characters.'\n"
-          example: 2000
-          type: number
-          enum:
-          - 2000
-          - 2001
-          - 2002
-          - 2003
-          - 2004
-        message:
-          description: A human readable description of the problem
-          example: Invalid JSON structure.
-          type: string
-    accountIdentification:
-      title: accountIdentification
-      description: Unique and unambiguous identification for the account between the account owner and the account servicer.
-      type: object
-      required:
-      - identification
-      properties:
-        identification:
-          type: string
-          description: Identification assigned by an institution
-          example: '12345678'
-          maxLength: 34
-        isToken:
-          type: string
-          example: N
-          default: N
-          enum:
-          - Y
-          - N
-          description: "Specifies whether the account identification is tokenized:\n  * `Y` - Account is tokenized\n  * `N` - Account is not tokenized\n"
-    accountReport:
-      title: Account Report
-      type: object
-      description: Account information
-      required:
-      - account
-      properties:
-        accountIdentification:
-          $ref: '#/components/schemas/accountIdentification'
-        account:
-          $ref: '#/components/schemas/account'
     balance:
       title: Balance
       type: object
@@ -275,36 +233,26 @@ components:
           - 2DFL
           - CCOL
           description: "Definition: Specifies the system balance type, as published in an external system balance type code set\n   * `CRDT` - Total Credits\n   * `DBIT` - Total Debits\n   * `CLSG` - Closing Available\n   * `OPNG` - Opening Available\n   * `CLDG` - Closing Ledger\n   * `1DFL` - One Day Float\n   * `2DFL` - Two Days Float\n   * `CCOL` - Closing Collected Balance\n"
-    unauthorizedErrorDetails:
-      title: Unauthorized Error Details
+    accountIdentification:
+      title: accountIdentification
+      description: Unique and unambiguous identification for the account between the account owner and the account servicer.
       type: object
       required:
-      - errorCode
-      - message
+      - identification
       properties:
-        errorCode:
-          example: 1000
-          type: number
-          enum:
-          - 1000
-          - 1001
-          description: "A programmatic error code:\n  * `1000` - API key is missing, invalid or expired. \n  * `1001` - API token is invalid, expired, or account associated with key does not have access to that API.\n"
-        message:
-          description: A human readable description of the problem
-          example: API key is missing, invalid or expired.
+        identification:
           type: string
-    internalServerError:
-      title: Internal Server Error
-      description: 500 - Internal Server Error
-      type: object
-      required:
-      - details
-      properties:
-        detail:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/internalServerErrorDetails'
+          description: Identification assigned by an institution
+          example: '12345678'
+          maxLength: 34
+        isToken:
+          type: string
+          example: N
+          default: N
+          enum:
+          - Y
+          - N
+          description: "Specifies whether the account identification is tokenized:\n  * `Y` - Account is tokenized\n  * `N` - Account is not tokenized\n"
     unauthorized:
       title: Unauthorized
       type: object
@@ -317,6 +265,60 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/unauthorizedErrorDetails'
+    searchCriteria:
+      title: SearchCriteria
+      description: Defines the criteria on which the information is extracted
+      type: object
+      required:
+      - accountIdentification
+      properties:
+        accountIdentification:
+          $ref: '#/components/schemas/accountIdentification'
+        fromDate:
+          type: string
+          description: Start date of the range
+          example: '2020-04-29'
+          minLength: 10
+          maxLength: 10
+        toDate:
+          type: string
+          description: End date of the range
+          example: '2020-05-19'
+          minLength: 10
+          maxLength: 10
+    internalServerError:
+      title: Internal Server Error
+      description: 500 - Internal Server Error
+      type: object
+      required:
+      - details
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/internalServerErrorDetails'
+    badRequestErrorDetails:
+      title: Bad Request Error Details
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          description: "A programmatic error code:\n  * `2000` - Invalid JSON structure.\n  * `2001` - '[Field name] is missing or invalid.'\n  * `2002` - Invalid date.\n  * `2003` - Invalid combination of fields submitted. Check the API specification for eligible combinations. \n  * `2004` - '[Field name] cannot be more than [max number] characters.'\n"
+          example: 2000
+          type: number
+          enum:
+          - 2000
+          - 2001
+          - 2002
+          - 2003
+          - 2004
+        message:
+          description: A human readable description of the problem
+          example: Invalid JSON structure.
+          type: string
     internalServerErrorDetails:
       title: Internal Server Error Details
       type: object

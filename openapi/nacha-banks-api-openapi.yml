@@ -89,15 +89,6 @@ components:
       required:
       - errorcode
       - message
-    error-400:
-      title: Error
-      type: object
-      properties:
-        detail:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/errorDetails-400'
     BankContact:
       title: BankContact
       type: object
@@ -139,24 +130,6 @@ components:
       required:
       - errorcode
       - message
-    error-500:
-      title: 500 Error
-      type: object
-      properties:
-        detail:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/errorDetails-500'
-    error-401:
-      title: 401 Error
-      type: object
-      properties:
-        detail:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/errorDetails-401'
     ContactDetails:
       title: ContactDetails
       type: object
@@ -175,6 +148,33 @@ components:
           description: ''
           example: joe.smith@bankemail.com
           type: string
+    error-500:
+      title: 500 Error
+      type: object
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/errorDetails-500'
+    error-401:
+      title: 401 Error
+      type: object
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/errorDetails-401'
+    error-400:
+      title: Error
+      type: object
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/errorDetails-400'
   securitySchemes:
     APIKeyQueryParam:
       type: apiKey

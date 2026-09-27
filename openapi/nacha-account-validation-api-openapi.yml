@@ -13,7 +13,7 @@ tags:
 paths:
   /accounts/payers:
     post:
-      operationId: Real Time Billing Account Validation
+      operationId: RealTimeBillingAccountValidation
       tags:
       - Account Validation
       summary: Real Time Billing Account Validation
@@ -83,6 +83,8 @@ paths:
                   $ref: '#/components/schemas/debtor'
         description: Billing Account Details
         required: true
+      x-operation-id-source: normalized
+      x-operation-id-original: Real Time Billing Account Validation
 components:
   schemas:
     response:
@@ -102,6 +104,51 @@ components:
           $ref: '#/components/schemas/statusReasonInformation'
         debtor:
           $ref: '#/components/schemas/debtor'
+    forbidden:
+      title: Forbidden
+      type: object
+      required:
+      - details
+      properties:
+        details:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/unauthorizedErrorDetails'
+    unauthorizedErrorDetails:
+      title: Unauthorized Error Details
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 1000
+          type: number
+          enum:
+          - 1000
+          - 1001
+          description: "A programmatic error code:\n  * `1000` - API key is missing, invalid or expired. \n  * `1001` - API token is invalid, expired, or account associated with key does not have access to that API.\n"
+        message:
+          description: A human readable description of the problem
+          example: API key is missing, invalid or expired.
+          type: string
+    debtor:
+      title: Debtor
+      type: object
+      required:
+      - identification
+      - schemeName
+      properties:
+        identification:
+          description: Identification assigned by an institution
+          type: string
+          maxLength: 35
+          example: '1234567891'
+        schemeName:
+          type: string
+          default: CUST
+          example: CUST
     creditor:
       title: Creditor
       type: object
@@ -115,6 +162,17 @@ components:
           example: Tele Co. ABC
         postalAddress:
           $ref: '#/components/schemas/postalAddress'
+    badRequest:
+      title: Bad Request
+      type: object
+      required:
+      - details
+      properties:
+        details:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/badRequestErrorDetails'
     statusReasonInformation:
       title: statusReasonInformation
       description: Provides detailed information on the status reason
@@ -139,28 +197,6 @@ components:
           example: Invalid remittance information
           type: string
           maxLength: 140
-    badRequest:
-      title: Bad Request
-      type: object
-      required:
-      - details
-      properties:
-        details:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/badRequestErrorDetails'
-    forbidden:
-      title: Forbidden
-      type: object
-      required:
-      - details
-      properties:
-        details:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/unauthorizedErrorDetails'
     unprocessableEntity:
       title: Unprocessable Entity
       type: object
@@ -172,60 +208,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/unprocessableEntityErrorDetails'
-    badRequestErrorDetails:
-      title: Bad Request Error Details
+    unprocessableEntityErrorDetails:
+      title: Unprocessable Entity Error Details
       type: object
       required:
       - errorCode
       - message
       properties:
         errorCode:
-          description: "A programmatic error code:\n  * `2000` - Invalid JSON structure.\n  * `2001` - '[Field name] is missing or invalid.'\n  * `2002` - Invalid date.\n  * `2003` - Invalid combination of fields submitted. Check the API specification for eligible combinations. \n  * `2004` - '[Field name] cannot be more than [max number] characters.'\n"
-          example: 2000
+          example: 4001
           type: number
           enum:
-          - 2000
-          - 2001
-          - 2002
-          - 2003
-          - 2004
+          - 4001
+          description: "A programmatic error code:\n  * `4001` - Unprocessable request due to \"%%\"\n"
         message:
           description: A human readable description of the problem
-          example: Invalid JSON structure.
-          type: string
-    debtor:
-      title: Debtor
-      type: object
-      required:
-      - identification
-      - schemeName
-      properties:
-        identification:
-          description: Identification assigned by an institution
-          type: string
-          maxLength: 35
-          example: '1234567891'
-        schemeName:
-          type: string
-          default: CUST
-          example: CUST
-    unauthorizedErrorDetails:
-      title: Unauthorized Error Details
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          example: 1000
-          type: number
-          enum:
-          - 1000
-          - 1001
-          description: "A programmatic error code:\n  * `1000` - API key is missing, invalid or expired. \n  * `1001` - API token is invalid, expired, or account associated with key does not have access to that API.\n"
-        message:
-          description: A human readable description of the problem
-          example: API key is missing, invalid or expired.
+          example: Unprocessable request due to duplicate records
           type: string
     postalAddress:
       type: object
@@ -262,34 +260,6 @@ components:
           minLength: 2
           maxLength: 2
           example: US
-    unprocessableEntityErrorDetails:
-      title: Unprocessable Entity Error Details
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          example: 4001
-          type: number
-          enum:
-          - 4001
-          description: "A programmatic error code:\n  * `4001` - Unprocessable request due to \"%%\"\n"
-        message:
-          description: A human readable description of the problem
-          example: Unprocessable request due to duplicate records
-          type: string
-    internalServerError:
-      title: Internal Server Error
-      type: object
-      required:
-      - details
-      properties:
-        detail:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/internalServerErrorDetails'
     unauthorized:
       title: Unauthorized
       type: object
@@ -301,6 +271,38 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/unauthorizedErrorDetails'
+    internalServerError:
+      title: Internal Server Error
+      type: object
+      required:
+      - details
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/internalServerErrorDetails'
+    badRequestErrorDetails:
+      title: Bad Request Error Details
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          description: "A programmatic error code:\n  * `2000` - Invalid JSON structure.\n  * `2001` - '[Field name] is missing or invalid.'\n  * `2002` - Invalid date.\n  * `2003` - Invalid combination of fields submitted. Check the API specification for eligible combinations. \n  * `2004` - '[Field name] cannot be more than [max number] characters.'\n"
+          example: 2000
+          type: number
+          enum:
+          - 2000
+          - 2001
+          - 2002
+          - 2003
+          - 2004
+        message:
+          description: A human readable description of the problem
+          example: Invalid JSON structure.
+          type: string
     internalServerErrorDetails:
       title: Internal Server Error Details
       type: object

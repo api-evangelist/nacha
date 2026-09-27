@@ -13,7 +13,7 @@ tags:
 paths:
   /banks/contact:
     post:
-      operationId: Expand Bank Contact V2 - Input
+      operationId: ExpandBankContactV2-Input
       tags:
       - Expand Bank Contact V2
       summary: Allow a FI to input data into the FI contact data base
@@ -72,8 +72,10 @@ paths:
                   items:
                     $ref: '#/components/schemas/bankContact'
         description: Allow a FI to input data into the FI contact data base
+      x-operation-id-source: normalized
+      x-operation-id-original: Expand Bank Contact V2 - Input
     get:
-      operationId: Expand Bank Contact V2 - Get
+      operationId: ExpandBankContactV2-Get
       tags:
       - Expand Bank Contact V2
       summary: Allow a FI to retrieve data from the FI contact data base
@@ -137,15 +139,10 @@ paths:
           description: Service unavailable
       security:
       - APIKeyQueryParam: []
+      x-operation-id-source: normalized
+      x-operation-id-original: Expand Bank Contact V2 - Get
 components:
   schemas:
-    contactType:
-      type: string
-      example: Primary
-      enum:
-      - Primary
-      - Secondary
-      - Other
     response:
       title: Response
       type: object
@@ -164,6 +161,24 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/bankContact'
+    unauthorizedErrorDetails:
+      title: Unauthorized Error Details
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 1000
+          type: number
+          enum:
+          - 1000
+          - 1001
+          description: "A programmatic error code:\n  * `1000` - API key is missing, invalid or expired. \n  * `1001` - API token is invalid, expired, or account associated with key does not have access to that API.\n"
+        message:
+          description: A human readable description of the problem
+          example: API key is missing, invalid or expired.
+          type: string
     bankContact:
       title: Bank Contact
       type: object
@@ -236,108 +251,6 @@ components:
           type: string
           maxLength: 35
           example: 061103852
-    badRequestErrorDetails:
-      title: Bad Request Error Details
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          description: "A programmatic error code:\n  * `2000` - Invalid JSON structure.\n  * `2001` - '[Field name] is missing or invalid.'\n  * `2002` - Invalid date.\n  * `2003` - Invalid combination of fields submitted. Check the API specification for eligible combinations. \n  * `2004` - '[Field name] cannot be more than [max number] characters.'\n"
-          example: 2000
-          type: number
-          enum:
-          - 2000
-          - 2001
-          - 2002
-          - 2003
-          - 2004
-        message:
-          description: A human readable description of the problem
-          example: Invalid JSON structure.
-          type: string
-    partyType:
-      type: string
-      example: Individual
-      enum:
-      - Individual
-      - Department
-    unauthorizedErrorDetails:
-      title: Unauthorized Error Details
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          example: 1000
-          type: number
-          enum:
-          - 1000
-          - 1001
-          description: "A programmatic error code:\n  * `1000` - API key is missing, invalid or expired. \n  * `1001` - API token is invalid, expired, or account associated with key does not have access to that API.\n"
-        message:
-          description: A human readable description of the problem
-          example: API key is missing, invalid or expired.
-          type: string
-    other:
-      type: object
-      required:
-      - channelType
-      - identification
-      properties:
-        channelType:
-          type: string
-          example: EXT
-          enum:
-          - EXT
-          description: "Name of the identification scheme:\n   * `FNM` - First Name\n   * `LNM` - Last Name\n   * `DNM` - Department Name\n   * `BH` - Business Hours\n   * `TZ` - Time Zone\n   * `EXT` - Phone Number Extension\n"
-        identification:
-          type: string
-          maxLength: 128
-          example: Ext 1
-    internalServerError:
-      title: Internal Server Error
-      description: 500 - Internal Server Error
-      type: object
-      required:
-      - details
-      properties:
-        detail:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/internalServerErrorDetails'
-    unauthorized:
-      title: Unauthorized
-      type: object
-      description: 401 - Unauthorized
-      required:
-      - details
-      properties:
-        details:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/unauthorizedErrorDetails'
-    internalServerErrorDetails:
-      title: Internal Server Error Details
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          example: 3001
-          type: number
-          enum:
-          - 3001
-          description: "A programmatic error code:\n  * `3001` - Internal Server error.\n"
-        message:
-          description: A human readable description of the problem
-          example: Internal Server error
-          type: string
     contactDetails:
       type: object
       required:
@@ -364,6 +277,97 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/other'
+    other:
+      type: object
+      required:
+      - channelType
+      - identification
+      properties:
+        channelType:
+          type: string
+          example: EXT
+          enum:
+          - EXT
+          description: "Name of the identification scheme:\n   * `FNM` - First Name\n   * `LNM` - Last Name\n   * `DNM` - Department Name\n   * `BH` - Business Hours\n   * `TZ` - Time Zone\n   * `EXT` - Phone Number Extension\n"
+        identification:
+          type: string
+          maxLength: 128
+          example: Ext 1
+    contactType:
+      type: string
+      example: Primary
+      enum:
+      - Primary
+      - Secondary
+      - Other
+    unauthorized:
+      title: Unauthorized
+      type: object
+      description: 401 - Unauthorized
+      required:
+      - details
+      properties:
+        details:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/unauthorizedErrorDetails'
+    partyType:
+      type: string
+      example: Individual
+      enum:
+      - Individual
+      - Department
+    internalServerError:
+      title: Internal Server Error
+      description: 500 - Internal Server Error
+      type: object
+      required:
+      - details
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/internalServerErrorDetails'
+    badRequestErrorDetails:
+      title: Bad Request Error Details
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          description: "A programmatic error code:\n  * `2000` - Invalid JSON structure.\n  * `2001` - '[Field name] is missing or invalid.'\n  * `2002` - Invalid date.\n  * `2003` - Invalid combination of fields submitted. Check the API specification for eligible combinations. \n  * `2004` - '[Field name] cannot be more than [max number] characters.'\n"
+          example: 2000
+          type: number
+          enum:
+          - 2000
+          - 2001
+          - 2002
+          - 2003
+          - 2004
+        message:
+          description: A human readable description of the problem
+          example: Invalid JSON structure.
+          type: string
+    internalServerErrorDetails:
+      title: Internal Server Error Details
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 3001
+          type: number
+          enum:
+          - 3001
+          description: "A programmatic error code:\n  * `3001` - Internal Server error.\n"
+        message:
+          description: A human readable description of the problem
+          example: Internal Server error
+          type: string
   securitySchemes:
     APIKeyQueryParam:
       type: apiKey

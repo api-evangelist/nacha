@@ -14,7 +14,7 @@ paths:
   /debitauthorizations:
     post:
       description: Allow paying an outstanding invoice by electronically providing account information and authorization securely to the payee to execute the payment and receive an acknowledgement that payer account will be debited on desired date.
-      operationId: Authorize to Pay - Request
+      operationId: AuthorizeToPay-Request
       tags:
       - Authorize to Pay
       parameters:
@@ -132,6 +132,8 @@ paths:
         required: true
       summary: Authorize to pay request
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Authorize to Pay - Request
 components:
   schemas:
     errorDetails-401:
@@ -164,16 +166,80 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/internalServerErrorDetails'
-    error-401:
-      title: Error 401 - Unauthorized
-      description: Authentication failed or user doesn’t have permissions for requested operation
+    internalServerErrorDetails:
+      title: Internal Server Error Details
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 3001
+          type: number
+          enum:
+          - 3001
+          description: "A programmatic error code:\n  * `3001` - Internal Server error.\n"
+        message:
+          description: A human readable description of the problem
+          example: Internal Server error
+          type: string
+    error-406:
+      title: Error 406 - Not Acceptable
+      description: Web server doesn't find any content that conforms to the criteria given by the user agent.
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 406
+          type: number
+          enum:
+          - 406
+          description: "A programmatic error code:\n  * `406` - Not Acceptable\n"
+        message:
+          description: A human readable description of the problem
+          example: Not Acceptable
+          type: string
+    party:
       type: object
       properties:
-        detail:
-          description: error details
+        name:
+          type: string
+          maxLength: 70
+          example: John Edison
+        postalAddress:
+          $ref: '#/components/schemas/postalAddress'
+        identification:
           type: array
           items:
-            $ref: '#/components/schemas/errorDetails-401'
+            $ref: '#/components/schemas/identification'
+        phoneNumber:
+          type: string
+          maxLength: 30
+          example: +1-302-515-5000
+        emailAddress:
+          type: string
+          maxLength: 2048
+          example: zachary.eastwood@ABCcorp.com
+    error-405:
+      title: Error 405 - Method Not Allowed
+      description: The request method is known by the server but has been disabled and cannot be used.
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 405
+          type: number
+          enum:
+          - 405
+          description: "A programmatic error code:\n  * `405` - Method Not Allowed\n"
+        message:
+          description: A human readable description of the problem
+          example: Method Not Allowed
+          type: string
     postalAddress:
       description: Information that locates and identifies a specific address, as defined by postal services.
       type: object
@@ -204,47 +270,6 @@ components:
           minLength: 2
           maxLength: 2
           example: US
-    identification:
-      description: Information that locates and identifies a specific address, as defined by postal services.
-      required:
-      - identification
-      type: object
-      properties:
-        identification:
-          description: Identification assigned by an institution
-          type: string
-          maxLength: 35
-          example: 1234567891
-        schemeName:
-          type: string
-          example: CUST
-          enum:
-          - DUNS
-          - CUST
-          description: "Name of the identification scheme:\n   * `DUNS` - Data Universal Numbering System - A unique identification number provided by Dun & Bradstreet to identify an organisation.     \n   * `CUST` - CustomerNumber, Number assigned by an issuer to identify a customer\n"
-    error-400:
-      title: Error 400 - Bad Request
-      description: The request could not be understood or required parameters were missing
-      type: object
-      properties:
-        detail:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/errorDetails-400'
-    creditorReferenceInformation:
-      type: object
-      properties:
-        type:
-          type: string
-          example: PUOR
-          enum:
-          - PUOR
-          description: "Name of the identification scheme:\n   * `PUOR` - PurchaseOrder - Document is a purchase order    \n"
-        reference:
-          type: string
-          minLength: 1
-          maxLength: 35
     error-403:
       title: Error 403 - Forbidden
       description: The client does not have access rights to the content; that is, it is unauthorized, so the server is refusing to give the requested resource. Unlike 401, the client's identity is known to the server.
@@ -263,6 +288,113 @@ components:
           description: A human readable description of the problem
           example: Forbidden
           type: string
+    error-503:
+      title: Error 503 - Service Unavailable
+      description: Service is temporarily unavailable
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 503
+          type: number
+          enum:
+          - 503
+          description: "A programmatic error code:\n  * `503` - Service Unavailable\n"
+        message:
+          description: A human readable description of the problem
+          example: Service is temporarily unavailable.
+          type: string
+    response-201:
+      title: Response 201 - Created
+      type: object
+      description: The request has succeeded and a new resource has been created as a result.
+      properties:
+        status:
+          type: string
+          example: Agree to debit
+          enum:
+          - Agree to debit
+          - Do not agree to debit
+        requestedExecutionDate:
+          type: string
+          description: Start date of the range
+          example: '2020-04-29'
+          minLength: 10
+          maxLength: 10
+        creditor:
+          $ref: '#/components/schemas/party'
+        originalEndToEndIdentification:
+          type: string
+          maxLength: 35
+          example: CBA321
+    identification:
+      description: Information that locates and identifies a specific address, as defined by postal services.
+      required:
+      - identification
+      type: object
+      properties:
+        identification:
+          description: Identification assigned by an institution
+          type: string
+          maxLength: 35
+          example: 1234567891
+        schemeName:
+          type: string
+          example: CUST
+          enum:
+          - DUNS
+          - CUST
+          description: "Name of the identification scheme:\n   * `DUNS` - Data Universal Numbering System - A unique identification number provided by Dun & Bradstreet to identify an organisation.     \n   * `CUST` - CustomerNumber, Number assigned by an issuer to identify a customer\n"
+    error-404:
+      title: Error 404 - Not Found
+      description: Resource was not found.
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 404
+          type: number
+          enum:
+          - 404
+          description: "A programmatic error code:\n  * `404` - Resource was not found.\n"
+        message:
+          description: A human readable description of the problem
+          example: Resource was not found.
+          type: string
+    error-400:
+      title: Error 400 - Bad Request
+      description: The request could not be understood or required parameters were missing
+      type: object
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/errorDetails-400'
+    account:
+      description: Unique and unambiguous identification for the account between the account owner and the account servicer.
+      type: object
+      required:
+      - identification
+      - schemeName
+      properties:
+        identification:
+          type: string
+          description: Identification assigned by an institution
+          example: '12345678'
+          minLength: 1
+          maxLength: 17
+        schemeName:
+          type: string
+          example: DDA
+          enum:
+          - DDA
+          - Virtual Card
+          description: "Name of the identification scheme:\n   * `DDA` - DDA   \n   * `Virtual Card` - Virtual Card    \n"
     error-415:
       title: Error 415 - Unsupported Media Type
       description: The media format of the requested data is not supported by the server, so the server is rejecting the request.
@@ -281,27 +413,54 @@ components:
           description: A human readable description of the problem
           example: Unsupported Media Type
           type: string
-    party:
+    agent:
+      description: Identification of a financial institution.
+      type: object
+      required:
+      - clearingSystemIdentification
+      - memberIdentification
+      properties:
+        clearingSystemIdentification:
+          type: string
+          example: USABA
+          enum:
+          - USABA
+          description: "Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed: \n * `USABA` - Routing Transit number assigned by the ABA for US financial Institutions. \n"
+        memberIdentification:
+          type: string
+          maxLength: 35
+          example: 061103852
+    errorDetails-400:
+      title: Error 400 - Bad Request - Details
       type: object
       properties:
-        name:
+        errorCode:
+          description: "A programmatic error code:\n  * `2000` - Invalid JSON structure.\n  * `2001` - '[Field name] is missing or invalid.'\n  * `2002` - Invalid date.\n  * `2003` - Invalid combination of fields submitted. Check the API specification for eligible combinations. \n  * `2004` - '[Field name] cannot be more than [max number] characters.'\n"
+          example: 2000
+          type: number
+          enum:
+          - 2000
+          - 2001
+          - 2002
+          - 2003
+          - 2004
+        message:
+          description: A human readable description of the problem
+          example: Invalid JSON structure.
           type: string
-          maxLength: 70
-          example: John Edison
-        postalAddress:
-          $ref: '#/components/schemas/postalAddress'
-        identification:
-          type: array
-          items:
-            $ref: '#/components/schemas/identification'
-        phoneNumber:
+    creditorReferenceInformation:
+      type: object
+      properties:
+        type:
           type: string
-          maxLength: 30
-          example: +1-302-515-5000
-        emailAddress:
+          example: PUOR
+          enum:
+          - PUOR
+          description: "Name of the identification scheme:\n   * `PUOR` - PurchaseOrder - Document is a purchase order    \n"
+        reference:
           type: string
-          maxLength: 2048
-          example: zachary.eastwood@ABCcorp.com
+          minLength: 1
+          maxLength: 35
     verification:
       required:
       - authorizeToPay
@@ -323,79 +482,21 @@ components:
           example: '643'
           minLength: 1
           maxLength: 4
-    account:
-      description: Unique and unambiguous identification for the account between the account owner and the account servicer.
-      type: object
+    amount:
       required:
-      - identification
-      - schemeName
+      - name
+      - currency
+      type: object
       properties:
-        identification:
-          type: string
-          description: Identification assigned by an institution
-          example: '12345678'
+        amount:
+          format: float
+          example: 1.01
           minLength: 1
-          maxLength: 17
-        schemeName:
+        currency:
           type: string
-          example: DDA
-          enum:
-          - DDA
-          - Virtual Card
-          description: "Name of the identification scheme:\n   * `DDA` - DDA   \n   * `Virtual Card` - Virtual Card    \n"
-    error-405:
-      title: Error 405 - Method Not Allowed
-      description: The request method is known by the server but has been disabled and cannot be used.
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          example: 405
-          type: number
-          enum:
-          - 405
-          description: "A programmatic error code:\n  * `405` - Method Not Allowed\n"
-        message:
-          description: A human readable description of the problem
-          example: Method Not Allowed
-          type: string
-    agent:
-      description: Identification of a financial institution.
-      type: object
-      required:
-      - clearingSystemIdentification
-      - memberIdentification
-      properties:
-        clearingSystemIdentification:
-          type: string
-          example: USABA
-          enum:
-          - USABA
-          description: "Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed: \n * `USABA` - Routing Transit number assigned by the ABA for US financial Institutions. \n"
-        memberIdentification:
-          type: string
-          maxLength: 35
-          example: 061103852
-    error-406:
-      title: Error 406 - Not Acceptable
-      description: Web server doesn't find any content that conforms to the criteria given by the user agent.
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          example: 406
-          type: number
-          enum:
-          - 406
-          description: "A programmatic error code:\n  * `406` - Not Acceptable\n"
-        message:
-          description: A human readable description of the problem
-          example: Not Acceptable
-          type: string
+          example: USD
+          maxLength: 3
+          minLength: 3
     remittanceInformation:
       type: object
       properties:
@@ -440,115 +541,16 @@ components:
               maxLength: 140
         creditorReferenceInformation:
           $ref: '#/components/schemas/creditorReferenceInformation'
-    errorDetails-400:
-      title: Error 400 - Bad Request - Details
+    error-401:
+      title: Error 401 - Unauthorized
+      description: Authentication failed or user doesn’t have permissions for requested operation
       type: object
       properties:
-        errorCode:
-          description: "A programmatic error code:\n  * `2000` - Invalid JSON structure.\n  * `2001` - '[Field name] is missing or invalid.'\n  * `2002` - Invalid date.\n  * `2003` - Invalid combination of fields submitted. Check the API specification for eligible combinations. \n  * `2004` - '[Field name] cannot be more than [max number] characters.'\n"
-          example: 2000
-          type: number
-          enum:
-          - 2000
-          - 2001
-          - 2002
-          - 2003
-          - 2004
-        message:
-          description: A human readable description of the problem
-          example: Invalid JSON structure.
-          type: string
-    error-503:
-      title: Error 503 - Service Unavailable
-      description: Service is temporarily unavailable
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          example: 503
-          type: number
-          enum:
-          - 503
-          description: "A programmatic error code:\n  * `503` - Service Unavailable\n"
-        message:
-          description: A human readable description of the problem
-          example: Service is temporarily unavailable.
-          type: string
-    amount:
-      required:
-      - name
-      - currency
-      type: object
-      properties:
-        amount:
-          format: float
-          example: 1.01
-          minLength: 1
-        currency:
-          type: string
-          example: USD
-          maxLength: 3
-          minLength: 3
-    error-404:
-      title: Error 404 - Not Found
-      description: Resource was not found.
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          example: 404
-          type: number
-          enum:
-          - 404
-          description: "A programmatic error code:\n  * `404` - Resource was not found.\n"
-        message:
-          description: A human readable description of the problem
-          example: Resource was not found.
-          type: string
-    response-201:
-      title: Response 201 - Created
-      type: object
-      description: The request has succeeded and a new resource has been created as a result.
-      properties:
-        status:
-          type: string
-          example: Agree to debit
-          enum:
-          - Agree to debit
-          - Do not agree to debit
-        requestedExecutionDate:
-          type: string
-          description: Start date of the range
-          example: '2020-04-29'
-          minLength: 10
-          maxLength: 10
-        creditor:
-          $ref: '#/components/schemas/party'
-        originalEndToEndIdentification:
-          type: string
-          maxLength: 35
-          example: CBA321
-    internalServerErrorDetails:
-      title: Internal Server Error Details
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          example: 3001
-          type: number
-          enum:
-          - 3001
-          description: "A programmatic error code:\n  * `3001` - Internal Server error.\n"
-        message:
-          description: A human readable description of the problem
-          example: Internal Server error
-          type: string
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/errorDetails-401'
   securitySchemes:
     APIKeyQueryParam:
       type: apiKey
