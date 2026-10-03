@@ -71,6 +71,135 @@ paths:
       x-operation-id-original: Get Corporate Account Balances
 components:
   schemas:
+    accountReport:
+      title: Account Report
+      type: object
+      description: Account information
+      required:
+      - account
+      properties:
+        accountIdentification:
+          $ref: '#/components/schemas/accountIdentification'
+        account:
+          $ref: '#/components/schemas/account'
+    searchCriteria:
+      title: SearchCriteria
+      description: Defines the criteria on which the information is extracted
+      type: object
+      required:
+      - accountIdentification
+      properties:
+        accountIdentification:
+          $ref: '#/components/schemas/accountIdentification'
+        fromDate:
+          type: string
+          description: Start date of the range
+          example: '2020-04-29'
+          minLength: 10
+          maxLength: 10
+        toDate:
+          type: string
+          description: End date of the range
+          example: '2020-05-19'
+          minLength: 10
+          maxLength: 10
+    unauthorized:
+      title: Unauthorized
+      type: object
+      description: 401 - Unauthorized
+      required:
+      - details
+      properties:
+        details:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/unauthorizedErrorDetails'
+    unauthorizedErrorDetails:
+      title: Unauthorized Error Details
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 1000
+          type: number
+          enum:
+          - 1000
+          - 1001
+          description: "A programmatic error code:\n  * `1000` - API key is missing, invalid or expired. \n  * `1001` - API token is invalid, expired, or account associated with key does not have access to that API.\n"
+        message:
+          description: A human readable description of the problem
+          example: API key is missing, invalid or expired.
+          type: string
+    balance:
+      title: Balance
+      type: object
+      description: Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account at a specific point in time
+      required:
+      - amount
+      - currency
+      - creditDebitIndicator
+      - type
+      properties:
+        amount:
+          type: number
+          example: 1.01
+          maxLength: 11
+        currency:
+          type: string
+          example: USD
+          maxLength: 3
+          minLength: 3
+        creditDebitIndicator:
+          example: CRDT
+          enum:
+          - CRDT
+          - DBIT
+          description: "Definition: Indicates whether the balance is a credit or a debit balance. A zero balance is considered to be a credit balance\n * `CRDT` - Credit\n * `DBIT` - Debit\n"
+        type:
+          example: OPNG
+          enum:
+          - CRDT
+          - DBIT
+          - CLSG
+          - OPNG
+          - CLDG
+          - 1DFL
+          - 2DFL
+          - CCOL
+          description: "Definition: Specifies the system balance type, as published in an external system balance type code set\n   * `CRDT` - Total Credits\n   * `DBIT` - Total Debits\n   * `CLSG` - Closing Available\n   * `OPNG` - Opening Available\n   * `CLDG` - Closing Ledger\n   * `1DFL` - One Day Float\n   * `2DFL` - Two Days Float\n   * `CCOL` - Closing Collected Balance\n"
+    badRequest:
+      title: Bad Request
+      type: object
+      description: 400 - Bad Request
+      required:
+      - details
+      properties:
+        details:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/badRequestErrorDetails'
+    agent:
+      title: Agent
+      description: Identification of a financial institution.
+      type: object
+      required:
+      - clearingSystemIdentification
+      - memberIdentification
+      properties:
+        clearingSystemIdentification:
+          type: string
+          example: USABA
+          enum:
+          - USABA
+          description: "Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed: \n * `USABA` - Routing Transit number assigned by the ABA for US financial Institutions. \n"
+        memberIdentification:
+          type: string
+          maxLength: 35
+          example: 061103852
     account:
       title: Account
       type: object
@@ -137,102 +266,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/accountReport'
-    unauthorizedErrorDetails:
-      title: Unauthorized Error Details
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          example: 1000
-          type: number
-          enum:
-          - 1000
-          - 1001
-          description: "A programmatic error code:\n  * `1000` - API key is missing, invalid or expired. \n  * `1001` - API token is invalid, expired, or account associated with key does not have access to that API.\n"
-        message:
-          description: A human readable description of the problem
-          example: API key is missing, invalid or expired.
-          type: string
-    badRequest:
-      title: Bad Request
-      type: object
-      description: 400 - Bad Request
-      required:
-      - details
-      properties:
-        details:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/badRequestErrorDetails'
-    accountReport:
-      title: Account Report
-      type: object
-      description: Account information
-      required:
-      - account
-      properties:
-        accountIdentification:
-          $ref: '#/components/schemas/accountIdentification'
-        account:
-          $ref: '#/components/schemas/account'
-    agent:
-      title: Agent
-      description: Identification of a financial institution.
-      type: object
-      required:
-      - clearingSystemIdentification
-      - memberIdentification
-      properties:
-        clearingSystemIdentification:
-          type: string
-          example: USABA
-          enum:
-          - USABA
-          description: "Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed: \n * `USABA` - Routing Transit number assigned by the ABA for US financial Institutions. \n"
-        memberIdentification:
-          type: string
-          maxLength: 35
-          example: 061103852
-    balance:
-      title: Balance
-      type: object
-      description: Set of elements used to define the balance as a numerical representation of the net increases and decreases in an account at a specific point in time
-      required:
-      - amount
-      - currency
-      - creditDebitIndicator
-      - type
-      properties:
-        amount:
-          type: number
-          example: 1.01
-          maxLength: 11
-        currency:
-          type: string
-          example: USD
-          maxLength: 3
-          minLength: 3
-        creditDebitIndicator:
-          example: CRDT
-          enum:
-          - CRDT
-          - DBIT
-          description: "Definition: Indicates whether the balance is a credit or a debit balance. A zero balance is considered to be a credit balance\n * `CRDT` - Credit\n * `DBIT` - Debit\n"
-        type:
-          example: OPNG
-          enum:
-          - CRDT
-          - DBIT
-          - CLSG
-          - OPNG
-          - CLDG
-          - 1DFL
-          - 2DFL
-          - CCOL
-          description: "Definition: Specifies the system balance type, as published in an external system balance type code set\n   * `CRDT` - Total Credits\n   * `DBIT` - Total Debits\n   * `CLSG` - Closing Available\n   * `OPNG` - Opening Available\n   * `CLDG` - Closing Ledger\n   * `1DFL` - One Day Float\n   * `2DFL` - Two Days Float\n   * `CCOL` - Closing Collected Balance\n"
     accountIdentification:
       title: accountIdentification
       description: Unique and unambiguous identification for the account between the account owner and the account servicer.
@@ -253,51 +286,23 @@ components:
           - Y
           - N
           description: "Specifies whether the account identification is tokenized:\n  * `Y` - Account is tokenized\n  * `N` - Account is not tokenized\n"
-    unauthorized:
-      title: Unauthorized
-      type: object
-      description: 401 - Unauthorized
-      required:
-      - details
-      properties:
-        details:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/unauthorizedErrorDetails'
-    searchCriteria:
-      title: SearchCriteria
-      description: Defines the criteria on which the information is extracted
+    internalServerErrorDetails:
+      title: Internal Server Error Details
       type: object
       required:
-      - accountIdentification
+      - errorCode
+      - message
       properties:
-        accountIdentification:
-          $ref: '#/components/schemas/accountIdentification'
-        fromDate:
+        errorCode:
+          example: 3001
+          type: number
+          enum:
+          - 3001
+          description: "A programmatic error code:\n  * `3001` - Internal Server error.\n"
+        message:
+          description: A human readable description of the problem
+          example: Internal Server error
           type: string
-          description: Start date of the range
-          example: '2020-04-29'
-          minLength: 10
-          maxLength: 10
-        toDate:
-          type: string
-          description: End date of the range
-          example: '2020-05-19'
-          minLength: 10
-          maxLength: 10
-    internalServerError:
-      title: Internal Server Error
-      description: 500 - Internal Server Error
-      type: object
-      required:
-      - details
-      properties:
-        detail:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/internalServerErrorDetails'
     badRequestErrorDetails:
       title: Bad Request Error Details
       type: object
@@ -319,23 +324,18 @@ components:
           description: A human readable description of the problem
           example: Invalid JSON structure.
           type: string
-    internalServerErrorDetails:
-      title: Internal Server Error Details
+    internalServerError:
+      title: Internal Server Error
+      description: 500 - Internal Server Error
       type: object
       required:
-      - errorCode
-      - message
+      - details
       properties:
-        errorCode:
-          example: 3001
-          type: number
-          enum:
-          - 3001
-          description: "A programmatic error code:\n  * `3001` - Internal Server error.\n"
-        message:
-          description: A human readable description of the problem
-          example: Internal Server error
-          type: string
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/internalServerErrorDetails'
   securitySchemes:
     APIKeyQueryParam:
       type: apiKey

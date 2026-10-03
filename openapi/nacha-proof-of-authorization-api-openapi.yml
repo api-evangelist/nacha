@@ -167,36 +167,6 @@ paths:
       x-operation-id-original: Proof of Authorization - Request
 components:
   schemas:
-    errorDetails-401:
-      title: Error 401 - Unauthorized - Details
-      type: object
-      properties:
-        errorCode:
-          example: 1000
-          type: number
-          enum:
-          - 1000
-          - 1001
-          description: "A programmatic error code:\n  * `1000` - API key is missing, invalid or expired. \n  * `1001` - API token is invalid, expired, or account associated with key does not have access to that API.\n"
-        message:
-          description: A human readable description of the problem
-          example: API key is missing, invalid or expired.
-          type: string
-      required:
-      - errorcode
-      - message
-    error-422:
-      title: Unprocessable request
-      description: 422 - Unprocessable request
-      type: object
-      required:
-      - details
-      properties:
-        details:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/unprocessableRequestErrorDetails'
     error-500:
       title: Internal Server Error
       description: 500 - Internal Server Error
@@ -209,22 +179,35 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/internalServerErrorDetails'
-    internalServerErrorDetails:
-      title: Internal Server Error Details
+    error-422:
+      title: Unprocessable request
+      description: 422 - Unprocessable request
       type: object
       required:
-      - errorCode
-      - message
+      - details
+      properties:
+        details:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/unprocessableRequestErrorDetails'
+    errorDetails-400:
+      title: Error 400 - Bad Request - Details
+      type: object
       properties:
         errorCode:
-          example: 3001
+          description: "A programmatic error code:\n  * `2000` - Invalid JSON structure.\n  * `2001` - '[Field name] is missing or invalid.'\n  * `2002` - Invalid date.\n  * `2003` - Invalid combination of fields submitted. Check the API specification for eligible combinations. \n  * `2004` - '[Field name] cannot be more than [max number] characters.'\n"
+          example: 2000
           type: number
           enum:
-          - 3001
-          description: "A programmatic error code:\n  * `3001` - Internal Server error.\n"
+          - 2000
+          - 2001
+          - 2002
+          - 2003
+          - 2004
         message:
           description: A human readable description of the problem
-          example: Internal Server error
+          example: Invalid JSON structure.
           type: string
     error-406:
       title: Error 406 - Not Acceptable
@@ -244,31 +227,86 @@ components:
           description: A human readable description of the problem
           example: Not Acceptable
           type: string
-    party:
-      required:
-      - name
+    errorDetails-401:
+      title: Error 401 - Unauthorized - Details
       type: object
       properties:
-        name:
+        errorCode:
+          example: 1000
+          type: number
+          enum:
+          - 1000
+          - 1001
+          description: "A programmatic error code:\n  * `1000` - API key is missing, invalid or expired. \n  * `1001` - API token is invalid, expired, or account associated with key does not have access to that API.\n"
+        message:
+          description: A human readable description of the problem
+          example: API key is missing, invalid or expired.
           type: string
-          minLength: 1
-          maxLength: 70
-          example: John Edison
-        identification:
+      required:
+      - errorcode
+      - message
+    error-415:
+      title: Error 415 - Unsupported Media Type
+      description: The media format of the requested data is not supported by the server, so the server is rejecting the request.
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 415
+          type: number
+          enum:
+          - 415
+          description: "A programmatic error code:\n  * `415` - Unsupported Media Type\n"
+        message:
+          description: A human readable description of the problem
+          example: Unsupported Media Type
           type: string
-          minLength: 1
-          maxLength: 35
-          example: 8765434589
-        phoneNumber:
+    unprocessableRequestErrorDetails:
+      title: Unprocessable request Error Details
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 4001
+          type: number
+          enum:
+          - 4001
+          description: "A programmatic error code:\n  * `4001` - Unprocessable request due to \"%%\"\n"
+        message:
+          description: A human readable description of the problem
+          example: Unprocessable request due to "%%"
           type: string
-          minLength: 1
-          maxLength: 30
-          example: +1-302-515-5000
-        emailAddress:
+    internalServerErrorDetails:
+      title: Internal Server Error Details
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 3001
+          type: number
+          enum:
+          - 3001
+          description: "A programmatic error code:\n  * `3001` - Internal Server error.\n"
+        message:
+          description: A human readable description of the problem
+          example: Internal Server error
           type: string
-          minLength: 1
-          maxLength: 2048
-          example: zachary.eastwood@ABCcorp.com
+    error-401:
+      title: Error 401 - Unauthorized
+      description: Authentication failed or user doesn’t have permissions for requested operation
+      type: object
+      properties:
+        details:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/errorDetails-401'
     error-405:
       title: Error 405 - Method Not Allowed
       description: The request method is known by the server but has been disabled and cannot be used.
@@ -287,6 +325,55 @@ components:
           description: A human readable description of the problem
           example: Method Not Allowed
           type: string
+    error-403:
+      title: Error 403 - Forbidden
+      description: The client does not have access rights to the content; that is, it is unauthorized, so the server is refusing to give the requested resource. Unlike 401, the client's identity is known to the server.
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 403
+          type: number
+          enum:
+          - 403
+          description: "A programmatic error code:\n  * `403` - Forbidden\n"
+        message:
+          description: A human readable description of the problem
+          example: Forbidden
+          type: string
+    error-400:
+      title: Error 400 - Bad Request
+      description: The request could not be understood or required parameters were missing
+      type: object
+      properties:
+        details:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/errorDetails-400'
+    PoAMethod:
+      type: object
+      properties:
+        preferredMethod:
+          type: string
+          enum:
+          - EMAL
+          - FAXI
+          - POST
+        postalAddress:
+          $ref: '#/components/schemas/postalAddress'
+        faxNumber:
+          type: string
+          minLength: 1
+          maxLength: 30
+          example: +1-302-515-7000
+        emailAddress:
+          type: string
+          minLength: 1
+          maxLength: 2048
+          example: zachary.westwood@ABCcorp.com
     postalAddress:
       description: Information that locates and identifies a specific address, as defined by postal services.
       type: object
@@ -321,24 +408,6 @@ components:
           minLength: 2
           maxLength: 2
           example: US
-    error-403:
-      title: Error 403 - Forbidden
-      description: The client does not have access rights to the content; that is, it is unauthorized, so the server is refusing to give the requested resource. Unlike 401, the client's identity is known to the server.
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          example: 403
-          type: number
-          enum:
-          - 403
-          description: "A programmatic error code:\n  * `403` - Forbidden\n"
-        message:
-          description: A human readable description of the problem
-          example: Forbidden
-          type: string
     error-503:
       title: Error 503 - Service Unavailable
       description: Service is temporarily unavailable
@@ -357,6 +426,59 @@ components:
           description: A human readable description of the problem
           example: Service is temporarily unavailable.
           type: string
+    amount:
+      description: Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party
+      type: object
+      required:
+      - amount
+      - currency
+      properties:
+        amount:
+          type: number
+          format: float
+          example: 1.01
+          maxLength: 11
+        currency:
+          type: string
+          example: USD
+          enum:
+          - USD
+    error-404:
+      title: Error 404 - Not Found
+      description: Resource was not found.
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 404
+          type: number
+          enum:
+          - 404
+          description: "A programmatic error code:\n  * `404` - Resource was not found.\n"
+        message:
+          description: A human readable description of the problem
+          example: Resource was not found.
+          type: string
+    agent:
+      description: Identification of a financial institution.
+      type: object
+      required:
+      - clearingSystemIdentification
+      - memberIdentification
+      properties:
+        clearingSystemIdentification:
+          type: string
+          example: USABA
+          enum:
+          - USABA
+          description: "Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed: \n * `USABA` - Routing Transit number assigned by the ABA for US financial Institutions. \n"
+        memberIdentification:
+          type: string
+          minLength: 1
+          maxLength: 35
+          example: 061103852
     response-201:
       title: Response
       type: object
@@ -364,6 +486,31 @@ components:
       properties:
         status:
           $ref: '#/components/schemas/status'
+    party:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 70
+          example: John Edison
+        identification:
+          type: string
+          minLength: 1
+          maxLength: 35
+          example: 8765434589
+        phoneNumber:
+          type: string
+          minLength: 1
+          maxLength: 30
+          example: +1-302-515-5000
+        emailAddress:
+          type: string
+          minLength: 1
+          maxLength: 2048
+          example: zachary.eastwood@ABCcorp.com
     status:
       title: Received
       type: object
@@ -420,153 +567,6 @@ components:
           $ref: '#/components/schemas/party'
         PoAMethod:
           $ref: '#/components/schemas/PoAMethod'
-    error-404:
-      title: Error 404 - Not Found
-      description: Resource was not found.
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          example: 404
-          type: number
-          enum:
-          - 404
-          description: "A programmatic error code:\n  * `404` - Resource was not found.\n"
-        message:
-          description: A human readable description of the problem
-          example: Resource was not found.
-          type: string
-    error-400:
-      title: Error 400 - Bad Request
-      description: The request could not be understood or required parameters were missing
-      type: object
-      properties:
-        details:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/errorDetails-400'
-    PoAMethod:
-      type: object
-      properties:
-        preferredMethod:
-          type: string
-          enum:
-          - EMAL
-          - FAXI
-          - POST
-        postalAddress:
-          $ref: '#/components/schemas/postalAddress'
-        faxNumber:
-          type: string
-          minLength: 1
-          maxLength: 30
-          example: +1-302-515-7000
-        emailAddress:
-          type: string
-          minLength: 1
-          maxLength: 2048
-          example: zachary.westwood@ABCcorp.com
-    error-415:
-      title: Error 415 - Unsupported Media Type
-      description: The media format of the requested data is not supported by the server, so the server is rejecting the request.
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          example: 415
-          type: number
-          enum:
-          - 415
-          description: "A programmatic error code:\n  * `415` - Unsupported Media Type\n"
-        message:
-          description: A human readable description of the problem
-          example: Unsupported Media Type
-          type: string
-    agent:
-      description: Identification of a financial institution.
-      type: object
-      required:
-      - clearingSystemIdentification
-      - memberIdentification
-      properties:
-        clearingSystemIdentification:
-          type: string
-          example: USABA
-          enum:
-          - USABA
-          description: "Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed: \n * `USABA` - Routing Transit number assigned by the ABA for US financial Institutions. \n"
-        memberIdentification:
-          type: string
-          minLength: 1
-          maxLength: 35
-          example: 061103852
-    errorDetails-400:
-      title: Error 400 - Bad Request - Details
-      type: object
-      properties:
-        errorCode:
-          description: "A programmatic error code:\n  * `2000` - Invalid JSON structure.\n  * `2001` - '[Field name] is missing or invalid.'\n  * `2002` - Invalid date.\n  * `2003` - Invalid combination of fields submitted. Check the API specification for eligible combinations. \n  * `2004` - '[Field name] cannot be more than [max number] characters.'\n"
-          example: 2000
-          type: number
-          enum:
-          - 2000
-          - 2001
-          - 2002
-          - 2003
-          - 2004
-        message:
-          description: A human readable description of the problem
-          example: Invalid JSON structure.
-          type: string
-    unprocessableRequestErrorDetails:
-      title: Unprocessable request Error Details
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          example: 4001
-          type: number
-          enum:
-          - 4001
-          description: "A programmatic error code:\n  * `4001` - Unprocessable request due to \"%%\"\n"
-        message:
-          description: A human readable description of the problem
-          example: Unprocessable request due to "%%"
-          type: string
-    amount:
-      description: Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party
-      type: object
-      required:
-      - amount
-      - currency
-      properties:
-        amount:
-          type: number
-          format: float
-          example: 1.01
-          maxLength: 11
-        currency:
-          type: string
-          example: USD
-          enum:
-          - USD
-    error-401:
-      title: Error 401 - Unauthorized
-      description: Authentication failed or user doesn’t have permissions for requested operation
-      type: object
-      properties:
-        details:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/errorDetails-401'
   securitySchemes:
     APIKeyQueryParam:
       type: apiKey

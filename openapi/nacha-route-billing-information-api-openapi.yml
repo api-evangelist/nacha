@@ -88,178 +88,6 @@ paths:
       x-operation-id-original: Route Billing Information
 components:
   schemas:
-    debtor:
-      title: Debtor
-      type: object
-      description: Party that owes an amount of money to the (ultimate) creditor.
-      properties:
-        name:
-          description: Name by which a party is known and which is usually used to identify that party.
-          type: string
-          maxLength: 140
-          example: Bob Jones
-        identification:
-          description: Identification assigned by an institution
-          type: string
-          maxLength: 35
-          example: 1234567891
-        schemeName:
-          type: string
-          example: CUST
-          enum:
-          - CUST
-          - TXID
-          - Other
-          - Biller Access Code
-          - TrucTXID
-          - Other Secondary
-          description: "Name of the identification scheme:\n   * `CUST` - CustomerIdentificationNumber, Number assigned by an issuer to identify a customer\n   * `TXID` - TaxIdentificationNumber, Number assigned by a tax authority to identify a person\n   * `Other` - Other Identifier\n   * `Biller Access Code` - Biller Access Cod\n   * `TrucTXID` - Truncated TaxIdentificationNumber\n   * `Other Secondary` - Secondary Other Identifier\n"
-        postalAddress:
-          $ref: '#/components/schemas/postalAddress'
-        birthDate:
-          description: Date on which a person is born
-          type: string
-          format: date
-          example: '2020-06-24'
-    createdDetails:
-      title: Request Successful Details
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          example: CRTD
-          type: string
-          enum:
-          - CRTD
-          description: "A programmatic error code:\n  * `CRTD` - Created\n"
-        message:
-          description: A human readable response message.
-          example: The request has been fulfilled
-          type: string
-    primaryIdentifier:
-      title: primaryIdentifier
-      type: object
-      description: Primary Unique Identifier
-      properties:
-        debtorAgent:
-          $ref: '#/components/schemas/debtorAgent'
-        debtorAccount:
-          $ref: '#/components/schemas/debtorAccount'
-        debtor:
-          $ref: '#/components/schemas/debtor'
-    debtorAgent:
-      title: Debtor Agent
-      description: Financial institution servicing an account for the debtor
-      type: object
-      required:
-      - clearingSystemIdentification
-      - memberIdentification
-      properties:
-        clearingSystemIdentification:
-          type: string
-          example: USABA
-          enum:
-          - USABA
-          description: "Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed:  \n * `USABA` - Routing Transit number assigned by the ABA for US financial Institutions. \n"
-        memberIdentification:
-          description: Identification of a member of a clearing system  e.g., a U.S. transit routing number or Canadian Payments Association Routing Number.
-          type: string
-          maxLength: 35
-          example: 061103852
-    contactDetails:
-      type: object
-      required:
-      - phoneNumber
-      properties:
-        phoneNumber:
-          description: Collection of information that identifies a phone number, as defined by telecom services.
-          type: string
-          maxLength: 30
-          example: +1-302-515-5000
-        other:
-          $ref: '#/components/schemas/other'
-    other:
-      type: object
-      required:
-      - channelType
-      - identification
-      properties:
-        channelType:
-          type: string
-          example: EXT
-          enum:
-          - EXT
-          description: "Name of the identification scheme:\n   * `EXT` - Phone Number Extension\n"
-        identification:
-          description: Contact details in another form.
-          type: string
-          maxLength: 128
-          example: null
-    locationAndContact:
-      title: LocationAndContact
-      description: Location and contact information of the merchant (business) performing the transaction
-      type: object
-      required:
-      - URLAddress
-      properties:
-        URLAddress:
-          type: string
-          example: https://www.energy.com/welcome
-          maxLength: 256
-    internalServerErrorDetails:
-      title: Internal Server Error Details
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          example: 3001
-          type: number
-          enum:
-          - 3001
-          description: "A programmatic error code:\n  * `3001` - Internal Server error.\n"
-        message:
-          description: A human readable description of the problem
-          example: Internal Server error
-          type: string
-    notFound:
-      title: Not Found
-      description: 404 - Resource was not found.
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          example: 404
-          type: number
-          enum:
-          - 404
-          description: "A programmatic error code:\n  * `404` - Resource was not found.\n"
-        message:
-          description: A human readable description of the problem
-          example: Resource was not found.
-          type: string
-    minimumAmount:
-      title: Minimum Amount
-      description: Minimum amount of payment accepted by supplier for the payment type selected
-      type: object
-      required:
-      - amount
-      - currency
-      properties:
-        amount:
-          type: number
-          example: 1.01
-          maxLength: 11
-        currency:
-          type: string
-          example: USD
-          enum:
-          - USD
     unauthorizedErrorDetails:
       title: Unauthorized Error Details
       type: object
@@ -294,10 +122,84 @@ components:
           $ref: '#/components/schemas/postalAddress'
         contactDetails:
           $ref: '#/components/schemas/contactDetails'
-    badRequest:
-      title: Bad Request
+    createdDetails:
+      title: Request Successful Details
       type: object
-      description: 400 - Bad Request
+      required:
+      - code
+      - message
+      properties:
+        code:
+          example: CRTD
+          type: string
+          enum:
+          - CRTD
+          description: "A programmatic error code:\n  * `CRTD` - Created\n"
+        message:
+          description: A human readable response message.
+          example: The request has been fulfilled
+          type: string
+    debtor:
+      title: Debtor
+      type: object
+      description: Party that owes an amount of money to the (ultimate) creditor.
+      properties:
+        name:
+          description: Name by which a party is known and which is usually used to identify that party.
+          type: string
+          maxLength: 140
+          example: Bob Jones
+        identification:
+          description: Identification assigned by an institution
+          type: string
+          maxLength: 35
+          example: 1234567891
+        schemeName:
+          type: string
+          example: CUST
+          enum:
+          - CUST
+          - TXID
+          - Other
+          - Biller Access Code
+          - TrucTXID
+          - Other Secondary
+          description: "Name of the identification scheme:\n   * `CUST` - CustomerIdentificationNumber, Number assigned by an issuer to identify a customer\n   * `TXID` - TaxIdentificationNumber, Number assigned by a tax authority to identify a person\n   * `Other` - Other Identifier\n   * `Biller Access Code` - Biller Access Cod\n   * `TrucTXID` - Truncated TaxIdentificationNumber\n   * `Other Secondary` - Secondary Other Identifier\n"
+        postalAddress:
+          $ref: '#/components/schemas/postalAddress'
+        birthDate:
+          description: Date on which a person is born
+          type: string
+          format: date
+          example: '2020-06-24'
+    internalServerErrorDetails:
+      title: Internal Server Error Details
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 3001
+          type: number
+          enum:
+          - 3001
+          description: "A programmatic error code:\n  * `3001` - Internal Server error.\n"
+        message:
+          description: A human readable description of the problem
+          example: Internal Server error
+          type: string
+    secondaryIdentifier:
+      title: secondaryIdentifier
+      type: object
+      description: Secondary Unique Identifier
+      properties:
+        debtor:
+          $ref: '#/components/schemas/debtor'
+    unauthorized:
+      title: Unauthorized
+      type: object
+      description: 401 - Unauthorized
       required:
       - detail
       properties:
@@ -305,7 +207,60 @@ components:
           description: error details
           type: array
           items:
-            $ref: '#/components/schemas/badRequestErrorDetails'
+            $ref: '#/components/schemas/unauthorizedErrorDetails'
+    locationAndContact:
+      title: LocationAndContact
+      description: Location and contact information of the merchant (business) performing the transaction
+      type: object
+      required:
+      - URLAddress
+      properties:
+        URLAddress:
+          type: string
+          example: https://www.energy.com/welcome
+          maxLength: 256
+    debtorAgent:
+      title: Debtor Agent
+      description: Financial institution servicing an account for the debtor
+      type: object
+      required:
+      - clearingSystemIdentification
+      - memberIdentification
+      properties:
+        clearingSystemIdentification:
+          type: string
+          example: USABA
+          enum:
+          - USABA
+          description: "Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed:  \n * `USABA` - Routing Transit number assigned by the ABA for US financial Institutions. \n"
+        memberIdentification:
+          description: Identification of a member of a clearing system  e.g., a U.S. transit routing number or Canadian Payments Association Routing Number.
+          type: string
+          maxLength: 35
+          example: 061103852
+    primaryIdentifier:
+      title: primaryIdentifier
+      type: object
+      description: Primary Unique Identifier
+      properties:
+        debtorAgent:
+          $ref: '#/components/schemas/debtorAgent'
+        debtorAccount:
+          $ref: '#/components/schemas/debtorAccount'
+        debtor:
+          $ref: '#/components/schemas/debtor'
+    internalServerError:
+      title: Internal Server Error
+      description: 500 - Internal Server Error
+      type: object
+      required:
+      - detail
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/internalServerErrorDetails'
     postalAddress:
       description: Information that locates and identifies a specific address, as defined by postal services.
       type: object
@@ -336,31 +291,22 @@ components:
           minLength: 2
           maxLength: 2
           example: US
-    badRequestErrorDetails:
-      title: Bad Request Error Details
+    contactDetails:
       type: object
       required:
-      - errorCode
-      - message
+      - phoneNumber
       properties:
-        errorCode:
-          description: "A programmatic error code:\n  * `2000` - Invalid JSON structure.\n  * `2001` - '[Field name] is missing or invalid.'\n  * `2002` - Invalid date.\n  * `2003` - Invalid combination of fields submitted. Check the API specification for eligible combinations. \n  * `2004` - '[Field name] cannot be more than [max number] characters.'\n"
-          example: 2000
-          type: number
-          enum:
-          - 2000
-          - 2001
-          - 2002
-          - 2003
-          - 2004
-        message:
-          description: A human readable description of the problem
-          example: Invalid JSON structure.
+        phoneNumber:
+          description: Collection of information that identifies a phone number, as defined by telecom services.
           type: string
-    created:
-      title: Created
+          maxLength: 30
+          example: +1-302-515-5000
+        other:
+          $ref: '#/components/schemas/other'
+    badRequest:
+      title: Bad Request
       type: object
-      description: 201 - Success - Created
+      description: 400 - Bad Request
       required:
       - detail
       properties:
@@ -368,19 +314,7 @@ components:
           description: error details
           type: array
           items:
-            $ref: '#/components/schemas/createdDetails'
-    paymentIdentification:
-      title: Payment Identification
-      description: Unique identifier generated by the biller, which can be used for reconciliation purpose and to link a payment to the original bill.
-      type: object
-      required:
-      - endToEndIdentification
-      properties:
-        endToEndIdentification:
-          description: Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain.
-          type: string
-          example: ABC123
-          maxLength: 35
+            $ref: '#/components/schemas/badRequestErrorDetails'
     debtorAccount:
       title: Debtor Account
       description: Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.
@@ -426,30 +360,23 @@ components:
           example: USD
           enum:
           - USD
-    unauthorized:
-      title: Unauthorized
-      type: object
-      description: 401 - Unauthorized
-      required:
-      - detail
-      properties:
-        detail:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/unauthorizedErrorDetails'
-    internalServerError:
-      title: Internal Server Error
-      description: 500 - Internal Server Error
+    other:
       type: object
       required:
-      - detail
+      - channelType
+      - identification
       properties:
-        detail:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/internalServerErrorDetails'
+        channelType:
+          type: string
+          example: EXT
+          enum:
+          - EXT
+          description: "Name of the identification scheme:\n   * `EXT` - Phone Number Extension\n"
+        identification:
+          description: Contact details in another form.
+          type: string
+          maxLength: 128
+          example: null
     remittanceInformation:
       title: RemittanceInformation
       description: Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system
@@ -462,13 +389,86 @@ components:
           type: string
           example: Invoice# 1234
           maxLength: 140
-    secondaryIdentifier:
-      title: secondaryIdentifier
+    minimumAmount:
+      title: Minimum Amount
+      description: Minimum amount of payment accepted by supplier for the payment type selected
       type: object
-      description: Secondary Unique Identifier
+      required:
+      - amount
+      - currency
       properties:
-        debtor:
-          $ref: '#/components/schemas/debtor'
+        amount:
+          type: number
+          example: 1.01
+          maxLength: 11
+        currency:
+          type: string
+          example: USD
+          enum:
+          - USD
+    created:
+      title: Created
+      type: object
+      description: 201 - Success - Created
+      required:
+      - detail
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/createdDetails'
+    notFound:
+      title: Not Found
+      description: 404 - Resource was not found.
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 404
+          type: number
+          enum:
+          - 404
+          description: "A programmatic error code:\n  * `404` - Resource was not found.\n"
+        message:
+          description: A human readable description of the problem
+          example: Resource was not found.
+          type: string
+    paymentIdentification:
+      title: Payment Identification
+      description: Unique identifier generated by the biller, which can be used for reconciliation purpose and to link a payment to the original bill.
+      type: object
+      required:
+      - endToEndIdentification
+      properties:
+        endToEndIdentification:
+          description: Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain.
+          type: string
+          example: ABC123
+          maxLength: 35
+    badRequestErrorDetails:
+      title: Bad Request Error Details
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          description: "A programmatic error code:\n  * `2000` - Invalid JSON structure.\n  * `2001` - '[Field name] is missing or invalid.'\n  * `2002` - Invalid date.\n  * `2003` - Invalid combination of fields submitted. Check the API specification for eligible combinations. \n  * `2004` - '[Field name] cannot be more than [max number] characters.'\n"
+          example: 2000
+          type: number
+          enum:
+          - 2000
+          - 2001
+          - 2002
+          - 2003
+          - 2004
+        message:
+          description: A human readable description of the problem
+          example: Invalid JSON structure.
+          type: string
   securitySchemes:
     APIKeyQueryParam:
       type: apiKey
