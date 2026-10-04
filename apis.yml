@@ -1210,6 +1210,9 @@ apis:
   - type: APIReference
     url: https://app.swaggerhub.com/apis/ASIG/Bank_Contact_V2/1.0.9
 common:
+- type: CapabilityMap
+  url: capabilities/nacha-capability-edges.yml
+  name: Nacha Business Capability Map
 - type: Overlay
   url: overlays/nacha-initiate-payment-overlay.yaml
 - type: Overlay
