@@ -85,65 +85,82 @@ paths:
       x-operation-id-original: Get Participants Profile
 components:
   schemas:
-    remittedAmount:
-      title: Remitted Amount
-      description: Amount of money remitted
-      type: object
-      required:
-      - amount
-      - currency
-      properties:
-        amount:
-          type: number
-          example: 100.2
-          maxLength: 11
-        currency:
-          type: string
-          example: USD
-    error:
-      title: Error
-      type: object
-      properties:
-        detail:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/errorDetails'
-    unprocessableEntityErrorDetails:
-      title: Unprocessable Entity Error Details
+    internalServerErrorDetails:
+      title: Internal Server Error ErrorDetails
       type: object
       required:
       - errorCode
       - message
       properties:
         errorCode:
-          example: 4001
+          example: 3001
           type: number
           enum:
-          - 4001
-          description: "A programmatic error code:\n  * `4001` - Unprocessable request due to \"%%\"\n"
+          - 3001
+          description: "A programmatic error code:\n  * `3001` - Internal Server error.\n"
         message:
           description: A human readable description of the problem
-          example: Unprocessable request due to duplicate records
+          example: Internal Server error
           type: string
-    unauthorizedErrorDetails:
-      title: Unauthorized Error Details
+    postalAddress:
       type: object
+      title: Postal Address
       required:
-      - errorCode
-      - message
+      - name
       properties:
-        errorCode:
-          example: 1000
-          type: number
-          enum:
-          - 1000
-          - 1001
-          description: "A programmatic error code:\n  * `1000` - API key is missing, invalid or expired. \n  * `1001` - API token is invalid, expired, or account associated with key does not have access to that API.\n"
-        message:
-          description: A human readable description of the problem
-          example: API key is missing, invalid or expired.
+        name:
           type: string
+          example: ABC Corporation
+        address:
+          $ref: '#/components/schemas/address'
+    creditorAgent:
+      title: Creditor Agent
+      type: object
+      description: Financial institution servicing an account for the creditor.
+      required:
+      - memberIdentification
+      - clearingSystemIdentification
+      properties:
+        clearingSystemIdentification:
+          type: string
+          example: USABA
+          enum:
+          - CACPA
+          - USABA
+          description: "Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed:  \n  * `CACPA` - Bank Branch Code used in Canada.\n  * `USABA` - Routing Transit number assigned by the ABA for US financial Institutions. \n"
+        memberIdentification:
+          description: Identification of a member of a clearing system  e.g., a U.S. transit routing number or Canadian Payments Association Routing Number
+          type: string
+          minLength: 9
+          maxLength: 9
+          example: 061103852
+        postalAddress:
+          $ref: '#/components/schemas/address'
+    maxLength:
+      description: Total length of the Account number
+      type: integer
+      example: 15
+      minLength: 1
+      maxLength: 25
+    length:
+      description: Total length of the Account number
+      type: integer
+      example: 8
+      minLength: 1
+      maxLength: 25
+    locationAndContact:
+      type: object
+      description: Location and contact information of the merchant (business) performing the transaction
+      properties:
+        URLAddress:
+          type: string
+          description: Address for the Universal Resource Locator (URL), for example used over the www (HTTP) service
+          maxLength: 256
+          example: https://www.energy.com/welcome
+        customerService:
+          type: string
+          description: Phone number of the customer service
+          example: +1-800-555-2000
     creditor:
       title: Creditor
       type: object
@@ -155,79 +172,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/maskAccount'
-    creditorAccount:
-      title: Creditor Account
-      type: object
-      required:
-      - identification
-      - alternateAccount
-      properties:
-        identification:
-          description: Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.
-          type: string
-          example: '1234567891'
-          maxLength: 17
-        alternateAccount:
-          description: Exception bank account number to be used when mask criteria is not met.
-          type: string
-          example: '42325454545'
-          maxLength: 17
-        proxy:
-          type: object
-          properties:
-            type:
-              type: string
-              enum:
-              - EMAL
-              - MBNO
-              description: "Identification used to indicate the account identification:\n * `EMAL` - Email - Receiver's Email\n * `MBNO` - Mobile Number - Receiver's Phone Number\n"
-              example: EMAL
-            identification:
-              type: string
-              example: bob.jones@gmail.com
-    maskAccount:
-      title: Mask Account
-      type: object
-      properties:
-        position:
-          type: integer
-          example: 1
-          default: 1
-          maximum: 25
-        value:
-          $ref: '#/components/schemas/accountMaskSpecification'
-    errorDetails:
-      title: Error Details
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          example: 2000
-          type: number
-          enum:
-          - 2000
-          - 2001
-          - 2002
-          - 2003
-          - 2004
-          description: "A programmatic error code:\n  * `2000` - Invalid JSON structure.\n  * `2001` - [Field name] is missing or invalid.\n  * `2002` - Invalid date.\n  * `2003` - Invalid combination of fields submitted. Check the API specification for eligible combinations.  \n  * `2004` - [Field name] cannot be more than [max number] characters. \n"
-        message:
-          description: A human readable description of the problem
-          example: Invalid JSON structure.
-          type: string
-    upperCase:
-      type: array
-      minItems: 0
-      maxItems: 26
-      example:
-      - V
-      - E
-      - Z
-      description: Allowed list of alphabets [A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z]
-      items:
-        type: string
     serviceLevel:
       title: Service Level
       type: string
@@ -249,150 +193,29 @@ components:
       - c
       items:
         type: string
-    internalServerErrorDetails:
-      title: Internal Server Error ErrorDetails
+    contactDetails:
       type: object
-      required:
-      - errorCode
-      - message
+      title: Contact Details
+      description: Set of elements used to indicate how to contact the party
       properties:
-        errorCode:
-          example: 3001
-          type: number
-          enum:
-          - 3001
-          description: "A programmatic error code:\n  * `3001` - Internal Server error.\n"
-        message:
-          description: A human readable description of the problem
-          example: Internal Server error
+        name:
           type: string
-    allowedCharacters:
-      description: Allowed strings '["lowerCase", "upperCase", "numbers","specialCharacters"]'
-      type: array
-      example:
-      - lowerCase
-      - upperCase
-      - numbers
-      - specialCharacters
-      items:
-        type: string
-    relatedRemittanceInformation:
-      title: Related Remittance Information
-      description: Provides information related to the handling of the remittance information by any of the agents in the transaction processing chain
-      type: object
-      properties:
-        method:
+          description: Name by which a party is known and which is usually used to identify that party
+          example: Zachary Martin
+        jobTitle:
           type: string
-          example: POST
-          enum:
-          - WPMT
-          - EMAL
-          - FAXI
-          - URID
-          - POST
-          - SMSM
-          description: "Method used to deliver the remittance advice information:\n * `WPMT` - WithPayment - Remittance advice information must be sent with payment\n * `EMAL` - Email - Remittance advice information must be through e-mail\n * `FAXI` - Fax - Remittance advice information must be faxed\n * `URID` - Uniform Resource Identifier\n * `POST` - Post\n * `SMSM` - SMS\n"
-        electronicAddress:
-          title: Electronic Address
-          description: Electronic address to which an agent is to send the remittance information
+          description: Title of the function
+          example: Accounts Receive Specialist
+        emailAddress:
           type: string
-          example: ''
+          description: Address for electronic mail
+          example: zachary.martin@ABCcorp.com
+        phoneNumber:
+          type: string
+          description: Collection of information that identifies a phone number, as defined by telecom services
+          example: +1-302-515-5565
         postalAddress:
-          $ref: '#/components/schemas/postalAddress'
-    unauthorized:
-      title: Unauthorized
-      type: object
-      properties:
-        detail:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/unauthorizedErrorDetails'
-    duePayableAmount:
-      title: Due Payable Amount
-      description: Amount specified is the exact amount due and payable to the creditor
-      type: object
-      required:
-      - amount
-      - currency
-      properties:
-        amount:
-          type: number
-          example: 100.2
-          maxLength: 11
-        currency:
-          type: string
-          example: USD
-    locationAndContact:
-      type: object
-      description: Location and contact information of the merchant (business) performing the transaction
-      properties:
-        URLAddress:
-          type: string
-          description: Address for the Universal Resource Locator (URL), for example used over the www (HTTP) service
-          maxLength: 256
-          example: https://www.energy.com/welcome
-        customerService:
-          type: string
-          description: Phone number of the customer service
-          example: +1-800-555-2000
-    paymentInformation:
-      title: Payment Information
-      type: object
-      required:
-      - paymentMethod
-      properties:
-        paymentMethod:
-          type: string
-          title: Payment Method
-          example: TRF
-          enum:
-          - CHK
-          - TRF
-          description: "Specifies the means of payment that will be used to move the amount of money:\n  * `CHK` - Cheque\n  * `TRF` - CreditTransfer\n"
-        paymentTypeInformation:
-          title: Payment Type Information
-          description: Set of elements used to further specify the type of transaction.
-          type: object
-          properties:
-            serviceLevel:
-              $ref: '#/components/schemas/serviceLevel'
-            localInstrument:
-              type: string
-              example: ZELLE
-    unprocessableEntity:
-      title: Unprocessable Entity
-      type: object
-      properties:
-        detail:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/unprocessableEntityErrorDetails'
-    discountAppliedAmount:
-      title: Discount Applied Amount
-      description: Amount specified for the referred document is the amount of discount to be applied to the amount due and payable to the creditor
-      type: object
-      required:
-      - amount
-      - currency
-      properties:
-        amount:
-          type: number
-          example: 2.2
-          maxLength: 11
-        currency:
-          type: string
-          example: USD
-    forbidden:
-      title: Forbidden
-      type: object
-      properties:
-        detail:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/unauthorizedErrorDetails'
+          $ref: '#/components/schemas/address'
     participant_profile:
       title: Participant Profile
       type: object
@@ -430,66 +253,6 @@ components:
           example: '2020-04-29T16:50:29.854Z'
           minLength: 20
           maxLength: 29
-    specialCharacters:
-      type: array
-      minItems: 0
-      maxItems: 28
-      example:
-      - '-'
-      - _
-      - .
-      description: Allowed Charactors are in ["!","$","’","+",".",";",">","`","}",'“',"%","(",")",",","/","<","?","{","~","#","&","*","-",":","=","_","|","@"]
-      items:
-        type: string
-    internalServerError:
-      title: Internal Server Error
-      type: object
-      properties:
-        detail:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/internalServerErrorDetails'
-    contactDetails:
-      type: object
-      title: Contact Details
-      description: Set of elements used to indicate how to contact the party
-      properties:
-        name:
-          type: string
-          description: Name by which a party is known and which is usually used to identify that party
-          example: Zachary Martin
-        jobTitle:
-          type: string
-          description: Title of the function
-          example: Accounts Receive Specialist
-        emailAddress:
-          type: string
-          description: Address for electronic mail
-          example: zachary.martin@ABCcorp.com
-        phoneNumber:
-          type: string
-          description: Collection of information that identifies a phone number, as defined by telecom services
-          example: +1-302-515-5565
-        postalAddress:
-          $ref: '#/components/schemas/address'
-    minLength:
-      description: Total length of the Account number
-      type: integer
-      example: 1
-      minLength: 1
-      maxLength: 25
-    postalAddress:
-      type: object
-      title: Postal Address
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          example: ABC Corporation
-        address:
-          $ref: '#/components/schemas/address'
     delimiter:
       type: array
       minItems: 0
@@ -501,63 +264,51 @@ components:
       description: Allowed special characters are '["!","$","+",".",";",">","`","}","(",")",",","/","<","?","{","~","#","&","*","-",":","_","|","@"]'
       items:
         type: string
-    creditorAgent:
-      title: Creditor Agent
+    duePayableAmount:
+      title: Due Payable Amount
+      description: Amount specified is the exact amount due and payable to the creditor
       type: object
-      description: Financial institution servicing an account for the creditor.
       required:
-      - memberIdentification
-      - clearingSystemIdentification
+      - amount
+      - currency
       properties:
-        clearingSystemIdentification:
+        amount:
+          type: number
+          example: 100.2
+          maxLength: 11
+        currency:
           type: string
-          example: USABA
-          enum:
-          - CACPA
-          - USABA
-          description: "Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed:  \n  * `CACPA` - Bank Branch Code used in Canada.\n  * `USABA` - Routing Transit number assigned by the ABA for US financial Institutions. \n"
-        memberIdentification:
-          description: Identification of a member of a clearing system  e.g., a U.S. transit routing number or Canadian Payments Association Routing Number
-          type: string
-          minLength: 9
-          maxLength: 9
-          example: 061103852
-        postalAddress:
-          $ref: '#/components/schemas/address'
-    address:
+          example: USD
+    creditorAccount:
+      title: Creditor Account
       type: object
-      description: Information that locates and identifies a specific address, as defined by postal services
+      required:
+      - identification
+      - alternateAccount
       properties:
-        department:
+        identification:
+          description: Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.
           type: string
-          description: Identification of a division of a large organisation or building
-          example: Finance Department
-        streetName:
+          example: '1234567891'
+          maxLength: 17
+        alternateAccount:
+          description: Exception bank account number to be used when mask criteria is not met.
           type: string
-          description: Name of a street or thoroughfare
-          example: 5700 Lexington Street
-        postCode:
-          type: integer
-          description: Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail
-          example: 19801
-        townName:
-          type: string
-          description: Name of a built-up area, with defined boundaries, and a local government
-          example: Wilmington
-        countrySubDivision:
-          type: string
-          description: Identifies a subdivision of a country such as state, region, county
-          example: DE
-        country:
-          type: string
-          description: Nation with its own government
-          example: US
-    maxLength:
-      description: Total length of the Account number
-      type: integer
-      example: 15
-      minLength: 1
-      maxLength: 25
+          example: '42325454545'
+          maxLength: 17
+        proxy:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - EMAL
+              - MBNO
+              description: "Identification used to indicate the account identification:\n * `EMAL` - Email - Receiver's Email\n * `MBNO` - Mobile Number - Receiver's Phone Number\n"
+              example: EMAL
+            identification:
+              type: string
+              example: bob.jones@gmail.com
     accountMaskSpecification:
       title: Account Mask Specification
       type: object
@@ -583,6 +334,21 @@ components:
           $ref: '#/components/schemas/numbers'
         specialCharacters:
           $ref: '#/components/schemas/specialCharacters'
+    maximumAmount:
+      title: Maximum Amount
+      description: Maximum amount of payment accepted by supplier for the payment type selected
+      type: object
+      required:
+      - amount
+      - currency
+      properties:
+        amount:
+          type: number
+          example: 1000000.29
+          maxLength: 11
+        currency:
+          type: string
+          example: USD
     adjustmentAmountAndReason:
       title: Adjustment Amount and Reason
       description: Discount Applied paid
@@ -608,6 +374,106 @@ components:
           description: Provides further details on the document adjustment
           type: string
           example: ''
+    unauthorized:
+      title: Unauthorized
+      type: object
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/unauthorizedErrorDetails'
+    unprocessableEntityErrorDetails:
+      title: Unprocessable Entity Error Details
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 4001
+          type: number
+          enum:
+          - 4001
+          description: "A programmatic error code:\n  * `4001` - Unprocessable request due to \"%%\"\n"
+        message:
+          description: A human readable description of the problem
+          example: Unprocessable request due to duplicate records
+          type: string
+    allowedCharacters:
+      description: Allowed strings '["lowerCase", "upperCase", "numbers","specialCharacters"]'
+      type: array
+      example:
+      - lowerCase
+      - upperCase
+      - numbers
+      - specialCharacters
+      items:
+        type: string
+    remittedAmount:
+      title: Remitted Amount
+      description: Amount of money remitted
+      type: object
+      required:
+      - amount
+      - currency
+      properties:
+        amount:
+          type: number
+          example: 100.2
+          maxLength: 11
+        currency:
+          type: string
+          example: USD
+    specialCharacters:
+      type: array
+      minItems: 0
+      maxItems: 28
+      example:
+      - '-'
+      - _
+      - .
+      description: Allowed Charactors are in ["!","$","’","+",".",";",">","`","}",'“',"%","(",")",",","/","<","?","{","~","#","&","*","-",":","=","_","|","@"]
+      items:
+        type: string
+    minimumAmount:
+      title: Minimum Amount
+      description: Minimum amount of payment accepted by supplier for the payment type selected
+      type: object
+      required:
+      - amount
+      - currency
+      properties:
+        amount:
+          type: number
+          example: 1.01
+          maxLength: 11
+        currency:
+          type: string
+          example: USD
+    relatedRemittanceInformation:
+      title: Related Remittance Information
+      description: Provides information related to the handling of the remittance information by any of the agents in the transaction processing chain
+      type: object
+      properties:
+        method:
+          type: string
+          example: POST
+          enum:
+          - WPMT
+          - EMAL
+          - FAXI
+          - URID
+          - POST
+          - SMSM
+          description: "Method used to deliver the remittance advice information:\n * `WPMT` - WithPayment - Remittance advice information must be sent with payment\n * `EMAL` - Email - Remittance advice information must be through e-mail\n * `FAXI` - Fax - Remittance advice information must be faxed\n * `URID` - Uniform Resource Identifier\n * `POST` - Post\n * `SMSM` - SMS\n"
+        electronicAddress:
+          title: Electronic Address
+          description: Electronic address to which an agent is to send the remittance information
+          type: string
+          example: ''
+        postalAddress:
+          $ref: '#/components/schemas/postalAddress'
     invoicee:
       type: object
       title: Invoicee
@@ -715,9 +581,9 @@ components:
             - adjustmentAmountAndReason.currency
             - adjustmentAmountAndReason.reason
             - adjustmentAmountAndReason.string
-    minimumAmount:
-      title: Minimum Amount
-      description: Minimum amount of payment accepted by supplier for the payment type selected
+    discountAppliedAmount:
+      title: Discount Applied Amount
+      description: Amount specified for the referred document is the amount of discount to be applied to the amount due and payable to the creditor
       type: object
       required:
       - amount
@@ -725,22 +591,22 @@ components:
       properties:
         amount:
           type: number
-          example: 1.01
+          example: 2.2
           maxLength: 11
         currency:
           type: string
           example: USD
-    numbers:
+    upperCase:
       type: array
       minItems: 0
-      maxItems: 10
+      maxItems: 26
       example:
-      - 1
-      - 2
-      - 3
-      description: Allowed numbers are [0,1,2,3,4,5,6,7,8,9]
+      - V
+      - E
+      - Z
+      description: Allowed list of alphabets [A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z]
       items:
-        type: number
+        type: string
     paymentProfile:
       title: Payment Profile
       properties:
@@ -770,27 +636,161 @@ components:
           $ref: '#/components/schemas/minimumAmount'
         maximumAmount:
           $ref: '#/components/schemas/maximumAmount'
-    maximumAmount:
-      title: Maximum Amount
-      description: Maximum amount of payment accepted by supplier for the payment type selected
+    errorDetails:
+      title: Error Details
       type: object
       required:
-      - amount
-      - currency
+      - errorCode
+      - message
       properties:
-        amount:
+        errorCode:
+          example: 2000
           type: number
-          example: 1000000.29
-          maxLength: 11
-        currency:
+          enum:
+          - 2000
+          - 2001
+          - 2002
+          - 2003
+          - 2004
+          description: "A programmatic error code:\n  * `2000` - Invalid JSON structure.\n  * `2001` - [Field name] is missing or invalid.\n  * `2002` - Invalid date.\n  * `2003` - Invalid combination of fields submitted. Check the API specification for eligible combinations.  \n  * `2004` - [Field name] cannot be more than [max number] characters. \n"
+        message:
+          description: A human readable description of the problem
+          example: Invalid JSON structure.
           type: string
-          example: USD
-    length:
+    paymentInformation:
+      title: Payment Information
+      type: object
+      required:
+      - paymentMethod
+      properties:
+        paymentMethod:
+          type: string
+          title: Payment Method
+          example: TRF
+          enum:
+          - CHK
+          - TRF
+          description: "Specifies the means of payment that will be used to move the amount of money:\n  * `CHK` - Cheque\n  * `TRF` - CreditTransfer\n"
+        paymentTypeInformation:
+          title: Payment Type Information
+          description: Set of elements used to further specify the type of transaction.
+          type: object
+          properties:
+            serviceLevel:
+              $ref: '#/components/schemas/serviceLevel'
+            localInstrument:
+              type: string
+              example: ZELLE
+    maskAccount:
+      title: Mask Account
+      type: object
+      properties:
+        position:
+          type: integer
+          example: 1
+          default: 1
+          maximum: 25
+        value:
+          $ref: '#/components/schemas/accountMaskSpecification'
+    error:
+      title: Error
+      type: object
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/errorDetails'
+    numbers:
+      type: array
+      minItems: 0
+      maxItems: 10
+      example:
+      - 1
+      - 2
+      - 3
+      description: Allowed numbers are [0,1,2,3,4,5,6,7,8,9]
+      items:
+        type: number
+    address:
+      type: object
+      description: Information that locates and identifies a specific address, as defined by postal services
+      properties:
+        department:
+          type: string
+          description: Identification of a division of a large organisation or building
+          example: Finance Department
+        streetName:
+          type: string
+          description: Name of a street or thoroughfare
+          example: 5700 Lexington Street
+        postCode:
+          type: integer
+          description: Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail
+          example: 19801
+        townName:
+          type: string
+          description: Name of a built-up area, with defined boundaries, and a local government
+          example: Wilmington
+        countrySubDivision:
+          type: string
+          description: Identifies a subdivision of a country such as state, region, county
+          example: DE
+        country:
+          type: string
+          description: Nation with its own government
+          example: US
+    internalServerError:
+      title: Internal Server Error
+      type: object
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/internalServerErrorDetails'
+    unprocessableEntity:
+      title: Unprocessable Entity
+      type: object
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/unprocessableEntityErrorDetails'
+    minLength:
       description: Total length of the Account number
       type: integer
-      example: 8
+      example: 1
       minLength: 1
       maxLength: 25
+    forbidden:
+      title: Forbidden
+      type: object
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/unauthorizedErrorDetails'
+    unauthorizedErrorDetails:
+      title: Unauthorized Error Details
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 1000
+          type: number
+          enum:
+          - 1000
+          - 1001
+          description: "A programmatic error code:\n  * `1000` - API key is missing, invalid or expired. \n  * `1001` - API token is invalid, expired, or account associated with key does not have access to that API.\n"
+        message:
+          description: A human readable description of the problem
+          example: API key is missing, invalid or expired.
+          type: string
   securitySchemes:
     APIKeyQueryParam:
       type: apiKey
