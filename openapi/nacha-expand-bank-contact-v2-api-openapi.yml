@@ -143,84 +143,6 @@ paths:
       x-operation-id-original: Expand Bank Contact V2 - Get
 components:
   schemas:
-    internalServerErrorDetails:
-      title: Internal Server Error Details
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          example: 3001
-          type: number
-          enum:
-          - 3001
-          description: "A programmatic error code:\n  * `3001` - Internal Server error.\n"
-        message:
-          description: A human readable description of the problem
-          example: Internal Server error
-          type: string
-    contactType:
-      type: string
-      example: Primary
-      enum:
-      - Primary
-      - Secondary
-      - Other
-    partyType:
-      type: string
-      example: Individual
-      enum:
-      - Individual
-      - Department
-    response:
-      title: Response
-      type: object
-      description: 200 - Response
-      required:
-      - bankContact
-      properties:
-        agent:
-          $ref: '#/components/schemas/agent'
-        additionalInformation:
-          type: string
-          description: Any message the FI wishes to have go to anyone who pulls any contact
-          maxLength: 128
-          example: The Department contact number is 703 561 0000 option 1, option 3, option 3
-        bankContact:
-          type: array
-          items:
-            $ref: '#/components/schemas/bankContact'
-    agent:
-      title: Agent
-      description: Identification of a financial institution.
-      type: object
-      required:
-      - clearingSystemIdentification
-      - memberIdentification
-      properties:
-        clearingSystemIdentification:
-          type: string
-          example: USABA
-          enum:
-          - USABA
-          description: "Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed: \n * `USABA` - Routing Transit number assigned by the ABA for US financial Institutions. \n"
-        memberIdentification:
-          type: string
-          maxLength: 35
-          example: 061103852
-    badRequest:
-      title: Bad Request
-      type: object
-      description: 400 - Bad Request
-      required:
-      - details
-      properties:
-        details:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/badRequestErrorDetails'
     badRequestErrorDetails:
       title: Bad Request Error Details
       type: object
@@ -242,88 +164,42 @@ components:
           description: A human readable description of the problem
           example: Invalid JSON structure.
           type: string
-    internalServerError:
-      title: Internal Server Error
-      description: 500 - Internal Server Error
+    agent:
+      title: Agent
+      description: Identification of a financial institution.
       type: object
       required:
-      - details
+      - clearingSystemIdentification
+      - memberIdentification
       properties:
-        detail:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/internalServerErrorDetails'
-    unauthorized:
-      title: Unauthorized
-      type: object
-      description: 401 - Unauthorized
-      required:
-      - details
-      properties:
-        details:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/unauthorizedErrorDetails'
-    bankContact:
-      title: Bank Contact
-      type: object
-      properties:
-        contactType:
-          $ref: '#/components/schemas/contactType'
-        contactCategory:
+        clearingSystemIdentification:
           type: string
-          description: Area of FI
-          maxLength: 70
-          example: ACH Operations
+          example: USABA
           enum:
-          - All
-          - ACH Operations
-          - ACH Fraud
-          - Wire
-          - Check
-          - Credit Card
-          - Debit Card
-          - Compliance
-          - Anti-Money Laundering
-          - Legal
-          - LOI Processing
-          - Faster Payments
-          - Treasury Management
-        partyType:
-          $ref: '#/components/schemas/partyType'
-        identification:
+          - USABA
+          description: "Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed: \n * `USABA` - Routing Transit number assigned by the ABA for US financial Institutions. \n"
+        memberIdentification:
           type: string
-          description: Identification returned in input information response
           maxLength: 35
-          example: 84e232cc-12c8-4266-bcc1-9de2a1ca448c
-        loginAccess:
+          example: 061103852
+    response:
+      title: Response
+      type: object
+      description: 200 - Response
+      required:
+      - bankContact
+      properties:
+        agent:
+          $ref: '#/components/schemas/agent'
+        additionalInformation:
           type: string
-          example: true
-          enum:
-          - true
-          - false
-        contactDetails:
+          description: Any message the FI wishes to have go to anyone who pulls any contact
+          maxLength: 128
+          example: The Department contact number is 703 561 0000 option 1, option 3, option 3
+        bankContact:
           type: array
           items:
-            $ref: '#/components/schemas/contactDetails'
-    other:
-      type: object
-      required:
-      - channelType
-      - identification
-      properties:
-        channelType:
-          type: string
-          example: EXT
-          enum:
-          - EXT
-          description: "Name of the identification scheme:\n   * `FNM` - First Name\n   * `LNM` - Last Name\n   * `DNM` - Department Name\n   * `BH` - Business Hours\n   * `TZ` - Time Zone\n   * `EXT` - Phone Number Extension\n"
-        identification:
-          type: string
-          maxLength: 128
-          example: Ext 1
+            $ref: '#/components/schemas/bankContact'
     contactDetails:
       type: object
       required:
@@ -368,6 +244,130 @@ components:
           description: A human readable description of the problem
           example: API key is missing, invalid or expired.
           type: string
+    partyType:
+      type: string
+      example: Individual
+      enum:
+      - Individual
+      - Department
+    bankContact:
+      title: Bank Contact
+      type: object
+      properties:
+        contactType:
+          $ref: '#/components/schemas/contactType'
+        contactCategory:
+          type: string
+          description: Area of FI
+          maxLength: 70
+          example: ACH Operations
+          enum:
+          - All
+          - ACH Operations
+          - ACH Fraud
+          - Wire
+          - Check
+          - Credit Card
+          - Debit Card
+          - Compliance
+          - Anti-Money Laundering
+          - Legal
+          - LOI Processing
+          - Faster Payments
+          - Treasury Management
+        partyType:
+          $ref: '#/components/schemas/partyType'
+        identification:
+          type: string
+          description: Identification returned in input information response
+          maxLength: 35
+          example: 84e232cc-12c8-4266-bcc1-9de2a1ca448c
+        loginAccess:
+          type: string
+          example: true
+          enum:
+          - true
+          - false
+        contactDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/contactDetails'
+    unauthorized:
+      title: Unauthorized
+      type: object
+      description: 401 - Unauthorized
+      required:
+      - details
+      properties:
+        details:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/unauthorizedErrorDetails'
+    internalServerErrorDetails:
+      title: Internal Server Error Details
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 3001
+          type: number
+          enum:
+          - 3001
+          description: "A programmatic error code:\n  * `3001` - Internal Server error.\n"
+        message:
+          description: A human readable description of the problem
+          example: Internal Server error
+          type: string
+    internalServerError:
+      title: Internal Server Error
+      description: 500 - Internal Server Error
+      type: object
+      required:
+      - details
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/internalServerErrorDetails'
+    contactType:
+      type: string
+      example: Primary
+      enum:
+      - Primary
+      - Secondary
+      - Other
+    badRequest:
+      title: Bad Request
+      type: object
+      description: 400 - Bad Request
+      required:
+      - details
+      properties:
+        details:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/badRequestErrorDetails'
+    other:
+      type: object
+      required:
+      - channelType
+      - identification
+      properties:
+        channelType:
+          type: string
+          example: EXT
+          enum:
+          - EXT
+          description: "Name of the identification scheme:\n   * `FNM` - First Name\n   * `LNM` - Last Name\n   * `DNM` - Department Name\n   * `BH` - Business Hours\n   * `TZ` - Time Zone\n   * `EXT` - Phone Number Extension\n"
+        identification:
+          type: string
+          maxLength: 128
+          example: Ext 1
   securitySchemes:
     APIKeyQueryParam:
       type: apiKey

@@ -148,31 +148,24 @@ paths:
     - url: https://api.afinis.org/ASIG/Get_Corporate_Transaction_History_API/1.0.0/accounts/v1
 components:
   schemas:
-    searchCriteria:
-      title: SearchCriteria
-      description: Defines the criteria on which the information is extracted
+    agent:
+      title: Agent
+      description: Identification of a financial institution.
       type: object
       required:
-      - accountIdentification
+      - clearingSystemIdentification
+      - memberIdentification
       properties:
-        transactionIdentification:
+        clearingSystemIdentification:
           type: string
-          example: sampleTransaction001
-          minLength: 1
+          example: USABA
+          enum:
+          - USABA
+          description: "Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed: \n * `USABA` - Routing Transit number assigned by the ABA for US financial Institutions. \n"
+        memberIdentification:
+          type: string
           maxLength: 35
-        accountIdentification:
-          $ref: '#/components/schemas/accountIdentification'
-    response-200:
-      title: Response 200 - OK
-      type: object
-      description: Response containing transaction history
-      required:
-      - businessReport
-      properties:
-        agent:
-          $ref: '#/components/schemas/agent'
-        transactionReport:
-          $ref: '#/components/schemas/transactionReport'
+          example: 061103852
     accountIdentification:
       title: accountIdentification
       description: Unique and unambiguous identification for the account between the account owner and the account servicer.
@@ -194,24 +187,78 @@ components:
           - Y
           - N
           description: "Specifies whether the account identification is tokenized:\n  * `Y` - Account is tokenized\n  * `N` - Account is not tokenized\n"
-    agent:
-      title: Agent
-      description: Identification of a financial institution.
+    error-400:
+      title: Error 400 - Bad Request
+      description: The request could not be understood or required parameters were missing
+      type: object
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/errorDetails-400'
+    errorDetails-500:
+      title: Error 500 - Internal server error - Details
+      type: object
+      properties:
+        errorcode:
+          description: A programmatic error code
+          example: 3001
+          type: number
+        message:
+          description: A human readable description of the problem
+          example: Internal Server error
+          type: string
+      required:
+      - errorcode
+      - message
+    errorDetails-400:
+      title: Error 400 - Bad Request - Details
+      type: object
+      properties:
+        errorCode:
+          description: "A programmatic error code:\n  * `2000` - Invalid JSON structure.\n  * `2001` - '[Field name] is missing or invalid.'\n  * `2002` - Invalid date.\n  * `2003` - Invalid combination of fields submitted. Check the API specification for eligible combinations. \n  * `2004` - '[Field name] cannot be more than [max number] characters.'\n"
+          example: 2000
+          type: number
+          enum:
+          - 2000
+          - 2001
+          - 2002
+          - 2003
+          - 2004
+        message:
+          description: A human readable description of the problem
+          example: Invalid JSON structure.
+          type: string
+    error-503:
+      title: Error 503 - Service Unavailable
+      description: Service is temporarily unavailable
       type: object
       required:
-      - clearingSystemIdentification
-      - memberIdentification
+      - errorCode
+      - message
       properties:
-        clearingSystemIdentification:
-          type: string
-          example: USABA
+        errorCode:
+          example: 503
+          type: number
           enum:
-          - USABA
-          description: "Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed: \n * `USABA` - Routing Transit number assigned by the ABA for US financial Institutions. \n"
-        memberIdentification:
+          - 503
+          description: "A programmatic error code:\n  * `503` - Service Unavailable\n"
+        message:
+          description: A human readable description of the problem
+          example: Service is temporarily unavailable.
           type: string
-          maxLength: 35
-          example: 061103852
+    response-200:
+      title: Response 200 - OK
+      type: object
+      description: Response containing transaction history
+      required:
+      - businessReport
+      properties:
+        agent:
+          $ref: '#/components/schemas/agent'
+        transactionReport:
+          $ref: '#/components/schemas/transactionReport'
     error-404:
       title: Error 404 - Not Found
       description: Resource was not found.
@@ -277,58 +324,6 @@ components:
           minLength: 1
         accountIdentification:
           $ref: '#/components/schemas/accountIdentification'
-    error-401:
-      title: Error 401 - Unauthorized
-      description: Authentication failed or user doesn’t have permissions for requested operation
-      type: object
-      properties:
-        detail:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/errorDetails-401'
-    error-500:
-      title: Error 500 - Internal server error
-      type: object
-      properties:
-        detail:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/errorDetails-500'
-    errorDetails-500:
-      title: Error 500 - Internal server error - Details
-      type: object
-      properties:
-        errorcode:
-          description: A programmatic error code
-          example: 3001
-          type: number
-        message:
-          description: A human readable description of the problem
-          example: Internal Server error
-          type: string
-      required:
-      - errorcode
-      - message
-    error-503:
-      title: Error 503 - Service Unavailable
-      description: Service is temporarily unavailable
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          example: 503
-          type: number
-          enum:
-          - 503
-          description: "A programmatic error code:\n  * `503` - Service Unavailable\n"
-        message:
-          description: A human readable description of the problem
-          example: Service is temporarily unavailable.
-          type: string
     errorDetails-401:
       title: Error 401 - Unauthorized - Details
       type: object
@@ -347,98 +342,39 @@ components:
       required:
       - errorcode
       - message
-    errorDetails-400:
-      title: Error 400 - Bad Request - Details
-      type: object
-      properties:
-        errorCode:
-          description: "A programmatic error code:\n  * `2000` - Invalid JSON structure.\n  * `2001` - '[Field name] is missing or invalid.'\n  * `2002` - Invalid date.\n  * `2003` - Invalid combination of fields submitted. Check the API specification for eligible combinations. \n  * `2004` - '[Field name] cannot be more than [max number] characters.'\n"
-          example: 2000
-          type: number
-          enum:
-          - 2000
-          - 2001
-          - 2002
-          - 2003
-          - 2004
-        message:
-          description: A human readable description of the problem
-          example: Invalid JSON structure.
-          type: string
-    error-400:
-      title: Error 400 - Bad Request
-      description: The request could not be understood or required parameters were missing
-      type: object
-      properties:
-        detail:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/errorDetails-400'
-    searchCriteria_2:
+    searchCriteria:
       title: SearchCriteria
       description: Defines the criteria on which the information is extracted
       type: object
       required:
       - accountIdentification
       properties:
+        transactionIdentification:
+          type: string
+          example: sampleTransaction001
+          minLength: 1
+          maxLength: 35
         accountIdentification:
-          $ref: '#/components/schemas/accountIdentification_2'
-        fromDate:
-          type: string
-          description: Start date of the range
-          example: '2020-04-29'
-          minLength: 10
-          maxLength: 10
-        toDate:
-          type: string
-          description: End date of the range
-          example: '2020-05-19'
-          minLength: 10
-          maxLength: 10
-    response-200_2:
-      title: Response 200 - OK
+          $ref: '#/components/schemas/accountIdentification'
+    error-500:
+      title: Error 500 - Internal server error
       type: object
-      description: Response containing transaction history
-      required:
-      - businessReport
       properties:
-        agent:
-          $ref: '#/components/schemas/agent'
-        accountReport:
+        detail:
+          description: error details
           type: array
           items:
-            $ref: '#/components/schemas/businessReport'
-    transactionsSummary:
-      title: Transactions Summary
-      description: Indicates the total number and sum of the transactions.
+            $ref: '#/components/schemas/errorDetails-500'
+    error-401:
+      title: Error 401 - Unauthorized
+      description: Authentication failed or user doesn’t have permissions for requested operation
       type: object
-      required:
-      - numberOfEntries
-      - totalAvailableEntries
-      - totalCreditEntries
-      - totalDebitEntries
       properties:
-        numberOfEntries:
-          type: number
-          example: 2
-          minLength: 1
-          maxLength: 15
-        totalAvailableEntries:
-          type: number
-          example: 3
-          minLength: 1
-          maxLength: 15
-        totalCreditEntries:
-          type: number
-          example: 300
-          minLength: 1
-          maxLength: 15
-        totalDebitEntries:
-          type: number
-          example: 100
-          minLength: 1
-          maxLength: 15
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/errorDetails-401'
     accountIdentification_2:
       title: accountIdentification
       description: Unique and unambiguous identification for the account between the account owner and the account servicer.
@@ -460,23 +396,19 @@ components:
           - Y
           - N
           description: "Specifies whether the account identification is tokenized:\n  * `Y` - Account is tokenized\n  * `N` - Account is not tokenized\n  \n"
-    businessReport:
-      title: BusinessReport
-      description: Reports on payment transactions.
+    response-200_2:
+      title: Response 200 - OK
       type: object
+      description: Response containing transaction history
       required:
-      - account
-      - transactionsSummary
-      - transactionReport
+      - businessReport
       properties:
-        account:
-          $ref: '#/components/schemas/accountIdentification_2'
-        transactionsSummary:
-          $ref: '#/components/schemas/transactionsSummary'
-        transactionReport:
+        agent:
+          $ref: '#/components/schemas/agent'
+        accountReport:
           type: array
           items:
-            $ref: '#/components/schemas/transactionReport_2'
+            $ref: '#/components/schemas/businessReport'
     transactionReport_2:
       title: Transactions Summary
       description: Reports on the transaction information.
@@ -531,6 +463,74 @@ components:
           example: ABC-200
           minLength: 1
           maxLength: 35
+    searchCriteria_2:
+      title: SearchCriteria
+      description: Defines the criteria on which the information is extracted
+      type: object
+      required:
+      - accountIdentification
+      properties:
+        accountIdentification:
+          $ref: '#/components/schemas/accountIdentification_2'
+        fromDate:
+          type: string
+          description: Start date of the range
+          example: '2020-04-29'
+          minLength: 10
+          maxLength: 10
+        toDate:
+          type: string
+          description: End date of the range
+          example: '2020-05-19'
+          minLength: 10
+          maxLength: 10
+    businessReport:
+      title: BusinessReport
+      description: Reports on payment transactions.
+      type: object
+      required:
+      - account
+      - transactionsSummary
+      - transactionReport
+      properties:
+        account:
+          $ref: '#/components/schemas/accountIdentification_2'
+        transactionsSummary:
+          $ref: '#/components/schemas/transactionsSummary'
+        transactionReport:
+          type: array
+          items:
+            $ref: '#/components/schemas/transactionReport_2'
+    transactionsSummary:
+      title: Transactions Summary
+      description: Indicates the total number and sum of the transactions.
+      type: object
+      required:
+      - numberOfEntries
+      - totalAvailableEntries
+      - totalCreditEntries
+      - totalDebitEntries
+      properties:
+        numberOfEntries:
+          type: number
+          example: 2
+          minLength: 1
+          maxLength: 15
+        totalAvailableEntries:
+          type: number
+          example: 3
+          minLength: 1
+          maxLength: 15
+        totalCreditEntries:
+          type: number
+          example: 300
+          minLength: 1
+          maxLength: 15
+        totalDebitEntries:
+          type: number
+          example: 100
+          minLength: 1
+          maxLength: 15
   securitySchemes:
     APIKeyQueryParam:
       type: apiKey

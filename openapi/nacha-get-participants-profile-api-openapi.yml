@@ -85,6 +85,97 @@ paths:
       x-operation-id-original: Get Participants Profile
 components:
   schemas:
+    upperCase:
+      type: array
+      minItems: 0
+      maxItems: 26
+      example:
+      - V
+      - E
+      - Z
+      description: Allowed list of alphabets [A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z]
+      items:
+        type: string
+    length:
+      description: Total length of the Account number
+      type: integer
+      example: 8
+      minLength: 1
+      maxLength: 25
+    maxLength:
+      description: Total length of the Account number
+      type: integer
+      example: 15
+      minLength: 1
+      maxLength: 25
+    errorDetails:
+      title: Error Details
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 2000
+          type: number
+          enum:
+          - 2000
+          - 2001
+          - 2002
+          - 2003
+          - 2004
+          description: "A programmatic error code:\n  * `2000` - Invalid JSON structure.\n  * `2001` - [Field name] is missing or invalid.\n  * `2002` - Invalid date.\n  * `2003` - Invalid combination of fields submitted. Check the API specification for eligible combinations.  \n  * `2004` - [Field name] cannot be more than [max number] characters. \n"
+        message:
+          description: A human readable description of the problem
+          example: Invalid JSON structure.
+          type: string
+    address:
+      type: object
+      description: Information that locates and identifies a specific address, as defined by postal services
+      properties:
+        department:
+          type: string
+          description: Identification of a division of a large organisation or building
+          example: Finance Department
+        streetName:
+          type: string
+          description: Name of a street or thoroughfare
+          example: 5700 Lexington Street
+        postCode:
+          type: integer
+          description: Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail
+          example: 19801
+        townName:
+          type: string
+          description: Name of a built-up area, with defined boundaries, and a local government
+          example: Wilmington
+        countrySubDivision:
+          type: string
+          description: Identifies a subdivision of a country such as state, region, county
+          example: DE
+        country:
+          type: string
+          description: Nation with its own government
+          example: US
+    unauthorized:
+      title: Unauthorized
+      type: object
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/unauthorizedErrorDetails'
+    serviceLevel:
+      title: Service Level
+      type: string
+      example: NURG
+      enum:
+      - NURG
+      - URGP
+      - CARD
+      - SDVA
+      description: "Specifies a pre-agreed service or level of service between the parties, as published in an external service level code list:\n  * `NURG` - Non-urgent Payment\n  * `URGP` - Urgent Payment\n  * `CARD` - Credit Card\n  * `SDVA` - Same Day Value Payment\n"
     internalServerErrorDetails:
       title: Internal Server Error ErrorDetails
       type: object
@@ -102,17 +193,6 @@ components:
           description: A human readable description of the problem
           example: Internal Server error
           type: string
-    postalAddress:
-      type: object
-      title: Postal Address
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          example: ABC Corporation
-        address:
-          $ref: '#/components/schemas/address'
     creditorAgent:
       title: Creditor Agent
       type: object
@@ -136,18 +216,15 @@ components:
           example: 061103852
         postalAddress:
           $ref: '#/components/schemas/address'
-    maxLength:
-      description: Total length of the Account number
-      type: integer
-      example: 15
-      minLength: 1
-      maxLength: 25
-    length:
-      description: Total length of the Account number
-      type: integer
-      example: 8
-      minLength: 1
-      maxLength: 25
+    unprocessableEntity:
+      title: Unprocessable Entity
+      type: object
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/unprocessableEntityErrorDetails'
     locationAndContact:
       type: object
       description: Location and contact information of the merchant (business) performing the transaction
@@ -161,38 +238,6 @@ components:
           type: string
           description: Phone number of the customer service
           example: +1-800-555-2000
-    creditor:
-      title: Creditor
-      type: object
-      description: Party to which an amount of money is due.
-      properties:
-        contactDetails:
-          $ref: '#/components/schemas/contactDetails'
-        maskAccount:
-          type: array
-          items:
-            $ref: '#/components/schemas/maskAccount'
-    serviceLevel:
-      title: Service Level
-      type: string
-      example: NURG
-      enum:
-      - NURG
-      - URGP
-      - CARD
-      - SDVA
-      description: "Specifies a pre-agreed service or level of service between the parties, as published in an external service level code list:\n  * `NURG` - Non-urgent Payment\n  * `URGP` - Urgent Payment\n  * `CARD` - Credit Card\n  * `SDVA` - Same Day Value Payment\n"
-    lowerCase:
-      type: array
-      minItems: 0
-      maxItems: 26
-      description: Allowed list of alphabets [a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z]
-      example:
-      - a
-      - b
-      - c
-      items:
-        type: string
     contactDetails:
       type: object
       title: Contact Details
@@ -216,6 +261,128 @@ components:
           example: +1-302-515-5565
         postalAddress:
           $ref: '#/components/schemas/address'
+    postalAddress:
+      type: object
+      title: Postal Address
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          example: ABC Corporation
+        address:
+          $ref: '#/components/schemas/address'
+    creditorAccount:
+      title: Creditor Account
+      type: object
+      required:
+      - identification
+      - alternateAccount
+      properties:
+        identification:
+          description: Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.
+          type: string
+          example: '1234567891'
+          maxLength: 17
+        alternateAccount:
+          description: Exception bank account number to be used when mask criteria is not met.
+          type: string
+          example: '42325454545'
+          maxLength: 17
+        proxy:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - EMAL
+              - MBNO
+              description: "Identification used to indicate the account identification:\n * `EMAL` - Email - Receiver's Email\n * `MBNO` - Mobile Number - Receiver's Phone Number\n"
+              example: EMAL
+            identification:
+              type: string
+              example: bob.jones@gmail.com
+    adjustmentAmountAndReason:
+      title: Adjustment Amount and Reason
+      description: Discount Applied paid
+      type: object
+      required:
+      - amount
+      - currency
+      - reason
+      properties:
+        amount:
+          description: Amount of money of the document adjustment.
+          type: number
+          example: 2.2
+          maxLength: 11
+        currency:
+          type: string
+          example: USD
+        reason:
+          type: string
+          description: Specifies the reason for the adjustment.
+          example: ''
+        additionalInformation:
+          description: Provides further details on the document adjustment
+          type: string
+          example: ''
+    internalServerError:
+      title: Internal Server Error
+      type: object
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/internalServerErrorDetails'
+    forbidden:
+      title: Forbidden
+      type: object
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/unauthorizedErrorDetails'
+    error:
+      title: Error
+      type: object
+      properties:
+        detail:
+          description: error details
+          type: array
+          items:
+            $ref: '#/components/schemas/errorDetails'
+    unauthorizedErrorDetails:
+      title: Unauthorized Error Details
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          example: 1000
+          type: number
+          enum:
+          - 1000
+          - 1001
+          description: "A programmatic error code:\n  * `1000` - API key is missing, invalid or expired. \n  * `1001` - API token is invalid, expired, or account associated with key does not have access to that API.\n"
+        message:
+          description: A human readable description of the problem
+          example: API key is missing, invalid or expired.
+          type: string
+    specialCharacters:
+      type: array
+      minItems: 0
+      maxItems: 28
+      example:
+      - '-'
+      - _
+      - .
+      description: Allowed Charactors are in ["!","$","’","+",".",";",">","`","}",'“',"%","(",")",",","/","<","?","{","~","#","&","*","-",":","=","_","|","@"]
+      items:
+        type: string
     participant_profile:
       title: Participant Profile
       type: object
@@ -253,136 +420,6 @@ components:
           example: '2020-04-29T16:50:29.854Z'
           minLength: 20
           maxLength: 29
-    delimiter:
-      type: array
-      minItems: 0
-      maxItems: 28
-      example:
-      - '-'
-      - _
-      - .
-      description: Allowed special characters are '["!","$","+",".",";",">","`","}","(",")",",","/","<","?","{","~","#","&","*","-",":","_","|","@"]'
-      items:
-        type: string
-    duePayableAmount:
-      title: Due Payable Amount
-      description: Amount specified is the exact amount due and payable to the creditor
-      type: object
-      required:
-      - amount
-      - currency
-      properties:
-        amount:
-          type: number
-          example: 100.2
-          maxLength: 11
-        currency:
-          type: string
-          example: USD
-    creditorAccount:
-      title: Creditor Account
-      type: object
-      required:
-      - identification
-      - alternateAccount
-      properties:
-        identification:
-          description: Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.
-          type: string
-          example: '1234567891'
-          maxLength: 17
-        alternateAccount:
-          description: Exception bank account number to be used when mask criteria is not met.
-          type: string
-          example: '42325454545'
-          maxLength: 17
-        proxy:
-          type: object
-          properties:
-            type:
-              type: string
-              enum:
-              - EMAL
-              - MBNO
-              description: "Identification used to indicate the account identification:\n * `EMAL` - Email - Receiver's Email\n * `MBNO` - Mobile Number - Receiver's Phone Number\n"
-              example: EMAL
-            identification:
-              type: string
-              example: bob.jones@gmail.com
-    accountMaskSpecification:
-      title: Account Mask Specification
-      type: object
-      description: Account Mask Specification
-      required:
-      - allowedCharacters
-      properties:
-        allowedCharacters:
-          $ref: '#/components/schemas/allowedCharacters'
-        length:
-          $ref: '#/components/schemas/length'
-        minLength:
-          $ref: '#/components/schemas/minLength'
-        maxLength:
-          $ref: '#/components/schemas/maxLength'
-        delimiter:
-          $ref: '#/components/schemas/delimiter'
-        lowerCase:
-          $ref: '#/components/schemas/lowerCase'
-        upperCase:
-          $ref: '#/components/schemas/upperCase'
-        numbers:
-          $ref: '#/components/schemas/numbers'
-        specialCharacters:
-          $ref: '#/components/schemas/specialCharacters'
-    maximumAmount:
-      title: Maximum Amount
-      description: Maximum amount of payment accepted by supplier for the payment type selected
-      type: object
-      required:
-      - amount
-      - currency
-      properties:
-        amount:
-          type: number
-          example: 1000000.29
-          maxLength: 11
-        currency:
-          type: string
-          example: USD
-    adjustmentAmountAndReason:
-      title: Adjustment Amount and Reason
-      description: Discount Applied paid
-      type: object
-      required:
-      - amount
-      - currency
-      - reason
-      properties:
-        amount:
-          description: Amount of money of the document adjustment.
-          type: number
-          example: 2.2
-          maxLength: 11
-        currency:
-          type: string
-          example: USD
-        reason:
-          type: string
-          description: Specifies the reason for the adjustment.
-          example: ''
-        additionalInformation:
-          description: Provides further details on the document adjustment
-          type: string
-          example: ''
-    unauthorized:
-      title: Unauthorized
-      type: object
-      properties:
-        detail:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/unauthorizedErrorDetails'
     unprocessableEntityErrorDetails:
       title: Unprocessable Entity Error Details
       type: object
@@ -400,42 +437,28 @@ components:
           description: A human readable description of the problem
           example: Unprocessable request due to duplicate records
           type: string
-    allowedCharacters:
-      description: Allowed strings '["lowerCase", "upperCase", "numbers","specialCharacters"]'
-      type: array
-      example:
-      - lowerCase
-      - upperCase
-      - numbers
-      - specialCharacters
-      items:
-        type: string
-    remittedAmount:
-      title: Remitted Amount
-      description: Amount of money remitted
+    maskAccount:
+      title: Mask Account
       type: object
-      required:
-      - amount
-      - currency
       properties:
-        amount:
-          type: number
-          example: 100.2
-          maxLength: 11
-        currency:
-          type: string
-          example: USD
-    specialCharacters:
+        position:
+          type: integer
+          example: 1
+          default: 1
+          maximum: 25
+        value:
+          $ref: '#/components/schemas/accountMaskSpecification'
+    numbers:
       type: array
       minItems: 0
-      maxItems: 28
+      maxItems: 10
       example:
-      - '-'
-      - _
-      - .
-      description: Allowed Charactors are in ["!","$","’","+",".",";",">","`","}",'“',"%","(",")",",","/","<","?","{","~","#","&","*","-",":","=","_","|","@"]
+      - 1
+      - 2
+      - 3
+      description: Allowed numbers are [0,1,2,3,4,5,6,7,8,9]
       items:
-        type: string
+        type: number
     minimumAmount:
       title: Minimum Amount
       description: Minimum amount of payment accepted by supplier for the payment type selected
@@ -451,6 +474,108 @@ components:
         currency:
           type: string
           example: USD
+    duePayableAmount:
+      title: Due Payable Amount
+      description: Amount specified is the exact amount due and payable to the creditor
+      type: object
+      required:
+      - amount
+      - currency
+      properties:
+        amount:
+          type: number
+          example: 100.2
+          maxLength: 11
+        currency:
+          type: string
+          example: USD
+    minLength:
+      description: Total length of the Account number
+      type: integer
+      example: 1
+      minLength: 1
+      maxLength: 25
+    creditor:
+      title: Creditor
+      type: object
+      description: Party to which an amount of money is due.
+      properties:
+        contactDetails:
+          $ref: '#/components/schemas/contactDetails'
+        maskAccount:
+          type: array
+          items:
+            $ref: '#/components/schemas/maskAccount'
+    lowerCase:
+      type: array
+      minItems: 0
+      maxItems: 26
+      description: Allowed list of alphabets [a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z]
+      example:
+      - a
+      - b
+      - c
+      items:
+        type: string
+    maximumAmount:
+      title: Maximum Amount
+      description: Maximum amount of payment accepted by supplier for the payment type selected
+      type: object
+      required:
+      - amount
+      - currency
+      properties:
+        amount:
+          type: number
+          example: 1000000.29
+          maxLength: 11
+        currency:
+          type: string
+          example: USD
+    remittedAmount:
+      title: Remitted Amount
+      description: Amount of money remitted
+      type: object
+      required:
+      - amount
+      - currency
+      properties:
+        amount:
+          type: number
+          example: 100.2
+          maxLength: 11
+        currency:
+          type: string
+          example: USD
+    paymentProfile:
+      title: Payment Profile
+      properties:
+        paymentInformation:
+          $ref: '#/components/schemas/paymentInformation'
+        creditorAgent:
+          $ref: '#/components/schemas/creditorAgent'
+        creditorAccount:
+          $ref: '#/components/schemas/creditorAccount'
+        locationAndContact:
+          $ref: '#/components/schemas/locationAndContact'
+        deliveryMethod:
+          title: Delivery Method
+          type: string
+          description: Specifies the delivery method of the cheque by the debtor's agent
+          example: MLCD
+        deliverTo:
+          $ref: '#/components/schemas/postalAddress'
+        paymentMethodRanking:
+          title: Payment Method Ranking
+          description: Ranking of payment method preference
+          type: number
+          example: 1
+        relatedRemittanceInformation:
+          $ref: '#/components/schemas/relatedRemittanceInformation'
+        minimumAmount:
+          $ref: '#/components/schemas/minimumAmount'
+        maximumAmount:
+          $ref: '#/components/schemas/maximumAmount'
     relatedRemittanceInformation:
       title: Related Remittance Information
       description: Provides information related to the handling of the remittance information by any of the agents in the transaction processing chain
@@ -474,6 +599,45 @@ components:
           example: ''
         postalAddress:
           $ref: '#/components/schemas/postalAddress'
+    paymentInformation:
+      title: Payment Information
+      type: object
+      required:
+      - paymentMethod
+      properties:
+        paymentMethod:
+          type: string
+          title: Payment Method
+          example: TRF
+          enum:
+          - CHK
+          - TRF
+          description: "Specifies the means of payment that will be used to move the amount of money:\n  * `CHK` - Cheque\n  * `TRF` - CreditTransfer\n"
+        paymentTypeInformation:
+          title: Payment Type Information
+          description: Set of elements used to further specify the type of transaction.
+          type: object
+          properties:
+            serviceLevel:
+              $ref: '#/components/schemas/serviceLevel'
+            localInstrument:
+              type: string
+              example: ZELLE
+    discountAppliedAmount:
+      title: Discount Applied Amount
+      description: Amount specified for the referred document is the amount of discount to be applied to the amount due and payable to the creditor
+      type: object
+      required:
+      - amount
+      - currency
+      properties:
+        amount:
+          type: number
+          example: 2.2
+          maxLength: 11
+        currency:
+          type: string
+          example: USD
     invoicee:
       type: object
       title: Invoicee
@@ -492,6 +656,17 @@ components:
           description: Customer Name
           type: string
           example: ''
+    delimiter:
+      type: array
+      minItems: 0
+      maxItems: 28
+      example:
+      - '-'
+      - _
+      - .
+      description: Allowed special characters are '["!","$","+",".",";",">","`","}","(",")",",","/","<","?","{","~","#","&","*","-",":","_","|","@"]'
+      items:
+        type: string
     remittanceInformation:
       title: Remittance Information
       description: Remittance Information
@@ -581,216 +756,41 @@ components:
             - adjustmentAmountAndReason.currency
             - adjustmentAmountAndReason.reason
             - adjustmentAmountAndReason.string
-    discountAppliedAmount:
-      title: Discount Applied Amount
-      description: Amount specified for the referred document is the amount of discount to be applied to the amount due and payable to the creditor
-      type: object
-      required:
-      - amount
-      - currency
-      properties:
-        amount:
-          type: number
-          example: 2.2
-          maxLength: 11
-        currency:
-          type: string
-          example: USD
-    upperCase:
+    allowedCharacters:
+      description: Allowed strings '["lowerCase", "upperCase", "numbers","specialCharacters"]'
       type: array
-      minItems: 0
-      maxItems: 26
       example:
-      - V
-      - E
-      - Z
-      description: Allowed list of alphabets [A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z]
+      - lowerCase
+      - upperCase
+      - numbers
+      - specialCharacters
       items:
         type: string
-    paymentProfile:
-      title: Payment Profile
-      properties:
-        paymentInformation:
-          $ref: '#/components/schemas/paymentInformation'
-        creditorAgent:
-          $ref: '#/components/schemas/creditorAgent'
-        creditorAccount:
-          $ref: '#/components/schemas/creditorAccount'
-        locationAndContact:
-          $ref: '#/components/schemas/locationAndContact'
-        deliveryMethod:
-          title: Delivery Method
-          type: string
-          description: Specifies the delivery method of the cheque by the debtor's agent
-          example: MLCD
-        deliverTo:
-          $ref: '#/components/schemas/postalAddress'
-        paymentMethodRanking:
-          title: Payment Method Ranking
-          description: Ranking of payment method preference
-          type: number
-          example: 1
-        relatedRemittanceInformation:
-          $ref: '#/components/schemas/relatedRemittanceInformation'
-        minimumAmount:
-          $ref: '#/components/schemas/minimumAmount'
-        maximumAmount:
-          $ref: '#/components/schemas/maximumAmount'
-    errorDetails:
-      title: Error Details
+    accountMaskSpecification:
+      title: Account Mask Specification
       type: object
+      description: Account Mask Specification
       required:
-      - errorCode
-      - message
+      - allowedCharacters
       properties:
-        errorCode:
-          example: 2000
-          type: number
-          enum:
-          - 2000
-          - 2001
-          - 2002
-          - 2003
-          - 2004
-          description: "A programmatic error code:\n  * `2000` - Invalid JSON structure.\n  * `2001` - [Field name] is missing or invalid.\n  * `2002` - Invalid date.\n  * `2003` - Invalid combination of fields submitted. Check the API specification for eligible combinations.  \n  * `2004` - [Field name] cannot be more than [max number] characters. \n"
-        message:
-          description: A human readable description of the problem
-          example: Invalid JSON structure.
-          type: string
-    paymentInformation:
-      title: Payment Information
-      type: object
-      required:
-      - paymentMethod
-      properties:
-        paymentMethod:
-          type: string
-          title: Payment Method
-          example: TRF
-          enum:
-          - CHK
-          - TRF
-          description: "Specifies the means of payment that will be used to move the amount of money:\n  * `CHK` - Cheque\n  * `TRF` - CreditTransfer\n"
-        paymentTypeInformation:
-          title: Payment Type Information
-          description: Set of elements used to further specify the type of transaction.
-          type: object
-          properties:
-            serviceLevel:
-              $ref: '#/components/schemas/serviceLevel'
-            localInstrument:
-              type: string
-              example: ZELLE
-    maskAccount:
-      title: Mask Account
-      type: object
-      properties:
-        position:
-          type: integer
-          example: 1
-          default: 1
-          maximum: 25
-        value:
-          $ref: '#/components/schemas/accountMaskSpecification'
-    error:
-      title: Error
-      type: object
-      properties:
-        detail:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/errorDetails'
-    numbers:
-      type: array
-      minItems: 0
-      maxItems: 10
-      example:
-      - 1
-      - 2
-      - 3
-      description: Allowed numbers are [0,1,2,3,4,5,6,7,8,9]
-      items:
-        type: number
-    address:
-      type: object
-      description: Information that locates and identifies a specific address, as defined by postal services
-      properties:
-        department:
-          type: string
-          description: Identification of a division of a large organisation or building
-          example: Finance Department
-        streetName:
-          type: string
-          description: Name of a street or thoroughfare
-          example: 5700 Lexington Street
-        postCode:
-          type: integer
-          description: Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail
-          example: 19801
-        townName:
-          type: string
-          description: Name of a built-up area, with defined boundaries, and a local government
-          example: Wilmington
-        countrySubDivision:
-          type: string
-          description: Identifies a subdivision of a country such as state, region, county
-          example: DE
-        country:
-          type: string
-          description: Nation with its own government
-          example: US
-    internalServerError:
-      title: Internal Server Error
-      type: object
-      properties:
-        detail:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/internalServerErrorDetails'
-    unprocessableEntity:
-      title: Unprocessable Entity
-      type: object
-      properties:
-        detail:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/unprocessableEntityErrorDetails'
-    minLength:
-      description: Total length of the Account number
-      type: integer
-      example: 1
-      minLength: 1
-      maxLength: 25
-    forbidden:
-      title: Forbidden
-      type: object
-      properties:
-        detail:
-          description: error details
-          type: array
-          items:
-            $ref: '#/components/schemas/unauthorizedErrorDetails'
-    unauthorizedErrorDetails:
-      title: Unauthorized Error Details
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          example: 1000
-          type: number
-          enum:
-          - 1000
-          - 1001
-          description: "A programmatic error code:\n  * `1000` - API key is missing, invalid or expired. \n  * `1001` - API token is invalid, expired, or account associated with key does not have access to that API.\n"
-        message:
-          description: A human readable description of the problem
-          example: API key is missing, invalid or expired.
-          type: string
+        allowedCharacters:
+          $ref: '#/components/schemas/allowedCharacters'
+        length:
+          $ref: '#/components/schemas/length'
+        minLength:
+          $ref: '#/components/schemas/minLength'
+        maxLength:
+          $ref: '#/components/schemas/maxLength'
+        delimiter:
+          $ref: '#/components/schemas/delimiter'
+        lowerCase:
+          $ref: '#/components/schemas/lowerCase'
+        upperCase:
+          $ref: '#/components/schemas/upperCase'
+        numbers:
+          $ref: '#/components/schemas/numbers'
+        specialCharacters:
+          $ref: '#/components/schemas/specialCharacters'
   securitySchemes:
     APIKeyQueryParam:
       type: apiKey
