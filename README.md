@@ -1,4 +1,4 @@
-# Nacha (nacha)
+# Nacha
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,93 +64,178 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Nacha (formerly the National Automated Clearing House Association) is the nonprofit, member-governed steward of the ACH Network — the batch account-to-account payment rail that moves consumer and business direct deposits, direct payments, bill pay, and B2B transfers across the United States, totaling more than 30 billion payments and over $80 trillion in value annually. Nacha writes and enforces the Nacha Operating Rules that bind participating depository financial institutions, but it is not itself an ACH Operator — the Federal Reserve (FedACH) and The Clearing House clear and settle the files. Nacha does not run a public self-serve payments API of its own; its API posture is delivered through **Afinis Interoperability Standards**, the Nacha-stewarded group that publishes royalty-free standardized financial-services API specifications, and through **Phixius**, its payment-information exchange platform.
+Nacha (formerly the National Automated Clearing House Association) is the nonprofit, member-governed steward of the ACH Network, the batch-based account-to-account payment rail that moves consumer and business direct deposits, direct payments, bill pay, and B2B transfers across the United States — more than 30 billion payments and over $80 trillion in value annually. Nacha writes and enforces the Nacha Operating Rules that bind the network's participating depository financial institutions, but it is not itself an ACH Operator (the Federal Reserve and The Clearing House clear and settle the files). Nacha is documentation- and rulebook-first rather than a self-serve PSP: it does not operate a public production payments API of its own. Its API posture is delivered through Afinis Interoperability Standards, the Nacha-stewarded group that publishes royalty-free, standardized financial-services API specifications (payment initiation, account validation, transaction status, returns reporting, and directory services) as Swagger/OpenAPI documents on SwaggerHub, and through Phixius, its payment-information exchange platform. Its home market is the United States.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/nacha/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/nacha/refs/heads/main/apis.yml)
+**Areas:** Payments · United States · ACH · Account-to-Account · Real-Time Payments · Account Validation · Payment Rails · ISO 20022 · Standards · Afinis
 
-## Tags
+## Nacha on APIs.io
 
-- Payments
-- United States
-- ACH
-- Account-to-Account
-- Real-Time Payments
-- Account Validation
-- Payment Rails
-- ISO 20022
-- Standards
-- Afinis
+Everything profiled for Nacha is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/nacha/](https://apis.io/providers/nacha/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (19)
 
-- **Created:** 2026-07-24
-- **Modified:** 2026-07-24
+- [Nacha Account Validation API](https://apis.io/apis/nacha/nacha-account-validation-api/) — The Account Validation API from Nacha — 1 operation(s) for account validation.
+- [Nacha Accounts API](https://apis.io/apis/nacha/nacha-accounts-api/) — The Accounts API from Nacha — 4 operation(s) for accounts.
+- [Nacha ACH Payments API](https://apis.io/apis/nacha/nacha-ach-payments-api/) — The ACH Payments API from Nacha — 2 operation(s) for ach payments.
+- [Nacha ACH Transaction Status API](https://apis.io/apis/nacha/nacha-ach-transaction-status-api/) — The ACH Transaction Status API from Nacha — 4 operation(s) for ach transaction status.
+- [Nacha Authorize to Pay API](https://apis.io/apis/nacha/nacha-authorize-to-pay-api/) — The Authorize to Pay API from Nacha — 1 operation(s) for authorize to pay.
+- [Nacha Banks API](https://apis.io/apis/nacha/nacha-banks-api/) — The Banks API from Nacha — 1 operation(s) for banks.
+- [Nacha Expand Bank Contact V2 API](https://apis.io/apis/nacha/nacha-expand-bank-contact-v2-api/) — The Expand Bank Contact V2 API from Nacha — 1 operation(s) for expand bank contact v2.
+- [Nacha Get Corporate Account Balances API](https://apis.io/apis/nacha/nacha-get-corporate-account-balances-api/) — The Get Corporate Account Balances API from Nacha — 1 operation(s) for get corporate account balances.
+- [Nacha Get Corporate Transaction History API](https://apis.io/apis/nacha/nacha-get-corporate-transaction-history-api/) — The Get Corporate Transaction History API from Nacha — 2 operation(s) for get corporate transaction history.
+- [Nacha Get Participants Profile API](https://apis.io/apis/nacha/nacha-get-participants-profile-api/) — The Get Participants Profile API from Nacha — 1 operation(s) for get participants profile.
+- [Nacha Initiate Payment API](https://apis.io/apis/nacha/nacha-initiate-payment-api/) — The Initiate Payment API from Nacha — 1 operation(s) for initiate payment.
+- [Nacha Instant Payment API](https://apis.io/apis/nacha/nacha-instant-payment-api/) — The Instant Payment API from Nacha — 1 operation(s) for instant payment.
+- [Nacha Instant Payment Transfer API](https://apis.io/apis/nacha/nacha-instant-payment-transfer-api/) — The Instant Payment Transfer API from Nacha — 1 operation(s) for instant payment transfer.
+- [Nacha International ACH Remittance (IAR) API](https://apis.io/apis/nacha/nacha-international-ach-remittance-iar-api/) — The International ACH Remittance (IAR) API from Nacha — 2 operation(s) for international ach remittance (iar).
+- [Nacha Proof of Authorization API](https://apis.io/apis/nacha/nacha-proof-of-authorization-api/) — The Proof of Authorization API from Nacha — 1 operation(s) for proof of authorization.
+- [Nacha Reporting ACH Return Payments API](https://apis.io/apis/nacha/nacha-reporting-ach-return-payments-api/) — The Reporting ACH Return Payments API from Nacha — 1 operation(s) for reporting ach return payments.
+- [Nacha Route Billing Information API](https://apis.io/apis/nacha/nacha-route-billing-information-api/) — The Route Billing Information API from Nacha — 1 operation(s) for route billing information.
+- [Nacha Wire Transfer API](https://apis.io/apis/nacha/nacha-wire-transfer-api/) — The Wire Transfer API from Nacha — 2 operation(s) for wire transfer.
+- [Nacha Written Statement of Unauthorized Debit (WSUD) API](https://apis.io/apis/nacha/nacha-written-statement-of-unauthorized-debit-wsud-api/) — The Written Statement of Unauthorized Debit (WSUD) API from Nacha — 1 operation(s) for written statement of unauthorized debit (wsud).
 
-## API Posture
+### Published properties
 
-Nacha is a **rulebook- and documentation-first scheme steward**, not a self-serve PSP. There is no Nacha-hosted production payments API. What is real and public is the Afinis API Catalog: 24 standardized Swagger 2.0 (OpenAPI) specifications hosted on SwaggerHub under the ASIG organization, catalogued at [nacha.org/content/apis-development](https://www.nacha.org/content/apis-development). These are interoperability standards intended for financial institutions and their vendors to implement; each declares an API-key (`apikey` query parameter) security scheme and requires developer registration with Afinis. All 24 specs are harvested verbatim into [`openapi/`](openapi/).
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs (Afinis Interoperability Standards)
+#### MCP servers (1)
 
-**Payment initiation**
+Model Context Protocol servers that expose the API to agents.
 
-- **Afinis Initiate ACH Payment API** — [Swagger](https://app.swaggerhub.com/apis/ASIG/Initiate_Payment/1.0.7) · [`openapi/nacha-initiate-payment.json`](openapi/nacha-initiate-payment.json)
-- **Afinis Initiate Payment API** — [Swagger](https://app.swaggerhub.com/apis/ASIG/Initiate_Payment_API/1.0.2) · [`openapi/nacha-initiate-payment-api.json`](openapi/nacha-initiate-payment-api.json)
-- **Afinis Pay Me API** (request-for-payment) — [Swagger](https://app.swaggerhub.com/apis/ASIG/Pay_Me_API/1.0.11) · [`openapi/nacha-pay-me.json`](openapi/nacha-pay-me.json)
-- **Afinis Authorize to Pay (Debit Authorizations) API** — [Swagger](https://app.swaggerhub.com/apis/ASIG/Authorize_To_Pay/1.0.6) · [`openapi/nacha-authorize-to-pay.json`](openapi/nacha-authorize-to-pay.json)
+- [nacha-afinis](https://apis.io/servers/nacha/nacha-afinis/)
 
-**Instant & wire payments**
+#### Agentic access (1)
 
-- **Afinis Initiate Instant Payment API (IIP)** — [Swagger](https://app.swaggerhub.com/apis/ASIG/Initiate_Instant_Payment_API/1.0.6) · [`openapi/nacha-initiate-instant-payment.json`](openapi/nacha-initiate-instant-payment.json)
-- **Afinis Instant Payment Transfer API (IPT)** — [Swagger](https://app.swaggerhub.com/apis/ASIG/Instant_Payment_Transfer/1.0.1) · [`openapi/nacha-instant-payment-transfer.json`](openapi/nacha-instant-payment-transfer.json)
-- **Afinis Initiate Wire Payment API** — [Swagger](https://app.swaggerhub.com/apis/ASIG/Initiate_Wire_Payment_API/1.0.3) · [`openapi/nacha-initiate-wire-payment.json`](openapi/nacha-initiate-wire-payment.json)
-- **Afinis Get Wire Status API** — [Swagger](https://app.swaggerhub.com/apis/ASIG/Get_Wire_Status_API/1.0.0) · [`openapi/nacha-get-wire-status.json`](openapi/nacha-get-wire-status.json)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-**Cross-border (International ACH Remittance)**
+- [Nacha Agentic Access](https://apis.io/agentic-access/nacha/nacha-agentic-access/)
 
-- **Afinis International ACH Remittance (IAR) API** — [Swagger](https://app.swaggerhub.com/apis/ASIG/IAR/1.0.1) · [`openapi/nacha-iar.json`](openapi/nacha-iar.json)
-- **Afinis IAR Plus API** — [Swagger](https://app.swaggerhub.com/apis/ASIG/IAR_Plus/1.0.1) · [`openapi/nacha-iar-plus.json`](openapi/nacha-iar-plus.json)
+#### Collections (24)
 
-**Status, returns & disputes**
+Postman and Open Collection request collections.
 
-- **Afinis Transaction Status API** — [Swagger](https://app.swaggerhub.com/apis/ASIG/transaction_status/1.0.14) · [`openapi/nacha-transaction-status.json`](openapi/nacha-transaction-status.json)
-- **Afinis Reporting ACH Return (RET) API** — [Swagger](https://app.swaggerhub.com/apis/ASIG/RET_API/1.0.3) · [`openapi/nacha-ret.json`](openapi/nacha-ret.json)
-- **Afinis Written Statement of Unauthorized Debit (WSUD) API** — [Swagger](https://app.swaggerhub.com/apis/ASIG/Written_Statement_of_Unauthorized_Debit/1.0.8) · [`openapi/nacha-wsud.json`](openapi/nacha-wsud.json)
-- **Afinis Proof of Authorization API** — [Swagger](https://app.swaggerhub.com/apis/ASIG/Proof_of_Authorization/1.0.6) · [`openapi/nacha-proof-of-authorization.json`](openapi/nacha-proof-of-authorization.json)
+- [Account Validation APIs](https://apis.io/collections/nacha/open-nacha-account-validation/)
+- [Account Validation Plus Ownership API](https://apis.io/collections/nacha/open-nacha-account-validation-plus-name/)
+- [AV + Name + Return](https://apis.io/collections/nacha/open-nacha-account-validation-plus-name-ret/)
+- [Debit Authorizations](https://apis.io/collections/nacha/open-nacha-authorize-to-pay/)
+- [Bank Contact V2](https://apis.io/collections/nacha/open-nacha-bank-contact-v2/)
+- [Bank Contacts APIs](https://apis.io/collections/nacha/open-nacha-bank-contacts/)
+- [Get Corporate Account Balances API](https://apis.io/collections/nacha/open-nacha-corporate-account-balances/)
+- [Get Transaction Detail API](https://apis.io/collections/nacha/open-nacha-corporate-transaction-detail/)
+- [Get Corporate Transaction History API](https://apis.io/collections/nacha/open-nacha-corporate-transaction-history/)
+- [Get Wire Status](https://apis.io/collections/nacha/open-nacha-get-wire-status/)
+- [IAR_API](https://apis.io/collections/nacha/open-nacha-iar/)
+- [IAR Plus API](https://apis.io/collections/nacha/open-nacha-iar-plus/)
+- [Initiate Instant Payment API (IIP)](https://apis.io/collections/nacha/open-nacha-initiate-instant-payment/)
+- [Initiate Payment API](https://apis.io/collections/nacha/open-nacha-initiate-payment/)
+- [Initiate Payment API](https://apis.io/collections/nacha/open-nacha-initiate-payment-api/)
+- [Initiate Wire Payment API](https://apis.io/collections/nacha/open-nacha-initiate-wire-payment/)
+- [Instant Payment Transfer (IPT)](https://apis.io/collections/nacha/open-nacha-instant-payment-transfer/)
+- [Pay Me API](https://apis.io/collections/nacha/open-nacha-pay-me/)
+- [Payee Profile API](https://apis.io/collections/nacha/open-nacha-payee-profile/)
+- [Proof of Authorization API](https://apis.io/collections/nacha/open-nacha-proof-of-authorization/)
+- [Real Time Billing Account Validation User Story 1](https://apis.io/collections/nacha/open-nacha-realtime-billing-account-validation/)
+- [RET (Reporting ACH Return Payments) API](https://apis.io/collections/nacha/open-nacha-ret/)
+- [Transaction Status API](https://apis.io/collections/nacha/open-nacha-transaction-status/)
+- [Request Copy of Written Statement of Unauthorized Debit (WSUD) API](https://apis.io/collections/nacha/open-nacha-wsud/)
 
-**Account validation & fraud**
+#### Overlays (24)
 
-- **Afinis Account Validation API** — [Swagger](https://app.swaggerhub.com/apis/ASIG/account_validation/1.0.2) · [`openapi/nacha-account-validation.json`](openapi/nacha-account-validation.json)
-- **Afinis Account Validation Plus Ownership (Name) API** — [Swagger](https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Ownership_API/1.1.0) · [`openapi/nacha-account-validation-plus-name.json`](openapi/nacha-account-validation-plus-name.json)
-- **Afinis Account Validation Plus Name Plus Return API** — [Swagger](https://app.swaggerhub.com/apis/ASIG/Account_Validation_Plus_Name_and_RET/1.0.4) · [`openapi/nacha-account-validation-plus-name-ret.json`](openapi/nacha-account-validation-plus-name-ret.json)
-- **Afinis Real-Time Billing Account Validation API** — [Swagger](https://app.swaggerhub.com/apis/ASIG/RealTimeBillingAccountValidation/1.0.7) · [`openapi/nacha-realtime-billing-account-validation.json`](openapi/nacha-realtime-billing-account-validation.json)
+OpenAPI overlays, including conversational phrasing for each operation.
 
-**Corporate cash management**
+- [Nacha Account Validation Overlay](https://apis.io/overlays/nacha/nacha-account-validation-overlay/)
+- [Nacha Account Validation Plus Name Overlay](https://apis.io/overlays/nacha/nacha-account-validation-plus-name-overlay/)
+- [Nacha Account Validation Plus Name Ret Overlay](https://apis.io/overlays/nacha/nacha-account-validation-plus-name-ret-overlay/)
+- [Nacha Authorize To Pay Overlay](https://apis.io/overlays/nacha/nacha-authorize-to-pay-overlay/)
+- [Nacha Bank Contact V2 Overlay](https://apis.io/overlays/nacha/nacha-bank-contact-v2-overlay/)
+- [Nacha Bank Contacts Overlay](https://apis.io/overlays/nacha/nacha-bank-contacts-overlay/)
+- [Nacha Corporate Account Balances Overlay](https://apis.io/overlays/nacha/nacha-corporate-account-balances-overlay/)
+- [Nacha Corporate Transaction Detail Overlay](https://apis.io/overlays/nacha/nacha-corporate-transaction-detail-overlay/)
+- [Nacha Corporate Transaction History Overlay](https://apis.io/overlays/nacha/nacha-corporate-transaction-history-overlay/)
+- [Nacha Get Wire Status Overlay](https://apis.io/overlays/nacha/nacha-get-wire-status-overlay/)
+- [Nacha Iar Overlay](https://apis.io/overlays/nacha/nacha-iar-overlay/)
+- [Nacha Iar Plus Overlay](https://apis.io/overlays/nacha/nacha-iar-plus-overlay/)
+- [Nacha Initiate Instant Payment Overlay](https://apis.io/overlays/nacha/nacha-initiate-instant-payment-overlay/)
+- [Nacha Initiate Payment Api Overlay](https://apis.io/overlays/nacha/nacha-initiate-payment-api-overlay/)
+- [Nacha Initiate Payment Overlay](https://apis.io/overlays/nacha/nacha-initiate-payment-overlay/)
+- [Nacha Initiate Wire Payment Overlay](https://apis.io/overlays/nacha/nacha-initiate-wire-payment-overlay/)
+- [Nacha Instant Payment Transfer Overlay](https://apis.io/overlays/nacha/nacha-instant-payment-transfer-overlay/)
+- [Nacha Pay Me Overlay](https://apis.io/overlays/nacha/nacha-pay-me-overlay/)
+- [Nacha Payee Profile Overlay](https://apis.io/overlays/nacha/nacha-payee-profile-overlay/)
+- [Nacha Proof Of Authorization Overlay](https://apis.io/overlays/nacha/nacha-proof-of-authorization-overlay/)
+- [Nacha Realtime Billing Account Validation Overlay](https://apis.io/overlays/nacha/nacha-realtime-billing-account-validation-overlay/)
+- [Nacha Ret Overlay](https://apis.io/overlays/nacha/nacha-ret-overlay/)
+- [Nacha Transaction Status Overlay](https://apis.io/overlays/nacha/nacha-transaction-status-overlay/)
+- [Nacha Wsud Overlay](https://apis.io/overlays/nacha/nacha-wsud-overlay/)
 
-- **Afinis Get Corporate Account Balances API** — [Swagger](https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Account_Balances_API/1.0.3) · [`openapi/nacha-corporate-account-balances.json`](openapi/nacha-corporate-account-balances.json)
-- **Afinis Get Corporate Transaction History API** — [Swagger](https://app.swaggerhub.com/apis/ASIG/Get_Corporate_Transaction_History_API/1.0.5) · [`openapi/nacha-corporate-transaction-history.json`](openapi/nacha-corporate-transaction-history.json)
-- **Afinis Get Transaction Detail API** — [Swagger](https://app.swaggerhub.com/apis/ASIG/Get_Transaction_Detail_API/1.0.4) · [`openapi/nacha-corporate-transaction-detail.json`](openapi/nacha-corporate-transaction-detail.json)
+#### Security (2)
 
-**Directory services**
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Afinis Payee Profile API** — [Swagger](https://app.swaggerhub.com/apis/ASIG/Payee_Profile_API/2.1.3) · [`openapi/nacha-payee-profile.json`](openapi/nacha-payee-profile.json)
-- **Afinis Bank Contacts API** — [Swagger](https://app.swaggerhub.com/apis/ASIG/bank_contacts/1.0.5) · [`openapi/nacha-bank-contacts.json`](openapi/nacha-bank-contacts.json)
-- **Afinis Bank Contact V2 API** — [Swagger](https://app.swaggerhub.com/apis/ASIG/Bank_Contact_V2/1.0.9) · [`openapi/nacha-bank-contact-v2.json`](openapi/nacha-bank-contact-v2.json)
+- [Nacha Authentication](https://apis.io/security/nacha/nacha-authentication/)
+- [Nacha Domain Security](https://apis.io/security/nacha/nacha-domain-security/)
 
-## Common Properties
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.nacha.org/)
-- [About](https://www.nacha.org/content/about-us)
-- [Developer Portal — Afinis API Catalog](https://www.nacha.org/content/apis-development)
-- [API Reference — Afinis API Catalog](https://www.nacha.org/content/afinis-api-catalog)
-- [Documentation — Afinis Interoperability Standards](https://www.nacha.org/content/afinis-interoperability-standards)
-- [Getting Started — ACH Guide for Developers](https://achdevguide.nacha.org/)
-- [Nacha Operating Rules](https://www.nacha.org/rules)
-- [News / Blog](https://www.nacha.org/news)
-- [LinkedIn](https://www.linkedin.com/company/nacha)
-- [Terms / Legal Information](https://www.nacha.org/content/legal-information)
+- [Documentation](https://www.nacha.org/content/afinis-interoperability-standards)
+- [Getting started](https://achdevguide.nacha.org/)
+- [API reference](https://www.nacha.org/content/afinis-api-catalog)
+- [Blog](https://www.nacha.org/news)
+- [Terms of service](https://www.nacha.org/content/legal-information)
+- [Privacy policy](https://www.nacha.org/content/privacy-policy)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 36.1** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 78.6 |
+| Contract quality | 44.5 |
+| Contract governance | 4.5 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 54.2 |
+| Access clarity | 27.6 |
+
+**Agent readiness 26.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 25.9** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/nacha/](https://apis.io/providers/nacha/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Nacha: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/nacha/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
